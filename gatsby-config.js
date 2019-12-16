@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Christopher Cardoso`,
+    description: `A full stack developer based in Toronto with a strong passion for JavaScript, TypeScript, React and all the modern JS stack. I love learning new technologies and provide a great user experience on the products I build`,
+    author: `Christopher Cardoso`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -25,6 +25,14 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+      },
+    },
+    `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `content`,
+        path: `${__dirname}/src/content`,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
