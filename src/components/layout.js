@@ -4,7 +4,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 import GlobalStyle from './style/globalStyle'
-import Emoji from "./emoji"
+import Footer from "./footer"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -24,9 +24,7 @@ const Layout = ({ children }) => {
       <main>
         {children}
       </main>
-      <footer>
-        Built with <Emoji symbol="❤️" label="love" /> by Christopher Cardoso © {new Date().getFullYear()}
-      </footer>
+      <Footer />
     </>
   )
 }

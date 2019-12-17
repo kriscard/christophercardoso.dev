@@ -1,8 +1,13 @@
 import styled from "styled-components"
 
-export default Container = styled.div`
+const Container = styled.div`
   max-width: 76rem;
   margin: auto;
   width: 100%;
-  padding: 0 1rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 `
+
+export default Container
