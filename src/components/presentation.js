@@ -4,6 +4,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import Wrapper from '../components/style/wrapper'
 import Container from '../components/style/container'
+import PresentationImage from "./presentationImage"
 
 const ButtonStyle = styled.div`
 a {
@@ -48,7 +49,7 @@ const Presentation = () => (
               <a href="#">{data.markdownRemark.frontmatter.linkText}</a>
             </ButtonStyle>
           </div>
-
+          <PresentationImage/>
         </Container>
       </Wrapper>
     )}

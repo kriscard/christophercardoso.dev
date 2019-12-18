@@ -79,11 +79,6 @@ button:focus {
   outline: none;
   text-decoration: none;
 }
-
-img {
-  display: block;
-  max-width: 100%;
-}
 `
 
 export default GlobalStyle

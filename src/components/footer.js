@@ -7,6 +7,9 @@ const FooterStyle = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  background: #333333;
+  padding: 10px 0;
+  color: #FFFFFF;
 `
 
 const Footer = () => {
