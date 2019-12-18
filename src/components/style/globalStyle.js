@@ -80,26 +80,6 @@ button:focus {
   text-decoration: none;
 }
 
-a:active {
-  outline: none;
-  text-decoration: none;
-}
-
-button:active {
-  outline: none;
-  text-decoration: none;
-}
-
-a:visited {
-  outline: none;
-  text-decoration: none;
-}
-
-button:visited {
-  outline: none;
-  text-decoration: none;
-}
-
 img {
   display: block;
   max-width: 100%;
