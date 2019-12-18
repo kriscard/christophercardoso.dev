@@ -3,9 +3,9 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-import Container from "./style/container"
-import Nav from './nav'
-import LogoImage from './logo'
+import Container from "../style/container"
+import Nav from '../nav'
+import LogoImage from '../images/logo'
 
 const DisplayTitle = styled.div`
     display: none;

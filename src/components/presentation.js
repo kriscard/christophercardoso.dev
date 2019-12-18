@@ -4,7 +4,7 @@ import { StaticQuery, graphql } from "gatsby"
 
 import Wrapper from '../components/style/wrapper'
 import Container from '../components/style/container'
-import PresentationImage from "./presentationImage"
+import PresentationImage from "../components/images/presentationImage"
 
 const ButtonStyle = styled.div`
 a {

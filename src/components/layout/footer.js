@@ -1,6 +1,7 @@
 import React from 'react'
-import Emoji from "./emoji"
 import styled from "styled-components"
+
+import Emoji from "../images/emoji"
 
 const FooterStyle = styled.div`
   position: right;
