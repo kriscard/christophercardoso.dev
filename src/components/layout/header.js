@@ -7,25 +7,45 @@ import Container from "../style/container"
 import Nav from '../nav'
 import LogoImage from '../images/logo'
 
-const DisplayTitle = styled.div`
-    display: none;
+const HeaderStyle = styled.header`
+  margin: 0.5rem;
+  max-width: 21%;
+`;
 
-    &:hover {
-      display: inline;
-    }
+const DisplayTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .title_h3 {
+    z-index: -1;
+    opacity: 0;
+    position: absolute;
+    transform: translateX(3rem);
+    transition: transform .3s ease,opacity .15s ease;
+    margin: 10px 0px 0px;
+    color: #333333;
+  }
+
+  &:hover .title_h3 {
+    opacity: 1;
+    transform: translateX(3.5rem);
+    transition: transform .2s ease,opacity .3s ease;
+  }
 `;
 
 
 const Header = ({ siteTitle }) => (
   <Container>
-    <header style={{ margin: `0.5rem` }}>
-      <Link to="/" style={{ textShadow: `none`, backgroundImage: `none` }}>
-        <LogoImage />
-        <DisplayTitle>
-          <h3>{siteTitle}</h3>
-        </DisplayTitle>
-      </Link>
-    </header>
+    <HeaderStyle>
+      <DisplayTitle>
+        <Link to="/" >
+          <LogoImage />
+        </Link>
+        <h3 className="title_h3">{siteTitle}</h3>
+      </DisplayTitle>
+    </HeaderStyle>
     <Nav />
   </Container>
 )
@@ -35,7 +55,7 @@ Header.propTypes = {
 }
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: `Christopher Cardoso`,
 }
 
 export default Header
