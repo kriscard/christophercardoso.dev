@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
     <>
       <GlobalStyle />
       <Header siteTitle={data.site.siteMetadata.title} />
-      <main style={{height: "100vh"}}>
+      <main>
         {children}
       </main>
       <Footer />
