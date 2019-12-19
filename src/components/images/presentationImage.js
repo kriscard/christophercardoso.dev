@@ -12,13 +12,19 @@ const StyledImg = styled(Img)`
   object-fit: cover;
   padding: 10px;
   margin: 20px;
+
+  @media (max-width: 991px) {
+    img {
+      display: none;
+    }
+  }
 `
 
 const PresentationImage = () => (
   <StaticQuery
     query={graphql`
       query {
-      bannerImage: file(relativePath: { eq: "banner.png" }) {
+      bannerImage: file(relativePath: { eq: "developer.png" }) {
         childImageSharp {
           fixed {
           ...GatsbyImageSharpFixed

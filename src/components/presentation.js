@@ -49,7 +49,7 @@ const Presentation = () => (
               <a href="#">{data.markdownRemark.frontmatter.linkText}</a>
             </ButtonStyle>
           </div>
-          <PresentationImage/>
+          <PresentationImage />
         </Container>
       </Wrapper>
     )}
