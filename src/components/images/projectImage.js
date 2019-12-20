@@ -15,7 +15,20 @@ const StyledImg = styled(Img)`
 
 
 const ProjectImage = ({ image, name, color }) => {
-  return <StyledImg fluid={image} alt={name} backgroundColor={color} />
+  return (
+    <StyledImg
+      fluid={image}
+      alt={name}
+      backgroundColor={color}
+      imgStyle={{
+        objectFit: "fill"
+      }}
+      style={{
+        height: "375px",
+        width: "594px",
+      }}
+    />
+  )
 }
 
 export default ProjectImage

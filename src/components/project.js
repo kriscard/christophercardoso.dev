@@ -38,21 +38,21 @@ const Project = () => (
             }
           }
         },
-        imageTwo: file(relativePath: { eq: "speaken.png" }) {
+        imageTwo: file(relativePath: { eq: "speaken_api.png" }) {
           childImageSharp {
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
             }
           }
         },
-        imageThree: file(relativePath: { eq: "speaken.png" }) {
+        imageThree: file(relativePath: { eq: "portfolio.png" }) {
           childImageSharp {
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
             }
           }
         },
-        imageFour: file(relativePath: { eq: "speaken.png" }) {
+        imageFour: file(relativePath: { eq: "face-recognation.png" }) {
           childImageSharp {
             fluid(maxWidth: 800) {
               ...GatsbyImageSharpFluid
@@ -80,7 +80,7 @@ const Project = () => (
         },
         {
           id: 1,
-          name: 'Speaken Back End',
+          name: 'Speaken API',
           description: 'Image gallery template built with CSS Grid and Flexbox featuring text-following cursor hover effects.',
           image: imageTwo,
           color: '#ffdde1',
