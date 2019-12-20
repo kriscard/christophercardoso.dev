@@ -16,7 +16,10 @@ const FooterContainer = styled.div`
 const FooterStyle = styled.footer`
   display: flex;
   justify-content: space-between;
-  padding: 16px;
+  width: 95%;
+  border-top: 0.3px solid rgba(51,51,51,0.5);
+  margin: auto;
+  padding: 16px 0;
 `;
 
 const FooterLinks = styled.div`
@@ -64,6 +67,11 @@ const InstagramIcon = styled(Instagram)`
 `
 const FacebookIcon = styled(FacebookCircle)`
   color: #01BEAE;
+  transition: color 0.2s ease;
+
+  &:hover, &:focus {
+    color: #333333;
+  }
 `
 const AngellistIcon = styled(Angellist)`
   color: #01BEAE;
@@ -77,6 +85,11 @@ const AngellistIcon = styled(Angellist)`
 const Footer = () => (
   <FooterContainer>
     <FooterStyle>
+      <FooterText>
+        Built with
+        <Emoji symbol=" ❤️" label="love" />
+        by Christopher Cardoso © {new Date().getFullYear()}
+      </FooterText>
       <FooterLinks >
         <a
           href="https://github.com/kriscard"
@@ -121,11 +134,6 @@ const Footer = () => (
           <AngellistIcon size="35" />
         </a>
       </FooterLinks>
-      <FooterText>
-        Built with
-        <Emoji symbol="❤️" label="love" />
-        by Christopher Cardoso © {new Date().getFullYear()}
-      </FooterText>
     </FooterStyle>
   </FooterContainer>
 )
