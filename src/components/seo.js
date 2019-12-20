@@ -75,7 +75,7 @@ function SEO({ description, lang, meta, title }) {
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  description: ``,
+  description: `A full stack developer based in Toronto with a strong passion for JavaScript, TypeScript, React.js, Node.js, GraphQL and all the modern JavaScript stack.`,
 }
 
 SEO.propTypes = {
