@@ -6,6 +6,7 @@ import 'aos/dist/aos.css';
 
 import { Grid, Item } from "./style/grid"
 import Wrapper from './style/wrapper'
+import Container from './style/container'
 import ProjectImage from './images/projectImage'
 
 
@@ -15,9 +16,9 @@ const ItemContent = styled.div`
   justify-content: space-between;
 `;
 
-const Image = styled.div`
-
-`;
+const ProjectBackground = styled.div`
+  background-color: #F6F7FB;
+`
 
 const ProjectInfo = styled.div`
   display: flex;
@@ -101,27 +102,35 @@ const Project = () => (
 
       return (
         <Wrapper>
-          <Grid>
-            {Projects.map(project => (
-              <Item
-                data-aos="fade-up"
-                data-aos-anchor-placement="top-bottom"
-              >
-                <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
-                  <ItemContent>
-                    <Image>
-                      <ProjectImage image={project.image} name={project.name} color={project.color} />
-                    </Image>
-                    <ProjectInfo>
-                      <h3>{project.name}</h3>
-                      <p>{project.description}</p>
-                    </ProjectInfo>
-                  </ItemContent>
-                </a>
-              </Item>
-            ))
-            }
-          </Grid>
+          <ProjectBackground>
+            <Container>
+              <Grid>
+                {Projects.map(project => (
+                  <Item
+                    data-aos="fade-up"
+                    data-aos-anchor-placement="top-bottom"
+                  >
+                    <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
+                      <ItemContent>
+                        <div>
+                          <ProjectImage
+                            image={project.image}
+                            name={project.name}
+                            color={project.color}
+                          />
+                        </div>
+                        <ProjectInfo>
+                          <h3>{project.name}</h3>
+                          <p>{project.description}</p>
+                        </ProjectInfo>
+                      </ItemContent>
+                    </a>
+                  </Item>
+                ))
+                }
+              </Grid>
+            </Container>
+          </ProjectBackground>
         </Wrapper>
       )
     }}

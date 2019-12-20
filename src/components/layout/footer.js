@@ -3,23 +3,42 @@ import styled from "styled-components"
 
 import Emoji from "../images/emoji"
 
-const FooterStyle = styled.div`
+const FooterContainer = styled.div`
   position: right;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  background: #333333;
+  height: 30%;
   padding: 10px 0;
-  color: #FFFFFF;
 `
+
+const FooterStyle = styled.footer`
+  display: flex;
+  justify-content: space-between;
+  padding: 16px;
+`;
+
+const FooterLinks = styled.div`
+
+`;
+
+const FooterText = styled.div`
+  color: #333333;
+`;
 
 const Footer = () => {
   return (
-    <FooterStyle>
-      <footer>
-        Built with <Emoji symbol="❤️" label="love" /> by Christopher Cardoso © {new Date().getFullYear()}
-      </footer>
-    </FooterStyle>
+    <FooterContainer>
+      <FooterStyle>
+        <FooterLinks>
+          Github
+          Twitter
+          Instagram
+          facebook
+        </FooterLinks>
+        <FooterText>
+          Built with <Emoji symbol="❤️" label="love" /> by Christopher Cardoso © {new Date().getFullYear()}
+        </FooterText>
+      </FooterStyle>
+    </FooterContainer>
   )
 }
 
