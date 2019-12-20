@@ -25,6 +25,7 @@
     "gatsby-transformer-remark": "^2.6.42",
     "prettier": "^1.19.1",
     "styled-components": "^4.4.1",
+    "styled-icons": "^9.1.0",
     "typeface-open-sans": "^0.0.75",
     "typeface-roboto": "^0.0.75"
   },

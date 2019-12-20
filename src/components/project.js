@@ -71,6 +71,7 @@ const Project = () => (
 
       const Projects = [
         {
+          id: 0,
           name: 'Speaken Front End',
           description: 'Travel template featuring a slider with a swipe transition built with CSS Grid and Flexbox.',
           image: imageOne,
@@ -78,6 +79,7 @@ const Project = () => (
           link: 'https://speaken.com/index.html'
         },
         {
+          id: 1,
           name: 'Speaken Back End',
           description: 'Image gallery template built with CSS Grid and Flexbox featuring text-following cursor hover effects.',
           image: imageTwo,
@@ -85,6 +87,7 @@ const Project = () => (
           link: 'https://speaken.com/index.html'
         },
         {
+          id: 2,
           name: 'Portfolio',
           description: 'Tea-themed random, placeholder text generator app built with Gatsby.js and React.',
           image: imageThree,
@@ -92,6 +95,7 @@ const Project = () => (
           link: 'https://www.christophercardoso.dev'
         },
         {
+          id: 3,
           name: `Face Recognation`,
           description: 'Complete branding and website refresh for a painting company in New Jersey.',
           image: imageFour,
@@ -109,6 +113,7 @@ const Project = () => (
                   <Item
                     data-aos="fade-up"
                     data-aos-anchor-placement="top-bottom"
+                    key={project.id}
                   >
                     <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
                       <ItemContent>
