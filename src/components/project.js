@@ -1,11 +1,11 @@
 import React from 'react'
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import { Grid, Item } from "./style/grid"
 import Wrapper from './style/wrapper'
-import Container from './style/container'
 import ProjectImage from './images/projectImage'
 
 
@@ -61,6 +61,8 @@ const Project = () => (
       }
   `}
     render={data => {
+      AOS.init();
+
       const imageOne = data.imageOne.childImageSharp.fluid
       const imageTwo = data.imageTwo.childImageSharp.fluid
       const imageThree = data.imageThree.childImageSharp.fluid
@@ -99,25 +101,27 @@ const Project = () => (
 
       return (
         <Wrapper>
-
-            <Grid>
-              {Projects.map(project => (
-                <Item>
-                  <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
-                    <ItemContent>
-                      <Image>
-                        <ProjectImage image={project.image} name={project.name} color={project.color} />
-                      </Image>
-                      <ProjectInfo>
-                        <h3>{project.name}</h3>
-                        <p>{project.description}</p>
-                      </ProjectInfo>
-                    </ItemContent>
-                  </a>
-                </Item>
-              ))
-              }
-            </Grid>
+          <Grid>
+            {Projects.map(project => (
+              <Item
+                data-aos="fade-up"
+                data-aos-anchor-placement="top-bottom"
+              >
+                <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
+                  <ItemContent>
+                    <Image>
+                      <ProjectImage image={project.image} name={project.name} color={project.color} />
+                    </Image>
+                    <ProjectInfo>
+                      <h3>{project.name}</h3>
+                      <p>{project.description}</p>
+                    </ProjectInfo>
+                  </ItemContent>
+                </a>
+              </Item>
+            ))
+            }
+          </Grid>
         </Wrapper>
       )
     }}
