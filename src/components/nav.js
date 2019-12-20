@@ -37,7 +37,15 @@ const nav = () => {
       <ListStyle>
         <li><ListLink href="#projects">Project</ListLink></li>
         <li><ListLink href="#about">About</ListLink></li>
-        <li><a href="mailto:cardoso.christopher01@gmail.com" target="_blank">Contact</a></li>
+        <li>
+          <a
+            href="mailto:cardoso.christopher01@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Contact
+          </a>
+        </li>
       </ListStyle>
     </LinkStyle>
   )

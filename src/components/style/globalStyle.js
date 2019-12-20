@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components"
 require("typeface-open-sans")
 require("typeface-roboto")
 
-/* colors to use:
+/* colors:
 white: #FFFFFF
 green: #01BEAE
 black: #262340

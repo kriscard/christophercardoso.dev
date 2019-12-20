@@ -27,11 +27,13 @@ const ProjectInfo = styled.div`
   justify-content: space-between;
 
   h3 {
-
+    color: #262340;
+    padding: 10px;
+    margin: 0;
   }
 
   p {
-
+    color: #262340;
   }
 `;
 
@@ -81,8 +83,8 @@ const Project = () => (
       const Projects = [
         {
           id: 0,
-          name: 'Speaken Front End',
-          description: 'Travel template featuring a slider with a swipe transition built with CSS Grid and Flexbox.',
+          name: 'Speaken Tutor Application',
+          description: 'Create a new React application for the Tutor with TypeScript, Next.JS, React hooks and Domain Driven Design',
           image: imageOne,
           color: '#fee7ca',
           link: 'https://speaken.com/index.html'
@@ -90,15 +92,15 @@ const Project = () => (
         {
           id: 1,
           name: 'Speaken API',
-          description: 'Image gallery template built with CSS Grid and Flexbox featuring text-following cursor hover effects.',
+          description: 'Create new feature for the Rails API with Test Driven Development',
           image: imageTwo,
           color: '#ffdde1',
           link: 'https://speaken.com/index.html'
         },
         {
           id: 2,
-          name: 'Portfolio',
-          description: 'Tea-themed random, placeholder text generator app built with Gatsby.js and React.',
+          name: 'chriscardoso.dev',
+          description: 'Create a portfolio with Gatsby and GraphQL',
           image: imageThree,
           color: '#c9decc',
           link: 'https://www.christophercardoso.dev'
@@ -106,10 +108,10 @@ const Project = () => (
         {
           id: 3,
           name: `Face Recognation`,
-          description: 'Complete branding and website refresh for a painting company in New Jersey.',
+          description: 'Create a face recognation app with React and Redux and a NodeJS API',
           image: imageFour,
           color: '#cbe1f2',
-          link: 'https://github.com/kriscard/rails_get_to_the_fest'
+          link: 'https://catchface.herokuapp.com/'
         }
       ]
 
