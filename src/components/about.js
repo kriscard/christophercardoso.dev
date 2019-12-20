@@ -4,6 +4,7 @@ import styled from "styled-components"
 import Wrapper from '../components/style/wrapper'
 import AboutImage from '../components/images/aboutImage'
 import AboutText from '../components/aboutText'
+import {Grid, Item} from '../components/style/grid'
 
 const AboutContainer = styled.div`
   height: 70vh;
@@ -17,8 +18,14 @@ const About = () => {
   return (
     <Wrapper>
       <AboutContainer>
-        <AboutImage />
-        <AboutText />
+        <Grid>
+          <Item>
+            <AboutImage />
+          </Item>
+          <Item>
+            <AboutText />
+          </Item>
+        </Grid>
       </AboutContainer>
     </Wrapper>
   )

@@ -6,6 +6,7 @@ import { Angellist } from "styled-icons/fa-brands"
 
 import Emoji from "../images/emoji"
 
+
 const FooterContainer = styled.div`
   position: right;
   width: 100%;
@@ -20,13 +21,18 @@ const FooterStyle = styled.footer`
   border-top: 0.3px solid rgba(51,51,51,0.5);
   margin: auto;
   padding: 16px 0;
+
+  @media (max-width: 991px) {
+    align-items: center;
+    flex-direction: column;
+  }
 `;
 
 const FooterLinks = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 25%;
+  min-width: 25%;
 `;
 
 const FooterText = styled.div`
@@ -85,9 +91,10 @@ const AngellistIcon = styled(Angellist)`
 const Footer = () => (
   <FooterContainer>
     <FooterStyle>
+
       <FooterText>
         Built with
-        <Emoji symbol=" ❤️" label="love" />
+            <Emoji symbol=" ❤️" label="love" />
         by Christopher Cardoso © {new Date().getFullYear()}
       </FooterText>
       <FooterLinks >

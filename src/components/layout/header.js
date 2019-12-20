@@ -24,8 +24,8 @@ const DisplayTitle = styled.div`
     position: absolute;
     transform: translateX(3rem);
     transition: transform .3s ease,opacity .15s ease;
-    margin: 10px 0px 0px;
     color: #333333;
+    margin: 10px 0px 0px;
   }
 
   &:hover .title_h3 {

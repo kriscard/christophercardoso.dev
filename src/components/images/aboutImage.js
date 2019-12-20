@@ -3,8 +3,7 @@ import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import Img from "gatsby-image"
 
-const StyledImg = styled(Img)`
-  position: absolute;
+const AboutImageStyle = styled(Img)`
   left: 0;
   top: 0;
   width: 100%;
@@ -14,6 +13,7 @@ const StyledImg = styled(Img)`
   margin: 20px;
 
   @media (max-width: 991px) {
+    position: absolute !important;
     img {
       display: none;
     }
@@ -34,7 +34,7 @@ const AboutImage = () => (
     }
   `}
     render={data => (
-      <StyledImg
+      <AboutImageStyle
         fixed={data.aboutImage.childImageSharp.fixed}
         alt="About me"
       />

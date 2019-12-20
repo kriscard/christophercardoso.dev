@@ -31,8 +31,8 @@ const LogoImage = () => (
       <StyledImg
         fixed={data.bannerImage.childImageSharp.fixed}
         style={{
-          height: "50px",
-          width: "50px",
+          height: "70px",
+          width: "70px",
           margin: "10 px",
           position: "absolute"
         }}
