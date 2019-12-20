@@ -14,6 +14,7 @@ const StyledImg = styled(Img)`
   margin: 20px;
 
   @media (max-width: 991px) {
+    position: absolute !important;
     img {
       display: none;
     }

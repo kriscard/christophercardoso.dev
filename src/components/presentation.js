@@ -5,6 +5,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import Wrapper from '../components/style/wrapper'
 import Container from '../components/style/container'
+import { Grid, Item } from "../components/style/grid"
 import PresentationImage from "../components/images/presentationImage"
 
 const ButtonStyle = styled.div`
@@ -43,14 +44,20 @@ const Presentation = () => (
     render={data => (
       <Wrapper>
         <Container>
-          <div>
-            <h1>{data.markdownRemark.frontmatter.title}</h1>
-            <p>{data.markdownRemark.frontmatter.description}</p>
-            <ButtonStyle>
-              <AnchorLink href="#about">{data.markdownRemark.frontmatter.linkText}</AnchorLink>
-            </ButtonStyle>
-          </div>
-          <PresentationImage />
+          <Grid>
+            <Item>
+              <div>
+                <h1>{data.markdownRemark.frontmatter.title}</h1>
+                <p>{data.markdownRemark.frontmatter.description}</p>
+                <ButtonStyle>
+                  <AnchorLink href="#about">{data.markdownRemark.frontmatter.linkText}</AnchorLink>
+                </ButtonStyle>
+              </div>
+            </Item>
+            <Item>
+              <PresentationImage />
+            </Item>
+          </Grid>
         </Container>
       </Wrapper>
     )}
