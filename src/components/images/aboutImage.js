@@ -14,9 +14,7 @@ const AboutImageStyle = styled(Img)`
 
   @media (max-width: 991px) {
     position: absolute !important;
-    img {
-      display: none;
-    }
+    display: none !important;
   }
 `
 
