@@ -33,23 +33,21 @@ const GlobalStyle = createGlobalStyle`
   }
 }
 
-  h1 {
-    font-family: 'Open-sans', sans-serif;
-    font-size: 2.25rem;
-    font-kerning: normal;
-    font-weight: 700;
-    line-height: 1.15;
-    padding: 10px;
-    margin: 0;
-    color: #262340;
+h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1.15;
+  padding: 10px;
+  margin: 0;
+  color: #262340;
 
-    @media (min-width: 992px) {
-      font-size: 2rem;
-      max-width: 40rem;
-    }
+  @media (min-width: 992px) {
+    font-size: 2rem;
+    max-width: 50rem;
+  }
 }
 
-  p {
+p {
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: normal;

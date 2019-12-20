@@ -18,12 +18,21 @@ const ItemContent = styled.div`
 
 const ProjectBackground = styled.div`
   background-color: #F6F7FB;
+  width: 100%;
 `
 
 const ProjectInfo = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  h3 {
+
+  }
+
+  p {
+
+  }
 `;
 
 
