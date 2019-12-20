@@ -4,7 +4,7 @@ import styled from "styled-components"
 import Wrapper from '../components/style/wrapper'
 import AboutImage from '../components/images/aboutImage'
 import AboutText from '../components/aboutText'
-import {Grid, Item} from '../components/style/grid'
+import { Grid, Item } from '../components/style/grid'
 
 const AboutContainer = styled.div`
   height: 70vh;
@@ -16,7 +16,7 @@ const AboutContainer = styled.div`
 
 const About = () => {
   return (
-    <Wrapper>
+    <Wrapper id="about">
       <AboutContainer>
         <Grid>
           <Item>

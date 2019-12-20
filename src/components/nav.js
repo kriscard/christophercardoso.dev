@@ -1,10 +1,11 @@
 import React from 'react'
-import { Link } from "gatsby"
 import styled from "styled-components"
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const ListStyle = styled.li`
-  display: inline-block;
   margin-right: 2rem;
+  display: flex;
+  justify-content: space-between;
 
   a {
     position: relative;
@@ -23,25 +24,21 @@ const ListStyle = styled.li`
 const LinkStyle = styled.ul`
   list-style: none;
   float: right;
+  width: 25%;
 `;
 
 const nav = () => {
   const ListLink = props => (
-    <ListStyle>
-      <li>
-        <Link to={props.to}>{props.children}</Link>
-      </li>
-    </ListStyle>
+    <AnchorLink href={props.href}>{props.children}</AnchorLink>
   )
 
   return (
     <LinkStyle>
-      <ul style={{ listStyle: `none`, float: `right` }}>
-        {/* TODO : Replace the to with an anchor and use react-anchor-link-smooth-scroll */}
-        <ListLink to="/">Project</ListLink>
-        <ListLink to="/about/">About</ListLink>
-        <ListLink to="/contact/">Contact</ListLink>
-      </ul>
+      <ListStyle>
+        <li><ListLink href="#projects">Project</ListLink></li>
+        <li><ListLink href="#about">About</ListLink></li>
+        <li><a href="mailto:cardoso.christopher01@gmail.com" target="_blank">Contact</a></li>
+      </ListStyle>
     </LinkStyle>
   )
 }

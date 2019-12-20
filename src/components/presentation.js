@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 import { StaticQuery, graphql } from "gatsby"
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 import Wrapper from '../components/style/wrapper'
 import Container from '../components/style/container'
@@ -46,7 +47,7 @@ const Presentation = () => (
             <h1>{data.markdownRemark.frontmatter.title}</h1>
             <p>{data.markdownRemark.frontmatter.description}</p>
             <ButtonStyle>
-              <a href="#">{data.markdownRemark.frontmatter.linkText}</a>
+              <AnchorLink href="#about">{data.markdownRemark.frontmatter.linkText}</AnchorLink>
             </ButtonStyle>
           </div>
           <PresentationImage />

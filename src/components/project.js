@@ -114,7 +114,7 @@ const Project = () => (
       ]
 
       return (
-        <Wrapper>
+        <Wrapper id="projects">
           <ProjectBackground>
             <Container>
               <Grid>

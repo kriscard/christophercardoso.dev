@@ -9,7 +9,7 @@ import LogoImage from '../images/logo'
 
 const HeaderStyle = styled.header`
   margin: 0.5rem;
-  max-width: 21%;
+  width: 100%;
 `;
 
 const DisplayTitle = styled.div`
@@ -25,7 +25,9 @@ const DisplayTitle = styled.div`
     transform: translateX(3rem);
     transition: transform .3s ease,opacity .15s ease;
     color: #333333;
-    margin: 10px 0px 0px;
+    padding-top: 50px;
+    font-size: 18px;
+    /* margin: 10px 0px 0px; */
   }
 
   &:hover .title_h3 {
@@ -45,8 +47,8 @@ const Header = ({ siteTitle }) => (
         </Link>
         <h3 className="title_h3">{siteTitle}</h3>
       </DisplayTitle>
+      <Nav />
     </HeaderStyle>
-    <Nav />
   </Container>
 )
 
