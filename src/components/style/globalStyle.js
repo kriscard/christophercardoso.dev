@@ -1,7 +1,6 @@
 import { createGlobalStyle } from "styled-components"
+import 'typeface-lato';
 
-require("typeface-open-sans")
-require("typeface-roboto")
 
 /* colors:
 white: #FFFFFF
@@ -14,7 +13,7 @@ const GlobalStyle = createGlobalStyle`
  body {
   margin: 0;
   font-size: 1rem;
-  font-family: 'Open-sans', sans-serif;
+  font-family: 'Lato', sans-serif;
   color: #262340;
   line-height: 1.55;
   font-weight: normal;
@@ -24,11 +23,11 @@ const GlobalStyle = createGlobalStyle`
   -moz-osx-font-smoothing: grayscale;
   background: #fff;
 
-  @media (min-width: 767px) {
-    font-size: 1rem;
+  @media (min-width: 780px) {
+    font-size: 1.25rem;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 480px) {
     font-size: 1.125rem;
   }
 }
@@ -41,14 +40,18 @@ h1 {
   margin: 0;
   color: #262340;
 
-  @media (min-width: 992px) {
+  @media (max-width: 780px) {
     font-size: 2rem;
+    max-width: 50rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.8rem;
     max-width: 50rem;
   }
 }
 
 p {
-    font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: normal;
     font-kerning: normal;

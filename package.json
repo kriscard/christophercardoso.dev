@@ -17,7 +17,8 @@
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-helmet": "^5.2.1"
+    "react-helmet": "^5.2.1",
+    "typeface-lato": "^0.0.75"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.6",
@@ -29,8 +30,6 @@
     "react-typography": "^0.16.19",
     "styled-components": "^4.4.1",
     "styled-icons": "^9.1.0",
-    "typeface-open-sans": "^0.0.75",
-    "typeface-roboto": "^0.0.75",
     "typography": "^0.16.19"
   },
   "keywords": [

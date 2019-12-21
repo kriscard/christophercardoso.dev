@@ -12,7 +12,7 @@ const AboutImageStyle = styled(Img)`
   padding: 10px;
   margin: 20px;
 
-  @media (max-width: 991px) {
+  @media (max-width: 780px) {
     position: absolute !important;
     display: none !important;
   }

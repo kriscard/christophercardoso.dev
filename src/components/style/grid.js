@@ -14,11 +14,7 @@ export const Item = styled.div`
   grid-column-start: span 6;
   grid-column-end: span 6;
 
-  @media(min-width: 768px) {
-    grid-column-start: span 6;
-    grid-column-end: span 6;
-   }
-  @media(max-width: 767px) {
+  @media(max-width: 780px) {
     grid-column-start: span 12;
     grid-column-end: span 12;
    }
