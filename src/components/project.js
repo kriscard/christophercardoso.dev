@@ -73,9 +73,7 @@ const Project = () => (
       }
   `}
     render={data => {
-      if (window) {
-        AOS.init();
-      }
+      typeof window !== 'undefined' && AOS.init()
 
       const imageOne = data.imageOne.childImageSharp.fluid
       const imageTwo = data.imageTwo.childImageSharp.fluid
