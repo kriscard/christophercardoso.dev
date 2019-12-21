@@ -3,20 +3,28 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 
-import Container from "../style/container"
 import Nav from '../nav'
 import LogoImage from '../images/logo'
 
 const HeaderStyle = styled.header`
-  margin: 0.5rem;
-  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 40px 0 40px;
+  min-height: 80px;
+  justify-content: space-between;
 `;
 
 const DisplayTitle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+
+  h3 {
+    @media (max-width: 780px) {
+      display: none;
+    }
+  }
 
   .title_h3 {
     z-index: -1;
@@ -25,9 +33,7 @@ const DisplayTitle = styled.div`
     transform: translateX(3rem);
     transition: transform .3s ease,opacity .15s ease;
     color: #333333;
-    padding-top: 50px;
     font-size: 18px;
-    /* margin: 10px 0px 0px; */
   }
 
   &:hover .title_h3 {
@@ -39,17 +45,15 @@ const DisplayTitle = styled.div`
 
 
 const Header = ({ siteTitle }) => (
-  <Container>
-    <HeaderStyle>
-      <DisplayTitle>
-        <Link to="/" >
-          <LogoImage />
-        </Link>
-        <h3 className="title_h3">{siteTitle}</h3>
-      </DisplayTitle>
-      <Nav />
-    </HeaderStyle>
-  </Container>
+  <HeaderStyle>
+    <DisplayTitle>
+      <Link to="/" >
+        <LogoImage />
+      </Link>
+      <h3 className="title_h3">{siteTitle}</h3>
+    </DisplayTitle>
+    <Nav />
+  </HeaderStyle>
 )
 
 Header.propTypes = {

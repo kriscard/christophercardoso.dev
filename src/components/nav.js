@@ -2,14 +2,21 @@ import React from 'react'
 import styled from "styled-components"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
+
 const Nav = styled.div`
-  @media (max-width: 991px) {
-    display: none;
-  }
+  margin-left: auto;
+`;
+
+const LinkStyle = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  margin: 0;
+  ;
 `;
 
 const ListStyle = styled.li`
-  margin-right: 2rem;
+  margin-left: 24px;
   display: flex;
   justify-content: space-between;
 
@@ -20,6 +27,7 @@ const ListStyle = styled.li`
     font-weight: 600;
     transition: color 0.2s ease;
     font-size: 17px;
+    margin: 0;
 
     &:hover, &:focus, &:active {
       color: #01BEAE;
@@ -27,11 +35,6 @@ const ListStyle = styled.li`
   }
 `;
 
-const LinkStyle = styled.ul`
-  list-style: none;
-  float: right;
-  width: 25%;
-`;
 
 const nav = () => {
   const ListLink = props => (
@@ -39,20 +42,18 @@ const nav = () => {
   )
 
   return (
-    <Nav>
+    <Nav className="nav">
       <LinkStyle>
+        <ListStyle><ListLink href="#projects">Project</ListLink></ListStyle>
+        <ListStyle><ListLink href="#about">About</ListLink></ListStyle>
         <ListStyle>
-          <li><ListLink href="#projects">Project</ListLink></li>
-          <li><ListLink href="#about">About</ListLink></li>
-          <li>
-            <a
-              href="mailto:cardoso.christopher01@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Contact
+          <a
+            href="mailto:cardoso.christopher01@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Contact
           </a>
-          </li>
         </ListStyle>
       </LinkStyle>
     </Nav>

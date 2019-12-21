@@ -128,7 +128,7 @@ const Project = () => (
                   >
                     <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
                       <ItemContent>
-                        <div>
+                        <div className="project-image">
                           <ProjectImage
                             image={project.image}
                             name={project.name}
