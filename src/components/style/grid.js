@@ -4,6 +4,7 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(12,1fr);
   grid-template-rows: auto;
+  margin: auto;
 `
 
 export const Item = styled.div`

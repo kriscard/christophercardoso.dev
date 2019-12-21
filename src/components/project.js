@@ -44,28 +44,28 @@ const Project = () => (
       query {
         imageOne: file(relativePath: { eq: "speaken.png" }) {
           childImageSharp {
-            fluid(maxWidth: 800) {
+            fluid {
               ...GatsbyImageSharpFluid
             }
           }
         },
         imageTwo: file(relativePath: { eq: "speaken_api.png" }) {
           childImageSharp {
-            fluid(maxWidth: 800) {
+            fluid{
               ...GatsbyImageSharpFluid
             }
           }
         },
         imageThree: file(relativePath: { eq: "portfolio.png" }) {
           childImageSharp {
-            fluid(maxWidth: 800) {
+            fluid {
               ...GatsbyImageSharpFluid
             }
           }
         },
         imageFour: file(relativePath: { eq: "face-recognation.png" }) {
           childImageSharp {
-            fluid(maxWidth: 800) {
+            fluid {
               ...GatsbyImageSharpFluid
             }
           }
@@ -84,7 +84,7 @@ const Project = () => (
         {
           id: 0,
           name: 'Speaken Tutor Application',
-          description: 'Create a new React application for the Tutor with TypeScript, Next.JS, React hooks and Domain Driven Design',
+          description: 'React app with TypeScript, Next.JS, hooks and DDD',
           image: imageOne,
           color: '#fee7ca',
           link: 'https://speaken.com/index.html'
