@@ -73,7 +73,9 @@ const Project = () => (
       }
   `}
     render={data => {
-      AOS.init();
+      if (window) {
+        AOS.init();
+      }
 
       const imageOne = data.imageOne.childImageSharp.fluid
       const imageTwo = data.imageTwo.childImageSharp.fluid

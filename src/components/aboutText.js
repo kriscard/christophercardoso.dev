@@ -9,7 +9,7 @@ const AboutMeStyles = styled.div`
   padding: 20px;
 `;
 
-const ButtonStyles = styled.button`
+const ButtonStyles = styled.a`
   padding: 10px 25px;
   font-size: 18px;
   background: #01BEAE;
