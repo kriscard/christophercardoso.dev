@@ -3,7 +3,7 @@ import styled from "styled-components"
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 
-const Nav = styled.div`
+const Nav = styled.nav`
   margin-left: auto;
   margin-right: 24px;
 `;

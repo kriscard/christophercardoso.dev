@@ -7,11 +7,8 @@ import AboutText from '../components/aboutText'
 import { Grid, Item } from '../components/style/grid'
 
 const AboutContainer = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content:space-between;
-  align-items: flex-start;
+  padding: 3rem 1rem;
+  margin: auto;
 `
 
 const About = () => {

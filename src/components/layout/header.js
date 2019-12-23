@@ -1,66 +1,47 @@
-import PropTypes from "prop-types"
 import React from "react"
-import { Link } from "gatsby"
 import styled from "styled-components"
 
 import Nav from '../nav'
 import LogoImage from '../images/logo'
+import Container from "../style/container"
+import { GridWithFlexBox } from "../style/grid"
 
 
 const HeaderStyle = styled.header`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  height: 25vh;
-  justify-content: space-between;
-`;
+  display: block;
 
-const DisplayTitle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h3 {
-    @media (max-width: 780px) {
-      display: none;
-    }
-  }
-
-  .title_h3 {
-    z-index: -1;
-    opacity: 0;
-    transform: translateX(3rem);
-    transition: transform .3s ease,opacity .15s ease;
-    color: #333333;
-    font-size: 18px;
-  }
-
-  &:hover .title_h3 {
-    opacity: 1;
-    transform: translateX(3.5rem);
-    transition: transform .2s ease,opacity .3s ease;
+  .avatar {
+    display: flex;
+    align-items: center;
+    width: 60px;
+    height: 60px;
   }
 `;
 
+const LogoBlock = styled.div`
+  display: block;
+  width: inherit;
+  height: inherit;
 
-const Header = ({ siteTitle }) => (
-  <HeaderStyle>
-    <DisplayTitle>
-      <Link to="/" >
-        <LogoImage />
-      </Link>
-      <h3 className="title_h3">{siteTitle}</h3>
-    </DisplayTitle>
-    <Nav />
-  </HeaderStyle>
+  a {
+    display: block;
+  }
+  img {
+    border-radius: 50%;
+  }
+`;
+
+const Header = () => (
+  <Container>
+    <GridWithFlexBox>
+      <HeaderStyle>
+        <LogoBlock>
+          <LogoImage />
+        </LogoBlock>
+      </HeaderStyle>
+      <Nav />
+    </GridWithFlexBox>
+  </Container>
 )
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: `Christopher Cardoso`,
-}
 
 export default Header

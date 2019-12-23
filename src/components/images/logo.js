@@ -1,18 +1,6 @@
 import React from "react"
 import { StaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
 import Img from "gatsby-image"
-
-const StyledImg = styled(Img)`
-  /* position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  padding: 10px;
-  margin: 20px; */
-`
 
 const LogoImage = () => (
   <StaticQuery
@@ -28,7 +16,7 @@ const LogoImage = () => (
     }
   `}
     render={data => (
-      <StyledImg
+      <Img
         fixed={data.bannerImage.childImageSharp.fixed}
         style={{
           height: "100px",

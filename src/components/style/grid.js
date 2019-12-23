@@ -4,8 +4,18 @@ export const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(12,1fr);
   grid-template-rows: auto;
-  margin: auto;
 `
+
+export const GridWithFlexBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  grid-template-rows: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`
+
 
 export const Item = styled.div`
   display: flex;
