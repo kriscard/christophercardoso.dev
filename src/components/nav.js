@@ -5,6 +5,7 @@ import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const Nav = styled.div`
   margin-left: auto;
+  margin-right: 24px;
 `;
 
 const LinkStyle = styled.ul`
