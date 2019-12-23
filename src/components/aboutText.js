@@ -9,6 +9,17 @@ const AboutMeStyles = styled.div`
   padding: 20px;
 `;
 
+const Paragraph = styled.p`
+  max-width: 25rem;
+  font-size: 18px;
+  padding: 10px;
+`;
+
+const Title = styled.h3`
+  margin: auto;
+  line-height: 1.15;
+`;
+
 const ButtonStyles = styled.a`
   padding: 10px 25px;
   font-size: 18px;
@@ -38,8 +49,8 @@ const AboutText = () => (
   `}
     render={data => (
       <AboutMeStyles>
-        <h3>{data.markdownRemark.frontmatter.title}</h3>
-        <p>{data.markdownRemark.frontmatter.description}</p>
+        <Title>{data.markdownRemark.frontmatter.title}</Title>
+        <Paragraph>{data.markdownRemark.frontmatter.description}</Paragraph>
         <ButtonStyles
           href="mailto:cardoso.christopher01@gmail.com"
           target="_blank"

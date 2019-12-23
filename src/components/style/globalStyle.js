@@ -65,6 +65,10 @@ p {
       max-width: 40rem;
     }
 }
+[data-aos="fade-up"] {
+  overflow: hidden;
+  transition: transform 1000ms ease-in-out 0.5s;
+}
 
  a, button {
   cursor: pointer;

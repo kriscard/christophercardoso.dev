@@ -21,6 +21,11 @@ const ProjectBackground = styled.div`
   width: 100%;
 `
 
+const ProjectLink = styled.a`
+  height:100%;
+  width: 100%;
+`;
+
 const ProjectInfo = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,7 +91,7 @@ const Project = () => (
           name: 'Speaken Tutor Application',
           description: 'React app with TypeScript, Next.JS, hooks and DDD',
           image: imageOne,
-          color: '#fee7ca',
+          color: '#9be3de',
           link: 'https://speaken.com/index.html'
         },
         {
@@ -94,7 +99,7 @@ const Project = () => (
           name: 'Speaken API',
           description: 'Create new feature for the Rails API with Test Driven Development',
           image: imageTwo,
-          color: '#ffdde1',
+          color: '#fffdf9',
           link: 'https://speaken.com/index.html'
         },
         {
@@ -102,7 +107,7 @@ const Project = () => (
           name: 'chriscardoso.dev',
           description: 'Create a portfolio with Gatsby and GraphQL',
           image: imageThree,
-          color: '#c9decc',
+          color: '#beebe9',
           link: 'https://www.christophercardoso.dev'
         },
         {
@@ -110,7 +115,7 @@ const Project = () => (
           name: `Face Recognation`,
           description: 'Create a face recognation app with React and Redux and a NodeJS API',
           image: imageFour,
-          color: '#cbe1f2',
+          color: '#ffe3ed',
           link: 'https://catchface.herokuapp.com/'
         }
       ]
@@ -126,7 +131,7 @@ const Project = () => (
                     data-aos-anchor-placement="top-bottom"
                     key={project.id}
                   >
-                    <a href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
+                    <ProjectLink href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
                       <ItemContent>
                         <div className="project-image">
                           <ProjectImage
@@ -140,7 +145,7 @@ const Project = () => (
                           <p>{project.description}</p>
                         </ProjectInfo>
                       </ItemContent>
-                    </a>
+                    </ProjectLink>
                   </Item>
                 ))
                 }

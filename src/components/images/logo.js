@@ -4,14 +4,14 @@ import styled from "styled-components"
 import Img from "gatsby-image"
 
 const StyledImg = styled(Img)`
-  position: absolute;
+  /* position: absolute;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   padding: 10px;
-  margin: 20px;
+  margin: 20px; */
 `
 
 const LogoImage = () => (
@@ -31,10 +31,8 @@ const LogoImage = () => (
       <StyledImg
         fixed={data.bannerImage.childImageSharp.fixed}
         style={{
-          height: "70px",
-          width: "70px",
-          margin: "10 px",
-          position: "absolute"
+          height: "100px",
+          width: "100px",
         }}
         alt="logo"
       />

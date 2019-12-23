@@ -12,8 +12,12 @@ const StyledImg = styled(Img)`
   &:hover {
     clip-path: inset(0.5rem);
   }
-`;
 
+  @media (max-width: 480px) {
+    height: 260px !important;
+    width: 100%;
+  }
+`;
 
 const ProjectImage = ({ image, name, color }) => {
   return (
@@ -27,7 +31,7 @@ const ProjectImage = ({ image, name, color }) => {
       style={{
         height: "375px",
         width: "594px",
-        maxWidth: "100%"
+        maxWidth: "100%",
       }}
     />
   )

@@ -5,6 +5,7 @@ import styled from "styled-components"
 
 import Nav from '../nav'
 import LogoImage from '../images/logo'
+import Container from "../style/container"
 
 const HeaderStyle = styled.header`
   display: flex;
@@ -29,7 +30,7 @@ const DisplayTitle = styled.div`
   .title_h3 {
     z-index: -1;
     opacity: 0;
-    position: absolute;
+    /* position: absolute; */
     transform: translateX(3rem);
     transition: transform .3s ease,opacity .15s ease;
     color: #333333;
@@ -46,13 +47,15 @@ const DisplayTitle = styled.div`
 
 const Header = ({ siteTitle }) => (
   <HeaderStyle>
-    <DisplayTitle>
-      <Link to="/" >
-        <LogoImage />
-      </Link>
-      <h3 className="title_h3">{siteTitle}</h3>
-    </DisplayTitle>
-    <Nav />
+    <Container>
+      <DisplayTitle>
+        <Link to="/" >
+          <LogoImage />
+        </Link>
+        <h3 className="title_h3">{siteTitle}</h3>
+      </DisplayTitle>
+      <Nav />
+    </Container>
   </HeaderStyle>
 )
 
