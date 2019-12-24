@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   font-size: 1rem;
   font-family: 'Lato', sans-serif;
   color: #262340;
-  line-height: 1.55;
+  line-height: 23px;
   font-weight: normal;
   word-wrap: break-word;
   font-kerning: normal;
@@ -35,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
 h1 {
   font-size: 2.25rem;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 45px;
   padding: 10px;
   margin: 0;
   color: #262340;
@@ -55,7 +55,7 @@ p {
     font-size: 18px;
     font-weight: normal;
     font-kerning: normal;
-    line-height: 1.15;
+    line-height: 23px;
     margin: 0;
     padding: 10px;
     color: #262340;

@@ -94,7 +94,7 @@ const Footer = () => (
 
       <FooterText>
         Built with
-            <Emoji symbol=" ❤️" label="love" />
+            <Emoji symbol=" ❤️ " label="love" />
         by Christopher Cardoso © {new Date().getFullYear()}
       </FooterText>
       <FooterLinks >
@@ -103,42 +103,42 @@ const Footer = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <GithubIcon size="35" />
+          <GithubIcon size="25" />
         </a>
         <a
           href="https://www.linkedin.com/in/christophercardoso/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <LinkedinIcon size="35" />
+          <LinkedinIcon size="25" />
         </a>
         <a
           href="https://twitter.com/kris_card"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <TwitterIcon size="35" />
+          <TwitterIcon size="25" />
         </a>
         <a
           href="https://www.instagram.com/kriscard/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <InstagramIcon size="35" />
+          <InstagramIcon size="25" />
         </a>
         <a
           href="https://www.facebook.com/cardoso.christopher"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FacebookIcon size="35" />
+          <FacebookIcon size="25" />
         </a>
         <a
           href="https://angel.co/christopher-cardoso"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <AngellistIcon size="35" />
+          <AngellistIcon size="25" />
         </a>
       </FooterLinks>
     </FooterStyle>

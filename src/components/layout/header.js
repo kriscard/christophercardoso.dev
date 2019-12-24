@@ -9,6 +9,7 @@ import { GridWithFlexBox } from "../style/grid"
 
 const HeaderStyle = styled.header`
   display: block;
+  height: 25vh;
 
   .avatar {
     display: flex;
