@@ -47,5 +47,17 @@ module.exports = {
         trackingId: process.env.ANALYTICS_TRACKING_ID,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Christopher Cardoso`,
+        short_name: `kriscard`,
+        start_url: `/`,
+        background_color: `#FFFFFF`,
+        theme_color: `#FFFFFF`,
+        display: `minimal-ui`,
+        icon: `src/images/icon.png`
+      },
+    },
   ],
 }
