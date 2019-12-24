@@ -3,7 +3,7 @@ import styled from "styled-components"
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  min-height: 75vh;
+  min-height: 85vh;
   margin: 0 auto 12px auto;
 
   &:last-child {

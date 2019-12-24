@@ -39,7 +39,7 @@ const FooterLinks = styled.div`
   min-width: 25%;
 `
 
-const FooterText = styled.div`
+const FooterText = styled.p`
   color: #333333;
 `
 

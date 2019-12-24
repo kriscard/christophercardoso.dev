@@ -15,9 +15,8 @@ const Paragraph = styled.p`
   padding: 10px;
 `
 
-const Title = styled.h3`
+const Title = styled.h1`
   margin: auto;
-  line-height: 1.15;
 `
 
 const ButtonStyles = styled.a`

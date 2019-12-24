@@ -63,6 +63,12 @@ p {
       font-size: 18px;
       max-width: 40rem;
     }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+      max-width: 40rem;
+    }
+
 }
 [data-aos="fade-up"] {
   overflow: hidden;
