@@ -6,15 +6,15 @@ const LogoImage = () => (
   <StaticQuery
     query={graphql`
       query {
-      bannerImage: file(relativePath: { eq: "logo.png" }) {
-        childImageSharp {
-          fixed {
-          ...GatsbyImageSharpFixed
+        bannerImage: file(relativePath: { eq: "logo.png" }) {
+          childImageSharp {
+            fixed {
+              ...GatsbyImageSharpFixed
+            }
           }
         }
       }
-    }
-  `}
+    `}
     render={data => (
       <Img
         fixed={data.bannerImage.childImageSharp.fixed}
@@ -24,8 +24,7 @@ const LogoImage = () => (
         }}
         alt="logo"
       />
-    )
-    }
+    )}
   />
 )
 

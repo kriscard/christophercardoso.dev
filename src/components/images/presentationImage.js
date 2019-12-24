@@ -23,22 +23,21 @@ const PresentationImage = () => (
   <StaticQuery
     query={graphql`
       query {
-      bannerImage: file(relativePath: { eq: "developer.png" }) {
-        childImageSharp {
-          fixed {
-          ...GatsbyImageSharpFixed
+        bannerImage: file(relativePath: { eq: "developer.png" }) {
+          childImageSharp {
+            fixed {
+              ...GatsbyImageSharpFixed
+            }
           }
         }
       }
-    }
-  `}
+    `}
     render={data => (
       <StyledImg
         fixed={data.bannerImage.childImageSharp.fixed}
         alt="Presentation Image"
       />
-    )
-    }
+    )}
   />
 )
 

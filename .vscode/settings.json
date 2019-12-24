@@ -1,7 +1,5 @@
 {
-  "cSpell.words": [
-    "frontmatter"
-  ],
+  "cSpell.words": ["frontmatter"],
   "editor.formatOnSave": true,
   "[javascript]": {
     "editor.formatOnSave": true

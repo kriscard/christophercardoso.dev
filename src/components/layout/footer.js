@@ -1,11 +1,15 @@
-import React from 'react'
+import React from "react"
 import styled from "styled-components"
-import { Github, LinkedinSquare, Twitter, Instagram } from "styled-icons/boxicons-logos"
+import {
+  Github,
+  LinkedinSquare,
+  Twitter,
+  Instagram,
+} from "styled-icons/boxicons-logos"
 import { FacebookCircle } from "styled-icons/remix-fill"
 import { Angellist } from "styled-icons/fa-brands"
 
 import Emoji from "../images/emoji"
-
 
 const FooterContainer = styled.div`
   position: right;
@@ -18,7 +22,7 @@ const FooterStyle = styled.footer`
   display: flex;
   justify-content: space-between;
   width: 95%;
-  border-top: 0.3px solid rgba(51,51,51,0.5);
+  border-top: 0.3px solid rgba(51, 51, 51, 0.5);
   margin: auto;
   padding: 16px 0;
 
@@ -26,64 +30,70 @@ const FooterStyle = styled.footer`
     align-items: center;
     flex-direction: column;
   }
-`;
+`
 
 const FooterLinks = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-width: 25%;
-`;
+`
 
 const FooterText = styled.div`
   color: #333333;
-`;
+`
 
 const GithubIcon = styled(Github)`
-  color: #01BEAE;
+  color: #01beae;
   transition: color 0.2s ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #333333;
   }
 `
 const LinkedinIcon = styled(LinkedinSquare)`
-  color: #01BEAE;
+  color: #01beae;
   transition: color 0.2s ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #333333;
   }
 `
 const TwitterIcon = styled(Twitter)`
-  color: #01BEAE;
+  color: #01beae;
   transition: color 0.2s ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #333333;
   }
 `
 const InstagramIcon = styled(Instagram)`
-  color: #01BEAE;
+  color: #01beae;
   transition: color 0.2s ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #333333;
   }
 `
 const FacebookIcon = styled(FacebookCircle)`
-  color: #01BEAE;
+  color: #01beae;
   transition: color 0.2s ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #333333;
   }
 `
 const AngellistIcon = styled(Angellist)`
-  color: #01BEAE;
+  color: #01beae;
   transition: color 0.2s ease;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: #333333;
   }
 `
@@ -91,13 +101,12 @@ const AngellistIcon = styled(Angellist)`
 const Footer = () => (
   <FooterContainer>
     <FooterStyle>
-
       <FooterText>
         Built with
-            <Emoji symbol=" ❤️ " label="love" />
+        <Emoji symbol=" ❤️ " label="love" />
         by Christopher Cardoso © {new Date().getFullYear()}
       </FooterText>
-      <FooterLinks >
+      <FooterLinks>
         <a
           href="https://github.com/kriscard"
           target="_blank"

@@ -22,22 +22,21 @@ const AboutImage = () => (
   <StaticQuery
     query={graphql`
       query {
-      aboutImage: file(relativePath: { eq: "about.png" }) {
-        childImageSharp {
-          fixed {
-          ...GatsbyImageSharpFixed
+        aboutImage: file(relativePath: { eq: "about.png" }) {
+          childImageSharp {
+            fixed {
+              ...GatsbyImageSharpFixed
+            }
           }
         }
       }
-    }
-  `}
+    `}
     render={data => (
       <AboutImageStyle
         fixed={data.aboutImage.childImageSharp.fixed}
         alt="About me"
       />
-    )
-    }
+    )}
   />
 )
 

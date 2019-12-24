@@ -1,30 +1,29 @@
-import React from 'react'
+import React from "react"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import AOS from "aos"
+import "aos/dist/aos.css"
 
 import { Grid, Item } from "./style/grid"
-import Wrapper from './style/wrapper'
-import Container from './style/container'
-import ProjectImage from './images/projectImage'
-
+import Wrapper from "./style/wrapper"
+import Container from "./style/container"
+import ProjectImage from "./images/projectImage"
 
 const ItemContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+`
 
 const ProjectBackground = styled.div`
-  background-color: #F6F7FB;
+  background-color: #f6f7fb;
   width: 100%;
 `
 
 const ProjectLink = styled.a`
-  height:100%;
+  height: 100%;
   width: 100%;
-`;
+`
 
 const ProjectInfo = styled.div`
   display: flex;
@@ -40,8 +39,7 @@ const ProjectInfo = styled.div`
   p {
     color: #262340;
   }
-`;
-
+`
 
 const Project = () => (
   <StaticQuery
@@ -53,32 +51,32 @@ const Project = () => (
               ...GatsbyImageSharpFluid
             }
           }
-        },
+        }
         imageTwo: file(relativePath: { eq: "speaken_api.png" }) {
           childImageSharp {
-            fluid{
+            fluid {
               ...GatsbyImageSharpFluid
             }
           }
-        },
+        }
         imageThree: file(relativePath: { eq: "portfolio.png" }) {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
-        },
+        }
         imageFour: file(relativePath: { eq: "face-recognation.png" }) {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
-        },
+        }
       }
-  `}
+    `}
     render={data => {
-      typeof window !== 'undefined' && AOS.init()
+      typeof window !== "undefined" && AOS.init()
 
       const imageOne = data.imageOne.childImageSharp.fluid
       const imageTwo = data.imageTwo.childImageSharp.fluid
@@ -88,36 +86,38 @@ const Project = () => (
       const Projects = [
         {
           id: 0,
-          name: 'Speaken Tutor Application',
-          description: 'React app with TypeScript, Next.JS, hooks and DDD',
+          name: "Speaken Tutor Application",
+          description: "React app with TypeScript, Next.JS, hooks and DDD",
           image: imageOne,
-          color: '#9be3de',
-          link: 'https://speaken.com/index.html'
+          color: "#9be3de",
+          link: "https://speaken.com/index.html",
         },
         {
           id: 1,
-          name: 'Speaken API',
-          description: 'Create new feature for the Rails API with Test Driven Development',
+          name: "Speaken API",
+          description:
+            "Create new feature for the Rails API with Test Driven Development",
           image: imageTwo,
-          color: '#fffdf9',
-          link: 'https://speaken.com/index.html'
+          color: "#fffdf9",
+          link: "https://speaken.com/index.html",
         },
         {
           id: 2,
-          name: 'chriscardoso.dev',
-          description: 'Create a portfolio with Gatsby and GraphQL',
+          name: "chriscardoso.dev",
+          description: "Create a portfolio with Gatsby and GraphQL",
           image: imageThree,
-          color: '#beebe9',
-          link: 'https://www.christophercardoso.dev'
+          color: "#beebe9",
+          link: "https://www.christophercardoso.dev",
         },
         {
           id: 3,
           name: `Face Recognation`,
-          description: 'Create a face recognation app with React and Redux and a NodeJS API',
+          description:
+            "Create a face recognation app with React and Redux and a NodeJS API",
           image: imageFour,
-          color: '#ffe3ed',
-          link: 'https://catchface.herokuapp.com/'
-        }
+          color: "#ffe3ed",
+          link: "https://catchface.herokuapp.com/",
+        },
       ]
 
       return (
@@ -131,7 +131,12 @@ const Project = () => (
                     data-aos-anchor-placement="top-bottom"
                     key={project.id}
                   >
-                    <ProjectLink href={project.link} title={project.name} target="_blank" rel="noopener noreferrer">
+                    <ProjectLink
+                      href={project.link}
+                      title={project.name}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <ItemContent>
                         <div className="project-image">
                           <ProjectImage
@@ -147,8 +152,7 @@ const Project = () => (
                       </ItemContent>
                     </ProjectLink>
                   </Item>
-                ))
-                }
+                ))}
               </Grid>
             </Container>
           </ProjectBackground>

@@ -1,20 +1,18 @@
-import React from 'react'
+import React from "react"
 import styled from "styled-components"
-import AnchorLink from 'react-anchor-link-smooth-scroll'
-
+import AnchorLink from "react-anchor-link-smooth-scroll"
 
 const Nav = styled.nav`
   margin-left: auto;
   margin-right: 24px;
-`;
+`
 
 const LinkStyle = styled.ul`
   display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   margin: 0;
-  ;
-`;
+`
 
 const ListStyle = styled.li`
   margin-left: 24px;
@@ -30,12 +28,13 @@ const ListStyle = styled.li`
     font-size: 17px;
     margin: 0;
 
-    &:hover, &:focus, &:active {
-      color: #01BEAE;
+    &:hover,
+    &:focus,
+    &:active {
+      color: #01beae;
     }
   }
-`;
-
+`
 
 const nav = () => {
   const ListLink = props => (
@@ -45,8 +44,12 @@ const nav = () => {
   return (
     <Nav className="nav">
       <LinkStyle>
-        <ListStyle><ListLink href="#projects">Project</ListLink></ListStyle>
-        <ListStyle><ListLink href="#about">About</ListLink></ListStyle>
+        <ListStyle>
+          <ListLink href="#projects">Project</ListLink>
+        </ListStyle>
+        <ListStyle>
+          <ListLink href="#about">About</ListLink>
+        </ListStyle>
         <ListStyle>
           <a
             href="mailto:cardoso.christopher01@gmail.com"
@@ -60,6 +63,5 @@ const nav = () => {
     </Nav>
   )
 }
-
 
 export default nav

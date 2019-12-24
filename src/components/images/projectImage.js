@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import Img from "gatsby-image"
 import styled from "styled-components"
 
@@ -7,7 +7,7 @@ const StyledImg = styled(Img)`
   clip-path: inset(0);
   overflow: hidden;
   transition: clip-path 300ms ease;
-  max-width: 100% ;
+  max-width: 100%;
 
   &:hover {
     clip-path: inset(0.5rem);
@@ -17,7 +17,7 @@ const StyledImg = styled(Img)`
     height: 260px !important;
     width: 100%;
   }
-`;
+`
 
 const ProjectImage = ({ image, name, color }) => {
   return (
@@ -26,7 +26,7 @@ const ProjectImage = ({ image, name, color }) => {
       alt={name}
       backgroundColor={color}
       imgStyle={{
-        objectFit: "fill"
+        objectFit: "fill",
       }}
       style={{
         height: "375px",

@@ -1,11 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 
-import Nav from '../nav'
-import LogoImage from '../images/logo'
+import Nav from "../nav"
+import LogoImage from "../images/logo"
 import Container from "../style/container"
 import { GridWithFlexBox } from "../style/grid"
-
 
 const HeaderStyle = styled.header`
   display: block;
@@ -17,7 +16,7 @@ const HeaderStyle = styled.header`
     width: 60px;
     height: 60px;
   }
-`;
+`
 
 const LogoBlock = styled.div`
   display: block;
@@ -30,7 +29,7 @@ const LogoBlock = styled.div`
   img {
     border-radius: 50%;
   }
-`;
+`
 
 const Header = () => (
   <Container>
