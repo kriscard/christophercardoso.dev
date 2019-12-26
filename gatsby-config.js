@@ -1,6 +1,8 @@
 require("dotenv").config({
-  path: `.env.${process.env}`,
+  path: `.env.${process.env.NODE_ENV}`,
 })
+
+console.log(process.env.ANALYTICS_TRACKING_ID)
 
 module.exports = {
   siteMetadata: {
