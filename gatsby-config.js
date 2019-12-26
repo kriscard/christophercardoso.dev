@@ -1,9 +1,3 @@
-const activeEnv = process.env.GATSBY_PRODUCTION || process.env.NODE_ENV || "development"
-console.log(`Using environment config: '${activeEnv}'`)
-require("dotenv").config({
-  path: `.env.${activeEnv}`,
-})
-
 module.exports = {
   siteMetadata: {
     title: `Christopher Cardoso`,
@@ -47,7 +41,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA_TRACKING_ID,
-        // Puts tracking script in the head instead of the body
+        // this option places the tracking script into the head of the DOM
         head: true,
       },
     },
