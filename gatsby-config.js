@@ -1,4 +1,6 @@
-require("dotenv").config()
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 module.exports = {
   siteMetadata: {
@@ -42,7 +44,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_ID,
+        trackingId: process.env.GA_TRACKING_ID,
         // this option places the tracking script into the head of the DOM
         head: true,
       },
