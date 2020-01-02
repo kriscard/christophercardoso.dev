@@ -7,8 +7,8 @@ module.exports = {
     title: `Christopher Cardoso`,
     description: `A full stack developer based in Toronto with a strong passion for JavaScript, TypeScript, React and all the modern JS stack. I love learning new technologies and provide a great user experience on the products I build`,
     author: `Christopher Cardoso`,
-    url: "https://www.christophercardoso.dev", // No trailing slash allowed!
-    image: "/images/developer.png", // Path to your image you placed in the 'static' folder
+    url: "https://www.christophercardoso.dev",
+    image: "src/images/developer.png",
     twitterUsername: "@kris_card",
   },
   plugins: [
