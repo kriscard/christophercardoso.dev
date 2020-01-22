@@ -1,15 +1,15 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 import {
   Github,
   LinkedinSquare,
   Twitter,
   Instagram,
-} from "styled-icons/boxicons-logos"
-import { FacebookCircle } from "styled-icons/remix-fill"
-import { Angellist } from "styled-icons/fa-brands"
+} from 'styled-icons/boxicons-logos'
+import {FacebookCircle} from 'styled-icons/remix-fill'
+import {Angellist} from 'styled-icons/fa-brands'
 
-import Emoji from "../images/emoji"
+import Emoji from '../images/emoji'
 
 const FooterContainer = styled.div`
   position: right;

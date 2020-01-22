@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-import AnchorLink from "react-anchor-link-smooth-scroll"
+import React from 'react'
+import styled from 'styled-components'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 const Nav = styled.nav`
   margin-left: auto;

@@ -1,12 +1,12 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
+import Img from 'gatsby-image'
 
 const LogoImage = () => (
   <StaticQuery
     query={graphql`
       query {
-        bannerImage: file(relativePath: { eq: "logo.png" }) {
+        bannerImage: file(relativePath: {eq: "logo.png"}) {
           childImageSharp {
             fixed {
               ...GatsbyImageSharpFixed
@@ -19,8 +19,8 @@ const LogoImage = () => (
       <Img
         fixed={data.bannerImage.childImageSharp.fixed}
         style={{
-          height: "100px",
-          width: "100px",
+          height: '100px',
+          width: '100px',
         }}
         alt="logo"
       />

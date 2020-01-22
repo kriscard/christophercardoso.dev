@@ -1,7 +1,7 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
-import Img from "gatsby-image"
+import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 const AboutImageStyle = styled(Img)`
   left: 0;
@@ -22,7 +22,7 @@ const AboutImage = () => (
   <StaticQuery
     query={graphql`
       query {
-        aboutImage: file(relativePath: { eq: "about.png" }) {
+        aboutImage: file(relativePath: {eq: "about.png"}) {
           childImageSharp {
             fixed {
               ...GatsbyImageSharpFixed

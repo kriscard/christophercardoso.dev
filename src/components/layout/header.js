@@ -1,10 +1,10 @@
-import React from "react"
-import styled from "styled-components"
+import React from 'react'
+import styled from 'styled-components'
 
-import Nav from "../nav"
-import LogoImage from "../images/logo"
-import Container from "../style/container"
-import { GridWithFlexBox } from "../style/grid"
+import Nav from '../nav'
+import LogoImage from '../images/logo'
+import Container from '../style/container'
+import {GridWithFlexBox} from '../style/grid'
 
 const HeaderStyle = styled.header`
   display: block;

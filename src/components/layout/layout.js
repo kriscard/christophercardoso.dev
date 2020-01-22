@@ -1,12 +1,12 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React from 'react'
+import PropTypes from 'prop-types'
+import {useStaticQuery, graphql} from 'gatsby'
 
-import Header from "../layout/header"
-import GlobalStyle from "../style/globalStyle"
-import Footer from "./footer"
+import Header from '../layout/header'
+import GlobalStyle from '../style/globalStyle'
+import Footer from './footer'
 
-const Layout = ({ children }) => {
+const Layout = ({children}) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {

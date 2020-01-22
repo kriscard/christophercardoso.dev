@@ -1,13 +1,13 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
-import AOS from "aos"
-import "aos/dist/aos.css"
+import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
+import styled from 'styled-components'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
-import { Grid, Item } from "./style/grid"
-import Wrapper from "./style/wrapper"
-import Container from "./style/container"
-import ProjectImage from "./images/projectImage"
+import {Grid, Item} from './style/grid'
+import Wrapper from './style/wrapper'
+import Container from './style/container'
+import ProjectImage from './images/projectImage'
 
 const ItemContent = styled.div`
   display: flex;
@@ -45,28 +45,28 @@ const Project = () => (
   <StaticQuery
     query={graphql`
       query {
-        imageOne: file(relativePath: { eq: "speaken.png" }) {
+        imageOne: file(relativePath: {eq: "speaken.png"}) {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        imageTwo: file(relativePath: { eq: "speaken_api.png" }) {
+        imageTwo: file(relativePath: {eq: "speaken_api.png"}) {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        imageThree: file(relativePath: { eq: "portfolio.png" }) {
+        imageThree: file(relativePath: {eq: "portfolio.png"}) {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
             }
           }
         }
-        imageFour: file(relativePath: { eq: "face-recognation.png" }) {
+        imageFour: file(relativePath: {eq: "face-recognation.png"}) {
           childImageSharp {
             fluid {
               ...GatsbyImageSharpFluid
@@ -76,7 +76,7 @@ const Project = () => (
       }
     `}
     render={data => {
-      typeof window !== "undefined" && AOS.init()
+      typeof window !== 'undefined' && AOS.init()
 
       const imageOne = data.imageOne.childImageSharp.fluid
       const imageTwo = data.imageTwo.childImageSharp.fluid
@@ -86,37 +86,37 @@ const Project = () => (
       const Projects = [
         {
           id: 0,
-          name: "Speaken Tutor Application",
-          description: "React app with TypeScript, Next.JS, hooks and DDD",
+          name: 'Speaken Tutor Application',
+          description: 'React app with TypeScript, Next.JS, hooks and DDD',
           image: imageOne,
-          color: "#9be3de",
-          link: "https://speaken.com/index.html",
+          color: '#9be3de',
+          link: 'https://speaken.com/index.html',
         },
         {
           id: 1,
-          name: "Speaken API",
+          name: 'Speaken API',
           description:
-            "Create new feature for the Rails API with Test Driven Development",
+            'Create new feature for the Rails API with Test Driven Development',
           image: imageTwo,
-          color: "#fffdf9",
-          link: "https://speaken.com/index.html",
+          color: '#fffdf9',
+          link: 'https://speaken.com/index.html',
         },
         {
           id: 2,
-          name: "chriscardoso.dev",
-          description: "Create a portfolio with Gatsby and GraphQL",
+          name: 'chriscardoso.dev',
+          description: 'Create a portfolio with Gatsby and GraphQL',
           image: imageThree,
-          color: "#beebe9",
-          link: "https://www.christophercardoso.dev",
+          color: '#beebe9',
+          link: 'https://www.christophercardoso.dev',
         },
         {
           id: 3,
           name: `Face Recognation`,
           description:
-            "Create a face recognation app with React and Redux and a NodeJS API",
+            'Create a face recognation app with React and Redux and a NodeJS API',
           image: imageFour,
-          color: "#ffe3ed",
-          link: "https://catchface.herokuapp.com/",
+          color: '#ffe3ed',
+          link: 'https://catchface.herokuapp.com/',
         },
       ]
 

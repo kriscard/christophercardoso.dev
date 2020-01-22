@@ -1,7 +1,7 @@
-import React from "react"
-import { StaticQuery, graphql } from "gatsby"
-import styled from "styled-components"
-import Img from "gatsby-image"
+import React from 'react'
+import {StaticQuery, graphql} from 'gatsby'
+import styled from 'styled-components'
+import Img from 'gatsby-image'
 
 const StyledImg = styled(Img)`
   position: absolute;
@@ -23,7 +23,7 @@ const PresentationImage = () => (
   <StaticQuery
     query={graphql`
       query {
-        bannerImage: file(relativePath: { eq: "developer.png" }) {
+        bannerImage: file(relativePath: {eq: "developer.png"}) {
           childImageSharp {
             fixed {
               ...GatsbyImageSharpFixed

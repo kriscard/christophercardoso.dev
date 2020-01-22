@@ -1,4 +1,4 @@
-require("dotenv").config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
@@ -48,7 +48,7 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: process.env.GA_TRACKING_ID,
-        // this option places the tracking script into the head of the DOM
+        // Puts tracking script in the head instead of the body
         head: true,
       },
     },
@@ -61,7 +61,7 @@ module.exports = {
         background_color: `#FFFFFF`,
         theme_color: `#FFFFFF`,
         display: `minimal-ui`,
-        icon: `src/images/icon.png`
+        icon: `src/images/icon.png`,
       },
     },
   ],

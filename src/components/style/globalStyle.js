@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components"
-import "typeface-lato"
+import {createGlobalStyle} from 'styled-components'
+import 'typeface-lato'
 
 /* colors:
 white: #FFFFFF

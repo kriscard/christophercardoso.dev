@@ -1,12 +1,12 @@
-import React from "react"
-import styled from "styled-components"
-import { StaticQuery, graphql } from "gatsby"
-import AnchorLink from "react-anchor-link-smooth-scroll"
+import React from 'react'
+import styled from 'styled-components'
+import {StaticQuery, graphql} from 'gatsby'
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
-import Wrapper from "../components/style/wrapper"
-import Container from "../components/style/container"
-import { Grid, Item } from "../components/style/grid"
-import PresentationImage from "../components/images/presentationImage"
+import Wrapper from '../components/style/wrapper'
+import Container from '../components/style/container'
+import {Grid, Item} from '../components/style/grid'
+import PresentationImage from '../components/images/presentationImage'
 
 const ButtonStyle = styled.div`
   a {
@@ -32,7 +32,7 @@ const Presentation = () => (
   <StaticQuery
     query={graphql`
       query PresentationQuery {
-        markdownRemark(frontmatter: { path: { eq: "/presentation" } }) {
+        markdownRemark(frontmatter: {path: {eq: "/presentation"}}) {
           frontmatter {
             title
             description

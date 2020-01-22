@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-import { StaticQuery, graphql } from "gatsby"
+import React from 'react'
+import styled from 'styled-components'
+import {StaticQuery, graphql} from 'gatsby'
 
 const AboutMeStyles = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ const AboutText = () => (
   <StaticQuery
     query={graphql`
       query AboutTextQuery {
-        markdownRemark(frontmatter: { path: { eq: "/aboutMe" } }) {
+        markdownRemark(frontmatter: {path: {eq: "/aboutMe"}}) {
           frontmatter {
             title
             description

@@ -1,6 +1,6 @@
-import React from "react"
-import Img from "gatsby-image"
-import styled from "styled-components"
+import React from 'react'
+import Img from 'gatsby-image'
+import styled from 'styled-components'
 
 const StyledImg = styled(Img)`
   position: relative;
@@ -19,19 +19,19 @@ const StyledImg = styled(Img)`
   }
 `
 
-const ProjectImage = ({ image, name, color }) => {
+const ProjectImage = ({image, name, color}) => {
   return (
     <StyledImg
       fluid={image}
       alt={name}
       backgroundColor={color}
       imgStyle={{
-        objectFit: "fill",
+        objectFit: 'fill',
       }}
       style={{
-        height: "375px",
-        width: "594px",
-        maxWidth: "100%",
+        height: '375px',
+        width: '594px',
+        maxWidth: '100%',
       }}
     />
   )
