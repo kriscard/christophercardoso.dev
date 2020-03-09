@@ -45,7 +45,7 @@ const nav = () => {
     <Nav className="nav">
       <LinkStyle>
         <ListStyle>
-          <ListLink href="#projects">Project</ListLink>
+          <ListLink href="#projects">Projects</ListLink>
         </ListStyle>
         <ListStyle>
           <ListLink href="#about">About</ListLink>
