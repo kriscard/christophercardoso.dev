@@ -51,7 +51,7 @@ const nav = () => {
           <ListLink href="#about">About</ListLink>
         </ListStyle>
         <ListStyle>
-          <a href="https://kriscard.dev/" target="_blank">Blog</a>
+          <a href="https://kriscard.dev/">Blog</a>
         </ListStyle>
         <ListStyle>
           <a
