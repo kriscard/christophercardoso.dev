@@ -5,6 +5,9 @@ const nextConfig = {
   env: {
     GRAPH_CMS_CONTENT_API: process.env.GRAPH_CMS_CONTENT_API,
   },
-};
+  compiler: {
+    styledComponents: true,
+  },
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
