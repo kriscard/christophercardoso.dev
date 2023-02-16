@@ -1,6 +1,5 @@
-import Logo from "./Logo"
-import Header from "./Header"
-import SectionContainer from "./SectionContainer"
+import Header from '@components/Header'
+import SectionContainer from '@components/SectionContainer'
 
 const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
   return (
