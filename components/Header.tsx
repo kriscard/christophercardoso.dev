@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import logo from '../public/pizza-logo.png'
+import Head from 'next/head'
 
 const headerNavLinks = [
   { href: '/about', title: 'About' },
