@@ -10,7 +10,7 @@ const headerNavLinks = [
   { href: '/projects', title: 'Projects' },
 ]
 
-const Header = () => {
+function Header() {
   return (
     <div>
       <div className="flex w-full items-center justify-between text-base leading-5">
