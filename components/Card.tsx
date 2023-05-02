@@ -8,7 +8,10 @@ interface CardProps {
 export function Card({ className, children }: CardProps) {
   return (
     <div
-      className={clsx('rounded-lg border border-white bg-transparent p-5 px-10 py-4', className)}
+      className={clsx(
+        'rounded-lg border border-gray-500 bg-transparent shadow-none duration-500 hover:shadow-xl hover:shadow-purple-500/40',
+        className
+      )}
     >
       {children}
     </div>
