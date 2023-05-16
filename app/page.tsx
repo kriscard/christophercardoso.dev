@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 import { description, hi, name } from 'lib/info'
 import avatar from '../app/avatar.jpg'
-import { GitHubIcon, TwitterIcon, LinkedinIcon, ArrowIcon } from '@components/icons'
+import { GithubIcon, TwitterIcon, LinkedinIcon, ArrowIcon } from '@components/icons'
 import { Card } from '@components/Card'
 import Link from 'next/link'
 import SectionContainer from '@components/SectionContainer'
@@ -28,11 +28,31 @@ const dummyData = [
   },
 ]
 
-// TODO: Add a latest blog section
-// TODO: Add a projects section
-// TODO: Add Dark Mode https://tailwindcss.com/docs/dark-mode
-// TODO: Create a burger menu for the nave when we are on mobile
-// TODO: Setup Notion Api
+const dummyProjects = [
+  {
+    title: 'Crypto Price Viewer',
+    description: 'An app to visualize the current price of your favorite crypto',
+    link: 'https://www.google.com/',
+  },
+  {
+    title: 'Vinyl finder',
+    description: 'Find your favorites vinyles with ease',
+    link: 'https://www.google.com/',
+  },
+  {
+    title: 'Coming soon',
+    description: 'TBD',
+    link: 'https://www.google.com/',
+  },
+]
+
+// TODO: [X] Add a latest blog section
+// TODO: [] Add a projects section
+// TODO: [] Add a footer
+// TODO: [] Add Dark Mode https://tailwindcss.com/docs/dark-mode
+// TODO: [] Create a burger menu for the nave when we are on mobile
+// TODO: [] Add monolisa font for web + fallback
+// TODO: [] Setup Notion Api
 
 export default function HomePage() {
   return (
@@ -49,7 +69,7 @@ export default function HomePage() {
               <TwitterIcon />
             </a>
             <a rel="noopener noreferrer" target="_blank" href="https://github.com/kriscard">
-              <GitHubIcon />
+              <GithubIcon />
             </a>
             <a
               rel="noopener noreferrer"
@@ -72,22 +92,21 @@ export default function HomePage() {
         </div>
       </div>
       <div className="py-16 md:py-20">
-        <h4 className="mb-5 text-3xl underline underline-offset-auto">Latest Posts</h4>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {/* TODO: Display blog list with a card component*/}
-          {dummyData.map((data, index) => (
+        <h4 className="text-3xl font-semibold underline-offset-auto">Latest Posts</h4>
+        <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
+          {dummyData.map(({ imageAlt, image, tag, title }, index) => (
             <Card key={index}>
               <div>
                 <Image
-                  alt={data.imageAlt}
+                  alt={imageAlt}
                   className="w-[100%] rounded-lg object-contain"
-                  src={data.image}
+                  src={image}
                   height={274}
                   width={405}
                 />
                 <div className="flex flex-col gap-4 p-5">
-                  <p className="text-md max-w-2xl text-purple-500/40">{data.tag}</p>
-                  <p className="max-w-2xl text-2xl">{data.title}</p>
+                  <p className="text-md max-w-2xl text-purple-500/40">{tag}</p>
+                  <p className="max-w-2xl text-2xl">{title}</p>
                   <div className="flex items-center">
                     <Link
                       href="#"
@@ -97,6 +116,27 @@ export default function HomePage() {
                     </Link>
                     <ArrowIcon />
                   </div>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+        <h4 className="text-3xl font-semibold underline-offset-auto">Projects</h4>
+        <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
+          {dummyProjects.map(({ title, description, link }, index) => (
+            <Card key={index}>
+              <div className="p-5 ">
+                <div className="max-w-xl text-xl font-bold">{title}</div>
+                <div className="py-5">{description}</div>
+                <div className="flex items-center">
+                  <Link
+                    href={link}
+                    target="_blank"
+                    className="font-medium text-blue-600 duration-500 hover:underline dark:text-blue-500"
+                  >
+                    Discover
+                  </Link>
+                  <ArrowIcon />
                 </div>
               </div>
             </Card>

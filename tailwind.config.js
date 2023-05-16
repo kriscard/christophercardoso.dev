@@ -5,10 +5,6 @@ module.exports = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './content/**/*.mdx'],
   theme: {
     extend: {
-      colors: {
-        'gray-light': '#ffffff',
-        'dark-blue': '#010314',
-      },
       fontFamily: {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
       },
@@ -17,5 +13,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }

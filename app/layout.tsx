@@ -1,5 +1,6 @@
 import './global.css'
 import Header from '@components/Header'
+import Footer from '@components/Footer'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,6 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="mx-4 mt-2 flex max-w-4xl flex-col antialiased lg:mx-auto">
         <Header />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   )
