@@ -1,3 +1,5 @@
+export const name = 'Christopher Cardoso'
+
 export const hi = () => <>Hey! I&apos;m Christopher</>
 
 export const description = () => (

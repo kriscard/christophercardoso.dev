@@ -1,7 +1,9 @@
+import { type ReactNode } from 'react'
+
 import Header from '@components/Header'
 import SectionContainer from '@components/SectionContainer'
 
-const LayoutWrapper = ({ children }: { children: React.ReactNode }) => {
+function LayoutWrapper({ children }: { children: ReactNode }) {
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">

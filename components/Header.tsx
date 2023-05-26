@@ -2,8 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import logo from '../public/pizza-logo.png'
-import Head from 'next/head'
+import logo from '../public/logo.png'
 
 const headerNavLinks = [
   { href: '/about', title: 'About' },
@@ -11,14 +10,14 @@ const headerNavLinks = [
   { href: '/projects', title: 'Projects' },
 ]
 
-const Header = () => {
+function Header() {
   return (
     <div>
       <div className="flex w-full items-center justify-between text-base leading-5">
         <Link href="/" aria-label={'Christopher Cardoso'}>
           <div className="flex items-center">
             <div className="mr-3">
-              <Image src={logo} alt="Christopher Cardoso" width={100} height={100} />
+              <Image src={logo} alt="Christopher Cardoso" width={30} height={30} />
             </div>
             <div className="font-medium">Christopher Cardoso</div>
           </div>
