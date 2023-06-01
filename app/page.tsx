@@ -5,7 +5,6 @@ import avatar from '../app/avatar.jpg'
 import { GithubIcon, TwitterIcon, LinkedinIcon, ArrowIcon } from '@components/icons'
 import { Card } from '@components/Card'
 import Link from 'next/link'
-import SectionContainer from '@components/SectionContainer'
 
 const dummyData = [
   {
@@ -47,8 +46,8 @@ const dummyProjects = [
 ]
 
 // TODO: [X] Add a latest blog section
-// TODO: [] Add a projects section
-// TODO: [] Add a footer
+// TODO: [X] Add a projects section
+// TODO: [X] Add a footer
 // TODO: [] Add Dark Mode https://tailwindcss.com/docs/dark-mode
 // TODO: [] Create a burger menu for the nave when we are on mobile
 // TODO: [] Add monolisa font for web + fallback
