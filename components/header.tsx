@@ -7,7 +7,7 @@ import logo from '../public/logo.png'
 const headerNavLinks = [
   { href: '/about', title: 'About' },
   { href: '/blog', title: 'Blog' },
-  { href: '/projects', title: 'Projects' },
+  { href: 'https://github.com/kriscard', title: 'Github', target: 'blank' },
 ]
 
 function Header() {
@@ -24,9 +24,9 @@ function Header() {
         </Link>
 
         <nav className="hidden sm:block">
-          {headerNavLinks.map((link) => (
-            <Link key={link.title} href={link.href} className="p-1 font-medium  sm:p-4">
-              {link.title}
+          {headerNavLinks.map(({ title, href, target }) => (
+            <Link key={title} href={href} className="p-1 font-medium  sm:p-4" target={target}>
+              {title}
             </Link>
           ))}
         </nav>
