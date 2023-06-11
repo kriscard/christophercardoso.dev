@@ -1,6 +1,6 @@
-import { PresentationBanner } from '@components/presentation-banner'
-import { BlogsList } from '@components/posts-list'
-import { ProjectsList } from '@components/projects-list'
+import { PresentationBanner } from '@/components/presentation-banner'
+import { BlogsList } from '@/components/posts-list'
+import { ProjectsList } from '@/components/projects-list'
 import { fetchProjects } from 'lib/notion-api'
 import { Project } from 'types/types'
 
