@@ -7,8 +7,8 @@ import avatar from '../app/avatar.jpg'
 
 export function PresentationBanner() {
   return (
-    <div className="flex items-center">
-      <div className="flex flex-col py-16 md:py-20">
+    <div className="flex items-center py-14">
+      <div className="flex flex-col">
         <h3 className="mb-5 text-2xl md:text-5xl">{hi()}</h3>
         <p className="max-w-2xl text-base lg:text-2xl">{description()}</p>
         <div
