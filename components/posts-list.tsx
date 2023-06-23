@@ -1,9 +1,9 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
+import { compareDesc } from 'date-fns'
 
 import { Card } from './card'
-import { ArrowIcon } from './icons'
 import { allPosts, Post } from 'contentlayer/generated'
 import { getTagIcon } from '@/lib/utils'
 
@@ -30,7 +30,6 @@ function BlogCard({ tag, title, summary }: BlogCardProps) {
           >
             Read more
           </Link>
-          <ArrowIcon />
         </div>
       </div>
     </Card>
@@ -38,14 +37,15 @@ function BlogCard({ tag, title, summary }: BlogCardProps) {
 }
 
 export function BlogsList() {
+
+  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+  const recentPosts = posts.slice(0, 3)
+
   return (
-    <>
-      <h3 className="text-4xl font-semibold underline-offset-auto mb-6">Latest Posts</h3>
-      <div className="flex flex-row w-full gap-8">
-        {allPosts.map(({ title, tag, summary }: Post) => (
-          <BlogCard tag={tag} title={title} summary={summary} />
-        ))}
-      </div>
-    </>
+    <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
+      {recentPosts.map(({ title, tag, summary }: Post) => (
+        <BlogCard tag={tag} title={title} summary={summary} />
+      ))}
+    </div>
   )
 }

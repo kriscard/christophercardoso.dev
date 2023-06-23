@@ -9,7 +9,7 @@ module.exports = {
         sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
       },
       backgroundColor: {
-        dark: '#181818',
+        dark: '#0B0F1A',
       },
     },
   },

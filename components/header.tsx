@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 import logo from '../public/logo.png'
+import { name } from '@/lib/info'
 
 const headerNavLinks = [
   { href: '/about', title: 'About' },
@@ -12,14 +13,14 @@ const headerNavLinks = [
 
 function Header() {
   return (
-    <div>
-      <div className="flex w-full items-center justify-between text-base leading-5">
+    <nav>
+      <div className="flex w-full items-center justify-between text-base leading-5 mt-2">
         <Link href="/" aria-label={'Christopher Cardoso'}>
           <div className="flex items-center">
             <div className="mr-3">
               <Image src={logo} alt="Christopher Cardoso" width={30} height={30} />
             </div>
-            <div className="font-medium">Christopher Cardoso</div>
+            <div className="font-semibold text-2xl">{name}</div>
           </div>
         </Link>
 
@@ -31,7 +32,7 @@ function Header() {
           ))}
         </nav>
       </div>
-    </div>
+    </nav>
   )
 }
 
