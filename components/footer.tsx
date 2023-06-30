@@ -6,7 +6,7 @@ import { name } from 'lib/info'
 function Footer() {
   return (
     <footer className='mt-auto'>
-      <div className="mt-16 flex flex-col items-center p-10">
+      <div className="mt-auto flex flex-col items-center p-10">
         <div className="mb-3 flex space-x-4">
           <a rel="noopener noreferrer" target="_blank" href="https://github.com/kriscard">
             <TwitterIcon />

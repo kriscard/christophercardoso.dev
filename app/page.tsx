@@ -1,7 +1,8 @@
-import { PresentationBanner } from '@/components/presentation-banner'
 import { BlogsList } from '@/components/posts-list'
+import { PresentationBanner } from '@/components/presentation-banner'
 import { ProjectsList } from '@/components/projects-list'
 import { fetchProjects } from 'lib/notion-api'
+import { Suspense } from 'react'
 import { Project } from 'types/types'
 
 // TODO: [X] Add a latest blog section
@@ -19,8 +20,10 @@ export default async function HomePage() {
     <section>
       <PresentationBanner />
       <div className="py-16 md:py-20">
-        <BlogsList />
-        <ProjectsList projects={projects} />
+        <Suspense>
+          <BlogsList />
+          <ProjectsList projects={projects} />
+        </Suspense>
       </div>
     </section>
   )
