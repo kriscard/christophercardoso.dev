@@ -11,9 +11,10 @@ interface BlogCardProps {
   title: Post['title'],
   tag: Post['tag']
   summary: Post['summary']
+  url: Post['url']
 }
 
-function BlogCard({ tag, title, summary }: BlogCardProps) {
+function BlogCard({ tag, title, summary, url }: BlogCardProps) {
 
   const icon = getTagIcon(tag)
 
@@ -25,7 +26,7 @@ function BlogCard({ tag, title, summary }: BlogCardProps) {
         <p className="max-w-2xl text-md">{summary}</p>
         <div className="flex items-center">
           <Link
-            href="#"
+            href={url}
             className="font-medium text-blue-600 duration-500 hover:underline dark:text-blue-500 hidden md:block"
           >
             Read more
@@ -43,8 +44,8 @@ export function BlogsList() {
 
   return (
     <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
-      {recentPosts.map(({ title, tag, summary }: Post) => (
-        <BlogCard tag={tag} title={title} summary={summary} />
+      {recentPosts.map(({ title, tag, summary, url }: Post) => (
+        <BlogCard tag={tag} title={title} summary={summary} url={url} />
       ))}
     </div>
   )

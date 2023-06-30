@@ -1,9 +1,9 @@
-import React from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 
-import logo from '../public/logo.png'
 import { name } from '@/lib/info'
+import logo from '../public/logo.png'
+import ThemeSwitch from '@/components/theme-switch'
 
 const headerNavLinks = [
   { href: '/about', title: 'About' },
@@ -13,8 +13,8 @@ const headerNavLinks = [
 
 function Header() {
   return (
-    <nav>
-      <div className="flex w-full items-center justify-between text-base leading-5 mt-2">
+    <nav className='mx-auto w-full max-w-4xl pt-5'>
+      <div className="flex w-full items-center justify-between text-base leading-5 ">
         <Link href="/" aria-label={'Christopher Cardoso'}>
           <div className="flex items-center">
             <div className="mr-3">
@@ -23,14 +23,18 @@ function Header() {
             <div className="font-semibold text-2xl">{name}</div>
           </div>
         </Link>
-
-        <nav className="hidden sm:block">
-          {headerNavLinks.map(({ title, href, target }) => (
-            <Link key={title} href={href} className="p-1 font-medium  sm:p-4" target={target}>
-              {title}
-            </Link>
-          ))}
-        </nav>
+        <div className='flex items-center'>
+          <div className="hidden sm:block">
+            {headerNavLinks.map(({ title, href, target }) => (
+              <Link key={title} href={href} className="p-1 font-medium  sm:p-4" target={target}>
+                {title}
+              </Link>
+            ))}
+          </div>
+          <div className="p-1 sm:p-4">
+            <ThemeSwitch />
+          </div>
+        </div>
       </div>
     </nav>
   )

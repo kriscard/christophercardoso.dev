@@ -10,8 +10,10 @@ module.exports = {
       },
       backgroundColor: {
         dark: '#0B0F1A',
+        lightGray: '#EEEEEE',
       },
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  darkMode: 'class',
+  plugins: [require('@tailwindcss/typography'), require("daisyui")],
 }
