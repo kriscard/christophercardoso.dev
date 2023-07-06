@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Providers>
         <body className="bg-lightGray p-4 text-black dark:bg-dark dark:text-white min-h-screen flex flex-col">
           <Header />
-          <main className='max-w-4xl w-full antialiased lg:mx-auto'>{children}</main>
+          <main className='max-w-4xl w-full antialiased mt-5 lg:mx-auto'>{children}</main>
           <Footer />
         </body>
       </Providers>

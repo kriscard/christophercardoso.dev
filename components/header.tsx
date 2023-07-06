@@ -15,22 +15,24 @@ function Header() {
   return (
     <nav className='mx-auto w-full max-w-4xl pt-5'>
       <div className="flex w-full items-center justify-between text-base leading-5 ">
-        <Link href="/" aria-label={'Christopher Cardoso'}>
-          <div className="flex items-center">
-            <div className="mr-3">
-              <Image src={logo} alt="Christopher Cardoso" width={30} height={30} />
+        <div className="hidden md:block">
+          <Link href="/" aria-label={'Christopher Cardoso'}>
+            <div className="flex items-center">
+              <div className="mr-3">
+                <Image src={logo} alt="Christopher Cardoso" width={30} height={30} />
+              </div>
+              <div className="font-heading text-3xl">{name}</div>
             </div>
-            <div className="font-heading text-3xl">{name}</div>
-          </div>
-        </Link>
-        <div className='flex items-center'>
-          <div className="hidden sm:block">
+          </Link>
+        </div>
+        <div className='flex items-center gap-3 md:gap-0'>
+          <>
             {headerNavLinks.map(({ title, href, target }) => (
-              <Link key={title} href={href} className="p-1 font-mono text-lg sm:p-4" target={target}>
+              <Link key={title} href={href} className="p-1 font-mono text-lg md:p-4 " target={target}>
                 {title}
               </Link>
             ))}
-          </div>
+          </>
           <div className="p-1 sm:p-4">
             <ThemeSwitch />
           </div>
