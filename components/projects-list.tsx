@@ -1,42 +1,57 @@
-import React from 'react'
 import Link from 'next/link'
-
+import React from 'react'
+import { Project } from 'types/types'
 import { Card } from './card'
 import { ArrowIcon } from './icons'
-import { Project } from 'types/types'
 
 interface ProjectListProps {
   projects: Project[]
+}
+
+interface ProjectCardProps {
+  id: string
+  title: string
+  description: string
+  href: string
+}
+
+function ProjectCard({ id, title, description, href }: ProjectCardProps) {
+  return (
+    <Card key={id} className='p-0'>
+      <div className="p-5">
+        <h3 className="max-w-2xl text-xl font-heading md:text-2xl">{title}</h3>
+        <p className="py-5 max-w-2x text-md font-mono">{description}</p>
+        <div className="flex items-center">
+          <Link
+            href={href}
+            target="_blank"
+            className="font-mono text-blue-600 duration-500 dark:text-blue-500"
+          >
+            Discover
+          </Link>
+          <ArrowIcon />
+        </div>
+      </div>
+    </Card>
+  )
 }
 
 export function ProjectsList({ projects }: ProjectListProps) {
   if (projects.length <= 0) return null
 
   return (
-    <>
-      <h4 className="text-3xl font-semibold underline-offset-auto">Projects</h4>
+    <div className="py-4">
+      <h2 className="text-2xl md:text-3xl font-heading">Projects</h2>
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project: Project) => (
-          <Card key={project.id}>
-            <div className="p-5 ">
-              <div className="max-w-xl text-xl font-bold">
-                {project.properties.Name.title[0].plain_text}
-              </div>
-              <div className="py-5">{project.properties.Description.rich_text[0].text.content}</div>
-              <div className="flex items-center">
-                <Link
-                  href={project.properties.link.rich_text[0].href}
-                  target="_blank"
-                  className="font-medium text-blue-600 duration-500 hover:underline dark:text-blue-500"
-                >
-                  Discover
-                </Link>
-                <ArrowIcon />
-              </div>
-            </div>
-          </Card>
+          <ProjectCard
+            id={project.id}
+            title={project.properties.Name.title[0].plain_text}
+            description={project.properties.Description.rich_text[0].text.content}
+            href={project.properties.link.rich_text[0].href}
+          />
         ))}
       </div>
-    </>
+    </div>
   )
 }

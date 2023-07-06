@@ -1,4 +1,4 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['InterVariable', ...defaultTheme.fontFamily.sans],
+        heading: ['var(--font-heading)', ...fontFamily.sans],
+        mono: ['var(--font-mono)',...fontFamily.mono],
       },
       backgroundColor: {
         dark: '#0B0F1A',
