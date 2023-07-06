@@ -21,7 +21,7 @@ function Header() {
               <div className="mr-3">
                 <Image src={logo} alt="Christopher Cardoso" width={30} height={30} />
               </div>
-              <div className="font-heading text-3xl">{name}</div>
+              <div className="font-heading text-2xl">{name}</div>
             </div>
           </Link>
         </div>
