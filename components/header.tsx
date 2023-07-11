@@ -13,7 +13,7 @@ const headerNavLinks = [
 function Header() {
   return (
     <nav className="mx-auto w-full max-w-4xl pt-5">
-      <div className="flex w-full items-center justify-between text-base leading-5 ">
+      <div className="flex w-full items-center justify-between leading-5">
         <div className="hidden md:block">
           <Link href="/" aria-label={'Christopher Cardoso'}>
             <div className="flex items-center">
@@ -30,7 +30,7 @@ function Header() {
               <Link
                 key={title}
                 href={href}
-                className="p-1 font-mono text-lg md:p-4 "
+                className="p-1 font-mono text-lg lg:text-base md:p-4 "
                 target={target}
               >
                 {title}

@@ -21,8 +21,8 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
     <Card key={crypto.randomUUID()}>
       <div className="flex h-auto flex-col gap-4 p-5">
         {icon && <Image src={icon} width={30} height={30} alt={tag} />}
-        <h3 className="md:tex-2xl max-w-2xl font-heading text-xl">{title}</h3>
-        <p className="text-md max-w-2xl font-mono">{summary}</p>
+        <h3 className="md:text-2xl max-w-2xl font-heading text-xl">{title}</h3>
+        <p className="max-w-2xl font-mono">{summary}</p>
         <div className="flex items-center">
           <Link
             href={url}
