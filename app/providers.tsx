@@ -15,7 +15,7 @@ export function Providers({ children }) {
   }
 
   return (
-    <ThemeProvider enableSystem={true} attribute='class'>
+    <ThemeProvider enableSystem={true} attribute="class">
       {children}
     </ThemeProvider>
   )

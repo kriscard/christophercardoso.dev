@@ -1,9 +1,8 @@
+import ThemeSwitch from '@/components/theme-switch'
+import { name } from '@/lib/info'
 import Image from 'next/image'
 import Link from 'next/link'
-
-import { name } from '@/lib/info'
 import logo from '../public/logo.png'
-import ThemeSwitch from '@/components/theme-switch'
 
 const headerNavLinks = [
   { href: '/about', title: 'About' },
@@ -13,7 +12,7 @@ const headerNavLinks = [
 
 function Header() {
   return (
-    <nav className='mx-auto w-full max-w-4xl pt-5'>
+    <nav className="mx-auto w-full max-w-4xl pt-5">
       <div className="flex w-full items-center justify-between text-base leading-5 ">
         <div className="hidden md:block">
           <Link href="/" aria-label={'Christopher Cardoso'}>
@@ -25,10 +24,15 @@ function Header() {
             </div>
           </Link>
         </div>
-        <div className='flex items-center gap-3 md:gap-0'>
+        <div className="flex items-center gap-3 md:gap-0">
           <>
             {headerNavLinks.map(({ title, href, target }) => (
-              <Link key={title} href={href} className="p-1 font-mono text-lg md:p-4 " target={target}>
+              <Link
+                key={title}
+                href={href}
+                className="p-1 font-mono text-lg md:p-4 "
+                target={target}
+              >
                 {title}
               </Link>
             ))}
