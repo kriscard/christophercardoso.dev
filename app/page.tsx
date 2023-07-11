@@ -10,7 +10,8 @@ import { Project } from 'types/types'
 // TODO: [X] Setup Notion Api
 // TODO: [X] Add Dark Mode https://tailwindcss.com/docs/dark-mode
 // TODO: [X] Add new font for web + fallback
-// TODO: [] Make header responsive
+// TODO: [X] Make header responsive
+// TODO: [X] Add a About me section
 // TODO: [] Create 3 articles
 // TODO: [] deploy and match domain name
 
