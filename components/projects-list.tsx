@@ -17,10 +17,10 @@ interface ProjectCardProps {
 
 function ProjectCard({ id, title, description, href }: ProjectCardProps) {
   return (
-    <Card key={id} className='p-0'>
+    <Card key={id} className="p-0">
       <div className="p-5">
-        <h3 className="max-w-2xl text-xl font-heading md:text-2xl">{title}</h3>
-        <p className="py-5 max-w-2x text-md font-mono">{description}</p>
+        <h3 className="max-w-2xl font-heading text-xl md:text-2xl">{title}</h3>
+        <p className="max-w-2x text-md py-5 font-mono">{description}</p>
         <div className="flex items-center">
           <Link
             href={href}
@@ -41,7 +41,7 @@ export function ProjectsList({ projects }: ProjectListProps) {
 
   return (
     <div className="py-4">
-      <h2 className="text-2xl md:text-3xl font-heading">Projects</h2>
+      <h2 className="font-heading text-2xl md:text-3xl">Projects</h2>
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project: Project) => (
           <ProjectCard

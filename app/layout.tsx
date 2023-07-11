@@ -1,10 +1,9 @@
-import { Lora as FontHeading, DM_Mono as FontMono } from 'next/font/google'
-
 import Footer from '@/components/footer'
 import Header from '@/components/header'
+import { Lora as FontHeading, DM_Mono as FontMono } from 'next/font/google'
 import './global.css'
-import { Providers } from './providers'
 import { cn } from '@/lib/utils'
+import { Providers } from './providers'
 
 const fontHeading = FontHeading({
   subsets: ['latin'],
@@ -13,21 +12,24 @@ const fontHeading = FontHeading({
 })
 
 const fontMono = FontMono({
-  weight: ["300", "400", "500"],
+  weight: ['300', '400', '500'],
   subsets: ['latin'],
   variable: '--font-mono',
 })
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn("dark h-full scroll-smooth", fontHeading.variable, fontMono.variable)}>
+    <html
+      lang="en"
+      className={cn('dark h-full scroll-smooth', fontHeading.variable, fontMono.variable)}
+    >
       <Providers>
-        <body className="bg-lightGray p-4 text-black dark:bg-dark dark:text-white min-h-screen flex flex-col">
+        <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
           <Header />
-          <main className='max-w-4xl w-full antialiased mt-5 lg:mx-auto'>{children}</main>
+          <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">{children}</main>
           <Footer />
         </body>
       </Providers>
-    </html >
+    </html>
   )
 }

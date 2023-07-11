@@ -1,11 +1,10 @@
-import React from 'react'
-
-import { GithubIcon, TwitterIcon, LinkedinIcon } from './icons'
 import { name } from 'lib/info'
+import React from 'react'
+import { GithubIcon, LinkedinIcon, TwitterIcon } from './icons'
 
 function Footer() {
   return (
-    <footer className='mt-auto'>
+    <footer className="mt-auto">
       <div className="mt-auto flex flex-col items-center p-10">
         <div className="mb-3 flex space-x-4">
           <a rel="noopener noreferrer" target="_blank" href="https://github.com/kriscard">
