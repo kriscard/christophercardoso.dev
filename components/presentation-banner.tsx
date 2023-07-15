@@ -9,7 +9,7 @@ export function PresentationBanner() {
     <div className="flex items-center py-14">
       <div className="flex flex-col">
         <h1 className="mb-5 font-heading text-3xl md:text-4xl">{hi()}</h1>
-        <p className="max-w-2xl font-mono lg:text-xl">{description()}</p>
+        <p className="max-w-xl text-xl lg:text-xl">{description()}</p>
         <div
           className="mt-6 flex w-fit items-center justify-between
             gap-3"

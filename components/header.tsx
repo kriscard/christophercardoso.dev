@@ -30,7 +30,7 @@ function Header() {
               <Link
                 key={title}
                 href={href}
-                className="p-1 font-mono text-lg lg:text-base md:p-4 "
+                className="p-1 text-xl lg:text-lg md:p-4 "
                 target={target}
               >
                 {title}

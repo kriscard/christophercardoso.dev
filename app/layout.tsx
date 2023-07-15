@@ -1,6 +1,6 @@
 import Footer from '@/components/footer'
 import Header from '@/components/header'
-import { Lora as FontHeading, DM_Mono as FontMono } from 'next/font/google'
+import { Lora as FontHeading } from 'next/font/google'
 import './global.css'
 import { cn } from '@/lib/utils'
 import { Providers } from './providers'
@@ -11,17 +11,11 @@ const fontHeading = FontHeading({
   variable: '--font-heading',
 })
 
-const fontMono = FontMono({
-  weight: ['300', '400', '500'],
-  subsets: ['latin'],
-  variable: '--font-mono',
-})
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="en"
-      className={cn('dark h-full scroll-smooth', fontHeading.variable, fontMono.variable)}
+      className={cn('dark h-full scroll-smooth', fontHeading.variable)}
     >
       <Providers>
         <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">

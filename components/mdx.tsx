@@ -8,7 +8,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code)
 
   return (
-    <article className="lg:text-base text-lg font-mono">
+    <article className="lg:text-xl text-lg">
       <Component />
     </article>
   )
