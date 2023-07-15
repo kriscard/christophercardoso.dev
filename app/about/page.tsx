@@ -4,7 +4,7 @@ function AboutMeSection() {
   return (
     <section>
       <h1 className="my-8 font-heading text-3xl md:text-4xl">About me</h1>
-      <p className="mb-8 font-mono text-base lg:text-base">
+      <p className="mb-8 text-xl lg:text-lg">
         Hello, I&apos;m Chris! Welcome to my digital garden. I&apos;m a Full Stack Developer based
         in Toronto, eager to share my projects and articles on software development. With a passion
         for exploration, I constantly push the boundaries of my comfort zone to learn and master new
@@ -33,21 +33,21 @@ function WhatIUseTitle() {
 function HardwareSection() {
   return (
     <section className='divide-y divide-[#A5B4FB] space-y-0'>
-      <h3 className="py-2 font-heading text-base lg:text-lg divide-">Hardware</h3>
+      <h3 className="py-2 font-heading lg:text-lg divide-">Hardware</h3>
       <ul className="list-inside list-disc p-4 ">
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500"> Desktop</span> AMD Ryzen
           7 3800X, 32GB RAM, RTX 3080
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500"> Laptop</span> Apple
           Macbook Pro M1, 16 GB RAM, 1TB SSD
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500"> Monitor</span> LG
           27UP850N-W 27 inch UHD 4k
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500"> Headset</span> Airpods
           Pro 2nd generation, Sony wh-1000xm4, Razer Blackshark V2
         </li>
@@ -61,7 +61,7 @@ function SoftwareSection() {
     <section className="divide-y divide-[#A5B4FB] space-y-0">
       <h3 className="py-2 font-heading text-base lg:text-lg">Software</h3>
       <ul className="list-inside list-disc p-4">
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Terminal</span>
           &nbsp;
           <a
@@ -72,8 +72,8 @@ function SoftwareSection() {
             Kitty
           </a>
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
-          <span className="font-semibold text-gray-500 dark:text-gray-500">Editor</span>
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
+          <span className="font-semibold text-gray-500 dark`:text-gray-500">Editor</span>
           &nbsp;
           <a
             className="font-semibold text-[#a171e1] hover:text-[#A5B4FB]"
@@ -83,38 +83,38 @@ function SoftwareSection() {
             Neovim
           </a>
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Favorite tools:</span>
           <ul className="list-inside list-disc px-10">
-            <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+            <li className="text-lg marker:text-[#A5B4FB] lg:text-xl">
               <span className="font-semibold text-gray-500 dark:text-gray-500">Tmux</span> Terminal
               multiplexer
             </li>
-            <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+            <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
               <span className="font-semibold text-gray-500 dark:text-gray-500">
                 FZF and Telescope
               </span>
               &nbsp; Fuzzy finder
             </li>
-            <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+            <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
               <span className="font-semibold text-gray-500 dark:text-gray-500">
                 zsh with Starship
               </span>
               &nbsp; Shell
             </li>
-            <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+            <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
               <span className="font-semibold text-gray-500 dark:text-gray-500">
                 Fugitive and LazyGit
               </span>
               &nbsp; Git integration
             </li>
-            <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+            <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
               <span className="font-semibold text-gray-500 dark:text-gray-500">Yabai and Skhd</span>
               &nbsp; Window manager and hotkey daemon
             </li>
           </ul>
         </li>
-        <p className="mt-2 font-mono text-lg lg:text-base">
+        <p className="mt-2 text-xl lg:text-lg">
           You can find more details about my config om my&nbsp;
           <a
             className="font-semibold text-[#a171e1] hover:text-[#A5B4FB]"
@@ -136,27 +136,27 @@ function KeyboardsSection() {
     <section className="py-4 divide-y divide-[#A5B4FB] space-y-0">
       <h3 className="py-2 font-heading text-base lg:text-lg">Keyboards</h3>
       <ul className="list-inside list-disc px-4">
-        <p className="py-4 font-mono text-lg lg:text-base">
+        <p className="py-4 text-xl lg:text-lg">
           As a fan and collector of mechanical keyboards, I&apos;ve tried a lot of different switches
           and layouts. Here are some of my favorites:
         </p>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Space80 Apollo</span>{' '}
           Lavender switches, GMK Laser
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-lg marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Think65 V2</span> Alpaca
           switches, GMK Bento R2
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Squid60</span> Tangerines
           switches, GMK Hammerhead
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Time80 Re</span> Alpaca
           switches, Tx springs long, GMK Sumi
         </li>
-        <li className="font-mono text-lg marker:text-[#A5B4FB] lg:text-base">
+        <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">Vega</span> Banana
           switches, GMK Hallyu
         </li>

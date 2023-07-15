@@ -7,7 +7,6 @@ module.exports = {
     extend: {
       fontFamily: {
         heading: ['var(--font-heading)', ...fontFamily.sans],
-        mono: ['var(--font-mono)',...fontFamily.mono],
       },
       backgroundColor: {
         dark: '#0B0F1A',

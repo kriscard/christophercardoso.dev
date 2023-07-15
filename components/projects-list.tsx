@@ -20,7 +20,7 @@ function ProjectCard({ id, title, description, href }: ProjectCardProps) {
     <Card key={id} className="p-0">
       <div className="p-5">
         <h3 className="max-w-2xl font-heading text-xl md:text-2xl">{title}</h3>
-        <p className="max-w-2x text-md py-5 font-mono">{description}</p>
+        <p className="max-w-2x text-md py-5 text-xl lg:text-lg">{description}</p>
         <div className="flex items-center">
           <Link
             href={href}
