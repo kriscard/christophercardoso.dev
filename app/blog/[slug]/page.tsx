@@ -1,7 +1,8 @@
-import { Mdx } from '@/components/mdx'
-import { getTagIcon } from '@/lib/utils'
 import { allPosts } from 'contentlayer/generated'
 import { format, parseISO } from 'date-fns'
+
+import { Mdx } from '@/components/mdx'
+import { getTagIcon } from '@/lib/utils'
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }))

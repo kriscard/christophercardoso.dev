@@ -1,8 +1,8 @@
 import { BlogsList } from '@/components/posts-list'
 import { PresentationBanner } from '@/components/presentation-banner'
 import { ProjectsList } from '@/components/projects-list'
-import { fetchProjects } from 'lib/notion-api'
-import { Project } from 'types/types'
+import { fetchProjects } from '@/lib/notion-api'
+import { Project } from '@/types/types'
 
 // TODO: [X] Add a latest blog section
 // TODO: [X] Add a projects section

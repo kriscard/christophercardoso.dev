@@ -1,6 +1,7 @@
-import { description, hi, name } from 'lib/info'
-import Image from 'next/image'
 import React from 'react'
+import Image from 'next/image'
+
+import { description, hi, name } from '@/lib/info'
 import avatar from '../app/avatar.jpg'
 import { GithubIcon, LinkedinIcon, TwitterIcon } from './icons'
 

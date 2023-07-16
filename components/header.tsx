@@ -1,7 +1,8 @@
-import ThemeSwitch from '@/components/theme-switch'
-import { name } from '@/lib/info'
 import Image from 'next/image'
 import Link from 'next/link'
+
+import ThemeSwitch from '@/components/theme-switch'
+import { name } from '@/lib/info'
 import logo from '../public/logo.png'
 
 const headerNavLinks = [

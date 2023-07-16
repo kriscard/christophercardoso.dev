@@ -1,6 +1,7 @@
-import Link from 'next/link'
 import React from 'react'
-import { Project } from 'types/types'
+import Link from 'next/link'
+
+import { Project } from '@/types/types'
 import { Card } from './card'
 import { ArrowIcon } from './icons'
 
