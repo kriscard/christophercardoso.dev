@@ -1,6 +1,12 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
 import { allPosts, Post } from 'contentlayer/generated'
 import { compareDesc, format, parseISO } from 'date-fns'
-import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Blog',
+  description: 'Discover my latest articles and thoughts on software development',
+}
 
 function PostCard(post: Post) {
   return (
