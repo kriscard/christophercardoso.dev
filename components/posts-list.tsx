@@ -1,9 +1,10 @@
-import { getTagIcon } from '@/lib/utils'
-import { allPosts, Post } from 'contentlayer/generated'
-import { compareDesc } from 'date-fns'
+import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import { allPosts, Post } from 'contentlayer/generated'
+import { compareDesc } from 'date-fns'
+
+import { getTagIcon } from '@/lib/utils'
 import { Card } from './card'
 import { ArrowIcon } from './icons'
 

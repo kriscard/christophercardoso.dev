@@ -1,8 +1,10 @@
-import Footer from '@/components/footer'
-import Header from '@/components/header'
 import { PT_Sans as FontHeading } from 'next/font/google'
-import './global.css'
+
 import { cn } from '@/lib/utils'
+import { Analytics } from '@/components/analytics'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
+import './global.css'
 import { Providers } from './providers'
 
 const fontHeading = FontHeading({
@@ -17,11 +19,13 @@ export const metadata = {
     template: '%s | Christopher Cardoso',
   },
   description: 'A software developer who loves to build things',
-  authors: [{
-    name: 'Christopher Cardoso',
-    url: 'https://christophercardoso.dev',
-  }],
-  creator: "Christopher Cardoso",
+  authors: [
+    {
+      name: 'Christopher Cardoso',
+      url: 'https://christophercardoso.dev',
+    },
+  ],
+  creator: 'Christopher Cardoso',
   keywords: [
     'Christopher Cardoso',
     'Christopher',
@@ -65,14 +69,14 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="en"
-      className={cn('dark h-full scroll-smooth', fontHeading.variable)}
-    >
+    <html lang="en" className={cn('dark h-full scroll-smooth', fontHeading.variable)}>
       <Providers>
         <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
           <Header />
-          <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">{children}</main>
+          <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">
+            {children}
+            <Analytics />
+          </main>
           <Footer />
         </body>
       </Providers>

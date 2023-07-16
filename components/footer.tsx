@@ -1,5 +1,6 @@
-import { name } from 'lib/info'
 import React from 'react'
+
+import { name } from '@/lib/info'
 import { GithubIcon, LinkedinIcon, TwitterIcon } from './icons'
 
 function Footer() {
