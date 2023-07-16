@@ -4,6 +4,7 @@ import { PT_Sans as FontHeading } from 'next/font/google'
 import './global.css'
 import { cn } from '@/lib/utils'
 import { Providers } from './providers'
+import { Analytics } from '@/components/analytics'
 
 const fontHeading = FontHeading({
   subsets: ['latin'],
@@ -72,7 +73,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <Providers>
         <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
           <Header />
-          <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">{children}</main>
+          <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">
+            {children}
+            <Analytics />
+          </main>
           <Footer />
         </body>
       </Providers>

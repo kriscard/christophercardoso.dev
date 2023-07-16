@@ -12,8 +12,8 @@ import { Project } from 'types/types'
 // TODO: [X] Add new font for web + fallback
 // TODO: [X] Make header responsive
 // TODO: [X] Add a About me section
-// TODO: [] Setup Meta Data per page
-// TODO: [] Setup Analytics
+// TODO: [X] Setup Meta Data per page
+// TODO: [X] Setup Analytics
 // TODO: [] Create 3 articles
 // TODO: [] deploy and match domain name
 
