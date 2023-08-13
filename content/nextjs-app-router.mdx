@@ -2,60 +2,82 @@
 title: An Overview of Next.js 13 with App Router
 date: 2023-08-10
 tag: Nextjs
-summary: Next.js' App Router introduces a fresh approach to application development, utilizing React's latest features.
+summary: Introducing the new Next.js App Router paradigm
 ---
 
 I recently made the decision to completely revamp my portfolio website using Nextjs 13 with the new App Router pattern. I really like his new paradigm, and I wanted to share the core elements I learned during this process.
 
-## **React Server Components**
+## React Server Components
 
-The React core team has recently introduced a new concept called React Server Component as part of the React 18 release. 
-
+The React core team has recently introduced a new concept called React Server Component as part of the React 18 release.
 In a nutshell, it allows us to build hybrid applications where we choose the type of rendering we want to use at the component level between client-side rendering or server-side rendering.
 
-(add Vercel image + source link) 
+React server components give us a tone of flexibility when building applications. Vercel has decided to make all components server components by default in App Router. Developers can switch to a client component by using the [use client](https://nextjs.org/docs/getting-started/react-essentials#the-use-client-directive) directive when they choose to.
 
-React server components give us a tone of flexibility when building applications. Vercel has decided to make all components server components by default in App Router. Developers can switch to a client component by using the "use client" directive when they choose to. (link to [https://nextjs.org/docs/getting-started/react-essentials#the-use-client-directive](https://nextjs.org/docs/getting-started/react-essentials#the-use-client-directive))
+<Image
+  src="/images/blog/nextjs-app-router/server-components.png"
+  width={1200}
+  height={675}
+  alt="React Server component"
+  className="m-auto pt-6"
+/>
 
-// Add code examples of components with the “use client” directive. 
+> The image source can be found at [https://nextjs.org/docs/getting-started/react-essentials](https://nextjs.org/docs/getting-started/react-essentials)
 
-Now that we have a basic understanding of React server components let’s dive a bit more into the new routing concept. 
+For more information about React Server Components, I recommend to read this blog post from the [React core team](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components).
 
-## **Routing**
+## Routing
 
 Nextjs 13 uses the concept of file-system routing, which means that the way your files are organized will affect your routing system directly.
 
-You will need to create an `app` directory instead of `pages` at the root of your project to take advantage of all the latest app router features like shared layouts, nested routings, loading components, and error handling. Your main component UI will be in a `page` file.
+You will need to create an app directory instead of pages at the root of your project to take advantage of all the latest app router features like shared layouts, nested routings, loading components, and error handling. Your main component UI will be in a page file.
 
-Here is a diagram that will explain how to create 3 different types of routing:
+Here is a diagram that can help you understand how to create three different kinds of routes with the App Router paradigm:
 
-- `example.com/blog/123`
-- `example.com/store/product/456`
-- `example.com/about`
+<Image
+  src="/images/blog/nextjs-app-router/app-router-diagram.png"
+  width={1200}
+  height={675}
+  alt="App Router Diagram"
+  className="m-auto pt-6"
+/>
 
-![app-router.png](Overview%20of%20Nextjs%2013%20with%20App%20Router%2028a55336098845babdb92c98ebe5d7a1/app-router.png)
+To understand the new File Convention proposed by Nextjs, it is important to understand the concept of the root folder and the subtrees.
 
-![app-router_no_background.png](Overview%20of%20Nextjs%2013%20with%20App%20Router%2028a55336098845babdb92c98ebe5d7a1/app-router_no_background.png)
+In the previous diagram, the app constitutes the Root Segment, the blog, store, and about folders are **Segments** while the product folder within the store is a **leaf segment**.
 
-To understand the new `File Convention` proposed by Nextjs, it is important to understand the concept of the root folder and the subtrees.
-
-In the previous diagram, the app constitutes the `Root Segment`, the blog, store, and about folders are `Segments` while the product folder within the store is a `leaf segment`.
-
-All elements within the root segment folder (app) will encapsulate the files in the segments. For instance, if you create a layout within `app/layout.tsx` will be regarded as your `RootLayout` and will be the same for `app/loading.tsx` or `app/error.tsx`. 
+All elements within the root segment folder (app) will encapsulate the files in the segments. For instance, if you create a layout within **app/layout.tsx** will be regarded as your **RootLayout** and will be the same for **app/loading.tsx** or **app/error.tsx**.
 
 Each segment can have its own layout, loading state, and error-handling file.
 
 These special files will be rendered in a specific hierarchy and use some core React API feature to create your UI as React Suspense for loading your components or adding a React Error Boundary component for error handling.
 
-TODO: RECREATE THIS IMAGE [https://nextjs.org/docs/app/building-your-application/routing#component-hierarchy](https://nextjs.org/docs/app/building-your-application/routing#component-hierarchy) 
+```tsx
+/** Here is an example of what the output will look like after using the special files hierarchy:
+  * 1. layout.tsx
+  * 2. error.tsx
+  * 3. loading.tsx
+  * 4. not-found.tsx
+  * 5. page.tsx
+ **/
+  <Layout>
+    <ErrorBoundary fallback={<GlobalError />}>
+      <Suspense fallback={<LoadingFallback />}>
+        <ErrorBoundary fallback={<ErrorNotFound />}>
+          <Page />
+        </ErrorBoundary>
+      </Suspense>
+    </ErrorBoundary>
+  </Layout>
+```
 
-To get more details about these new file conventions, you can check the doc [here](https://nextjs.org/docs/app/building-your-application/routing#file-conventions).
+> To get more details about these new file conventions, you can check the [documentation](https://nextjs.org/docs/app/building-your-application/routing#file-conventions).
 
 ## Rendering
 
 For this section, I won't delve too deeply into each type of rendering as my goal is to write specific articles about them in the near future.
 
-Your application can be rendered in the client or in a server. 
+Your application can be rendered in the client or in a server.
 
 **Client-side Rendering (CSR)**
 
@@ -67,31 +89,33 @@ In SSR, the server will generate the entire HTML page, this includes fetching da
 
 After the server completes processing, it responds to the initial request by sending back the HTML page that has been fully rendered to the client.
 
-Before React 18, developers tend to use one of these approaches when building their apps. Now, with server and client components, **React can render on both the client and server** sides. This allows you to choose how to render your application code for each individual component. 
+Before React 18, developers tend to use one of these approaches when building their apps. Now, with server and client components, React can render on both the client and server sides. This allows you to choose how to render your application code for each individual component.
 
-As mentioned earlier, in the new Nextjs 13 version all components are server components, but you can still easily switch to a client component by using the `use client` directive. 
+As mentioned earlier, in the new Nextjs 13 version all components are server components, but you can still easily switch to a client component by using the use client directive.
 
 ```tsx
 'use client'
 
-import { useState } from 'react';
+import { useState } from 'react'
 
 export default function ToggleSwitch() {
-  const [isOn, setIsOn] = useState(false);
+  const [isOn, setIsOn] = useState(false)
 
   const handleToggle = () => {
-    setIsOn(!isOn);
-  };
+    setIsOn(!isOn)
+  }
 
   return (
     <div>
       <p>The switch is {isOn ? 'on' : 'off'}</p>
       <button onClick={handleToggle}>Toggle</button>
     </div>
-  );
+  )
 ```
 
-**Note:** Every component that will use React hooks, such as useState, useEffect, and useRef must be client components, as server components will not be able to handle these states’ lifecycles. 
+<Callout>
+**Note:** Every component that will use React hooks, such as useState, useEffect, and useRef must be client components, as server components will not be able to handle these states’ lifecycles.
+</Callout>
 
 ## Data Fetching
 
@@ -99,7 +123,7 @@ NextJS 13 extends the Fetch Web API by adding more features, such as configuring
 
 **Fetching Data**
 
-Through the utilization of server components, we can use the standard async/await syntax to gain access to promise-based APIs. 
+Through the utilization of server components, we can use the standard async/await syntax to gain access to promise-based APIs.
 
 ```tsx
 async function Post() {
@@ -109,7 +133,7 @@ async function Post() {
       <h1>{post.title}</h1>
       <section>{post.description}</section>
     </div>
-  );
+  )
 }
 ```
 
@@ -119,11 +143,11 @@ To maintain a separation between your UI component and fetch function, you can d
 async function fetchPost() {
   const result = await fetch('https://api.blog.com/...')
 
-	if (!result.ok){
-		throw new Error('No posts found')
-	}
+  if (!result.ok) {
+    throw new Error('No posts found')
+  }
 
-	return res.json()
+  return res.json()
 }
 
 async function Post() {
@@ -133,7 +157,7 @@ async function Post() {
       <h1>{post.title}</h1>
       <section>{post.description}</section>
     </div>
-  );
+  )
 }
 ```
 
@@ -142,23 +166,23 @@ async function Post() {
 If you use the fetch Web API on Nextjs 13, your data will be automatically cached by default.
 
 ```tsx
-const result = await fetch('https://api.blog.com/...', {cache: 'force-cache'})
+const result = await fetch('https://api.blog.com/...', { cache: 'force-cache' })
 ```
 
-You can use the option `force-cache` or `no-store` to handle your caching strategy:
+You can use the option **force-cache** or **no-store** to handle your caching strategy:
 
-- `force-cache`: When a request is made, Next.js checks the data cache for a matching response. If there is no equivalent response, it will fetch new data from the API source and update the cache.
-- `no-store`: For each request made, Next.js will not check the data cache or update it with new data obtained from the API source.
+- **force-cache**: When a request is made, Next.js checks the data cache for a matching response. If there is no equivalent response, it will fetch new data from the API source and update the cache.
+- **no-store**: For each request made, Next.js will not check the data cache or update it with new data obtained from the API source.
 
 **Revalidating data**
 
 Revalidation involves clearing the Data Cache and retrieving the most current data. It's a helpful tool to ensure that you display the most up-to-date information when updates are made to your data.
 
-You can use a `time-based revalidation` or an `on-demand revalidation` approach: 
+You can use a time-based revalidation or an on-demand revalidation approach:
 
 - **Time-based Revalidation**
 
-If you want to update data at specific intervals, you can utilize the `next.revalidate` option in `fetch`. This will allow you to set the cache lifetime of a resource in seconds: 
+If you want to update data at specific intervals, you can utilize the `next.revalidate` option in `fetch`. This will allow you to set the cache lifetime of a resource in seconds:
 
 ```tsx
 await fetch('https://api.blog.com/...', { next: { revalidate: 5000 } })
@@ -166,7 +190,7 @@ await fetch('https://api.blog.com/...', { next: { revalidate: 5000 } })
 
 - **On-demand Revalidation**
 
-You can revalidate data on-demand by either the path (using `[revalidatePath](https://nextjs.org/docs/app/api-reference/functions/revalidatePath)`) or the cache tag (using `[revalidateTag](https://nextjs.org/docs/app/api-reference/functions/revalidateTag)`) within a Route Handler or a Server Action. "`revalidatePath`" enables you to revalidate data associated with a particular route path, while "`revalidateTag`" allows you to revalidate data categorized under a specific tag. You can include this tag while retrieving data.
+You can revalidate data on-demand by either the path using [revalidatePath](https://nextjs.org/docs/app/api-reference/functions/revalidatePath) or the cache tag using [revalidateTag](https://nextjs.org/docs/app/api-reference/functions/revalidateTag) within a Route Handler or a Server Action. "revalidatePath" enables you to revalidate data associated with a particular route path, while "revalidateTag" allows you to revalidate data categorized under a specific tag. You can include this tag while retrieving data.
 
 ```tsx
 await fetch('https://api.blog.com/...'', { next: { tags: ['publications'] } })

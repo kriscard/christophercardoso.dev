@@ -1,9 +1,9 @@
 import { defineDocumentType, makeSource } from '@contentlayer/source-files'
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode from "rehype-pretty-code"
+import rehypePrettyCode, { Options as RehypePrettyCodeOptions } from "rehype-pretty-code"
+import rehypeExternalLinks from 'rehype-external-links'
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
-import { type Options } from "rehype-pretty-code"
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -20,23 +20,22 @@ export const Post = defineDocumentType(() => ({
   },
 }))
 
-
-const rehypePrettyCodeOptions: Partial<Options> = {
-  theme: "one-dark-pro",
+const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
+  theme: "github-dark",
   onVisitLine(node) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
     // lines to be copy/pasted
     if (node.children.length === 0) {
-      node.children = [{ type: "text", value: " " }]
+      node.children = [{ type: "text", value: " " }];
     }
   },
   onVisitHighlightedLine(node) {
-    node?.properties?.className?.push("line--highlighted")
+    node?.properties?.className?.push("line--highlighted");
   },
   onVisitHighlightedChars(node) {
-    node.properties.className = ["word--highlighted"]
+    node.properties.className = ["word--highlighted"];
   },
-}
+};
 
 
 export default makeSource({
@@ -58,6 +57,13 @@ export default makeSource({
             ariaLabel: "Link to section",
           },
         },
+      ],
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: ["noopener", "noreferrer"]
+        }
       ],
     ],
   },

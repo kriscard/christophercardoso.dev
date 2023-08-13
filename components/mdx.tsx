@@ -1,8 +1,10 @@
+import { useMDXComponent } from 'next-contentlayer/hooks'
+import Image from 'next/image'
+
 import { Callout } from '@/components/callout'
 import { MdxCard } from '@/components/mdx-card'
 import { cn } from '@/lib/utils'
-import { useMDXComponent } from 'next-contentlayer/hooks'
-import Image from 'next/image'
+import "@/styles/mdx.css"
 
 const components = {
   h1: ({ className, ...props }) => (
@@ -59,13 +61,13 @@ const components = {
   li: ({ className, ...props }) => <li className={cn('mt-2', className)} {...props} />,
   blockquote: ({ className, ...props }) => (
     <blockquote
-      className={cn('[&>*]:text-muted-foreground mt-6 border-l-2 pl-6 italic', className)}
+      className={cn('[&>*]:text-muted-foreground mt-6 border-l-2 pl-6 italic border-gray-300', className)}
       {...props}
     />
   ),
   img: ({ className, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn('rounded-md border', className)} alt={alt} {...props} />
+    <img className={cn('m-auto rounded-md border', className)} alt={alt} {...props} />
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
@@ -96,13 +98,13 @@ const components = {
   ),
   pre: ({ className, ...props }) => (
     <pre
-      className={cn('mb-4 mt-6 overflow-x-auto rounded-lg border bg-black py-4', className)}
+      className={cn('mb-4 mt-6 overflow-x-auto rounded-lg border bg-black p-4', className)}
       {...props}
     />
   ),
   code: ({ className, ...props }) => (
     <code
-      className={cn('relative rounded border px-[0.3rem] py-[0.2rem] font-mono text-sm', className)}
+      className={cn('relative rounded border px-1 py-0.5 font-mono', className)}
       {...props}
     />
   ),
@@ -119,7 +121,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code)
 
   return (
-    <article className="text-lg lg:text-xl">
+    <article className="text-xl lg:text-lg">
       <Component components={components} />
     </article>
   )
