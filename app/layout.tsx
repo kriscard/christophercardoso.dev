@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils'
 import { Analytics } from '@/components/analytics'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
-import './global.css'
+import '@/styles/global.css'
 import { Providers } from './providers'
 
 const fontHeading = FontHeading({

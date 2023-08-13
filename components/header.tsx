@@ -1,14 +1,15 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image"
+import Link from "next/link"
 
-import ThemeSwitch from '@/components/theme-switch'
-import { name } from '@/lib/info'
-import logo from '../public/logo.png'
+import { name } from "@/lib/info"
+import ThemeSwitch from "@/components/theme-switch"
+
+import logo from "../public/logo.png"
 
 const headerNavLinks = [
-  { href: '/about', title: 'About' },
-  { href: '/blog', title: 'Blog' },
-  { href: 'https://github.com/kriscard', title: 'Github', target: 'blank' },
+  { href: "/about", title: "About" },
+  { href: "/blog", title: "Blog" },
+  { href: "https://github.com/kriscard", title: "Github", target: "blank" },
 ]
 
 function Header() {
@@ -16,10 +17,15 @@ function Header() {
     <nav className="mx-auto w-full max-w-4xl pt-5">
       <div className="flex w-full items-center justify-between leading-5">
         <div className="hidden md:block">
-          <Link href="/" aria-label={'Christopher Cardoso'}>
+          <Link href="/" aria-label={"Christopher Cardoso"}>
             <div className="flex items-center">
               <div className="mr-3">
-                <Image src={logo} alt="Christopher Cardoso" width={30} height={30} />
+                <Image
+                  src={logo}
+                  alt="Christopher Cardoso"
+                  width={30}
+                  height={30}
+                />
               </div>
               <div className="font-heading text-2xl">{name}</div>
             </div>
@@ -31,7 +37,7 @@ function Header() {
               <Link
                 key={title}
                 href={href}
-                className="p-1 text-xl lg:text-lg md:p-4 "
+                className="p-1 text-xl md:p-4 lg:text-lg "
                 target={target}
               >
                 {title}

@@ -32,8 +32,8 @@ function WhatIUseTitle() {
 
 function HardwareSection() {
   return (
-    <section className='divide-y divide-[#A5B4FB] space-y-0'>
-      <h3 className="py-2 font-heading lg:text-lg divide-">Hardware</h3>
+    <section className='space-y-0 divide-y divide-[#A5B4FB]'>
+      <h3 className="divide- py-2 font-heading lg:text-lg">Hardware</h3>
       <ul className="list-inside list-disc p-4 ">
         <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500"> Desktop</span> AMD Ryzen
@@ -58,7 +58,7 @@ function HardwareSection() {
 
 function SoftwareSection() {
   return (
-    <section className="divide-y divide-[#A5B4FB] space-y-0">
+    <section className="space-y-0 divide-y divide-[#A5B4FB]">
       <h3 className="py-2 font-heading text-base lg:text-lg">Software</h3>
       <ul className="list-inside list-disc p-4">
         <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
@@ -73,7 +73,7 @@ function SoftwareSection() {
           </a>
         </li>
         <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
-          <span className="font-semibold text-gray-500 dark`:text-gray-500">Editor</span>
+          <span className="dark`:text-gray-500 font-semibold text-gray-500">Editor</span>
           &nbsp;
           <a
             className="font-semibold text-[#a171e1] hover:text-[#A5B4FB]"
@@ -133,7 +133,7 @@ function SoftwareSection() {
 
 function KeyboardsSection() {
   return (
-    <section className="py-4 divide-y divide-[#A5B4FB] space-y-0">
+    <section className="space-y-0 divide-y divide-[#A5B4FB] py-4">
       <h3 className="py-2 font-heading text-base lg:text-lg">Keyboards</h3>
       <ul className="list-inside list-disc px-4">
         <p className="py-4 text-xl lg:text-lg">
