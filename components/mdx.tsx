@@ -61,7 +61,7 @@ const components = {
   li: ({ className, ...props }) => <li className={cn('mt-2', className)} {...props} />,
   blockquote: ({ className, ...props }) => (
     <blockquote
-      className={cn('[&>*]:text-muted-foreground mt-6 border-l-2 pl-6 italic border-gray-300', className)}
+      className={cn('[&>*]:text-muted-foreground mt-6 border-l-2 border-gray-300 pl-6 italic', className)}
       {...props}
     />
   ),
