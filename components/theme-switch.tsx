@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
-import { useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
+import { useEffect, useState } from "react"
+import { useTheme } from "next-themes"
 
-import { MoonIcon, SunIcon } from './icons'
+import { MoonIcon, SunIcon } from "./icons"
 
 const ThemeSwitch = () => {
   const [mounted, setMounted] = useState(false)
@@ -22,8 +22,8 @@ const ThemeSwitch = () => {
     <label className="swap swap-rotate">
       <input
         type="checkbox"
-        checked={theme === 'dark'}
-        onChange={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+        checked={theme === "dark"}
+        onChange={() => setTheme(theme === "light" ? "dark" : "light")}
       />
       <SunIcon />
       <MoonIcon />

@@ -1,30 +1,39 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { allPosts, Post } from 'contentlayer/generated'
-import { compareDesc, format, parseISO } from 'date-fns'
+import type { Metadata } from "next"
+import Link from "next/link"
+import { allPosts, Post } from "contentlayer/generated"
+import { compareDesc, format, parseISO } from "date-fns"
 
 export const metadata: Metadata = {
-  title: 'Blog',
-  description: 'Discover my latest articles and thoughts on software development',
+  title: "Blog",
+  description:
+    "Discover my latest articles and thoughts on software development",
 }
 
 function PostCard(post: Post) {
   return (
     <div className="mb-8">
       <h3 className="max-w-2xl font-heading text-xl md:text-2xl">
-        <Link href={post.url} className="text-white-700 dark:text-white-400 hover:underline">
+        <Link
+          href={post.url}
+          className="text-white-700 dark:text-white-400 hover:underline"
+        >
           {post.title}
         </Link>
       </h3>
-      <time dateTime={post.date} className="mb-2 block font-mono text-xs text-gray-600">
-        {format(parseISO(post.date), 'LLLL d, yyyy')}
+      <time
+        dateTime={post.date}
+        className="mb-2 block font-mono text-xs text-gray-600"
+      >
+        {format(parseISO(post.date), "LLLL d, yyyy")}
       </time>
     </div>
   )
 }
 
 export default function Blog() {
-  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+  const posts = allPosts.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date))
+  )
 
   return (
     <div className="mt-16 max-w-xl py-8">

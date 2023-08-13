@@ -1,5 +1,5 @@
-import clsx from "clsx"
 import { type ReactNode } from "react"
+import clsx from "clsx"
 
 interface CardProps {
   className?: string

@@ -1,22 +1,27 @@
-import { defineDocumentType, makeSource } from '@contentlayer/source-files'
+import { defineDocumentType, makeSource } from "@contentlayer/source-files"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
-import rehypePrettyCode, { Options as RehypePrettyCodeOptions } from "rehype-pretty-code"
-import rehypeExternalLinks from 'rehype-external-links'
+import rehypeExternalLinks from "rehype-external-links"
+import rehypePrettyCode, {
+  Options as RehypePrettyCodeOptions,
+} from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 
 export const Post = defineDocumentType(() => ({
-  name: 'Post',
+  name: "Post",
   filePathPattern: `**/*.mdx`,
-  contentType: 'mdx',
+  contentType: "mdx",
   fields: {
-    title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    tag: { type: 'string', required: true },
-    summary: { type: "string", required: true }
+    title: { type: "string", required: true },
+    date: { type: "date", required: true },
+    tag: { type: "string", required: true },
+    summary: { type: "string", required: true },
   },
   computedFields: {
-    url: { type: 'string', resolve: (post) => `/blog/${post._raw.flattenedPath}` },
+    url: {
+      type: "string",
+      resolve: (post) => `/blog/${post._raw.flattenedPath}`,
+    },
   },
 }))
 
@@ -26,17 +31,16 @@ const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
     // lines to be copy/pasted
     if (node.children.length === 0) {
-      node.children = [{ type: "text", value: " " }];
+      node.children = [{ type: "text", value: " " }]
     }
   },
   onVisitHighlightedLine(node) {
-    node?.properties?.className?.push("line--highlighted");
+    node?.properties?.className?.push("line--highlighted")
   },
   onVisitHighlightedChars(node) {
-    node.properties.className = ["word--highlighted"];
+    node.properties.className = ["word--highlighted"]
   },
-};
-
+}
 
 export default makeSource({
   contentDirPath: "./content",
@@ -45,10 +49,7 @@ export default makeSource({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
-      [
-        rehypePrettyCode,
-        rehypePrettyCodeOptions,
-      ],
+      [rehypePrettyCode, rehypePrettyCodeOptions],
       [
         rehypeAutolinkHeadings,
         {
@@ -62,8 +63,8 @@ export default makeSource({
         rehypeExternalLinks,
         {
           target: "_blank",
-          rel: ["noopener", "noreferrer"]
-        }
+          rel: ["noopener", "noreferrer"],
+        },
       ],
     ],
   },
