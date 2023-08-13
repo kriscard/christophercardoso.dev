@@ -54,21 +54,21 @@ These special files will be rendered in a specific hierarchy and use some core R
 
 ```tsx
 /** Here is an example of what the output will look like after using the special files hierarchy:
-  * 1. layout.tsx
-  * 2. error.tsx
-  * 3. loading.tsx
-  * 4. not-found.tsx
-  * 5. page.tsx
+ * 1. layout.tsx
+ * 2. error.tsx
+ * 3. loading.tsx
+ * 4. not-found.tsx
+ * 5. page.tsx
  **/
-  <Layout>
-    <ErrorBoundary fallback={<GlobalError />}>
-      <Suspense fallback={<LoadingFallback />}>
-        <ErrorBoundary fallback={<ErrorNotFound />}>
-          <Page />
-        </ErrorBoundary>
-      </Suspense>
-    </ErrorBoundary>
-  </Layout>
+<Layout>
+  <ErrorBoundary fallback={<GlobalError />}>
+    <Suspense fallback={<LoadingFallback />}>
+      <ErrorBoundary fallback={<ErrorNotFound />}>
+        <Page />
+      </ErrorBoundary>
+    </Suspense>
+  </ErrorBoundary>
+</Layout>
 ```
 
 > To get more details about these new file conventions, you can check the [documentation](https://nextjs.org/docs/app/building-your-application/routing#file-conventions).
@@ -114,7 +114,9 @@ export default function ToggleSwitch() {
 ```
 
 <Callout>
-**Note:** Every component that will use React hooks, such as useState, useEffect, and useRef must be client components, as server components will not be able to handle these states’ lifecycles.
+  **Note:** Every component that will use React hooks, such as useState,
+  useEffect, and useRef must be client components, as server components will not
+  be able to handle these states’ lifecycles.
 </Callout>
 
 ## Data Fetching
@@ -127,7 +129,7 @@ Through the utilization of server components, we can use the standard async/awai
 
 ```tsx
 async function Post() {
-  const note = await fetch('https://api.blog.com/...')
+  const note = await fetch("https://api.blog.com/...")
   return (
     <div>
       <h1>{post.title}</h1>
@@ -141,10 +143,10 @@ To maintain a separation between your UI component and fetch function, you can d
 
 ```tsx
 async function fetchPost() {
-  const result = await fetch('https://api.blog.com/...')
+  const result = await fetch("https://api.blog.com/...")
 
   if (!result.ok) {
-    throw new Error('No posts found')
+    throw new Error("No posts found")
   }
 
   return res.json()
@@ -166,7 +168,7 @@ async function Post() {
 If you use the fetch Web API on Nextjs 13, your data will be automatically cached by default.
 
 ```tsx
-const result = await fetch('https://api.blog.com/...', { cache: 'force-cache' })
+const result = await fetch("https://api.blog.com/...", { cache: "force-cache" })
 ```
 
 You can use the option **force-cache** or **no-store** to handle your caching strategy:
@@ -185,7 +187,7 @@ You can use a time-based revalidation or an on-demand revalidation approach:
 If you want to update data at specific intervals, you can utilize the `next.revalidate` option in `fetch`. This will allow you to set the cache lifetime of a resource in seconds:
 
 ```tsx
-await fetch('https://api.blog.com/...', { next: { revalidate: 5000 } })
+await fetch("https://api.blog.com/...", { next: { revalidate: 5000 } })
 ```
 
 - **On-demand Revalidation**

@@ -1,8 +1,8 @@
-import { allPosts } from 'contentlayer/generated'
-import { format, parseISO } from 'date-fns'
+import { allPosts } from "contentlayer/generated"
+import { format, parseISO } from "date-fns"
 
-import { Mdx } from '@/components/mdx'
-import { getTagIcon } from '@/lib/utils'
+import { getTagIcon } from "@/lib/utils"
+import { Mdx } from "@/components/mdx"
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
@@ -19,7 +19,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
     openGraph: {
       title,
       description,
-      type: 'article',
+      type: "article",
       publishedTime,
       url: `https://www.christophercardoso.dev/${params.slug}`,
       images: [
@@ -31,7 +31,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
       twitter: {
         title,
         description,
-        card: 'summary_large_image',
+        card: "summary_large_image",
         image: ogImage,
       },
     },
@@ -47,7 +47,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
       <div className="mb-8 flex flex-col items-baseline justify-between gap-3">
         <h1 className="font-heading text-3xl md:text-4xl">{post.title}</h1>
         <time dateTime={post.date} className="mb-1 text-xs text-gray-400">
-          {format(parseISO(post.date), 'LLLL d, yyyy')}
+          {format(parseISO(post.date), "LLLL d, yyyy")}
         </time>
       </div>
       <Mdx code={post.body.code} />

@@ -1,18 +1,19 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
-import { allPosts, Post } from 'contentlayer/generated'
-import { compareDesc } from 'date-fns'
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { allPosts, Post } from "contentlayer/generated"
+import { compareDesc } from "date-fns"
 
-import { getTagIcon } from '@/lib/utils'
-import { Card } from './card'
-import { ArrowIcon } from './icons'
+import { getTagIcon } from "@/lib/utils"
+
+import { Card } from "./card"
+import { ArrowIcon } from "./icons"
 
 interface BlogCardProps {
-  title: Post['title']
-  tag: Post['tag']
-  summary: Post['summary']
-  url: Post['url']
+  title: Post["title"]
+  tag: Post["tag"]
+  summary: Post["summary"]
+  url: Post["url"]
 }
 
 function BlogCard({ tag, title, summary, url }: BlogCardProps) {
@@ -39,7 +40,9 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
 }
 
 export function BlogsList() {
-  const posts = allPosts.sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
+  const posts = allPosts.sort((a, b) =>
+    compareDesc(new Date(a.date), new Date(b.date))
+  )
   const recentPosts = posts.slice(0, 3)
 
   return (
@@ -47,7 +50,13 @@ export function BlogsList() {
       <h2 className="font-heading text-2xl md:text-3xl">My Recent Posts</h2>
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
         {recentPosts.map(({ _id, title, tag, summary, url }: Post) => (
-          <BlogCard key={_id} tag={tag} title={title} summary={summary} url={url} />
+          <BlogCard
+            key={_id}
+            tag={tag}
+            title={title}
+            summary={summary}
+            url={url}
+          />
         ))}
       </div>
     </div>

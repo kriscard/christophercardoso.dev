@@ -1,9 +1,10 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react"
+import Link from "next/link"
 
-import { Project } from '@/types/types'
-import { Card } from './card'
-import { ArrowIcon } from './icons'
+import { Project } from "@/types/types"
+
+import { Card } from "./card"
+import { ArrowIcon } from "./icons"
 
 interface ProjectListProps {
   projects: Project[]
@@ -21,7 +22,9 @@ function ProjectCard({ id, title, description, href }: ProjectCardProps) {
     <Card key={id} className="p-0">
       <div className="p-5">
         <h3 className="max-w-2xl font-heading text-xl md:text-2xl">{title}</h3>
-        <p className="max-w-2x text-md py-5 text-xl lg:text-lg">{description}</p>
+        <p className="max-w-2x text-md py-5 text-xl lg:text-lg">
+          {description}
+        </p>
         <div className="flex items-center">
           <Link
             href={href}
@@ -48,7 +51,9 @@ export function ProjectsList({ projects }: ProjectListProps) {
           <ProjectCard
             id={project.id}
             title={project.properties.Name.title[0].plain_text}
-            description={project.properties.Description.rich_text[0].text.content}
+            description={
+              project.properties.Description.rich_text[0].text.content
+            }
             href={project.properties.link.rich_text[0].href}
           />
         ))}

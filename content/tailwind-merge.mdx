@@ -1,55 +1,55 @@
 ---
-title: What is Tailwind-merge 
+title: What is Tailwind-merge
 date: 2023-08-13
 tag: Tailwind
-summary: Handling Tailwind CSS conflicts with Tailwind-merge 
+summary: Handling Tailwind CSS conflicts with Tailwind-merge
 ---
 
 Tailwind-merge is a utility function library that allows merging [Tailwind CSS](https://tailwindcss.com/) classes efficiently without any conflicts.
 
 The issue that Tailwind-merge is trying to fix is when CSS class names are added conditionally, they may be ignored because of the way the [CSS cascade](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade) operates.
-In a nutshell, the CSS cascade determines how the browser processes CSS rules when rendering a page. It takes into account factors such as specificity, importance, and order to reconcile conflicting rules. In Tailwind, using conditional class names may result in the latest CSS rules overwriting the previous ones, or the output class names may not be the expected result. 
+In a nutshell, the CSS cascade determines how the browser processes CSS rules when rendering a page. It takes into account factors such as specificity, importance, and order to reconcile conflicting rules. In Tailwind, using conditional class names may result in the latest CSS rules overwriting the previous ones, or the output class names may not be the expected result.
 
 Tailwind-merge can assist us to resolve these types of issues by creating a new string that will contain the optimized and expected class names.
 
 ```tsx
 // Example without Tailwind-merge
 function RecipeCard(props) {
-    const cardStyles = `border shadow-md p-4 ${props.customStyles || ''}`;
-    return (
-        <div className={cardStyles}>
-            <h2 className="text-xl font-semibold">{props.title}</h2>
-            <p className="text-gray-600">{props.description}</p>
-        </div>
-    );
+  const cardStyles = `border shadow-md p-4 ${props.customStyles || ""}`
+  return (
+    <div className={cardStyles}>
+      <h2 className="text-xl font-semibold">{props.title}</h2>
+      <p className="text-gray-600">{props.description}</p>
+    </div>
+  )
 }
 ```
 
 ```tsx
 // Example with Tailwind-merge
 function RecipeCard(props) {
-    const cardStyles = twMerge('border shadow-md p-4', props.className)
-    return (
-        <div className={cardStyles}>
-            <h2 className="text-xl font-semibold">{props.title}</h2>
-            <p className="text-gray-600">{props.description}</p>
-        </div>
-    );
+  const cardStyles = twMerge("border shadow-md p-4", props.className)
+  return (
+    <div className={cardStyles}>
+      <h2 className="text-xl font-semibold">{props.title}</h2>
+      <p className="text-gray-600">{props.description}</p>
+    </div>
+  )
 }
 ```
 
 ### Combined with the "clsx" library.
 
-You are probably already familiar with the library [clsx](https://github.com/lukeed/clsx) to handle conditional classNames. This library can construct classNames strings conditionally with ease, but it is important to know that it doesn’t fix the CSS conflicts that may arrive when using Tailwind. 
+You are probably already familiar with the library [clsx](https://github.com/lukeed/clsx) to handle conditional classNames. This library can construct classNames strings conditionally with ease, but it is important to know that it doesn’t fix the CSS conflicts that may arrive when using Tailwind.
 
 The maintainers of the Tailwind-merge library propose an alternative to this solution in a [GitHub discussion](https://github.com/dcastil/tailwind-merge/discussions/137#discussioncomment-3482513).
 
 ```tsx
-import { twMerge as twMergeOriginal } from 'tailwind-merge'
-import clsx from 'clsx'
+import clsx from "clsx"
+import { twMerge as twMergeOriginal } from "tailwind-merge"
 
 export function twMerge(...args) {
-    return twMergeOriginal(clsx(args))
+  return twMergeOriginal(clsx(args))
 }
 ```
 
@@ -58,12 +58,12 @@ In this example, we use clsx to handle the conditional class names by passing th
 This pattern has also been greatly demonstrated in the [shadcn-ui](https://github.com/shadcn-ui/ui) project. I'm a big fan of this project and plan to write a dedicated article about it soon.
 
 ```tsx
-// Source: https://github.com/shadcn-ui/ui/blob/main/apps/www/lib/utils.ts 
+// Source: https://github.com/shadcn-ui/ui/blob/main/apps/www/lib/utils.ts
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 ```
 
-I hope this article helps you to understand how we can use Tailwind-merge and the issues it can resolve. I also wanted to demonstrate how we can integrate it with the clsx library to create a useful utility function. 
+I hope this article helps you to understand how we can use Tailwind-merge and the issues it can resolve. I also wanted to demonstrate how we can integrate it with the clsx library to create a useful utility function.
 
 I highly recommend reading the tailwind-merge [documentation](https://github.com/dcastil/tailwind-merge/tree/v1.14.0/docs) if you want to gain a better understanding of how it operates and the potential trade-offs to consider when using this library.
