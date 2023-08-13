@@ -79,11 +79,11 @@ For this section, I won't delve too deeply into each type of rendering as my goa
 
 Your application can be rendered in the client or in a server.
 
-**Client-side Rendering (CSR)**
+### Client-side Rendering (CSR)
 
 When a user makes a request to a server, their browser acts as the client. The server responds with raw data, usually in a JSON format, along with the necessary javascript code to compile the page. The browser then processes this data and uses the received javascript to dynamically generate the page.
 
-**Server-side Rendering (SSR)**
+### Server-side Rendering (SSR)
 
 In SSR, the server will generate the entire HTML page, this includes fetching data from databases, APIs, or other sources and rendering the content directly into the HTML template.
 
@@ -123,7 +123,7 @@ export default function ToggleSwitch() {
 
 NextJS 13 extends the Fetch Web API by adding more features, such as configuring caching and revalidating data.
 
-**Fetching Data**
+### Fetching Data
 
 Through the utilization of server components, we can use the standard async/await syntax to gain access to promise-based APIs.
 
@@ -163,7 +163,7 @@ async function Post() {
 }
 ```
 
-**Caching data**
+### Caching data
 
 If you use the fetch Web API on Nextjs 13, your data will be automatically cached by default.
 
@@ -173,10 +173,10 @@ const result = await fetch("https://api.blog.com/...", { cache: "force-cache" })
 
 You can use the option **force-cache** or **no-store** to handle your caching strategy:
 
-- **force-cache**: When a request is made, Next.js checks the data cache for a matching response. If there is no equivalent response, it will fetch new data from the API source and update the cache.
-- **no-store**: For each request made, Next.js will not check the data cache or update it with new data obtained from the API source.
+- **Force-cache**: When a request is made, Next.js checks the data cache for a matching response. If there is no equivalent response, it will fetch new data from the API source and update the cache.
+- **No-store**: For each request made, Next.js will not check the data cache or update it with new data obtained from the API source.
 
-**Revalidating data**
+### Revalidating data
 
 Revalidation involves clearing the Data Cache and retrieving the most current data. It's a helpful tool to ensure that you display the most up-to-date information when updates are made to your data.
 
