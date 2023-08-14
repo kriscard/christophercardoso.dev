@@ -65,7 +65,10 @@ const components = {
   ),
   a: ({ className, ...props }) => (
     <a
-      className={cn("font-semibold text-[#a171e1] hover:text-[#A5B4FB]", className)}
+      className={cn(
+        "font-semibold text-[#a171e1] hover:text-[#A5B4FB]",
+        className
+      )}
       {...props}
     />
   ),
@@ -94,7 +97,13 @@ const components = {
     />
   ),
   strong: ({ className, ...props }) => (
-    <strong className={cn("font-semibold text-zinc-500 dark:text-gray-500", className)} {...props} />
+    <strong
+      className={cn(
+        "font-semibold text-zinc-500 dark:text-gray-500",
+        className
+      )}
+      {...props}
+    />
   ),
   img: ({
     className,
