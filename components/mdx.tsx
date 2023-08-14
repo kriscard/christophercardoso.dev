@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { useMDXComponent } from "next-contentlayer/hooks"
+import { Tweet, TweetProps } from "react-tweet"
 
 import { cn } from "@/lib/utils"
 import { Callout } from "@/components/callout"
@@ -164,9 +165,15 @@ interface MdxProps {
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code)
 
+  const StaticTweet = ({ id }) => (
+    <div className="flex justify-center">
+      <Tweet id={id} />
+    </div>
+  )
+
   return (
     <article className="text-xl lg:text-lg">
-      <Component components={components} />
+      <Component components={{ ...components, StaticTweet }} />
     </article>
   )
 }
