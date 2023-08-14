@@ -4,9 +4,6 @@ const { withContentlayer } = require('next-contentlayer')
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  env: {
-    GRAPH_CMS_CONTENT_API: process.env.GRAPH_CMS_CONTENT_API,
-  },
   compiler: {
     styledComponents: true,
   },
