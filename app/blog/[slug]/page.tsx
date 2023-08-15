@@ -12,7 +12,12 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
   const { title, summary: description, date: publishedTime, tag } = post
-  const ogImage = getTagIcon(tag)
+
+  const image = getTagIcon(tag)
+  const ogImage = image
+    ? `https://www.christophercardoso.dev${image}`
+    : `https://www.christophercardoso.dev/og?title=${title}`
+
   return {
     title,
     description,
