@@ -23,8 +23,8 @@ function Header() {
                 <Image
                   src={logo}
                   alt="Christopher Cardoso"
-                  width={30}
-                  height={30}
+                  width={40}
+                  height={40}
                 />
               </div>
               <div className="font-heading text-2xl">{name}</div>

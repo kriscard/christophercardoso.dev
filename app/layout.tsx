@@ -4,10 +4,10 @@ import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
 import Footer from "@/components/footer"
 import Header from "@/components/header"
+import { Providers } from "@/components/providers"
 
 import "@/styles/global.css"
 
-import { Providers } from "./providers"
 
 const fontHeading = FontHeading({
   subsets: ["latin"],
