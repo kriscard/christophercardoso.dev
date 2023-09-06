@@ -1,4 +1,5 @@
-import { PT_Sans as FontHeading } from "next/font/google"
+import { Inter  as FontMono } from "next/font/google"
+import localFont from 'next/font/local'
 
 import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
@@ -9,10 +10,13 @@ import { Providers } from "@/components/providers"
 import "@/styles/global.css"
 
 
-const fontHeading = FontHeading({
-  subsets: ["latin"],
-  weight: "700",
+const fontHeading = localFont({
+  src: "../assets/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
+})
+const fontMono = FontMono({
+  subsets: ["latin"],
+  variable: "--font-mono",
 })
 
 export const metadata = {
@@ -77,7 +81,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("dark h-full scroll-smooth", fontHeading.variable)}
+      className={cn("dark h-full scroll-smooth", fontHeading.variable, fontMono.variable)}
     >
       <Providers>
         <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
