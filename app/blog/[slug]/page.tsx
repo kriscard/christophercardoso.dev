@@ -12,7 +12,8 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 
   const { title, summary: description, date: publishedTime } = post
 
-  const ogImage = `https://christophercardoso.dev/og?title=${title}`
+  const ogUrl = new URL("https://christophercardoso.dev/api/og")
+  ogUrl.searchParams.set("title", title)
 
   return {
     title,
@@ -25,7 +26,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
       url: `https://www.christophercardoso.dev/${params.slug}`,
       images: [
         {
-          url: ogImage,
+          url: ogUrl.toString(),
           alt: title,
         },
       ],
@@ -33,7 +34,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
         title,
         description,
         card: "summary_large_image",
-        images: [ogImage],
+        images: [ogUrl.toString()],
       },
     },
   }
