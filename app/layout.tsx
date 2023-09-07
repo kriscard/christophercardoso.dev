@@ -69,7 +69,6 @@ export const metadata = {
     card: "summary_large_image",
     description: "A software developer who loves to build things",
     creator: "@kris_card",
-    images: ["https://christophercardoso.dev/og-image.png"],
   },
 }
 
