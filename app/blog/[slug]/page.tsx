@@ -23,7 +23,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
       description,
       type: "article",
       publishedTime,
-      url: `https://www.christophercardoso.dev/${params.slug}`,
+      url: `https://www.christophercardoso.dev/blog/${params.slug}`,
       images: [
         {
           url: ogUrl.toString(),
