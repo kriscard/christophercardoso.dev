@@ -1,7 +1,6 @@
 import { allPosts } from "contentlayer/generated"
 import { format, parseISO } from "date-fns"
 
-import { getTagIcon } from "@/lib/utils"
 import { Mdx } from "@/components/mdx"
 
 export const generateStaticParams = async () =>
@@ -11,14 +10,10 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
-  const { title, summary: description, date: publishedTime, tag } = post
+  const { title, summary: description, date: publishedTime} = post
 
   const domain = "https://www.christophercardoso.dev"
-
-  const image = getTagIcon(tag)
-  const ogImage = image
-    ? `${domain}${image}`
-    : `${domain}/og?title=${encodeURIComponent(title)}`
+  const ogImage = `${domain}/og?title=${title}`;
 
   return {
     title,
