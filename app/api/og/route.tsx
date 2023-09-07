@@ -1,11 +1,13 @@
-// TODO still in progress and not working as expected yet
-
 import { ImageResponse } from "next/server"
 
 export const runtime = "edge"
 
-const font = fetch(
+const calSansBold = fetch(
   new URL("../../../assets/fonts/CalSans-SemiBold.ttf", import.meta.url)
+).then((res) => res.arrayBuffer())
+
+const interRegular = fetch(
+  new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer())
 
 export async function GET(request: Request) {
@@ -13,45 +15,43 @@ export async function GET(request: Request) {
 
   const postTitle = searchParams.get("title")
 
-  const fontBold = await font
+  const fontHeading = await calSansBold
+  const fontBody = await interRegular
 
   return new ImageResponse(
     (
       <div
-        tw="flex relative flex-col p-12 w-full h-full items-start"
+        tw="flex h-full w-full"
         style={{
-          background: "linear-gradient(90deg, #0B0F1A 0%, #6366f1 100%)",
+          backgroundImage: "url(https://christophercardoso.dev/og-bg.png)",
         }}
       >
         <div
-          tw="flex leading-[1.1] text-[80px] font-bold text-white"
+          tw="flex text-[80px] font-bold text-white w-[80%] mt-50 ml-10"
           style={{
             fontFamily: "Cal Sans",
             fontWeight: "bold",
-            marginLeft: "-3px",
           }}
         >
           {postTitle}
         </div>
-        <div
-          tw="flex leading-[1.1] text-[80px] font-bold text-white"
-          style={{
-            fontFamily: "Cal Sans",
-            fontWeight: "bold",
-            marginLeft: "-3px",
-          }}
-        >
-        </div>
       </div>
     ),
     {
-      width: 1920,
-      height: 1080,
+      width: 1200,
+      height: 630,
       fonts: [
         {
           name: "Cal Sans",
-          data: fontBold,
+          data: fontHeading,
           style: "normal",
+          weight: 700,
+        },
+        {
+          name: "Inter",
+          data: fontBody,
+          style: "normal",
+          weight: 400,
         },
       ],
     }
