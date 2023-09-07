@@ -1,5 +1,5 @@
-import { Inter  as FontMono } from "next/font/google"
-import localFont from 'next/font/local'
+import { Inter as FontMono } from "next/font/google"
+import localFont from "next/font/local"
 
 import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
@@ -8,7 +8,6 @@ import Header from "@/components/header"
 import { Providers } from "@/components/providers"
 
 import "@/styles/global.css"
-
 
 const fontHeading = localFont({
   src: "../assets/fonts/CalSans-SemiBold.woff2",
@@ -70,6 +69,7 @@ export const metadata = {
     card: "summary_large_image",
     description: "A software developer who loves to build things",
     creator: "@kris_card",
+    images: ["https://christophercardoso.dev/og-image.png"],
   },
 }
 
@@ -81,7 +81,11 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("dark h-full scroll-smooth", fontHeading.variable, fontMono.variable)}
+      className={cn(
+        "dark h-full scroll-smooth",
+        fontHeading.variable,
+        fontMono.variable
+      )}
     >
       <Providers>
         <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
