@@ -33,7 +33,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
         title,
         description,
         card: "summary_large_image",
-        image: ogImage,
+        images: [ogImage],
       },
     },
   }
