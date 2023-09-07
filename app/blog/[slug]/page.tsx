@@ -10,10 +10,9 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
-  const { title, summary: description, date: publishedTime} = post
+  const { title, summary: description, date: publishedTime } = post
 
-  const domain = "https://www.christophercardoso.dev"
-  const ogImage = `${domain}/og?title=${title}`;
+  const ogImage = `https://christophercardoso.dev/og?title=${title}`
 
   return {
     title,
