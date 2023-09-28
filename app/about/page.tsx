@@ -55,7 +55,7 @@ function HardwareSection() {
             {" "}
             Laptop
           </span>{" "}
-          Apple Macbook Pro M1, 16 GB RAM, 1TB SSD
+          Apple Macbook Air M2, 15 inch, 24 GB RAM, 1TB SSD
         </li>
         <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
           <span className="font-semibold text-gray-500 dark:text-gray-500">
