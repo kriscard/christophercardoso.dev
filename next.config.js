@@ -1,4 +1,4 @@
-const { withContentlayer } = require('next-contentlayer')
+const { withContentlayer } = require("next-contentlayer")
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -8,16 +8,10 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    formats: ['image/avif', 'image/webp'],
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-        port: '',
-        pathname: '/**',
-      },
-      { protocol: 'https', hostname: 'pbs.twimg.com' },
-      { protocol: 'https', hostname: 'abs.twimg.com' },
+      { protocol: "https", hostname: "pbs.twimg.com" },
+      { protocol: "https", hostname: "abs.twimg.com" },
     ],
   },
 }

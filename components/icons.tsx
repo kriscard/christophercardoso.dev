@@ -82,14 +82,14 @@ export function ArrowIcon() {
       <path
         d="M7.07971 17L17.0797 7"
         stroke="#848895"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M7.07971 7H17.0797V17"
         stroke="#848895"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )

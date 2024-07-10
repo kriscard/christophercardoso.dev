@@ -1,9 +1,8 @@
-import { defineDocumentType, makeSource } from "@contentlayer/source-files"
+import { defineDocumentType, makeSource } from "contentlayer/source-files"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeExternalLinks from "rehype-external-links"
-import rehypePrettyCode, {
-  Options as RehypePrettyCodeOptions,
-} from "rehype-pretty-code"
+import type { Options } from "rehype-pretty-code"
+import rehypePrettyCode from "rehype-pretty-code"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 
@@ -25,7 +24,7 @@ export const Post = defineDocumentType(() => ({
   },
 }))
 
-const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
+const rehypePrettyCodeOptions: Partial<Options> = {
   theme: "github-dark",
   onVisitLine(node) {
     // Prevent lines from collapsing in `display: grid` mode, and allow empty
@@ -36,9 +35,6 @@ const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
   },
   onVisitHighlightedLine(node) {
     node?.properties?.className?.push("line--highlighted")
-  },
-  onVisitHighlightedChars(node) {
-    node.properties.className = ["word--highlighted"]
   },
 }
 
