@@ -8,9 +8,6 @@ dependencies:
   '@next/eslint-plugin-next':
     specifier: ^14.2.3
     version: 14.2.3
-  '@next/font':
-    specifier: ^14.2.3
-    version: 14.2.3(next@14.2.3)
   '@notionhq/client':
     specifier: ^2.2.15
     version: 2.2.15
@@ -1104,14 +1101,6 @@ packages:
     resolution: {integrity: sha512-L3oDricIIjgj1AVnRdRor21gI7mShlSwU/1ZGHmqM3LzHhXXhdkrfeNY5zif25Bi5Dd7fiJHsbhoZCHfXYvlAw==}
     dependencies:
       glob: 10.3.10
-
-  /@next/font@14.2.3(next@14.2.3):
-    resolution: {integrity: sha512-u35UstQmvl3Yrvv2MOi6RcXMH3xDtmWTXcvkYcC/vCZHLqj/5JQ5UyFRf5saDWxFlZIkEh8HCzwNGoiHIr1/NQ==}
-    peerDependencies:
-      next: '*'
-    dependencies:
-      next: 14.2.3(@babel/core@7.24.5)(@opentelemetry/api@1.8.0)(react-dom@18.3.1)(react@18.3.1)
-    dev: false
 
   /@next/swc-darwin-arm64@14.2.3:
     resolution: {integrity: sha512-3pEYo/RaGqPP0YzwnlmPN2puaF2WMLM3apt5jLW2fFdXD9+pqcoTzRk+iZsf8ta7+quAe4Q6Ms0nR0SFGFdS1A==}
