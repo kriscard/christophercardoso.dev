@@ -6,6 +6,9 @@ import {
   remarkStructure,
 } from "fumadocs-core/mdx-plugins"
 import rehypePrettyCode from "rehype-pretty-code"
+import rehypeStringify from "rehype-stringify"
+import remarkParse from "remark-parse"
+import remarkRehype from "remark-rehype"
 
 const posts = defineCollection({
   name: "posts",
@@ -19,11 +22,20 @@ const posts = defineCollection({
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document, {
-      remarkPlugins: [remarkGfm, remarkStructure],
+      remarkPlugins: [
+        remarkGfm,
+        remarkStructure,
+        rehypeStringify,
+        remarkParse,
+        remarkRehype,
+      ],
       rehypePlugins: [
         [
           rehypePrettyCode,
-          { theme: "catppuccin-macchiato", keepBackground: false },
+          {
+            theme: "catppuccin-macchiato",
+            keepBackground: false,
+          },
         ],
         [
           remarkHeading,
