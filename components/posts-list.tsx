@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { allPosts, Post } from "contentlayer/generated"
+import { allPosts, Post } from "content-collections"
 import { compareDesc } from "date-fns"
 
 import { getTagIcon } from "@/lib/utils"
@@ -13,7 +13,7 @@ interface BlogCardProps {
   title: Post["title"]
   tag: Post["tag"]
   summary: Post["summary"]
-  url: Post["url"]
+  url: Post["_meta"]["path"]
 }
 
 function BlogCard({ tag, title, summary, url }: BlogCardProps) {
@@ -49,13 +49,13 @@ export function BlogsList() {
     <div className="py-5">
       <h2 className="font-heading text-2xl md:text-3xl">My Recent Posts</h2>
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
-        {recentPosts.map(({ _id, title, tag, summary, url }: Post) => (
+        {recentPosts.map(({ title, tag, summary, _meta }: Post) => (
           <BlogCard
-            key={_id}
+            key={crypto.randomUUID()}
             tag={tag}
             title={title}
             summary={summary}
-            url={url}
+            url={`blog/${_meta.path}`}
           />
         ))}
       </div>

@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useMDXComponent } from "next-contentlayer/hooks"
+import { useMDXComponent } from "@content-collections/mdx/react"
 import { Tweet } from "react-tweet"
 
 import { cn } from "@/lib/utils"
@@ -150,7 +150,7 @@ const components = {
   pre: ({ className, ...props }) => (
     <pre
       className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg border bg-black p-4",
+        "mb-4 mt-6 overflow-x-auto rounded-lg  p-4 bg-[#25273A]",
         className
       )}
       {...props}
@@ -158,7 +158,10 @@ const components = {
   ),
   code: ({ className, ...props }) => (
     <code
-      className={cn("relative rounded border px-1 py-0.5 font-mono", className)}
+      className={cn(
+        "relative rounded px-1 py-0.5 font-mono text-base font-normal	 bg-[#25273A]",
+        className
+      )}
       {...props}
     />
   ),

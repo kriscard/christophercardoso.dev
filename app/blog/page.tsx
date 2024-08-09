@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { allPosts, Post } from "contentlayer/generated"
+import { allPosts, Post } from "content-collections"
 import { compareDesc, format, parseISO } from "date-fns"
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ function PostCard(post: Post) {
     <div className="mb-8">
       <h3 className="max-w-2xl font-heading text-xl md:text-2xl">
         <Link
-          href={post.url}
+          href={`blog/${post._meta.path}`}
           className="text-white-700 dark:text-white-400 hover:underline"
         >
           {post.title}

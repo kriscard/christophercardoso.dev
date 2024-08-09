@@ -1,13 +1,13 @@
-import { allPosts } from "contentlayer/generated"
+import { allPosts } from "content-collections"
 import { format, parseISO } from "date-fns"
 
 import { Mdx } from "@/components/mdx"
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._raw.flattenedPath }))
+  allPosts.map((post) => ({ slug: post._meta.path }))
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  const post = allPosts.find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
   const { title, summary: description, date: publishedTime } = post
@@ -41,7 +41,7 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
 }
 
 const PostLayout = ({ params }: { params: { slug: string } }) => {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+  const post = allPosts.find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
   return (
@@ -52,7 +52,7 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
           {format(parseISO(post.date), "LLLL d, yyyy")}
         </time>
       </div>
-      <Mdx code={post.body.code} />
+      <Mdx code={post.mdx} />
     </article>
   )
 }
