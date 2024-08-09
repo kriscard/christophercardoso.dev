@@ -20,12 +20,12 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
   const icon = getTagIcon(tag)
 
   return (
-    <Card key={crypto.randomUUID()}>
-      <div className="flex h-auto flex-col gap-4 p-5">
+    <Card key={crypto.randomUUID()} className="h-full">
+      <div className="grid h-full grid-rows-[auto_auto_1fr_auto] gap-4 p-5">
         {icon && <Image src={icon} width={30} height={30} alt={tag} />}
-        <h3 className="max-w-2xl font-heading text-xl md:text-2xl">{title}</h3>
+        <h3 className="max-w-2xl font-heading text-2xl md:text-xl">{title}</h3>
         <p className="max-w-2xl text-xl lg:text-lg">{summary}</p>
-        <div className="flex items-center">
+        <div className="flex items-center mt-auto">
           <Link
             href={url}
             className="font-mono text-blue-600 duration-500 hover:underline dark:text-blue-500"
