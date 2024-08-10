@@ -25,7 +25,7 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
         {icon && <Image src={icon} width={30} height={30} alt={tag} />}
         <h3 className="max-w-2xl font-heading text-2xl md:text-xl">{title}</h3>
         <p className="max-w-2xl text-xl lg:text-lg">{summary}</p>
-        <div className="flex items-center mt-auto">
+        <div className="mt-auto flex items-center">
           <Link
             href={url}
             className="font-mono text-blue-600 duration-500 hover:underline dark:text-blue-500"

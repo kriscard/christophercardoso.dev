@@ -25,7 +25,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
-    "eslint": "9.2.0",
+    "eslint": "^8.48.0",
     "eslint-plugin-tailwindcss": "^3.15.1",
     "fumadocs-core": "^12.5.3",
     "next": "^14.2.3",
