@@ -82,14 +82,14 @@ export function ArrowIcon() {
       <path
         d="M7.07971 17L17.0797 7"
         stroke="#848895"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
       <path
         d="M7.07971 7H17.0797V17"
         stroke="#848895"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
@@ -98,7 +98,7 @@ export function ArrowIcon() {
 export function SunIcon() {
   return (
     <svg
-      className="swap-on h-6 w-6 fill-current"
+      className="swap-on size-6 fill-current"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
@@ -110,7 +110,7 @@ export function SunIcon() {
 export function MoonIcon() {
   return (
     <svg
-      className="swap-off h-6 w-6 fill-current"
+      className="swap-off size-6 fill-current"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >

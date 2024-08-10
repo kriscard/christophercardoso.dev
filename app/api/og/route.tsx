@@ -1,4 +1,5 @@
-import { ImageResponse } from "next/server"
+import { ImageResponse } from "next/og"
+import { NextRequest } from "next/server"
 
 export const runtime = "edge"
 
@@ -10,7 +11,7 @@ const interRegular = fetch(
   new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer())
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
 
   const postTitle = searchParams.get("title")

@@ -1,7 +1,9 @@
+import "server-only"
+
 import { Client, isFullPage } from "@notionhq/client"
 
 const notion = new Client({ auth: process.env.NOTION_API_KEY })
-const databaseId = `${process.env.NOTION_DATABASE_API}`
+const databaseId: string = process.env.NOTION_DATABASE_API
 
 export const fetchProjects = async () => {
   try {
