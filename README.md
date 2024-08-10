@@ -6,10 +6,10 @@
 
 This website is built using the following technologies:
 
-- [Next.js 13](https://nextjs.org/)
+- [Next.js 14](https://nextjs.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 - [Notion API](https://developers.notion.com/)
-- [Contentful](https://www.contentful.com/)
+- [Content Collections](https://www.content-collections.dev/)
 - [Vercel](https://vercel.com/)
 
 ## Demo
@@ -29,4 +29,3 @@ npm run preview
 ```
 
 Create a `.env` file similar to [`.env.example`](https://github.com/kriscard/christophercardoso.dev/blob/main/.env.example).
-
