@@ -14,6 +14,22 @@ const nextConfig = {
       { protocol: "https", hostname: "abs.twimg.com" },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        has: [
+          {
+            type: "host",
+            value: "christophercardoso.dev",
+          },
+        ],
+        destination: "https://christophercardoso.dev",
+        permanent: false,
+        statusCode: 301,
+      },
+    ]
+  },
 }
 
 export default withContentCollections(nextConfig)
