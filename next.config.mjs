@@ -17,15 +17,15 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/",
+        source: "/:path*",
         has: [
           {
             type: "host",
             value: "christophercardoso.dev",
           },
         ],
-        destination: "https://christophercardoso.dev",
-        permanent: false,
+        destination: "https://christophercardoso.dev/:path*",
+        permanent: true,
         statusCode: 301,
       },
     ]
