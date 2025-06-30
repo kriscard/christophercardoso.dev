@@ -12,7 +12,7 @@ function Footer() {
           <a
             rel="noopener noreferrer"
             target="_blank"
-            href="https://github.com/kriscard"
+            href="https://x.com/kris_card"
           >
             <TwitterIcon />
           </a>
@@ -26,7 +26,7 @@ function Footer() {
           <a
             rel="noopener noreferrer"
             target="_blank"
-            href="https://github.com/kriscard"
+            href="https://www.linkedin.com/in/christophercardoso/"
           >
             <LinkedinIcon />
           </a>
