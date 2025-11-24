@@ -2,9 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { name } from "@/lib/info"
-import ThemeSwitch from "@/components/theme-switch"
 
 import logo from "../public/logo.png"
+import { ThemeSwitch } from "./theme-switch"
 
 const headerNavLinks = [
   { href: "/about", title: "About" },
@@ -12,7 +12,7 @@ const headerNavLinks = [
   { href: "https://github.com/kriscard", title: "Github", target: "blank" },
 ]
 
-function Header() {
+export function Header() {
   return (
     <nav className="mx-auto w-full max-w-4xl pt-5">
       <div className="flex w-full items-center justify-between leading-5">
@@ -52,5 +52,3 @@ function Header() {
     </nav>
   )
 }
-
-export default Header

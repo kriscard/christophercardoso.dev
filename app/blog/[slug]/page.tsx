@@ -1,12 +1,11 @@
-import { allPosts } from "content-collections"
+import { allPosts } from "@/lib/posts"
 import { format, parseISO } from "date-fns"
-
-import { Mdx } from "@/components/mdx"
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._meta.path }))
 
-export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+export const generateMetadata = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   const post = allPosts.find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
@@ -40,9 +39,13 @@ export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   }
 }
 
-const PostLayout = ({ params }: { params: { slug: string } }) => {
+const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
+  const params = await props.params;
   const post = allPosts.find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
+
+  // Dynamic import of the MDX file
+  const { default: MDXContent } = await import(`@/content/${post.slug}.mdx`)
 
   return (
     <article className="w-full py-16">
@@ -52,7 +55,9 @@ const PostLayout = ({ params }: { params: { slug: string } }) => {
           {format(parseISO(post.date), "LLLL d, yyyy")}
         </time>
       </div>
-      <Mdx code={post.mdx} />
+      <div className="prose prose-lg max-w-none dark:prose-invert">
+        <MDXContent />
+      </div>
     </article>
   )
 }

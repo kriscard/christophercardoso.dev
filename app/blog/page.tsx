@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
-import { allPosts, Post } from "content-collections"
+import { allPosts, Post } from "@/lib/posts"
 import { compareDesc, format, parseISO } from "date-fns"
 
 export const metadata: Metadata = {

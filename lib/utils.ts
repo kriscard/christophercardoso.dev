@@ -1,5 +1,9 @@
-import { ClassValue, clsx } from "clsx"
+import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
 
 const tagIcons = {
   React: "/images/tags/react.png",
@@ -12,8 +16,4 @@ const tagIcons = {
 
 export const getTagIcon = (tag: string): string | undefined => {
   return tagIcons[tag]
-}
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
 }

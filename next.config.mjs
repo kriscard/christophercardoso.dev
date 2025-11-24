@@ -1,9 +1,8 @@
-import { withContentCollections } from "@content-collections/next"
+import createMDX from "@next/mdx"
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   compiler: {
     styledComponents: true,
   },
@@ -14,6 +13,7 @@ const nextConfig = {
       { protocol: "https", hostname: "abs.twimg.com" },
     ],
   },
+  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   async redirects() {
     return [
       {
@@ -32,4 +32,11 @@ const nextConfig = {
   },
 }
 
-export default withContentCollections(nextConfig)
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+})
+
+export default withMDX(nextConfig)

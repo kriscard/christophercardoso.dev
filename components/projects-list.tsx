@@ -1,4 +1,3 @@
-import React from "react"
 import Link from "next/link"
 
 import { Project } from "@/types/types"
@@ -49,6 +48,7 @@ export function ProjectsList({ projects }: ProjectListProps) {
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project: Project) => (
           <ProjectCard
+            key={project.id}
             id={project.id}
             title={project.properties.Name.title[0].plain_text}
             description={

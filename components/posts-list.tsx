@@ -1,9 +1,8 @@
-import React from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { allPosts, Post } from "content-collections"
 import { compareDesc } from "date-fns"
 
+import { allPosts, Post } from "@/lib/posts"
 import { getTagIcon } from "@/lib/utils"
 
 import { Card } from "./card"

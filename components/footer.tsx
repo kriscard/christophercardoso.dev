@@ -4,7 +4,7 @@ import { name } from "@/lib/info"
 
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "./icons"
 
-function Footer() {
+export function Footer() {
   return (
     <footer className="mt-auto">
       <div className="mt-auto flex flex-col items-center p-10">
@@ -40,5 +40,3 @@ function Footer() {
     </footer>
   )
 }
-
-export default Footer
