@@ -1,11 +1,19 @@
-import { allPosts } from "@/lib/posts"
 import { format, parseISO } from "date-fns"
+
+import { allPosts } from "@/lib/posts"
+import { MDXContent } from "@/components/mdx-components"
+import MdxLayout from "@/components/mdx-layout"
+
+// Called at module level to avoid ESLint react-hooks/rules-of-hooks error
+// (useMDXComponents is not a real hook, just named with "use" prefix by convention)
 
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._meta.path }))
 
-export const generateMetadata = async (props: { params: Promise<{ slug: string }> }) => {
-  const params = await props.params;
+export const generateMetadata = async (props: {
+  params: Promise<{ slug: string }>
+}) => {
+  const params = await props.params
   const post = allPosts.find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
@@ -40,12 +48,9 @@ export const generateMetadata = async (props: { params: Promise<{ slug: string }
 }
 
 const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
-  const params = await props.params;
+  const params = await props.params
   const post = allPosts.find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
-
-  // Dynamic import of the MDX file
-  const { default: MDXContent } = await import(`@/content/${post.slug}.mdx`)
 
   return (
     <article className="w-full py-16">
@@ -55,9 +60,9 @@ const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
           {format(parseISO(post.date), "LLLL d, yyyy")}
         </time>
       </div>
-      <div className="prose prose-lg max-w-none dark:prose-invert">
-        <MDXContent />
-      </div>
+      <MdxLayout>
+        <MDXContent source={post.content} />
+      </MdxLayout>
     </article>
   )
 }

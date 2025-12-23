@@ -8,6 +8,7 @@ export interface Post {
   date: string
   tag: string
   summary: string
+  content: string
   _meta: {
     path: string
   }
@@ -23,7 +24,7 @@ export function getAllPosts(): Post[] {
       const slug = file.replace(/\.mdx$/, "")
       const fullPath = path.join(POSTS_PATH, file)
       const fileContents = fs.readFileSync(fullPath, "utf8")
-      const { data } = matter(fileContents)
+      const { data, content } = matter(fileContents)
 
       return {
         slug,
@@ -31,6 +32,7 @@ export function getAllPosts(): Post[] {
         date: typeof data.date === "string" ? data.date : data.date?.toISOString().split("T")[0] ?? "",
         tag: data.tag,
         summary: data.summary,
+        content,
         _meta: {
           path: slug
         }
