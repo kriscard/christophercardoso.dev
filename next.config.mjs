@@ -32,12 +32,6 @@ const nextConfig = {
   },
 }
 
-/** @type {import('rehype-pretty-code').Options} */
-const options = {
-  theme: "catppuccin-macchiato",
-  keepBackground: false,
-}
-
 const withMDX = createMDX({
   extension: /\.(md|mdx)$/,
   options: {

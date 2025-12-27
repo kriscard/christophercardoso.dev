@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import type { MDXComponents } from "mdx/types"
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote-client/rsc"
 import { Tweet } from "react-tweet"
@@ -84,12 +85,30 @@ const components = {
       {...props}
     />
   ),
-  a: ({ className, ...props }) => (
-    <a
-      className={cn("font-medium underline underline-offset-4", className)}
-      {...props}
-    />
-  ),
+  a: ({ href, className, children, ...props }) => {
+    const isInternal = href?.startsWith("/") || href?.startsWith("#")
+    const isExternal = href?.startsWith("http")
+
+    if (isInternal) {
+      return (
+        <Link href={href!} className={cn(className)} {...props}>
+          {children}
+        </Link>
+      )
+    }
+
+    return (
+      <a
+        href={href}
+        className={cn(className)}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        {...props}
+      >
+        {children}
+      </a>
+    )
+  },
   p: ({ className, ...props }) => (
     <p
       className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
