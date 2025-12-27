@@ -4,9 +4,6 @@ import { allPosts } from "@/lib/posts"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
 
-// Called at module level to avoid ESLint react-hooks/rules-of-hooks error
-// (useMDXComponents is not a real hook, just named with "use" prefix by convention)
-
 export const generateStaticParams = async () =>
   allPosts.map((post) => ({ slug: post._meta.path }))
 

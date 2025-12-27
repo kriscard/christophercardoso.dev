@@ -36,6 +36,7 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-tweet": "^3.2.1",
+    "rehype-highlight": "^7.0.2",
     "rehype-pretty-code": "^0.14.1",
     "rehype-stringify": "^10.0.0",
     "remark-frontmatter": "^5.0.0",
