@@ -1,8 +1,8 @@
-import { allPosts } from "content-collections"
+import { allPosts } from "@/lib/posts"
 
 export default async function sitemap() {
   const blogs = allPosts.map((post) => ({
-    url: `https://christophercardoso.dev${post._meta.path}`,
+    url: `https://christophercardoso.dev/blog/${post._meta.path}`,
     lastModified: post.date,
   }))
 

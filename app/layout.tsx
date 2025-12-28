@@ -3,9 +3,9 @@ import localFont from "next/font/local"
 
 import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
-import Footer from "@/components/footer"
-import Header from "@/components/header"
-import { Providers } from "@/components/providers"
+import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
+import { ThemeProvider } from "@/components/theme-provider"
 
 import "@/styles/global.css"
 
@@ -80,22 +80,28 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={cn(
         "dark h-full scroll-smooth",
         fontHeading.variable,
         fontMono.variable
       )}
     >
-      <Providers>
-        <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
+      <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Header />
           <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">
             {children}
             <Analytics />
           </main>
           <Footer />
-        </body>
-      </Providers>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

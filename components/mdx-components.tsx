@@ -1,12 +1,34 @@
 import Image from "next/image"
-import { useMDXComponent } from "@content-collections/mdx/react"
+import Link from "next/link"
+import type { MDXComponents } from "mdx/types"
+import { MDXRemote, MDXRemoteProps } from "next-mdx-remote-client/rsc"
 import { Tweet } from "react-tweet"
+import rehypePrettyCode from "rehype-pretty-code"
+import remarkGfm from "remark-gfm"
 
 import { cn } from "@/lib/utils"
 import { Callout } from "@/components/callout"
 import { MdxCard } from "@/components/mdx-card"
 
-import "@/styles/mdx.css"
+const mdxOptions: MDXRemoteProps["options"] = {
+  mdxOptions: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [
+      [
+        rehypePrettyCode,
+        {
+          theme: "catppuccin-macchiato",
+        },
+      ],
+    ],
+  },
+}
+
+const StaticTweet = ({ id }: { id: string }) => (
+  <div className="flex justify-center">
+    <Tweet id={id} />
+  </div>
+)
 
 const components = {
   h1: ({ className, ...props }) => (
@@ -63,15 +85,30 @@ const components = {
       {...props}
     />
   ),
-  a: ({ className, ...props }) => (
-    <a
-      className={cn(
-        "font-semibold text-[#a171e1] hover:text-[#A5B4FB]",
-        className
-      )}
-      {...props}
-    />
-  ),
+  a: ({ href, className, children, ...props }) => {
+    const isInternal = href?.startsWith("/") || href?.startsWith("#")
+    const isExternal = href?.startsWith("http")
+
+    if (isInternal) {
+      return (
+        <Link href={href!} className={cn(className)} {...props}>
+          {children}
+        </Link>
+      )
+    }
+
+    return (
+      <a
+        href={href}
+        className={cn(className)}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        {...props}
+      >
+        {children}
+      </a>
+    )
+  },
   p: ({ className, ...props }) => (
     <p
       className={cn("leading-7 [&:not(:first-child)]:mt-6", className)}
@@ -90,16 +127,7 @@ const components = {
   blockquote: ({ className, ...props }) => (
     <blockquote
       className={cn(
-        "[&>*]:text-muted-foreground mt-6 border-l-2 border-gray-300 pl-6 italic",
-        className
-      )}
-      {...props}
-    />
-  ),
-  strong: ({ className, ...props }) => (
-    <strong
-      className={cn(
-        "font-semibold text-zinc-500 dark:text-gray-500",
+        "[&>*]:text-muted-foreground mt-6 border-l-2 pl-6 italic",
         className
       )}
       {...props}
@@ -111,11 +139,7 @@ const components = {
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
     // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={cn("m-auto rounded-md border", className)}
-      alt={alt}
-      {...props}
-    />
+    <img className={cn("rounded-md border", className)} alt={alt} {...props} />
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
@@ -150,7 +174,7 @@ const components = {
   pre: ({ className, ...props }) => (
     <pre
       className={cn(
-        "mb-4 mt-6 overflow-x-auto rounded-lg  bg-[#25273A] p-4",
+        "mb-4 mt-6 overflow-x-auto rounded-lg border-none bg-black py-4",
         className
       )}
       {...props}
@@ -159,7 +183,7 @@ const components = {
   code: ({ className, ...props }) => (
     <code
       className={cn(
-        "relative rounded bg-[#25273A] px-1 py-0.5 font-mono text-base	 font-normal",
+        "relative rounded border-none px-[0.3rem] py-[0.2rem] font-mono text-sm",
         className
       )}
       {...props}
@@ -167,25 +191,16 @@ const components = {
   ),
   Image,
   Callout,
-  Card: MdxCard,
-}
+  MdxCard,
+  StaticTweet,
+} satisfies MDXComponents
 
-interface MdxProps {
-  code: string
-}
-
-export function Mdx({ code }: MdxProps) {
-  const Component = useMDXComponent(code)
-
-  const StaticTweet = ({ id }) => (
-    <div className="flex justify-center">
-      <Tweet id={id} />
-    </div>
-  )
-
+export function MDXContent(props: MDXRemoteProps) {
   return (
-    <article className="text-xl lg:text-lg">
-      <Component components={{ ...components, StaticTweet }} />
-    </article>
+    <MDXRemote
+      {...props}
+      components={{ ...components, ...(props.components || {}) }}
+      options={mdxOptions}
+    />
   )
 }
