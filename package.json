@@ -44,7 +44,7 @@
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
     "sharp": "^0.34.5",
-    "shiki": "^1.29.2",
+    "shiki": "^3.20.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.9.3"
