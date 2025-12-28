@@ -47,7 +47,7 @@
     "shiki": "^1.29.2",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.4.5"
+    "typescript": "5.9.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.3",
