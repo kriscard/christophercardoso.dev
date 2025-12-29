@@ -25,3 +25,9 @@ cd christophercardoso.dev
 pnpm install
 pnpm dev
 ```
+
+## GitHub Actions
+
+This repo uses Claude Code for automated PR reviews. Required secret:
+
+- `CLAUDE_CODE_OAUTH_TOKEN` - OAuth token for Claude Code GitHub Action
