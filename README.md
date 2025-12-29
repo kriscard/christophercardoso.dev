@@ -4,12 +4,11 @@
 
 ## Introduction
 
-This website is built using the following technologies:
+My personal website and blog built with:
 
-- [Next.js 13](https://nextjs.org/)
+- [Next.js 16](https://nextjs.org/) (App Router)
 - [TailwindCSS](https://tailwindcss.com/)
-- [Notion API](https://developers.notion.com/)
-- [Content Collections](https://www.content-collections.dev/)
+- [MDX](https://mdxjs.com/) for blog posts
 - [Vercel](https://vercel.com/)
 
 ## Demo
@@ -18,14 +17,11 @@ Check out the live website: [christophercardoso.dev](https://www.christophercard
 
 ## Running Locally
 
-This application requires Node.js v16+.
+This application requires Node.js v18+.
 
 ```bash
 git clone https://github.com/kriscard/christophercardoso.dev.git
 cd christophercardoso.dev
-# You can remove all of my personal information first
-npm install
-npm run preview
+pnpm install
+pnpm dev
 ```
-
-Create a `.env` file similar to [`.env.example`](https://github.com/kriscard/christophercardoso.dev/blob/main/.env.example).
