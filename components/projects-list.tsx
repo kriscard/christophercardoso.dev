@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { Project } from "@/types/types"
+import { Project } from "@/data/projects"
 
 import { Card } from "./card"
 import { ArrowIcon } from "./icons"
@@ -9,14 +9,7 @@ interface ProjectListProps {
   projects: Project[]
 }
 
-interface ProjectCardProps {
-  id: string
-  title: string
-  description: string
-  href: string
-}
-
-function ProjectCard({ id, title, description, href }: ProjectCardProps) {
+function ProjectCard({ id, title, description, href }: Project) {
   return (
     <Card key={id} className="p-0">
       <div className="p-5">
@@ -46,16 +39,8 @@ export function ProjectsList({ projects }: ProjectListProps) {
     <div className="py-4" id="projects">
       <h2 className="font-heading text-2xl md:text-3xl">Projects</h2>
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project: Project) => (
-          <ProjectCard
-            key={project.id}
-            id={project.id}
-            title={project.properties.Name.title[0].plain_text}
-            description={
-              project.properties.Description.rich_text[0].text.content
-            }
-            href={project.properties.link.rich_text[0].href}
-          />
+        {projects.map((project) => (
+          <ProjectCard key={project.id} {...project} />
         ))}
       </div>
     </div>
