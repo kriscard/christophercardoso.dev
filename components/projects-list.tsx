@@ -13,7 +13,7 @@ function ProjectCard({ title, description, href }: Project) {
     <Card className="p-0">
       <div className="p-5">
         <h3 className="max-w-2xl font-heading text-lg md:text-xl">{title}</h3>
-        <p className="max-w-2x text-md py-5 text-xl lg:text-lg">
+        <p className="text-md max-w-2xl py-5 text-xl lg:text-lg">
           {description}
         </p>
         <div className="flex items-center">
