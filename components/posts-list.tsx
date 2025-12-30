@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { compareDesc } from "date-fns"
 
 import { allPosts, Post } from "@/lib/posts"
 import { getTagIcon } from "@/lib/utils"
@@ -19,7 +18,7 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
   const icon = getTagIcon(tag)
 
   return (
-    <Card key={crypto.randomUUID()} className="h-full">
+    <Card className="h-full">
       <div className="grid h-full grid-rows-[auto_auto_1fr_auto] gap-4 p-5">
         {icon && <Image src={icon} width={30} height={30} alt={tag} />}
         <h3 className="max-w-2xl font-heading text-2xl md:text-xl">{title}</h3>
@@ -39,10 +38,7 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
 }
 
 export function BlogsList() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  )
-  const recentPosts = posts.slice(0, 3)
+  const recentPosts = allPosts.slice(0, 3)
 
   return (
     <div className="py-5">
@@ -50,7 +46,7 @@ export function BlogsList() {
       <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
         {recentPosts.map(({ title, tag, summary, _meta }: Post) => (
           <BlogCard
-            key={crypto.randomUUID()}
+            key={_meta.path}
             tag={tag}
             title={title}
             summary={summary}

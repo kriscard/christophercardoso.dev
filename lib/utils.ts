@@ -14,6 +14,11 @@ const tagIcons = {
   Default: "/images/tags/terminal.png",
 } as const
 
-export const getTagIcon = (tag: string): string | undefined => {
-  return tagIcons[tag]
+type TagKey = keyof typeof tagIcons
+
+export const getTagIcon = (tag: string): string => {
+  if (tag in tagIcons) {
+    return tagIcons[tag as TagKey]
+  }
+  return tagIcons.Default
 }

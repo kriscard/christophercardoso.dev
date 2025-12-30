@@ -1,4 +1,4 @@
-export function TwitterIcon() {
+export function TwitterIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="20"
@@ -6,6 +6,7 @@ export function TwitterIcon() {
       viewBox="0 0 24 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g clipPath="url(#a)">
         <path
@@ -22,7 +23,7 @@ export function TwitterIcon() {
   )
 }
 
-export function GithubIcon() {
+export function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="20"
@@ -30,6 +31,7 @@ export function GithubIcon() {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g clipPath="url(#clip0_9914_10)">
         <path
@@ -46,7 +48,7 @@ export function GithubIcon() {
   )
 }
 
-export function LinkedinIcon() {
+export function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       width="20"
@@ -54,6 +56,7 @@ export function LinkedinIcon() {
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
+      {...props}
     >
       <g clipPath="url(#clip0_17_68)">
         <path

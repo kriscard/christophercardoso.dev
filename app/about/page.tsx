@@ -95,7 +95,7 @@ function SoftwareSection() {
           </a>
         </li>
         <li className="text-xl marker:text-[#A5B4FB] lg:text-lg">
-          <span className="dark`:text-gray-500 font-semibold text-gray-500">
+          <span className="font-semibold text-gray-500 dark:text-gray-500">
             Editor
           </span>
           &nbsp;
@@ -145,7 +145,7 @@ function SoftwareSection() {
           </ul>
         </li>
         <p className="mt-2 text-xl lg:text-lg">
-          You can find more details about my config om my&nbsp;
+          You can find more details about my config on my&nbsp;
           <a
             className="font-semibold text-[#a171e1] hover:text-[#A5B4FB]"
             href="https://github.com/kriscard/dotfiles"

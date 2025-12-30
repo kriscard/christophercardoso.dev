@@ -1,7 +1,8 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import { format, parseISO } from "date-fns"
+
 import { allPosts, Post } from "@/lib/posts"
-import { compareDesc, format, parseISO } from "date-fns"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -31,15 +32,11 @@ function PostCard(post: Post) {
 }
 
 export default function Blog() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date))
-  )
-
   return (
     <div className="mt-16 max-w-xl py-8">
       <h1 className="mb-8 font-heading text-3xl md:text-4xl">Articles</h1>
-      {posts.map((post, idx) => (
-        <PostCard key={idx} {...post} />
+      {allPosts.map((post) => (
+        <PostCard key={post._meta.path} {...post} />
       ))}
     </div>
   )
