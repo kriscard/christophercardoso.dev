@@ -7,3 +7,5 @@ export const siteConfig = {
     linkedin: "https://www.linkedin.com/in/christophercardoso/",
   },
 } as const
+
+export type SiteConfig = typeof siteConfig
