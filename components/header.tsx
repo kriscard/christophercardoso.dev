@@ -16,8 +16,8 @@ export function Header() {
   return (
     <nav className="mx-auto w-full max-w-4xl pt-5">
       <div className="flex w-full items-center justify-between leading-5">
-        <div className="hidden md:block">
-          <Link href="/" aria-label={"Christopher Cardoso"}>
+        <div>
+          <Link href="/" aria-label="Christopher Cardoso">
             <div className="flex items-center">
               <div className="mr-3">
                 <Image
@@ -27,7 +27,7 @@ export function Header() {
                   height={40}
                 />
               </div>
-              <div className="font-heading text-2xl">{name}</div>
+              <div className="hidden font-heading text-2xl md:block">{name}</div>
             </div>
           </Link>
         </div>
