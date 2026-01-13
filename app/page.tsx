@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <section>
       <PresentationBanner />
-      <div className="py-16 md:py-20">
+      <div className="space-y-16 py-8">
         <BlogsList />
         <ProjectsList projects={projects} />
       </div>
