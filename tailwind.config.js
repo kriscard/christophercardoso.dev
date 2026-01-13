@@ -19,11 +19,8 @@ module.exports = {
       typography: {
         DEFAULT: {
           css: {
-            // Base settings
             fontSize: "1.0625rem",  // 17px
             lineHeight: "1.75",
-
-            // Links
             a: {
               color: "#8839ef",
               textDecoration: "underline",
@@ -40,8 +37,6 @@ module.exports = {
                 borderRadius: "2px",
               },
             },
-
-            // Headings
             h1: {
               fontSize: "2.5rem",
               fontWeight: "700",
@@ -72,15 +67,11 @@ module.exports = {
               marginTop: "2rem",
               marginBottom: "0.75rem",
             },
-
-            // Paragraphs
             p: {
               marginTop: "1.5rem",
               marginBottom: "1.5rem",
               lineHeight: "1.75",
             },
-
-            // Lists
             "ul, ol": {
               marginTop: "1.5rem",
               marginBottom: "1.5rem",
@@ -95,8 +86,6 @@ module.exports = {
               marginTop: "0.75rem",
               marginBottom: "0.75rem",
             },
-
-            // Blockquotes
             blockquote: {
               fontStyle: "italic",
               fontSize: "1.0625rem",
@@ -115,8 +104,6 @@ module.exports = {
             "blockquote p:last-of-type::after": {
               content: "none",
             },
-
-            // Code
             code: {
               color: "#8839ef",
               backgroundColor: "#eff1f5",
@@ -141,7 +128,6 @@ module.exports = {
               lineHeight: "1.7",
               marginTop: "2rem",
               marginBottom: "2rem",
-              padding: "0",
               borderRadius: "0.5rem",
               overflowX: "auto",
             },
@@ -150,16 +136,11 @@ module.exports = {
               color: "inherit",
               fontSize: "inherit",
               fontWeight: "400",
-              padding: "0",
             },
-
-            // Strong
             strong: {
               fontWeight: "600",
               color: "#4c4f69",
             },
-
-            // HR
             hr: {
               marginTop: "3rem",
               marginBottom: "3rem",
@@ -169,7 +150,6 @@ module.exports = {
         },
         invert: {
           css: {
-            // Links (dark mode)
             a: {
               color: "#c6a0f6",
               "&:hover": {
@@ -179,24 +159,16 @@ module.exports = {
                 outline: "2px solid #c6a0f6",
               },
             },
-
-            // Headings (dark mode)
             "h1, h2, h3, h4, h5, h6": {
               color: "#cad3f5",
             },
-
-            // Body text (dark mode)
             p: {
               color: "#cad3f5",
             },
-
-            // Blockquotes (dark mode)
             blockquote: {
               borderLeftColor: "#c6a0f6",
               color: "#a5adcb",
             },
-
-            // Code (dark mode)
             code: {
               color: "#c6a0f6",
               backgroundColor: "#363a4f",
@@ -204,15 +176,10 @@ module.exports = {
             pre: {
               backgroundColor: "#363a4f",
               color: "#cad3f5",
-              padding: "0",
             },
-
-            // Strong (dark mode)
             strong: {
               color: "#cad3f5",
             },
-
-            // HR (dark mode)
             hr: {
               borderColor: "#5b6078",
             },
