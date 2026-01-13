@@ -16,9 +16,10 @@ const tagIcons = {
 
 type TagKey = keyof typeof tagIcons
 
-export const getTagIcon = (tag: string): string => {
-  if (tag in tagIcons) {
-    return tagIcons[tag as TagKey]
+export const getTagIcon = (tag: string | string[]): string => {
+  const tagToCheck = Array.isArray(tag) ? tag[0] : tag
+  if (tagToCheck in tagIcons) {
+    return tagIcons[tagToCheck as TagKey]
   }
   return tagIcons.Default
 }

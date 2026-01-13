@@ -16,11 +16,12 @@ interface BlogCardProps {
 
 function BlogCard({ tag, title, summary, url }: BlogCardProps) {
   const icon = getTagIcon(tag)
+  const tagLabel = Array.isArray(tag) ? tag[0] : tag
 
   return (
     <Card className="h-full">
       <div className="grid h-full grid-rows-[auto_auto_1fr_auto] gap-4 p-5">
-        {icon && <Image src={icon} width={30} height={30} alt={tag} />}
+        {icon && <Image src={icon} width={30} height={30} alt={tagLabel} />}
         <h3 className="max-w-2xl font-heading text-2xl md:text-xl">{title}</h3>
         <p className="max-w-2xl text-xl lg:text-lg">{summary}</p>
         <div className="mt-auto flex items-center">
