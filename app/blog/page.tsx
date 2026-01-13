@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 function PostCard(post: Post) {
   return (
-    <article className="mb-10 border-b border-gray-200 pb-10 last:border-0 dark:border-gray-800">
+    <article className="border-b border-gray-200 pb-10 last:border-0 dark:border-gray-800">
       <Link
         href={`blog/${post._meta.path}`}
         className="group block space-y-3 transition-opacity hover:opacity-75"
