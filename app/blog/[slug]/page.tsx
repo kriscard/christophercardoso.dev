@@ -1,6 +1,7 @@
 import { format, parseISO } from "date-fns"
 
 import { allPosts } from "@/lib/posts"
+import { calculateReadingTime } from "@/lib/reading-time"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
 
@@ -59,7 +60,7 @@ const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
           dateTime={post.date}
           className="block text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400"
         >
-          {format(parseISO(post.date), "MMMM d, yyyy")} · {Math.ceil(post.content.split(/\s+/).length / 200)} min read
+          {format(parseISO(post.date), "MMMM d, yyyy")} · {calculateReadingTime(post.content)} min read
         </time>
       </div>
       <MdxLayout>
