@@ -1,0 +1,201 @@
+---
+title: "Escaping VS Code: My Journey to a 37-Plugin Neovim Setup That Actually Works"
+date: 2025-12-30
+tag: Neovim
+summary: How I went from Neovim skeptic to convert, and why 2025 might be the best time to make the switch.
+---
+
+My 16GB MacBook Pro was choking on VS Code with three tabs open. TypeScript IntelliSense would lag. The fans would spin. I'd wait seconds for autocomplete that should be instant.
+
+So I did what any reasonable developer would do: I ignored the problem for months. Meanwhile, Neovim sat there, waiting.
+
+Then a coworker showed me their Neovim setup. Fast. Beautiful. Running on a machine half the specs of mine. I was skeptical—Neovim felt like something for Linux veterans who memorized man pages for fun. But I was desperate.
+
+Six months later, I can't go back. Here's what I learned.
+
+## The "Neovim Is Hard" Myth
+
+Let me be honest: Neovim _was_ hard. Five years ago, setting up LSP, completion, and fuzzy finding meant stitching together a dozen plugins with cryptic Vimscript.
+
+That's not true anymore.
+
+In 2025, we have [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management, [Snacks.nvim](https://github.com/folke/snacks.nvim) as an all-in-one toolkit, and [Mason](https://github.com/williamboman/mason.nvim) for one-click language server installation. The ecosystem has matured.
+
+My setup has 37 plugin config files. That sounds intimidating, but each one is focused—usually under 50 lines. And you don't need all of them to start.
+
+## The Foundation: Modular Architecture
+
+Here's the secret to a maintainable Neovim config: keep it modular. My entire `init.lua` is one line:
+
+```lua
+-- ~/.config/nvim/init.lua
+require("kriscard")
+```
+
+That loads my main config file, which just requires other modules:
+
+```lua
+-- ~/.config/nvim/lua/kriscard/init.lua
+require("kriscard.lazy")      -- Plugin manager
+require("kriscard.options")   -- Vim settings
+require("kriscard.keymaps")   -- Global keybindings
+require("kriscard.autocmds")  -- Auto commands
+```
+
+Each plugin gets its own file in `lua/plugins/`. When something breaks, I know exactly where to look. When I want to try a new plugin, I drop in a new file.
+
+lazy.nvim handles the rest:
+
+```lua
+-- ~/.config/nvim/lua/kriscard/lazy.lua
+vim.g.mapleader = " "  -- Space as leader key
+
+require("lazy").setup({
+  spec = {
+    { import = "plugins" },  -- Load everything in lua/plugins/
+  },
+  checker = { enabled = true },  -- Auto-check for updates
+})
+```
+
+## The Plugin Stack That Matters
+
+You don't need 37 plugins. You need maybe 5-7 to transform your editing experience. Here's what I'd prioritize:
+
+### Snacks.nvim: The Swiss Army Knife
+
+[Snacks.nvim](https://github.com/folke/snacks.nvim) by folke replaced four separate plugins for me. It handles:
+
+- **Picker**: Fuzzy find files, grep, git branches (replaces Telescope for me)
+- **Dashboard**: A clean startup screen
+- **Terminal**: Toggle a terminal with one keybind
+- **Notifier**: Non-intrusive notifications
+- **Git integration**: Browse branches, logs, status
+
+The keybindings feel intuitive:
+
+```lua
+-- Core navigation with Snacks picker
+{ "<leader><space>", Snacks.picker.smart, desc = "Smart Find Files" }
+{ "<leader>/", Snacks.picker.grep, desc = "Grep" }
+{ "<leader>ff", Snacks.picker.files, desc = "Find Files" }
+{ "<leader>fg", Snacks.picker.git_files, desc = "Git Files" }
+{ "<leader>fr", Snacks.picker.recent, desc = "Recent Files" }
+
+-- Git
+{ "<leader>gb", Snacks.picker.git_branches, desc = "Git Branches" }
+{ "<leader>gs", Snacks.picker.git_status, desc = "Git Status" }
+{ "<leader>gg", Snacks.lazygit, desc = "Lazygit" }
+```
+
+`<leader>` is Space. So `Space + f + f` opens file finder. `Space + /` greps the project. Muscle memory builds fast.
+
+### Harpoon: Your Favorite Files, One Keypress Away
+
+[Harpoon](https://github.com/ThePrimeagen/harpoon) by ThePrimeagen solves a simple problem: you're always jumping between the same 3-5 files. Why fuzzy-find them every time?
+
+```lua
+-- Mark current file
+{ "<leader>H", function() harpoon:list():add() end, desc = "Harpoon File" }
+
+-- Quick menu to see all marked files
+{ "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end }
+
+-- Jump directly to file 1, 2, 3, 4, or 5
+{ "<leader>1", function() harpoon:list():select(1) end }
+{ "<leader>2", function() harpoon:list():select(2) end }
+-- ... and so on
+```
+
+I mark my main component, its test file, and the API route. Then I'm bouncing between them with `Space + 1`, `Space + 2`, `Space + 3`. No thinking required.
+
+### LSP: IDE Features Without the IDE
+
+This is where Neovim matches VS Code. Language Server Protocol gives you:
+
+- Go to definition
+- Find references
+- Hover documentation
+- Rename symbol
+- Code actions
+
+Mason makes installation trivial. Run `:Mason`, search for "typescript", press `i`. Done.
+
+My LSP setup for TypeScript looks like this:
+
+```lua
+vtsls = {
+  settings = {
+    typescript = {
+      updateImportsOnFileMove = { enabled = "always" },
+      preferences = {
+        importModuleSpecifierPreference = "non-relative",
+      },
+    },
+  },
+}
+```
+
+I use `vtsls` instead of the default TypeScript server—it's faster and uses less memory. That matters when you're in a large React codebase.
+
+The keybindings are standard across any LSP-enabled file:
+
+```lua
+gd     -- Go to definition
+gr     -- Find references
+K      -- Hover documentation
+<leader>rn  -- Rename symbol
+<leader>ca  -- Code actions
+```
+
+### Blink.cmp: Modern Completion
+
+For autocompletion, I use [blink.cmp](https://github.com/saghen/blink.cmp). It's fast, written in Rust, and the defaults are sensible. Type, see suggestions, Tab to accept. It pulls from LSP, snippets, and buffer text.
+
+## The 20% That Gives You 80%
+
+Beyond the core stack, a few smaller plugins make a big difference:
+
+| Plugin                 | What It Does                                       |
+| ---------------------- | -------------------------------------------------- |
+| **Treesitter**         | Syntax highlighting that actually understands code |
+| **Conform**            | Format on save (Prettier, Stylua, etc.)            |
+| **Gitsigns**           | Git diff markers in the gutter                     |
+| **vim-tmux-navigator** | Move between Neovim and tmux splits seamlessly     |
+| **Catppuccin**         | A beautiful theme that works everywhere            |
+
+That last one matters more than you'd think. A good theme makes you _want_ to use your editor.
+
+## What I Wish I Knew
+
+**Don't copy someone's config wholesale.** Start with [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)—it's a single file that teaches you how things work. Add plugins one at a time when you feel a pain point.
+
+**Learn the basics first.** `hjkl` for movement. `ciw` to change a word. `dd` to delete a line. `/` to search. You can go surprisingly far with just these.
+
+**Use Space as your leader key.** It's the easiest key to hit, and it won't conflict with anything.
+
+**Don't optimize prematurely.** I spent weeks tweaking my config before I could actually use Vim motions fluently. The motions matter more than the plugins.
+
+## The Real Benefit
+
+Here's what surprised me: it's not just about speed. It's about flow.
+
+In VS Code, I'd click through menus, wait for things to load, get distracted by the sidebar. In Neovim, my hands never leave the keyboard. I think "go to definition" and I'm there. I think "find all references" and they appear.
+
+The tool disappears. Just me and the code.
+
+That sounds dramatic, but after six months, it's the best way I can describe it. The editing experience becomes invisible, and that changes how you work.
+
+## Getting Started
+
+If you're curious:
+
+1. **Try [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)** — A single-file config that's well-documented
+2. **Watch ThePrimeagen or TJ DeVries on YouTube** — They explain the "why" not just the "how"
+3. **Give it two weeks** — The first few days are painful. Push through.
+
+My full config is on [GitHub](https://github.com/kriscard/.dotfiles). Don't copy it—use it as a reference for how things can fit together.
+
+---
+
+_This is part 2 of a 3-part series on my development environment. Previously: [The foundation of my dotfiles](/blog/dotfiles-part-1-terminal-setup). Next up: [how I integrated Claude Code](/blog/claude-code-workflow) into my workflow with custom hooks and agents._
