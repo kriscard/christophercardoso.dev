@@ -12,32 +12,39 @@ export const metadata: Metadata = {
 
 function PostCard(post: Post) {
   return (
-    <div className="mb-8">
-      <h3 className="max-w-2xl font-heading text-xl md:text-2xl">
-        <Link
-          href={`blog/${post._meta.path}`}
-          className="text-white-700 dark:text-white-400 hover:underline"
-        >
-          {post.title}
-        </Link>
-      </h3>
-      <time
-        dateTime={post.date}
-        className="mb-2 block font-mono text-xs text-gray-600"
+    <article className="mb-10 border-b border-gray-200 pb-10 last:border-0 dark:border-gray-800">
+      <Link
+        href={`blog/${post._meta.path}`}
+        className="group block space-y-3 transition-opacity hover:opacity-75"
       >
-        {format(parseISO(post.date), "LLLL d, yyyy")}
-      </time>
-    </div>
+        <h2 className="font-heading text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-50 md:text-3xl">
+          {post.title}
+        </h2>
+        <p className="text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          {post.summary}
+        </p>
+        <time
+          dateTime={post.date}
+          className="block text-sm text-gray-500 dark:text-gray-500"
+        >
+          {format(parseISO(post.date), "MMMM d, yyyy")}
+        </time>
+      </Link>
+    </article>
   )
 }
 
 export default function Blog() {
   return (
-    <div className="mt-16 max-w-xl py-8">
-      <h1 className="mb-8 font-heading text-3xl md:text-4xl">Articles</h1>
-      {allPosts.map((post) => (
-        <PostCard key={post._meta.path} {...post} />
-      ))}
+    <div className="mx-auto max-w-3xl px-6 py-12 md:py-20">
+      <h1 className="mb-16 font-heading text-4xl font-bold tracking-tight md:text-5xl">
+        Articles
+      </h1>
+      <div className="space-y-0">
+        {allPosts.map((post) => (
+          <PostCard key={post._meta.path} {...post} />
+        ))}
+      </div>
     </div>
   )
 }

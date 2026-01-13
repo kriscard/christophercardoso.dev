@@ -50,11 +50,16 @@ const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
   return (
-    <article className="w-full py-16">
-      <div className="mb-8 flex flex-col items-baseline justify-between gap-3">
-        <h1 className="font-heading text-3xl md:text-4xl">{post.title}</h1>
-        <time dateTime={post.date} className="mb-1 text-xs text-gray-400">
-          {format(parseISO(post.date), "LLLL d, yyyy")}
+    <article className="w-full py-12 md:py-20">
+      <div className="mb-12 space-y-4">
+        <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+          {post.title}
+        </h1>
+        <time
+          dateTime={post.date}
+          className="block text-sm uppercase tracking-wide text-gray-500 dark:text-gray-400"
+        >
+          {format(parseISO(post.date), "MMMM d, yyyy")} · {Math.ceil(post.content.split(/\s+/).length / 200)} min read
         </time>
       </div>
       <MdxLayout>
