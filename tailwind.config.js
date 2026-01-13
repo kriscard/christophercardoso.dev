@@ -13,47 +13,175 @@ module.exports = {
         heading: ["var(--font-heading)", ...fontFamily.sans],
       },
       backgroundColor: {
-        dark: "#0B0F1A",
+        dark: "#24273a",  // Catppuccin Macchiato Base
         lightGray: "#EEEEEE",
       },
       typography: {
         DEFAULT: {
           css: {
+            fontSize: "1.0625rem",  // 17px
+            lineHeight: "1.75",
             a: {
-              color: "#8839ef",  // Catppuccin Latte Mauve
+              color: "#8839ef",
               textDecoration: "underline",
-              textUnderlineOffset: "4px",
+              textUnderlineOffset: "3px",
+              textDecorationThickness: "1px",
               fontWeight: "500",
               transition: "color 150ms ease-in-out",
               "&:hover": {
-                color: "#7287fd",  // Catppuccin Latte Lavender
+                color: "#7287fd",
               },
               "&:focus": {
                 outline: "2px solid #8839ef",
                 outlineOffset: "2px",
                 borderRadius: "2px",
               },
-              "&:active": {
-                color: "#dd7878",  // Catppuccin Latte Flamingo
-              },
+            },
+            h1: {
+              fontSize: "2.5rem",
+              fontWeight: "700",
+              lineHeight: "1.2",
+              marginTop: "0",
+              marginBottom: "1.5rem",
+              letterSpacing: "-0.02em",
+            },
+            h2: {
+              fontSize: "1.875rem",
+              fontWeight: "700",
+              lineHeight: "1.3",
+              marginTop: "3rem",
+              marginBottom: "1.25rem",
+              letterSpacing: "-0.01em",
+            },
+            h3: {
+              fontSize: "1.5rem",
+              fontWeight: "600",
+              lineHeight: "1.4",
+              marginTop: "2.5rem",
+              marginBottom: "1rem",
+            },
+            h4: {
+              fontSize: "1.25rem",
+              fontWeight: "600",
+              lineHeight: "1.5",
+              marginTop: "2rem",
+              marginBottom: "0.75rem",
+            },
+            p: {
+              marginTop: "1.5rem",
+              marginBottom: "1.5rem",
+              lineHeight: "1.75",
+            },
+            "ul, ol": {
+              marginTop: "1.5rem",
+              marginBottom: "1.5rem",
+              paddingLeft: "1.5rem",
+            },
+            li: {
+              marginTop: "0.5rem",
+              marginBottom: "0.5rem",
+              lineHeight: "1.75",
+            },
+            "li > p": {
+              marginTop: "0.75rem",
+              marginBottom: "0.75rem",
+            },
+            blockquote: {
+              fontStyle: "italic",
+              fontSize: "1.0625rem",
+              lineHeight: "1.75",
+              paddingLeft: "1.5rem",
+              borderLeftWidth: "3px",
+              borderLeftColor: "#8839ef",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              color: "#4c4f69",
+              quotes: "none",
+            },
+            "blockquote p:first-of-type::before": {
+              content: "none",
+            },
+            "blockquote p:last-of-type::after": {
+              content: "none",
+            },
+            code: {
+              color: "#8839ef",
+              backgroundColor: "#eff1f5",
+              paddingLeft: "0.5rem",
+              paddingRight: "0.5rem",
+              paddingTop: "0.25rem",
+              paddingBottom: "0.25rem",
+              borderRadius: "0.25rem",
+              fontSize: "0.9em",
+              fontWeight: "500",
+            },
+            "code::before": {
+              content: "none",
+            },
+            "code::after": {
+              content: "none",
+            },
+            pre: {
+              backgroundColor: "#eff1f5",
+              color: "#4c4f69",
+              fontSize: "0.9375rem",
+              lineHeight: "1.7",
+              marginTop: "2rem",
+              marginBottom: "2rem",
+              borderRadius: "0.5rem",
+              overflowX: "auto",
+            },
+            "pre code": {
+              backgroundColor: "transparent",
+              color: "inherit",
+              fontSize: "inherit",
+              fontWeight: "400",
+            },
+            strong: {
+              fontWeight: "600",
+              color: "#4c4f69",
+            },
+            hr: {
+              marginTop: "3rem",
+              marginBottom: "3rem",
+              borderColor: "#dce0e8",
             },
           },
         },
         invert: {
           css: {
             a: {
-              color: "#c6a0f6",  // Catppuccin Macchiato Mauve
+              color: "#c6a0f6",
               "&:hover": {
-                color: "#b7bdf8",  // Catppuccin Macchiato Lavender
+                color: "#b7bdf8",
               },
               "&:focus": {
                 outline: "2px solid #c6a0f6",
-                outlineOffset: "2px",
-                borderRadius: "2px",
               },
-              "&:active": {
-                color: "#f5bde6",  // Catppuccin Macchiato Pink
-              },
+            },
+            "h1, h2, h3, h4, h5, h6": {
+              color: "#cad3f5",
+            },
+            p: {
+              color: "#cad3f5",
+            },
+            blockquote: {
+              borderLeftColor: "#c6a0f6",
+              color: "#a5adcb",
+            },
+            code: {
+              color: "#c6a0f6",
+              backgroundColor: "#363a4f",
+            },
+            pre: {
+              backgroundColor: "#363a4f",
+              color: "#cad3f5",
+            },
+            strong: {
+              color: "#cad3f5",
+            },
+            hr: {
+              borderColor: "#5b6078",
             },
           },
         },

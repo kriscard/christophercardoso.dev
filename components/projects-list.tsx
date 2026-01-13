@@ -10,18 +10,21 @@ interface ProjectListProps {
 
 function ProjectCard({ title, description, href }: Project) {
   return (
-    <Card className="p-0">
-      <div className="p-5">
-        <h3 className="max-w-2xl font-heading text-lg md:text-xl">{title}</h3>
-        <p className="text-md max-w-2xl py-5 text-xl lg:text-lg">
+    <Card className="h-full">
+      <div className="flex h-full flex-col gap-4 p-6">
+        <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
+          {title}
+        </h3>
+        <p className="flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">
           {description}
         </p>
-        <div className="flex items-center">
+        <div className="flex items-center gap-1">
           <Link
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-blue-600 duration-500 dark:text-blue-500"
+            className="font-mono text-sm text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
+            aria-label={`Discover ${title} project`}
           >
             Discover
           </Link>
@@ -36,13 +39,13 @@ export function ProjectsList({ projects }: ProjectListProps) {
   if (projects.length <= 0) return null
 
   return (
-    <div className="py-4" id="projects">
-      <h2 className="font-heading text-2xl md:text-3xl">Projects</h2>
-      <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section id="projects">
+      <h2 className="mb-6 font-heading text-2xl md:text-3xl">Projects</h2>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.href} {...project} />
         ))}
       </div>
-    </div>
+    </section>
   )
 }

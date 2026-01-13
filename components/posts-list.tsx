@@ -20,14 +20,19 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
 
   return (
     <Card className="h-full">
-      <div className="grid h-full grid-rows-[auto_auto_1fr_auto] gap-4 p-5">
-        {icon && <Image src={icon} width={30} height={30} alt={tagLabel} />}
-        <h3 className="max-w-2xl font-heading text-2xl md:text-xl">{title}</h3>
-        <p className="max-w-2xl text-xl lg:text-lg">{summary}</p>
-        <div className="mt-auto flex items-center">
+      <div className="flex h-full flex-col gap-4 p-6">
+        {icon && <Image src={icon} width={32} height={32} alt={tagLabel} />}
+        <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
+          {title}
+        </h3>
+        <p className="flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+          {summary}
+        </p>
+        <div className="flex items-center gap-1">
           <Link
             href={url}
-            className="font-mono text-blue-600 duration-500 hover:underline dark:text-blue-500"
+            className="font-mono text-sm text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
+            aria-label={`Read more about ${title}`}
           >
             Read more
           </Link>
@@ -42,9 +47,11 @@ export function BlogsList() {
   const recentPosts = allPosts.slice(0, 3)
 
   return (
-    <div className="py-5">
-      <h2 className="font-heading text-2xl md:text-3xl">My Recent Posts</h2>
-      <div className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2 lg:grid-cols-3">
+    <section>
+      <h2 className="mb-6 font-heading text-2xl md:text-3xl">
+        My Recent Posts
+      </h2>
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {recentPosts.map(({ title, tag, summary, _meta }: Post) => (
           <BlogCard
             key={_meta.path}
@@ -55,6 +62,6 @@ export function BlogsList() {
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
