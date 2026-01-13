@@ -22,7 +22,7 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
     <Card className="h-full">
       <div className="flex h-full flex-col gap-4 p-6">
         {icon && <Image src={icon} width={32} height={32} alt={tagLabel} />}
-        <h3 className="font-heading text-xl leading-tight md:text-2xl text-gray-900 dark:text-gray-50">
+        <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
           {title}
         </h3>
         <p className="flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">

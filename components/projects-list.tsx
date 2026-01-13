@@ -12,7 +12,7 @@ function ProjectCard({ title, description, href }: Project) {
   return (
     <Card className="h-full">
       <div className="flex h-full flex-col gap-4 p-6">
-        <h3 className="font-heading text-xl leading-tight md:text-2xl text-gray-900 dark:text-gray-50">
+        <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
           {title}
         </h3>
         <p className="flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">
@@ -40,9 +40,7 @@ export function ProjectsList({ projects }: ProjectListProps) {
 
   return (
     <section id="projects">
-      <h2 className="mb-6 font-heading text-2xl md:text-3xl">
-        Projects
-      </h2>
+      <h2 className="mb-6 font-heading text-2xl md:text-3xl">Projects</h2>
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
           <ProjectCard key={project.href} {...project} />
