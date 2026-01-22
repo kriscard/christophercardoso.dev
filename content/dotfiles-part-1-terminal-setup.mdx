@@ -1,5 +1,5 @@
 ---
-title: "Dotfiles Part 1: Terminal, Tmux & Modern CLI Tools"
+title: "How I set Ghostty, Tmux & other CLI Tools"
 date: 2026-01-12
 tag: [Dotfiles, Terminal, DevTools, Productivity]
 summary: From Ghostty and Zsh to Tmux and GNU Stow—here's how I built a terminal setup that sparks joy.
@@ -88,7 +88,7 @@ done
 
 All the actual configuration lives in `zsh.d/` with numbered files that load in order:
 
-```
+```bash
 zsh/zsh.d/
 ├── 00-env.zsh          # Environment variables and PATH
 ├── 10-options.zsh      # Zsh options and settings
@@ -319,7 +319,7 @@ The answer is [GNU Stow](https://www.gnu.org/software/stow/). It's a symlink far
 
 My dotfiles structure looks like this:
 
-```
+```bash
 ~/.dotfiles/
 ├── .config/           # Gets stowed to ~/.config/
 │   ├── ghostty/

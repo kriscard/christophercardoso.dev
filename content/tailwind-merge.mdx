@@ -12,8 +12,8 @@ In a nutshell, the CSS cascade determines how the browser processes CSS rules wh
 
 Tailwind-merge can assist us to resolve these types of issues by creating a new string that will contain the optimized and expected class names.
 
-```tsx
-// Example without Tailwind-merge
+```tsx {3,14}
+// Example without Tailwind-merge ❌
 function RecipeCard(props) {
   const cardStyles = `border shadow-md p-4 ${props.customStyles || ""}`
   return (
@@ -23,10 +23,8 @@ function RecipeCard(props) {
     </div>
   )
 }
-```
 
-```tsx
-// Example with Tailwind-merge
+// Example with Tailwind-merge ✅
 function RecipeCard(props) {
   const cardStyles = twMerge("border shadow-md p-4", props.className)
   return (

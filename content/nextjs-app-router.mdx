@@ -14,15 +14,11 @@ In a nutshell, it allows us to build hybrid applications where we choose the typ
 
 React server components give us a tone of flexibility when building applications. Vercel has decided to make all components server components by default in App Router. Developers can switch to a client component by using the [use client](https://nextjs.org/docs/getting-started/react-essentials#the-use-client-directive) directive when they choose to.
 
-<Image
+<MdxImage
   src="/images/blog/nextjs-app-router/server-components.png"
-  width={1200}
-  height={675}
   alt="React Server component"
-  className="m-auto pt-6"
+  caption="Source: nextjs.org/docs/getting-started/react-essentials"
 />
-
-> The image source can be found at [https://nextjs.org/docs/getting-started/react-essentials](https://nextjs.org/docs/getting-started/react-essentials)
 
 For more information about React Server Components, I recommend to read this blog post from the [React core team](https://react.dev/blog/2020/12/21/data-fetching-with-react-server-components).
 
@@ -34,12 +30,10 @@ You will need to create an app directory instead of pages at the root of your pr
 
 Here is a diagram that can help you understand how to create three different kinds of routes with the App Router paradigm:
 
-<Image
+<MdxImage
   src="/images/blog/nextjs-app-router/app-router-diagram.png"
-  width={1200}
-  height={675}
   alt="App Router Diagram"
-  className="m-auto pt-6"
+  caption="File-system routing with App Router"
 />
 
 To understand the new File Convention proposed by Nextjs, it is important to understand the concept of the root folder and the subtrees.

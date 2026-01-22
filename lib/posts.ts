@@ -54,5 +54,3 @@ export function getPostBySlug(slug: string, includeDrafts = false): Post | undef
   return posts.find((post) => post.slug === slug)
 }
 
-// For backward compatibility with content-collections
-export const allPosts = getAllPosts()

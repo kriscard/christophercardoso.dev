@@ -16,7 +16,7 @@ export function ThemeSwitch() {
   return (
     <button
       onClick={toggleTheme}
-      className="relative inline-flex size-10 cursor-pointer items-center justify-center text-gray-600 focus:outline-none dark:text-gray-400"
+      className="relative inline-flex size-10 cursor-pointer items-center justify-center border-none bg-transparent text-gray-600 focus:outline-none dark:text-gray-400"
       disabled={!mounted}
       aria-label="Toggle theme"
     >

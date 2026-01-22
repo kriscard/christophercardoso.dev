@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { allPosts, Post } from "@/lib/posts"
+import { getAllPosts, Post } from "@/lib/posts"
 import { getTagIcon } from "@/lib/utils"
 
 import { Card } from "./card"
@@ -44,7 +44,7 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
 }
 
 export function BlogsList() {
-  const recentPosts = allPosts.slice(0, 3)
+  const recentPosts = getAllPosts().slice(0, 3)
 
   return (
     <section>

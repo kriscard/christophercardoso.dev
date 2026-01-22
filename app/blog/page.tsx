@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { format, parseISO } from "date-fns"
 
-import { allPosts, Post } from "@/lib/posts"
+import { getAllPosts, Post } from "@/lib/posts"
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -35,13 +35,15 @@ function PostCard(post: Post) {
 }
 
 export default function Blog() {
+  const posts = getAllPosts()
+
   return (
     <div className="mx-auto max-w-3xl px-6 py-12 md:py-20">
       <h1 className="mb-16 font-heading text-4xl font-bold tracking-tight md:text-5xl">
         Articles
       </h1>
       <div className="space-y-0">
-        {allPosts.map((post) => (
+        {posts.map((post) => (
           <PostCard key={post._meta.path} {...post} />
         ))}
       </div>

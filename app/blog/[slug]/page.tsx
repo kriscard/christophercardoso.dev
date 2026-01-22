@@ -1,18 +1,18 @@
 import { format, parseISO } from "date-fns"
 
-import { allPosts } from "@/lib/posts"
+import { getAllPosts } from "@/lib/posts"
 import { calculateReadingTime } from "@/lib/reading-time"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
 
 export const generateStaticParams = async () =>
-  allPosts.map((post) => ({ slug: post._meta.path }))
+  getAllPosts().map((post) => ({ slug: post._meta.path }))
 
 export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>
 }) => {
   const params = await props.params
-  const post = allPosts.find((post) => post._meta.path === params.slug)
+  const post = getAllPosts().find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
   const { title, summary: description, date: publishedTime } = post
@@ -47,7 +47,7 @@ export const generateMetadata = async (props: {
 
 const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params
-  const post = allPosts.find((post) => post._meta.path === params.slug)
+  const post = getAllPosts().find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
   return (
