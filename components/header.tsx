@@ -37,7 +37,7 @@ export function Header() {
               <Link
                 key={title}
                 href={href}
-                className="p-1 text-xl md:p-4 lg:text-lg "
+                className="min-h-touch flex items-center px-3 text-xl md:px-4 lg:text-lg"
                 target={target}
               >
                 {title}

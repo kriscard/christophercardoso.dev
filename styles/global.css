@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Catppuccin Macchiato CSS variables for non-Tailwind contexts */
+:root {
+  --ctp-mantle: #1e2030;
+  --ctp-surface0: #363a4f;
+  --ctp-surface1: #494d64;
+  --ctp-flamingo: #f0c6c6;
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -14,11 +22,20 @@
 [data-rehype-pretty-code-figure] pre,
 figure[data-rehype-pretty-code-figure] pre,
 pre[data-language] {
-  background-color: #1e2030 !important;
+  background-color: var(--ctp-mantle) !important;
   padding: 1rem !important;
   border-radius: 0.75rem !important;
-  border: 1px solid #363a4f !important;
+  border: 1px solid var(--ctp-surface0) !important;
   overflow-x: auto;
+}
+
+/* Mobile code block optimization */
+@media (max-width: 640px) {
+  [data-rehype-pretty-code-figure] pre,
+  pre[data-language] {
+    font-size: 0.875rem !important;
+    padding: 0.75rem !important;
+  }
 }
 
 [data-rehype-pretty-code-figure] code,
@@ -33,7 +50,7 @@ pre[data-language] code {
 /* Line highlighting */
 [data-rehype-pretty-code-figure] [data-highlighted-line] {
   background-color: rgba(240, 198, 198, 0.15);
-  border-left: 2px solid #f0c6c6;
+  border-left: 2px solid var(--ctp-flamingo);
   padding-left: calc(1rem - 2px);
   border-radius: 0 0.25rem 0.25rem 0;
   min-width: 100%;
@@ -42,7 +59,7 @@ pre[data-language] code {
 
 /* Word highlighting */
 [data-rehype-pretty-code-figure] [data-highlighted-chars] {
-  background-color: #494d64;
+  background-color: var(--ctp-surface1);
   border-radius: 0.25rem;
   padding: 0.125rem 0.25rem;
 }

@@ -16,7 +16,7 @@ export function Code({ children, type, className }: CodeProps) {
         className={cn(
           "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-xs",
           "border-gray-300 bg-gray-100 text-gray-700",
-          "dark:border-[#494d64] dark:bg-[#363a4f] dark:text-[#cad3f5]",
+          "dark:border-ctp-surface1 dark:bg-ctp-surface0 dark:text-ctp-text",
           className
         )}
       >
@@ -29,7 +29,7 @@ export function Code({ children, type, className }: CodeProps) {
     return (
       <code
         className={cn(
-          "my-0 rounded bg-[#363a4f]/50 px-2 py-0.5 font-mono text-sm text-[#8aadf4]",
+          "my-0 rounded bg-ctp-surface0/50 px-2 py-0.5 font-mono text-sm text-ctp-blue",
           className
         )}
       >
@@ -42,7 +42,7 @@ export function Code({ children, type, className }: CodeProps) {
     return (
       <code
         className={cn(
-          "my-0 rounded bg-[#363a4f]/50 px-2 py-0.5 font-mono text-sm text-[#f5bde6]",
+          "my-0 rounded bg-ctp-surface0/50 px-2 py-0.5 font-mono text-sm text-ctp-pink",
           className
         )}
       >
@@ -54,7 +54,7 @@ export function Code({ children, type, className }: CodeProps) {
   return (
     <code
       className={cn(
-        "my-0 rounded bg-[#363a4f]/50 px-1.5 py-0.5 font-mono text-sm text-[#cad3f5]",
+        "my-0 rounded bg-ctp-surface0/50 px-1.5 py-0.5 font-mono text-sm text-ctp-text",
         className
       )}
     >

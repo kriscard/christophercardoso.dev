@@ -12,9 +12,64 @@ module.exports = {
       fontFamily: {
         heading: ["var(--font-heading)", ...fontFamily.sans],
       },
+      // Catppuccin Macchiato palette
+      colors: {
+        ctp: {
+          // Base colors
+          base: '#24273a',
+          mantle: '#1e2030',
+          crust: '#181926',
+          // Surface colors
+          surface0: '#363a4f',
+          surface1: '#494d64',
+          surface2: '#5b6078',
+          // Text colors
+          text: '#cad3f5',
+          subtext0: '#a5adcb',
+          subtext1: '#b8c0e0',
+          // Overlay
+          overlay0: '#6e738d',
+          overlay1: '#8087a2',
+          overlay2: '#939ab7',
+          // Accent colors
+          mauve: '#c6a0f6',
+          pink: '#f5bde6',
+          blue: '#8aadf4',
+          sapphire: '#7dc4e4',
+          lavender: '#b7bdf8',
+          flamingo: '#f0c6c6',
+          rosewater: '#f4dbd6',
+          // Latte equivalents (light mode)
+          latte: {
+            mauve: '#8839ef',
+            lavender: '#7287fd',
+            base: '#eff1f5',
+            text: '#4c4f69',
+            surface0: '#ccd0da',
+          }
+        }
+      },
       backgroundColor: {
         dark: "#24273a",  // Catppuccin Macchiato Base
         lightGray: "#EEEEEE",
+      },
+      // Touch targets & component sizing
+      spacing: {
+        'touch': '2.75rem',       // 44px - WCAG minimum
+        'touch-lg': '3rem',       // 48px - comfortable
+      },
+      size: {
+        'icon-sm': '1rem',        // 16px
+        'icon': '1.25rem',        // 20px
+        'icon-lg': '1.5rem',      // 24px
+        'touch': '2.75rem',       // 44px
+        'logo': '2.5rem',         // 40px
+      },
+      minHeight: {
+        'touch': '2.75rem',       // 44px
+      },
+      minWidth: {
+        'touch': '2.75rem',       // 44px
       },
       typography: {
         DEFAULT: {
