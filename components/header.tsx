@@ -27,7 +27,9 @@ export function Header() {
                   height={40}
                 />
               </div>
-              <div className="hidden font-heading text-2xl md:block">{name}</div>
+              <div className="hidden font-heading text-2xl md:block">
+                {name}
+              </div>
             </div>
           </Link>
         </div>
@@ -37,7 +39,7 @@ export function Header() {
               <Link
                 key={title}
                 href={href}
-                className="min-h-touch flex items-center px-3 text-xl md:px-4 lg:text-lg"
+                className="flex min-h-touch items-center px-3 text-xl md:px-4 lg:text-lg"
                 target={target}
               >
                 {title}
