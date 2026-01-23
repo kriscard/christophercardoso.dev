@@ -1,11 +1,10 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import { getAllPosts, Post } from "@/lib/posts"
-import { getTagIcon } from "@/lib/utils"
 
 import { Card } from "./card"
 import { ArrowIcon } from "./icons"
+import { TagIcon } from "./tag-icon"
 
 interface BlogCardProps {
   title: Post["title"]
@@ -15,13 +14,10 @@ interface BlogCardProps {
 }
 
 function BlogCard({ tag, title, summary, url }: BlogCardProps) {
-  const icon = getTagIcon(tag)
-  const tagLabel = Array.isArray(tag) ? tag[0] : tag
-
   return (
     <Card className="h-full">
       <div className="flex h-full flex-col gap-4 p-6">
-        {icon && <Image src={icon} width={32} height={32} alt={tagLabel} />}
+        <TagIcon tag={tag} size={32} className="text-purple-600 dark:text-purple-400" />
         <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
           {title}
         </h3>
@@ -43,7 +39,7 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
   )
 }
 
-export function BlogsList() {
+export function PostsList() {
   const recentPosts = getAllPosts().slice(0, 3)
 
   return (

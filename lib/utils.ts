@@ -4,22 +4,3 @@ import { twMerge } from "tailwind-merge"
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
-const tagIcons = {
-  React: "/images/tags/react.png",
-  Typescript: "/images/tags/typescript.png",
-  GraphQL: "/images/tags/graphql.png",
-  Tailwind: "/images/tags/tailwind.png",
-  Nextjs: "/images/tags/nextjs.png",
-  Default: "/images/tags/terminal.png",
-} as const
-
-type TagKey = keyof typeof tagIcons
-
-export const getTagIcon = (tag: string | string[]): string => {
-  const tagToCheck = Array.isArray(tag) ? tag[0] : tag
-  if (tagToCheck in tagIcons) {
-    return tagIcons[tagToCheck as TagKey]
-  }
-  return tagIcons.Default
-}
