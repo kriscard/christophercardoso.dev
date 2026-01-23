@@ -9,6 +9,7 @@ export interface Post {
   tag: string | string[]
   summary: string
   content: string
+  ogImage?: string
   _meta: {
     path: string
   }
@@ -38,6 +39,7 @@ export function getAllPosts(includeDrafts = false): Post[] {
         tag: data.tag,
         summary: data.summary,
         content,
+        ogImage: data.ogImage,
         _meta: {
           path: slug
         }

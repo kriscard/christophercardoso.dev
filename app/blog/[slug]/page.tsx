@@ -15,10 +15,14 @@ export const generateMetadata = async (props: {
   const post = getAllPosts().find((post) => post._meta.path === params.slug)
   if (!post) throw new Error(`Post not found for slug: ${params.slug}`)
 
-  const { title, summary: description, date: publishedTime } = post
+  const { title, summary: description, date: publishedTime, ogImage } = post
 
   const ogUrl = new URL("https://christophercardoso.dev/api/og")
   ogUrl.searchParams.set("title", title)
+
+  const imageUrl = ogImage
+    ? `https://christophercardoso.dev${ogImage}`
+    : ogUrl.toString()
 
   return {
     title,
@@ -31,7 +35,7 @@ export const generateMetadata = async (props: {
       url: `https://www.christophercardoso.dev/blog/${params.slug}`,
       images: [
         {
-          url: ogUrl.toString(),
+          url: imageUrl,
           alt: title,
         },
       ],
@@ -39,7 +43,7 @@ export const generateMetadata = async (props: {
         title,
         description,
         card: "summary_large_image",
-        images: [ogUrl.toString()],
+        images: [imageUrl],
       },
     },
   }
