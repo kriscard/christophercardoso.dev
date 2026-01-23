@@ -16,7 +16,7 @@ Remember when I said I fell into a rabbit hole of terminal tools in [Part 1](/bl
 
 After seeing [Thdxr's](https://x.com/thdxr) Neovim setup on [Twitch](https://www.twitch.tv/thdxr), I knew I had to try it.
 
-To be honest my first custom setup was horrible. I had some many bad keybindings, I was using too much plugins, and was passing more time debugging my config than writing code. I think I was trying to recreate VS Code in Neovim and it was not the right approach to take. So I deciced to a distribution and lay on [LazyVim ](https://www.lazyvim.org/). I used it for almost two years. During this time I looked many times in the source code to learned how we should set up Neovim correctly and what having good keybindings really means.
+To be honest my first custom setup was horrible. I had some many bad keybindings, I was using too much plugins, and was passing more time debugging my config than writing code. I think I was trying to recreate VS Code in Neovim and it was not the right approach to take. So I decided to use a distribution and lean on [LazyVim ](https://www.lazyvim.org/). I used it for almost two years. During this time I looked many times in the source code to learned how we should set up Neovim correctly and what having good keybindings really means.
 
 During this time, I discovered many developers on YouTube and Twitter (or X if you prefer) who shared publicly their dotfiles on GitHub and learned so much from them. Here are some of the devs who really guided my Neovim journey and inspired me to build my own setup:
 
@@ -33,11 +33,11 @@ What follows is how I set up my Neovim setup and try to do my best to make it fa
 
 ## The "Neovim Is Hard" Myth
 
-Let's be honest Neovim used to have a bad rep as something really hard to grasp. A few years ago, setting up yourself your LSPs, completion system, and fuzzy finding was really a good recipe on how to get a migraine quickly. Also the fact that the Neovim ecosystem relies on community contributions as mostly everything is open source, can be also difficult to handle. Because of new breaking changes or worse the plugins doesn't have any maintainers anymore or contributions since a long time. I really love Open Source but I can understand if someone want to have only stable plugins for its IDE. I can't count how many times I opened Neovim to discover some random errors when everything worked completely fine the day before.
+Let's be honest Neovim used to have a bad rep as something really hard to grasp. A few years ago, setting up yourself your LSPs, completion system, and fuzzy finding was really a good recipe on how to get a migraine quickly. Also the fact that the Neovim ecosystem relies on community contributions as mostly everything is open source, can be also difficult to handle. Because of new breaking changes or worse the plugins don't have any maintainers anymore or contributions since a long time. I really love Open Source but I can understand if someone want to have only stable plugins for its IDE. I can't count how many times I opened Neovim to discover some random errors when everything worked completely fine the day before.
 
-But the real issue what not the open source plugins itselt, but the fact that I didn't know how to set up Neovim properly. I was trying to copy paste configurations from different sources without really understanding what I was doing and things works.
+But the real issue was not the open source plugins itself, but the fact that I didn't know how to set up Neovim properly. I was trying to copy paste configurations from different sources without really understanding what I was doing and how things work.
 
-I had to dive deepply into how Neovim works, how LSPs work, and how to configure plugins properly so avoid having issues later on. Of course AI tools like Claude Code can help but at the end of the day you need to understand what you are doing.
+I had to dive deeply into how Neovim works, how LSPs work, and how to configure plugins properly to avoid having issues later on. Of course AI tools like Claude Code can help but at the end of the day you need to understand what you are doing.
 
 TJDevries made some great [YouTube videos](https://www.youtube.com/watch?v=TQn2hJeHQbM&list=PLep05UYkc6wTyBe7kPjQFWVXTlhKeQejM) that helps me a lot to join the dots.
 
@@ -48,7 +48,7 @@ Now when building a Neovim config from scratch, we have tools like [lazy.nvim](h
   title="Neovim setup demo"
 />
 
-One thing worth highlighting: I think that Neovim users tend to be fundamentally curious developers people who like diving into how things work and aren't afraid to read source code or at least the Vim Wiki. Embracing this mindset makes learning Neovim less intimidating and more fun. You're not just copying configs; you're understanding why things are set up that way. I did that mistake and waste a lot of time time with that. I'm still learning every day and make mistake and break my config sometime but I have more a feeling of ownership of my config more than before.
+One thing worth highlighting: I think that Neovim users tend to be fundamentally curious developers who like diving into how things work, and aren't afraid to read source code or at least the Vim Wiki. Embracing this mindset makes learning Neovim less intimidating and more fun. You're not just copying configs; you're understanding why things are set up that way. I did that mistake and waste a lot of time time with that. I'm still learning every day and make mistake and break my config sometime but I have more a feeling of ownership of my config more than before.
 
 That said, Neovim can still feel overwhelming at first. The key is to start small, focus on some core features, and gradually build up your setup as you get more comfortable with your current plugins and keybindings. You can event just try to use a neovim plugin inside VS Code/Cursor to least learned about Vim motions without leaving the comfort of your IDE.
 
@@ -91,7 +91,7 @@ require("lazy").setup({
 
 ## The Plugin Stack That Matters
 
-You don't need install every plugings that's available around there, you need maybe to aim for the core ones. Here's what actually matters in my opinion:
+You don't need to install every plugin that's available out there, you need maybe to aim for the core ones. Here's what actually matters in my opinion:
 
 ### LSP: The heart of Your IDE
 
@@ -269,9 +269,9 @@ Beyond the core stack, these following plugins add superpowers. Here are the one
 
 **Oil.nvim** deserves special mention. Instead of a traditional file tree, you edit directories like text files. Want to rename three files? Just edit the text. Want to move a directory? Cut and paste. It feels wrong at first, then you realize it's genius. I feel like it's the vim way of handling files.
 
-**Octo.nvim** lets me review PRs, comment on code, and manage issues without context-switching to the browser. I use a combination of Sesh with Git Worktrees and Otco.nvim to manage code reviews at work. While working on a specific feature, I will open Sesh and go to my code review session which will trigger my script to create to fetch all the open PRs in the repo of my company and list them with Gum. Then I select the one I want to review and it will create a new git worktree for me and open Octo to review the PR I have select "et Voila!".
+**Octo.nvim** lets me review PRs, comment on code, and manage issues without context-switching to the browser. I use a combination of Sesh with Git Worktrees and Otco.nvim to manage code reviews at work. While working on a specific feature, I will open Sesh and go to my code review session which will trigger my script to fetch all the open PRs in the repo of my company and list them with Gum. Then I select the one I want to review and it will create a new git worktree for me and open Octo to review the PR I have select "et Voila!".
 
-**Neotest** to run my test and shows test results inline and I also made a specific keybinding to run the test file related to the file I'm working on. So if I'm working on `components/Button.tsx` I can run the test file `components/__tests__/Button.test.tsx` with one keybinding.
+**Neotest** runs my tests and shows results inline. I also made a specific keybinding to run the test file related to the file I'm working on. So if I'm working on `components/Button.tsx` I can run the test file `components/__tests__/Button.test.tsx` with one keybinding.
 
 ```lua
 	{
@@ -521,7 +521,7 @@ Here's what surprised me: it's not just about speed. It's about flow.
 
 In VS Code, I'd click through menus, wait for things to load, get distracted by the sidebar. In Neovim, my hands never leave the keyboard most of the time. I think "go to definition" and I'm there. I think "find all references" and they appear.
 
-If you want you can still use your mouse sometimes even if you should try to avoid it as much as possible, but it's okay if it happens some time to time, no own is watching you.
+You can still use the mouse occasionally, no shame in that, no one is watching.
 
 ---
 
