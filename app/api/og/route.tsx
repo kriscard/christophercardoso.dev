@@ -16,8 +16,7 @@ export async function GET(request: NextRequest) {
 
   const postTitle = searchParams.get("title")
 
-  const fontHeading = await calSansBold
-  const fontBody = await interRegular
+  const [fontHeading, fontBody] = await Promise.all([calSansBold, interRegular])
 
   return new ImageResponse(
     (
