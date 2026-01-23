@@ -460,7 +460,7 @@ Quickfix lists are powerful but awkward. [Trouble.nvim](https://github.com/folke
 { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix" }
 ```
 
-`Space + x + x` shows all diagnostics across your workspace. Jump between errors, filter by severity, see them in context. `Space + c + l` shows LSP references in a right-side panel—definition, references, and implementations all in one view.
+<Code type="keys">Space+xx</Code> shows all diagnostics across your workspace. Jump between errors, filter by severity, see them in context. <Code type="keys">Space+cl</Code> shows LSP references in a right-side panel—definition, references, and implementations all in one view.
 
 ### Which-Key: Discoverable Keybindings
 
@@ -498,7 +498,7 @@ For React development, I added custom keybindings under `<leader>r`:
 end, desc = "Add Import" }
 ```
 
-`Space + r + i` adds missing imports automatically. It filters LSP code actions to only those that add/update imports, then applies the first match. One keypress instead of navigating through code action menus.
+<Code type="keys">Space+ri</Code> adds missing imports automatically. It filters LSP code actions to only those that add/update imports, then applies the first match. One keypress instead of navigating through code action menus.
 
 ## What I Wish I Knew
 
@@ -507,12 +507,6 @@ end, desc = "Add Import" }
   [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) it's a single
   file that teaches you how things work. Add plugins one at a time when you feel
   a pain point.
-</Callout>
-
-<Callout type="warning">
-  **Don't optimize prematurely.** I spent weeks tweaking my config before I
-  could actually use Vim motions fluently. The motions matter more than the
-  plugins.
 </Callout>
 
 ## The Real Benefit
