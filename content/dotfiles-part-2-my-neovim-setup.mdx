@@ -274,36 +274,36 @@ Beyond the core stack, these following plugins add superpowers. Here are the one
 **Neotest** runs my tests and shows results inline. I also made a specific keybinding to run the test file related to the file I'm working on. So if I'm working on `components/Button.tsx` I can run the test file `components/__tests__/Button.test.tsx` with one keybinding.
 
 ```lua
-	{
-			"<leader>tT",
-			function()
-				-- Find and run companion test file from source file
-				local current_dir = vim.fn.expand("%:p:h")
-				local filename = vim.fn.expand("%:t:r") -- filename without extension
+{
+  "<leader>tT",
+  function()
+    -- Find and run companion test file from source file
+    local current_dir = vim.fn.expand("%:p:h")
+    local filename = vim.fn.expand("%:t:r") -- filename without extension
 
-				-- Possible test file locations
-				local test_patterns = {
-					current_dir .. "/" .. filename .. ".test.tsx",
-					current_dir .. "/" .. filename .. ".spec.tsx",
-					current_dir .. "/" .. filename .. ".test.ts",
-					current_dir .. "/" .. filename .. ".spec.ts",
-					current_dir .. "/__tests__/" .. filename .. ".test.tsx",
-					current_dir .. "/__tests__/" .. filename .. ".spec.tsx",
-					current_dir .. "/__tests__/" .. filename .. ".test.ts",
-					current_dir .. "/__tests__/" .. filename .. ".spec.ts",
-				}
+    -- Possible test file locations
+    local test_patterns = {
+      current_dir .. "/" .. filename .. ".test.tsx",
+      current_dir .. "/" .. filename .. ".spec.tsx",
+      current_dir .. "/" .. filename .. ".test.ts",
+      current_dir .. "/" .. filename .. ".spec.ts",
+      current_dir .. "/__tests__/" .. filename .. ".test.tsx",
+      current_dir .. "/__tests__/" .. filename .. ".spec.tsx",
+      current_dir .. "/__tests__/" .. filename .. ".test.ts",
+      current_dir .. "/__tests__/" .. filename .. ".spec.ts",
+    }
 
-				for _, test_file in ipairs(test_patterns) do
-					if vim.fn.filereadable(test_file) == 1 then
-						require("neotest").run.run(test_file)
-						return
-					end
-				end
+    for _, test_file in ipairs(test_patterns) do
+      if vim.fn.filereadable(test_file) == 1 then
+        require("neotest").run.run(test_file)
+        return
+      end
+    end
 
-				vim.notify("No test file found for " .. filename, vim.log.levels.WARN)
-			end,
-			desc = "Run Companion Test File",
-		},
+    vim.notify("No test file found for " .. filename, vim.log.levels.WARN)
+  end,
+  desc = "Run Companion Test File",
+}
 ```
 
 ## The small plugins that make a big Difference
@@ -460,7 +460,10 @@ Quickfix lists are powerful but awkward. [Trouble.nvim](https://github.com/folke
 { "<leader>xQ", "<cmd>Trouble qflist toggle<cr>", desc = "Quickfix" }
 ```
 
-<Code type="keys">Space+xx</Code> shows all diagnostics across your workspace. Jump between errors, filter by severity, see them in context. <Code type="keys">Space+cl</Code> shows LSP references in a right-side panel—definition, references, and implementations all in one view.
+<Code type="keys">Space+xx</Code> shows all diagnostics across your workspace.
+Jump between errors, filter by severity, see them in context.
+<Code type="keys">Space+cl</Code> shows LSP references in a right-side
+panel—definition, references, and implementations all in one view.
 
 ### Which-Key: Discoverable Keybindings
 
@@ -498,12 +501,14 @@ For React development, I added custom keybindings under `<leader>r`:
 end, desc = "Add Import" }
 ```
 
-<Code type="keys">Space+ri</Code> adds missing imports automatically. It filters LSP code actions to only those that add/update imports, then applies the first match. One keypress instead of navigating through code action menus.
+<Code type="keys">Space+ri</Code> adds missing imports automatically. It filters
+LSP code actions to only those that add/update imports, then applies the first
+match. One keypress instead of navigating through code action menus.
 
 ## What I Wish I Knew
 
 <Callout type="tip">
-  **Don't copy someone's config wholesale.** Start with
+  **Don't copy someone's config blindly.** Start with
   [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) it's a single
   file that teaches you how things work. Add plugins one at a time when you feel
   a pain point.
