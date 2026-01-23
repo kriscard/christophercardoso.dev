@@ -1,7 +1,7 @@
 ---
 title: "My Neovim Setup"
 date: 2026-01-13
-tag: [Dotfiles, Neovim, DevTools, Productivity, Draft]
+tag: [Dotfiles, Neovim, DevTools, Productivity]
 summary: From VS Code RAM hog to a 35-plugin Neovim setup that's faster, cleaner, and actually sparks joy.
 series: "My Dotfiles Setup"
 seriesPart: 2
@@ -14,17 +14,18 @@ seriesPart: 2
 
 Remember when I said I fell into a rabbit hole of terminal tools in [Part 1](/blog/dotfiles-part-1-terminal-setup)? Well, I wasn't done falling.
 
-After seeing Thdxr's Neovim setup on Twitch, I knew I had to try it.
+After seeing [Thdxr's](https://x.com/thdxr) Neovim setup on [Twitch](https://www.twitch.tv/thdxr), I knew I had to try it.
 
-My first custom setup was horrible. Bad keybindings, I was using too many plugins, and was passing more time debugging my config than writing code. I think I was trying to recreate VS Code in Neovim and this is not the right approach at all. So I deleted everything and restarted using LazyVim, a preconfigured, and opinionated (if we can say that) Neovim distribution. I used it for almost two years. I also dive many time in the source code of LazyVim to learned having some good conventions and what having good keybindings actually feel like.
+To be honest my first custom setup was horrible. I had some many bad keybindings, I was using too much plugins, and was passing more time debugging my config than writing code. I think I was trying to recreate VS Code in Neovim and it was not the right approach to take. So I deciced to a distribution and lay on [LazyVim ](https://www.lazyvim.org/). I used it for almost two years. During this time I looked many times in the source code to learned how we should set up Neovim correctly and what having good keybindings really means.
 
-During this time, I discovered many developers who shared their nvim configs on GitHub. Here are some of the devs who really guided my Neovim journey and inspired me to build my own setup:
+During this time, I discovered many developers on YouTube and Twitter (or X if you prefer) who shared publicly their dotfiles on GitHub and learned so much from them. Here are some of the devs who really guided my Neovim journey and inspired me to build my own setup:
 
 - [ThePrimeagen](https://github.com/ThePrimeagen)
 - [TJ DeVries Nvim kickstarter](https://github.com/nvim-lua/kickstart.nvim)
 - [LazyVim Source code](https://github.com/LazyVim/LazyVim)
 - [Nick Nisi](https://github.com/nicknisi/dotfiles)
 - [Josh Medeski](https://github.com/joshmedeski/dotfiles)
+- [LLCoolChris](https://github.com/Christopher2K/dotfiles)
 - [Dillon Mulroy](https://github.com/dmmulroy/.dotfiles)
 - [Omerxx from DevopsToolbox on Youtube](https://github.com/omerxx/dotfiles)
 
@@ -32,26 +33,30 @@ What follows is how I set up my Neovim setup and try to do my best to make it fa
 
 ## The "Neovim Is Hard" Myth
 
-Let's be honest Neovim used to have a bad rep as something really hard to grasp. A few years ago, setting up yourself your LSPs, completion systemt, and fuzzy finding was really a good recipe on how to get a migraine quickly. Also the fact that the Neovim ecosystem relies on community contributions as mostly everything is open source, can be also difficult to handle. Because of new breaking changes or worse the plugins doesn't have any maintainers anymore or contributions since a long time. I can't count how many times I opened Neovim to discover some random errors when everything worked completely fine the day before.
+Let's be honest Neovim used to have a bad rep as something really hard to grasp. A few years ago, setting up yourself your LSPs, completion system, and fuzzy finding was really a good recipe on how to get a migraine quickly. Also the fact that the Neovim ecosystem relies on community contributions as mostly everything is open source, can be also difficult to handle. Because of new breaking changes or worse the plugins doesn't have any maintainers anymore or contributions since a long time. I really love Open Source but I can understand if someone want to have only stable plugins for its IDE. I can't count how many times I opened Neovim to discover some random errors when everything worked completely fine the day before.
 
-But, in my opinion things have changed.
+But the real issue what not the open source plugins itselt, but the fact that I didn't know how to set up Neovim properly. I was trying to copy paste configurations from different sources without really understanding what I was doing and things works.
 
-Now when building a Neovim config from scratch, we have tools like [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management, [Snacks.nvim](https://github.com/folke/snacks.nvim) as an all-in-one toolkit, and [Mason](https://github.com/williamboman/mason.nvim) for one-click language server installation. The ecosystem has matured so much that configuring Neovim feels less daunting than it used to be. We also have now so many good Youtuber that will help you to start your Neovim journey pretty quickly.
+I had to dive deepply into how Neovim works, how LSPs work, and how to configure plugins properly so avoid having issues later on. Of course AI tools like Claude Code can help but at the end of the day you need to understand what you are doing.
+
+TJDevries made some great [YouTube videos](https://www.youtube.com/watch?v=TQn2hJeHQbM&list=PLep05UYkc6wTyBe7kPjQFWVXTlhKeQejM) that helps me a lot to join the dots.
+
+Now when building a Neovim config from scratch, we have tools like [lazy.nvim](https://github.com/folke/lazy.nvim) for plugin management, [Snacks.nvim](https://github.com/folke/snacks.nvim) as an all-in-one toolkit, and [Mason](https://github.com/williamboman/mason.nvim) for one-click language server installation. The ecosystem has matured so much that configuring Neovim feels less daunting than it used to be. We also have now so many good resources out there that will help you to start your Neovim journey pretty quickly.
 
 <VideoEmbed
   src="https://www.youtube.com/embed/zHTeCSVAFNY?si=UnE1mYwWcuLrajIf"
   title="Neovim setup demo"
 />
 
-One thing worth highlighting: I think that Neovim users tend to be fundamentally curious developers—people who like diving into how things work and aren't afraid to read source code. Embracing this mindset makes learning Neovim less intimidating and more fun. You're not just copying configs; you're understanding why things are set up that way.
+One thing worth highlighting: I think that Neovim users tend to be fundamentally curious developers people who like diving into how things work and aren't afraid to read source code or at least the Vim Wiki. Embracing this mindset makes learning Neovim less intimidating and more fun. You're not just copying configs; you're understanding why things are set up that way. I did that mistake and waste a lot of time time with that. I'm still learning every day and make mistake and break my config sometime but I have more a feeling of ownership of my config more than before.
 
-That said, Neovim can still feel overwhelming at first. The key is to start small, focus on some core features, and gradually build up your setup as you get more comfortable with your current plugins and keybindings.
+That said, Neovim can still feel overwhelming at first. The key is to start small, focus on some core features, and gradually build up your setup as you get more comfortable with your current plugins and keybindings. You can event just try to use a neovim plugin inside VS Code/Cursor to least learned about Vim motions without leaving the comfort of your IDE.
 
-Let's start diving into my setup.
+Enough chit chat! Let's start diving into my setup.
 
 ## The Foundation: Modular Architecture
 
-Here's the secret to a maintainable Neovim config: keep it modular. My entire <Code type="path">init.lua</Code> is one line:
+As entry point I try to keep everything modular with one file per concern. Here's the basic structure:
 
 ```lua
 -- ~/.config/nvim/init.lua
@@ -68,7 +73,7 @@ require("kriscard.keymaps")   -- Global keybindings
 require("kriscard.autocmds")  -- Auto commands
 ```
 
-Each plugin gets its own file in <Code type="path">lua/plugins/</Code>. When something breaks, I know exactly where to look. When I want to try a new plugin, I drop in a new file.
+Each plugin gets its own file in so when something breaks, I know exactly where to look. When I want to try a new plugin, I drop in a new file.
 
 lazy.nvim handles the rest:
 
@@ -86,67 +91,11 @@ require("lazy").setup({
 
 ## The Plugin Stack That Matters
 
-You don't need all 35 plugins. You need maybe 5-7 core ones to transform your editing experience. Here's what actually matters:
+You don't need install every plugings that's available around there, you need maybe to aim for the core ones. Here's what actually matters in my opinion:
 
-### Snacks.nvim: The Swiss Army Knife
+### LSP: The heart of Your IDE
 
-[Snacks.nvim](https://github.com/folke/snacks.nvim) by folke is the best decision I made. It replaced what used to be four separate plugins (Telescope, toggleterm, dashboard, and nvim-notify) with a single, cohesive toolkit:
-
-- **Picker**: Fuzzy find files, grep, git branches, LSP symbols, diagnostics
-- **Dashboard**: Clean startup screen with recent files and projects
-- **Terminal**: Toggle terminal with one keybind
-- **Notifier**: Beautiful, non-intrusive notifications (with smart filtering—bye Copilot spam)
-- **Git integration**: LazyGit with custom Catppuccin theming, browse branches, logs, diffs
-- **Zen/Zoom**: Distraction-free editing modes
-- **Indent guides**: Scope-aware indentation visualization
-- **Scratch buffers**: Quick throwaway files for experiments
-
-The keybindings are all muscle memory now:
-
-```lua
--- Core navigation
-{ "<leader><space>", Snacks.picker.smart, desc = "Smart Find Files" }
-{ "<leader>/", Snacks.picker.grep, desc = "Grep" }
-{ "<leader>ff", Snacks.picker.files, desc = "Find Files" }
-{ "<leader>fg", Snacks.picker.git_files, desc = "Git Files" }
-{ "<leader>fr", Snacks.picker.recent, desc = "Recent Files" }
-
--- Git workflow
-{ "<leader>gb", Snacks.picker.git_branches, desc = "Git Branches" }
-{ "<leader>gs", Snacks.picker.git_status, desc = "Git Status" }
-{ "<leader>gg", Snacks.lazygit, desc = "Lazygit" }
-
--- LSP navigation
-{ "gd", Snacks.picker.lsp_definitions, desc = "Go to Definition" }
-{ "gr", Snacks.picker.lsp_references, desc = "Find References" }
-{ "<leader>ss", Snacks.picker.lsp_symbols, desc = "Document Symbols" }
-```
-
-`<leader>` is Space. So <Code type="keys">Space+ff</Code> opens file finder. <Code type="keys">Space+/</Code> greps the entire project. <Code type="keys">Space+gg</Code> launches LazyGit with my Catppuccin Macchiato theme. Muscle memory builds fast, and everything feels cohesive.
-
-### Harpoon: Your Favorite Files, One Keypress Away
-
-[Harpoon](https://github.com/ThePrimeagen/harpoon) by ThePrimeagen solves a simple problem: you're always jumping between the same 3-5 files. Why fuzzy-find them every time?
-
-```lua
--- All under <leader>h prefix
-{ "<leader>ha", function() harpoon:list():add() end, desc = "Add File" }
-{ "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Quick Menu" }
-{ "<leader>hc", function() harpoon:list():clear() end, desc = "Clear List" }
-{ "<leader>hp", function() harpoon:list():prev() end, desc = "Previous" }
-{ "<leader>hn", function() harpoon:list():next() end, desc = "Next" }
-
--- Jump directly to file 1-5
-{ "<leader>h1", function() harpoon:list():select(1) end }
-{ "<leader>h2", function() harpoon:list():select(2) end }
--- ... through h5
-```
-
-The menu width dynamically adjusts to your window, and files auto-save when modified. I mark my main component, its test file, and the API route. Then I'm bouncing between them with <Code type="keys">Space+h1</Code>, <Code type="keys">Space+h2</Code>, <Code type="keys">Space+h3</Code>. No thinking required.
-
-### LSP: IDE Features Without the IDE
-
-This is where Neovim truly replaces VS Code. Language Server Protocol gives you:
+So Language Server Protocol is a big topic in Neovim or any IDE out there to be honest. This is the heart of your IDE and also the place where you can create a mess pretty quickly (mine still his but I know how to modify it). In a nutshell, Language Server Protocol gives you:
 
 - Go to definition, find references, hover documentation
 - Rename symbols across your entire codebase
@@ -154,9 +103,9 @@ This is where Neovim truly replaces VS Code. Language Server Protocol gives you:
 - Inlay hints for function parameters and types
 - Real-time diagnostics and error checking
 
-Mason makes installation trivial. Run <Code type="cmd">:Mason</Code>, search for any language server, press <Code type="keys">i</Code>. Done.
+Mason makes installation of new LSPs trivial. Run <Code type="cmd">:Mason</Code> or <Code type="keys">Space+cm</Code>, search for any language server, press <Code type="keys">i</Code> to install the LSP or <Code type="keys">x</Code> to remove it. You can also use Mason to install formatters, linters, and Dap, so you have everything in one place.
 
-I have **18 language servers** configured for full-stack development:
+Here are the **language servers** I'm currently using mostly oriented toward web development:
 
 ```lua
 -- Core web development
@@ -220,7 +169,7 @@ vtsls = {
 
 This configuration keeps TypeScript responsive even in massive React monorepos. No more waiting 5 seconds for autocomplete.
 
-The keybindings work across all LSP-enabled files:
+The keybindings work across all LSP enabled files:
 
 ```lua
 gd              -- Go to definition
@@ -234,11 +183,67 @@ K               -- Hover documentation
 
 ### Blink.cmp: Modern Completion
 
-For autocompletion, I use [blink.cmp](https://github.com/saghen/blink.cmp). It's fast, written in Rust, and the defaults are sensible. Type, see suggestions, <Code type="keys">Tab</Code> to accept. It pulls from LSP, snippets, and buffer text.
+For autocompletion, I recently switched to [blink.cmp](https://github.com/saghen/blink.cmp). It's fast, written in Rust, and the defaults are really well thought. Type, see suggestions, <Code type="keys">Tab</Code> to accept. It pulls from your LSP, snippets, and buffer text.
 
-## The 20% That Gives You 80%
+### Snacks.nvim: The Swiss Army Knife
 
-Beyond the core stack, the remaining plugins add superpowers. Here are the ones that transformed specific workflows:
+[Snacks.nvim](https://github.com/folke/snacks.nvim) by folke is the best decision I made. It replaced what used to be four separate plugins (Telescope, toggleterm, dashboard, and nvim-notify) with a single, cohesive toolkit:
+
+- **Picker**: Fuzzy find files, grep, git branches, LSP symbols, diagnostics
+- **Dashboard**: Clean startup screen with recent files and projects
+- **Terminal**: Toggle terminal with one keybind
+- **Notifier**: Beautiful, non-intrusive notifications (with smart filtering—bye Copilot spam)
+- **Git integration**: LazyGit with custom Catppuccin theming, browse branches, logs, diffs
+- **Zen/Zoom**: Distraction-free editing modes
+- **Indent guides**: Scope-aware indentation visualization
+- **Scratch buffers**: Quick throwaway files for experiments
+
+The keybindings are all muscle memory now:
+
+```lua
+-- Core navigation
+{ "<leader><space>", Snacks.picker.smart, desc = "Smart Find Files" }
+{ "<leader>/", Snacks.picker.grep, desc = "Grep" }
+{ "<leader>ff", Snacks.picker.files, desc = "Find Files" }
+{ "<leader>fg", Snacks.picker.git_files, desc = "Git Files" }
+{ "<leader>fr", Snacks.picker.recent, desc = "Recent Files" }
+
+-- Git workflow
+{ "<leader>gb", Snacks.picker.git_branches, desc = "Git Branches" }
+{ "<leader>gs", Snacks.picker.git_status, desc = "Git Status" }
+{ "<leader>gg", Snacks.lazygit, desc = "Lazygit" }
+
+-- LSP navigation
+{ "gd", Snacks.picker.lsp_definitions, desc = "Go to Definition" }
+{ "gr", Snacks.picker.lsp_references, desc = "Find References" }
+{ "<leader>ss", Snacks.picker.lsp_symbols, desc = "Document Symbols" }
+```
+
+`<leader>` is Space. So <Code type="keys">Space+ff</Code> opens file finder. <Code type="keys">Space+/</Code> greps the entire project. <Code type="keys">Space+gg</Code> launches LazyGit with my Catppuccin Macchiato theme. I will present a lot of keybindings but with time you will build some muscle memory, and everything will feel natural.
+
+### Harpoon: Your new way to Bookmark Files
+
+[Harpoon](https://github.com/ThePrimeagen/harpoon) by [ThePrimeagen](https://x.com/ThePrimeagen) solves a simple problem: if you're always jumping between the same 3-5 files when working on a feature. Why fuzzy-find them every time?
+
+```lua
+-- All under <leader>h prefix
+{ "<leader>ha", function() harpoon:list():add() end, desc = "Add File" }
+{ "<leader>hh", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Quick Menu" }
+{ "<leader>hc", function() harpoon:list():clear() end, desc = "Clear List" }
+{ "<leader>hp", function() harpoon:list():prev() end, desc = "Previous" }
+{ "<leader>hn", function() harpoon:list():next() end, desc = "Next" }
+
+-- Jump directly to file 1-5
+{ "<leader>h1", function() harpoon:list():select(1) end }
+{ "<leader>h2", function() harpoon:list():select(2) end }
+-- ... through h5
+```
+
+The menu width dynamically adjusts to your window, and files auto-save when modified. I mark my main component, its test file, and the API route or any related files. Then I'm bouncing between them with <Code type="keys">Space+h1</Code>, <Code type="keys">Space+h2</Code>, <Code type="keys">Space+h3</Code> etc. Simple, efficient.
+
+## The cherry on Top: Specialized Plugins
+
+Beyond the core stack, these following plugins add superpowers. Here are the ones that transformed specific workflows:
 
 ### Essential Foundations
 
@@ -262,21 +267,54 @@ Beyond the core stack, the remaining plugins add superpowers. Here are the ones 
 | **Persistence** | Session management—restore your workspace state on restart            |
 | **Trouble**     | Aggregate all diagnostics, references, and TODOs in one panel         |
 
-**Oil.nvim** deserves special mention. Instead of a traditional file tree, you edit directories like text files. Want to rename three files? Just edit the text. Want to move a directory? Cut and paste. It feels wrong at first, then you realize it's genius.
+**Oil.nvim** deserves special mention. Instead of a traditional file tree, you edit directories like text files. Want to rename three files? Just edit the text. Want to move a directory? Cut and paste. It feels wrong at first, then you realize it's genius. I feel like it's the vim way of handling files.
 
-**Octo.nvim** lets me review PRs, comment on code, and manage issues without context-switching to the browser. Combined with Snacks' LazyGit integration, my entire Git workflow stays in the terminal.
+**Octo.nvim** lets me review PRs, comment on code, and manage issues without context-switching to the browser. I use a combination of Sesh with Git Worktrees and Otco.nvim to manage code reviews at work. While working on a specific feature, I will open Sesh and go to my code review session which will trigger my script to create to fetch all the open PRs in the repo of my company and list them with Gum. Then I select the one I want to review and it will create a new git worktree for me and open Octo to review the PR I have select "et Voila!".
 
-**Neotest** with TypeScript/Jest shows test results inline. Failed assertion? It's highlighted right next to the code. No more terminal tab switching.
+**Neotest** to run my test and shows test results inline and I also made a specific keybinding to run the test file related to the file I'm working on. So if I'm working on `components/Button.tsx` I can run the test file `components/__tests__/Button.test.tsx` with one keybinding.
 
-## Deep Dives: The Plugins That Deserve More Explanation
+```lua
+	{
+			"<leader>tT",
+			function()
+				-- Find and run companion test file from source file
+				local current_dir = vim.fn.expand("%:p:h")
+				local filename = vim.fn.expand("%:t:r") -- filename without extension
 
-Some plugins are simple—install, configure, done. Others fundamentally change how you work. Here's where I spent the most time getting things right.
+				-- Possible test file locations
+				local test_patterns = {
+					current_dir .. "/" .. filename .. ".test.tsx",
+					current_dir .. "/" .. filename .. ".spec.tsx",
+					current_dir .. "/" .. filename .. ".test.ts",
+					current_dir .. "/" .. filename .. ".spec.ts",
+					current_dir .. "/__tests__/" .. filename .. ".test.tsx",
+					current_dir .. "/__tests__/" .. filename .. ".spec.tsx",
+					current_dir .. "/__tests__/" .. filename .. ".test.ts",
+					current_dir .. "/__tests__/" .. filename .. ".spec.ts",
+				}
+
+				for _, test_file in ipairs(test_patterns) do
+					if vim.fn.filereadable(test_file) == 1 then
+						require("neotest").run.run(test_file)
+						return
+					end
+				end
+
+				vim.notify("No test file found for " .. filename, vim.log.levels.WARN)
+			end,
+			desc = "Run Companion Test File",
+		},
+```
+
+## The small plugins that make a big Difference
+
+Some plugins are simple to install and configure but still bring an huge plus in your setup.
 
 ### Catppuccin: More Than Just Colors
 
-That Catppuccin theme matters more than you'd think. Having the same Macchiato palette in Neovim, Ghostty, tmux, LazyGit, and even Spotify makes the entire environment feel cohesive and polished.
+That Catppuccin theme matters more than you'd think. Having the same Macchiato palette in Neovim, Ghostty, tmux, LazyGit makes the entire environment feel cohesive and polished.
 
-But the real power is in the integrations. My config enables 20+ plugin integrations so everything looks consistent:
+But the real power is in the integrations system. In my config, I have 20+ plugin integrations so everything looks consistent:
 
 ```lua
 require("catppuccin").setup({
@@ -301,7 +339,7 @@ No more random colors from plugins that don't match your theme. Everything just 
 
 ### Lualine: A Statusline That Actually Helps
 
-Most statusline configs show file name, git branch, and call it a day. Mine shows something more useful—when I'm recording a macro:
+Most statusline configs show file name, git branch, and call it a day. But in mine I wanted to show when I'm recording macros:
 
 ```lua
 local function macro_recording()
@@ -321,7 +359,12 @@ lualine_x = {
 }
 ```
 
-I can't count how many times I've accidentally recorded over a macro because I forgot I was still recording. Now there's a bright red indicator.
+<Callout type="note">
+  When you record a macro with <Code type="keys">q</Code>, your autocompletion
+  stops working because Neovim enters a different mode. Having a clear
+  "Recording @a" indicator in the statusline reminds me to stop recording with{" "}
+  <Code type="keys">q</Code> to get my autocompletion back.
+</Callout>
 
 ### Mini.nvim: Small Plugins, Big Impact
 
@@ -337,11 +380,9 @@ Instead of installing separate plugins for every small feature, [mini.nvim](http
 -- Replace surrounding: sr'" → change ' to "
 ```
 
-Two modules. Zero friction. They just extend what Vim already does well.
-
 ### Noice.nvim: Prettier Messages (That Stay Out of the Way)
 
-Neovim's default command line and messages are functional but ugly. [Noice.nvim](https://github.com/folke/noice.nvim) replaces them with a centered popup:
+Neovim's default command line and messages are functional but ugly. [Noice.nvim](https://github.com/folke/noice.nvim) replaces them with a centered pop-up:
 
 ```lua
 views = {
@@ -366,19 +407,6 @@ routes = {
 
 No more "No information available" spam from LSP hover. No more "search hit BOTTOM" every time I search. Write operations and undo/redo show in a minimal view that doesn't interrupt flow.
 
-### Persistence.nvim: Never Lose Your Workspace
-
-Session management sounds boring until you close Neovim with 12 files open and have to find them all again. [Persistence.nvim](https://github.com/folke/persistence.nvim) saves and restores sessions automatically.
-
-```lua
-{ "<leader>qs", function() require("persistence").load() end, desc = "Restore Session" }
-{ "<leader>qS", function() require("persistence").select() end, desc = "Select Session" }
-{ "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restore Last" }
-{ "<leader>qd", function() require("persistence").stop() end, desc = "Don't Save Session" }
-```
-
-I <Code type="keys">Space+ql</Code> to restore my last session. All my windows, splits, and files—exactly where I left them. The <Code type="keys">Space+qS</Code> opens a picker to choose from saved sessions by project.
-
 ### nvim-surround: Text Manipulation Done Right
 
 Similar to mini.surround, but [nvim-surround](https://github.com/kylechui/nvim-surround) is more configurable. I use both—mini.surround for quick operations, nvim-surround for its aliases:
@@ -391,11 +419,11 @@ aliases = {
 }
 ```
 
-Now `dsb` deletes surrounding brackets regardless of type. `csq'` changes double quotes to single. Muscle memory builds fast.
+Now `dsb` deletes surrounding brackets regardless of type. `csq'` changes double quotes to single. Muscle memory builds fast and you type as you think or speak. Like "change in quote" become `ciq`.
 
 ### Treesitter: Not Just Syntax Highlighting
 
-Everyone installs Treesitter for colors. The real power is text objects and navigation:
+Treesitter is a must have for Neovim, but I specifically like it fo text objects and navigation:
 
 ```lua
 textobjects = {
@@ -476,16 +504,9 @@ end, desc = "Add Import" }
 
 <Callout type="tip">
   **Don't copy someone's config wholesale.** Start with
-  [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)—it's a single
+  [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) it's a single
   file that teaches you how things work. Add plugins one at a time when you feel
   a pain point.
-</Callout>
-
-**Learn the basics first.** `hjkl` for movement. `ciw` to change a word. `dd` to delete a line. `/` to search. You can go surprisingly far with just these.
-
-<Callout type="note">
-  **Use Space as your leader key.** It's the easiest key to hit, and it won't
-  conflict with anything.
 </Callout>
 
 <Callout type="warning">
@@ -498,34 +519,9 @@ end, desc = "Add Import" }
 
 Here's what surprised me: it's not just about speed. It's about flow.
 
-In VS Code, I'd click through menus, wait for things to load, get distracted by the sidebar. In Neovim, my hands never leave the keyboard. I think "go to definition" and I'm there. I think "find all references" and they appear.
+In VS Code, I'd click through menus, wait for things to load, get distracted by the sidebar. In Neovim, my hands never leave the keyboard most of the time. I think "go to definition" and I'm there. I think "find all references" and they appear.
 
-The tool disappears. Just me and the code.
-
-That sounds dramatic, but after six months, it's the best way I can describe it. The editing experience becomes invisible, and that changes how you work.
-
-## Getting Started
-
-If you're curious about trying Neovim:
-
-1. **Start with [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)** — A single, well-documented file that teaches you the fundamentals. It's the best learning resource out there.
-2. **Watch ThePrimeagen and TJ DeVries on YouTube** — They explain the "why," not just the "how." Understanding the reasoning behind plugin choices matters more than copying configs.
-3. **Give it two weeks** — The first three days are painful. Your hands will reach for the mouse. You'll miss VS Code. Push through. By week two, something clicks.
-4. **Add plugins deliberately** — Don't start with 35 plugins. Start with 5. Add more only when you feel a specific pain point.
-
-My full config is on [GitHub](https://github.com/kriscard/dotfiles/tree/main/.config/nvim). Don't copy it wholesale—use it as a reference for how modular configs can fit together. Every plugin has a comment explaining why it's there.
-
-## The Complete Picture
-
-This Neovim setup is the second piece of my development environment puzzle:
-
-- **Part 1** covered my [terminal foundation](/blog/dotfiles-part-1-terminal-setup): Ghostty, tmux, zsh, and modern CLI tools
-- **Part 2** (this post) is the Neovim editor that sits on top of that foundation
-- **Part 3** (coming soon) will cover how I integrated Claude Code with custom hooks and agents to supercharge my workflow
-
-Together, they create a development environment that's fast, cohesive, and genuinely enjoyable to use.
-
-The best part? Once you've configured it, everything is just symlinks and a Git repo. Setting up a new machine takes 30 minutes, most of which is download time.
+If you want you can still use your mouse sometimes even if you should try to avoid it as much as possible, but it's okay if it happens some time to time, no own is watching you.
 
 ---
 
