@@ -8,6 +8,7 @@ import { ThemeSwitch } from "./theme-switch"
 
 const headerNavLinks = [
   { href: "/about", title: "About" },
+  { href: "/uses", title: "Uses" },
   { href: "/blog", title: "Blog" },
   { href: "https://github.com/kriscard", title: "Github", target: "blank" },
 ]
