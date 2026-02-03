@@ -15,7 +15,7 @@ function PostCard(post: Post) {
     <article className="border-b border-gray-200 pb-10 last:border-0 dark:border-gray-800">
       <Link
         href={`blog/${post._meta.path}`}
-        className="group block space-y-3 transition-opacity hover:opacity-75"
+        className="group block space-y-3 transition-opacity duration-150 hover:opacity-75"
       >
         <h2 className="font-heading text-2xl font-semibold leading-tight text-gray-900 dark:text-gray-50 md:text-3xl">
           {post.title}

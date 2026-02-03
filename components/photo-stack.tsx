@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
-import { motion } from "motion/react"
+import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -26,6 +26,7 @@ const positions = [
 
 export function PhotoStack({ photos, className }: PhotoStackProps) {
   const [isExpanded, setIsExpanded] = useState(false)
+  const shouldReduceMotion = useReducedMotion()
 
   if (photos.length === 0) return null
 
@@ -37,7 +38,7 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <div className="relative flex min-h-[280px] cursor-pointer items-center justify-center">
+      <div className="relative flex min-h-[280px] items-center justify-center">
         <div className="relative h-48 w-full md:h-56">
           {displayPhotos.map((photo, index) => {
             const pos = positions[index] || positions[0]
@@ -50,19 +51,22 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
                   "group absolute left-1/2 top-1/2 h-36 w-48 md:h-44 md:w-56",
                   "overflow-hidden rounded-xl",
                   "border-4 border-white dark:border-gray-800",
-                  "cursor-pointer",
                   isExpanded
                     ? "shadow-[0_8px_20px_-8px_rgba(0,0,0,0.15)]"
                     : "shadow-[0_16px_32px_-12px_rgba(0,0,0,0.3)]"
                 )}
                 initial={false}
                 animate={{ x, y, rotate: r }}
-                transition={{
-                  type: "spring",
-                  stiffness: 170,
-                  damping: 22,
-                  delay: isExpanded ? index * 0.05 : (4 - index) * 0.04,
-                }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : {
+                        type: "spring",
+                        stiffness: 40,
+                        damping: 12,
+                        delay: isExpanded ? index * 0.35 : (4 - index) * 0.2,
+                      }
+                }
                 style={{
                   translateX: "-50%",
                   translateY: "-50%",
@@ -89,7 +93,8 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
                     className={cn(
                       "absolute inset-x-3 bottom-3 text-sm font-medium text-white",
                       "translate-y-2 opacity-0 transition-all duration-300 ease-out",
-                      isExpanded && "group-hover:translate-y-0 group-hover:opacity-100"
+                      isExpanded &&
+                        "group-hover:translate-y-0 group-hover:opacity-100"
                     )}
                   >
                     {photo.alt}

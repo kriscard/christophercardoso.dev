@@ -9,8 +9,8 @@ export function Card({ className, children }: CardProps) {
   return (
     <div
       className={clsx(
-        "rounded-lg border transition-all duration-300",
-        // Light mode - subtle, close to background
+        "rounded-lg border transition-[border-color,background-color,box-shadow] duration-200",
+        // Light mode
         "border-gray-300/60 bg-white/60 shadow-sm",
         "hover:border-purple-400/70 hover:bg-white/80 hover:shadow-md hover:shadow-purple-200/20",
         // Dark mode

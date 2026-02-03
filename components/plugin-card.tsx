@@ -32,7 +32,7 @@ export function PluginCard({
             {name}
           </span>
           <svg
-            className="size-3.5 text-gray-400 transition-transform duration-150 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 dark:text-[#6e738d]"
+            className="size-3.5 text-gray-400 transition-transform duration-150 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 dark:text-[#6e738d]"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

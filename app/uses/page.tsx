@@ -166,7 +166,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/DFgZFi0vF3v"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Cloud Nine
@@ -179,7 +179,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/DCcxncwPhAH"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Daji
@@ -192,7 +192,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/DIBx0o2spMt"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Lily
@@ -205,7 +205,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/DAoDXOZRE0g"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Mode Envoy
@@ -218,7 +218,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/DB_os-KxYQ5"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Neo Ergo
@@ -231,7 +231,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/DTx66ecgE1J"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Horangi60
@@ -244,7 +244,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/C_x2xOhxlZt"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Squid60
@@ -257,7 +257,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/C-rNhqOOcd1"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Neo80
@@ -270,7 +270,7 @@ export default function Uses() {
           href="https://www.instagram.com/p/C_dxRrMvHNR"
           target="_blank"
           rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
         >
           <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
             Mode65
