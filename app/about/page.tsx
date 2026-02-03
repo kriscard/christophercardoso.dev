@@ -9,7 +9,7 @@ export const metadata = {
 export default function About() {
   return (
     <article className="w-full py-12 md:py-20">
-      <h1 className="mb-12 font-heading text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+      <h1 className="mb-12 font-heading text-4xl font-bold md:text-5xl">
         About me
       </h1>
 
