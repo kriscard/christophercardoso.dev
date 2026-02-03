@@ -222,7 +222,7 @@ const components = {
     <pre
       className={cn(
         "my-0 overflow-x-auto rounded-xl p-4",
-        "bg-[#1e2030] text-[#cad3f5] border border-[#363a4f]",
+        "border border-[#363a4f] bg-[#1e2030] text-[#cad3f5]",
         className
       )}
       {...props}

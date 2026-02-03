@@ -34,18 +34,15 @@ export function Header() {
           </Link>
         </div>
         <div className="flex items-center gap-3 md:gap-0">
-          <>
-            {headerNavLinks.map(({ title, href, target }) => (
-              <Link
-                key={title}
-                href={href}
-                className="flex min-h-touch items-center px-3 text-xl md:px-4 lg:text-lg"
-                target={target}
-              >
-                {title}
-              </Link>
-            ))}
-          </>
+          {headerNavLinks.map(({ title, href }) => (
+            <Link
+              key={title}
+              href={href}
+              className="flex min-h-touch items-center px-3 text-xl md:px-4 lg:text-lg"
+            >
+              {title}
+            </Link>
+          ))}
           <div className="p-1 sm:p-4">
             <ThemeSwitch />
           </div>

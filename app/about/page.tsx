@@ -15,19 +15,15 @@ export default function About() {
 
       <div className="prose prose-lg max-w-none dark:prose-invert">
         <p>
-          Hello, I&apos;m Chris! Welcome to my digital garden. I&apos;m a Full
-          Stack Developer based in Toronto, eager to share my projects and
-          articles on software development and all the things I like. With a
-          passion for exploration, I constantly push the boundaries of my
-          comfort zone to learn and master new technologies. Check out my{" "}
-          <Link href="/blog">blog</Link> and my{" "}
-          <Link href="/#projects">projects</Link> where I&apos;ll be sharing my
-          insights, discoveries, and expertise.
+          Hello, I&apos;m Chris! Welcome to my digital garden. I&apos;m a Full Stack Developer based in Toronto, eager to share my projects and articles on software development and all the things I like.
         </p>
 
         <p>
-          This site contains no ads, no sponsored posts, no affiliate links, and
-          no paywalls. Just me sharing my knowledge and experience with you.
+          With a passion for exploration, I constantly push the boundaries of my comfort zone to learn and master new technologies. Check out my <Link href="/blog">blog</Link> and my <Link href="/#projects">projects</Link> where I&apos;ll be sharing my insights, discoveries, and expertise.
+        </p>
+
+        <p>
+          This site contains no ads, no sponsored posts, no affiliate links, and no paywalls. Just me sharing my knowledge and experience with you.
         </p>
       </div>
     </article>
