@@ -7,24 +7,24 @@ import { SocialLinks } from "./social-links"
 
 export function PresentationBanner() {
   return (
-    <div className="flex items-center gap-16 py-16 md:py-24">
-      <div className="flex flex-1 flex-col gap-8">
-        <h1 className="font-heading text-5xl font-bold leading-tight tracking-tight md:text-6xl">
+    <div className="flex flex-col items-start gap-10 py-12 sm:py-14 md:flex-row md:items-center md:gap-12 md:py-20">
+      <div className="flex min-w-0 flex-1 flex-col gap-6 md:gap-8">
+        <h1 className="max-w-[11ch] text-wrap font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:max-w-none sm:text-5xl md:text-6xl">
           {hi}
         </h1>
-        <p className="max-w-xl text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+        <p className="max-w-[54ch] text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg">
           {description}
         </p>
-        <SocialLinks className="flex w-fit items-center gap-4" />
+        <SocialLinks className="flex w-fit items-center gap-2 sm:gap-3" />
       </div>
 
-      <div className="hidden md:block">
+      <div className="hidden shrink-0 md:block">
         <Image
           alt={name}
-          className="rounded-full shadow-xl shadow-purple-500/40 transition-shadow duration-500 hover:shadow-indigo-500/40"
+          className="rounded-full shadow-lg shadow-purple-500/25 transition-shadow duration-500 hover:shadow-purple-400/35"
           src={avatar}
           placeholder="blur"
-          width={300}
+          width={280}
           priority
         />
       </div>

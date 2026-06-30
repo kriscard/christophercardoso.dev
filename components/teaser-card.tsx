@@ -22,7 +22,7 @@ export function TeaserCard({ children, className }: TeaserCardProps) {
 
 export function TeaserCardBody({ children, className }: TeaserCardProps) {
   return (
-    <div className={cn("flex h-full flex-col gap-4 p-6", className)}>
+    <div className={cn("flex h-full flex-col gap-4 p-5 sm:p-6", className)}>
       {children}
     </div>
   )
@@ -36,7 +36,7 @@ export function TeaserCardTitle({
   return (
     <Component
       className={cn(
-        "font-heading leading-tight text-gray-900 dark:text-gray-50",
+        "text-wrap font-heading leading-tight text-gray-900 dark:text-gray-50",
         className
       )}
     >
@@ -45,7 +45,10 @@ export function TeaserCardTitle({
   )
 }
 
-export function TeaserCardDescription({ children, className }: TeaserCardProps) {
+export function TeaserCardDescription({
+  children,
+  className,
+}: TeaserCardProps) {
   return (
     <p
       className={cn(
@@ -59,7 +62,11 @@ export function TeaserCardDescription({ children, className }: TeaserCardProps) 
 }
 
 export function TeaserCardAction({ children, className }: TeaserCardProps) {
-  return <div className={cn("flex items-center gap-1", className)}>{children}</div>
+  return (
+    <div className={cn("mt-auto flex items-center gap-1", className)}>
+      {children}
+    </div>
+  )
 }
 
 export function TeaserCardMeta({

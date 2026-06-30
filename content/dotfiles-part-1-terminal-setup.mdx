@@ -2,7 +2,7 @@
 title: "How I set Ghostty, Tmux & CLI Tools"
 date: 2026-01-12
 tag: [Dotfiles, Terminal, DevTools, Productivity]
-summary: From Ghostty and Zsh to Tmux and GNU Stow—here's how I built a terminal setup that sparks joy.
+summary: From Ghostty and Zsh to Tmux and GNU Stow. Here's how I built a terminal setup that sparks joy.
 series: "My Dotfiles Setup"
 seriesPart: 1
 ---
@@ -25,7 +25,7 @@ My setup is still in progress and I guess will never be finished, but I don't th
 
 ## The Terminal Emulator: Ghostty
 
-Let's start where everything begins, my terminal. I use [Ghostty](https://ghostty.org/), a GPU-accelerated terminal built by [Mitchell Hashimoto](https://x.com/mitchellh) (one of HashiCorp's co-founders). I've tried them all—Kitty, Alacritty, WezTerm—but Ghostty just feels right on macOS. It's really fast, and the config is just a plain text file which makes everything so simple.
+Let's start where everything begins, my terminal. I use [Ghostty](https://ghostty.org/), a GPU-accelerated terminal built by [Mitchell Hashimoto](https://x.com/mitchellh) (one of HashiCorp's co-founders). I've tried them all - Kitty, Alacritty, WezTerm - but Ghostty just feels right on macOS. It's really fast, and the config is just a plain text file which makes everything so simple.
 
 Here's the core of my setup:
 
@@ -73,7 +73,7 @@ When I started, I used Oh My Zsh like everyone else. But the startup time bugged
 
 Instead of one massive `.zshrc` file, I split everything into small, focused files that load in a specific order.
 
-My `.zshrc` is tiny—just 8 lines:
+My `.zshrc` is tiny - just 8 lines:
 
 ```bash
 # ~/.zshrc
@@ -125,7 +125,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6e738d"  # Catppuccin Macchiato overlay0
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ```
 
-This approach is way faster than Oh My Zsh for my shell to load. The modular structure also makes it super easy to add or remove things—just edit one file instead of hunting through Oh My Zsh's maze of directories.
+This approach is way faster than Oh My Zsh for my shell to load. The modular structure also makes it super easy to add or remove things - just edit one file instead of hunting through Oh My Zsh's maze of directories.
 
 ## Starship: The Prompt That Shows What Matters
 
@@ -190,13 +190,13 @@ alias find="fd"
 alias grep="rg"
 ```
 
-The difference isn't subtle. Once you try `fd`, regular `find` feels broken. `bat` makes reading code in the terminal actually pleasant. And `zoxide`—once you've used it, you'll wonder how you ever navigated without it.
+The difference isn't subtle. Once you try `fd`, regular `find` feels broken. `bat` makes reading code in the terminal actually pleasant. And `zoxide` - once you've used it, you'll wonder how you ever navigated without it.
 
 Here's zoxide in action: instead of typing `cd ~/projects/christophercardoso.dev`, I type `z chris` and it figures out where I want to go. It learns from your navigation patterns, so it gets smarter over time.
 
 ## Tmux: Terminal Multiplexer on Steroids
 
-Think of tmux as tabs and windows for your terminal—but ones that persist even after you close everything.
+Think of tmux as tabs and windows for your terminal - but ones that persist even after you close everything.
 
 I remap the prefix from `Ctrl-b` to `Ctrl-a` because it's easier to reach (my Caps Lock is remapped to Control, so it's right there... thanks Karabiner). I use a Vim-style navigation with `h/j/k/l` for switching panes, and mouse support for when I'm feeling lazy.
 
@@ -233,7 +233,7 @@ source-file "$DOTFILES/.config/tmux/themes/catppuccin/$THEME_FLAVOUR.conf"
 source-file "$DOTFILES/.config/tmux/themes/catppuccin.conf"
 ```
 
-With `tmux-resurrect` and `tmux-continuum` plugins, my sessions survive reboots. I close my laptop, open it a week later, and everything is exactly where I left it—same windows, same panes, same directories. That's the kind of workflow that compounds over time.
+With `tmux-resurrect` and `tmux-continuum` plugins, my sessions survive reboots. I close my laptop, open it a week later, and everything is exactly where I left it - same windows, same panes, same directories. That's the kind of workflow that compounds over time.
 
 ## Sesh: Smart Session Management
 
@@ -302,7 +302,7 @@ bind-key x kill-pane # skip "kill-pane 1? (y/n)" prompt
 set -g detach-on-destroy off  # don't exit tmux when closing a session
 ```
 
-The `detach-on-destroy off` is clutch—when I close a session, instead of exiting tmux entirely, it switches to the next session. No more accidentally closing my entire tmux server.
+The `detach-on-destroy off` is clutch - when I close a session, instead of exiting tmux entirely, it switches to the next session. No more accidentally closing my entire tmux server.
 
 ## A Quick Note on Catppuccin
 
@@ -314,7 +314,7 @@ Neovim? Catppuccin Macchiato.
 Starship? Catppuccin Macchiato.
 Bat, eza, lazygit? All Catppuccin Macchiato.
 
-I'm obsessed with it. The color palette is perfect—not too vibrant, not too washed out. The mauve, lavender, and pink accents pop without being distracting. And the fact that it has official ports for almost every tool I use means I can have a consistent theme everywhere.
+I'm obsessed with it. The color palette is perfect - not too vibrant, not too washed out. The mauve, lavender, and pink accents pop without being distracting. And the fact that it has official ports for almost every tool I use means I can have a consistent theme everywhere.
 I even use a catppuccin macchiato theme in spotify for my entire apps to be consistent.
 
 I set `THEME_FLAVOUR=macchiato` as an environment variable in my Ghostty config, and all my tools pick it up automatically. It's one of those small things that makes using the terminal feel cohesive and polished.
@@ -342,7 +342,7 @@ My dotfiles structure looks like this:
 └── Brewfile
 ```
 
-One command—`stow .config`—and Stow creates symlinks so `~/.config/ghostty/config` points to my version-controlled file at `~/.dotfiles/.config/ghostty/config`. I can push my dotfiles to GitHub and clone them on any new machine.
+One command - `stow .config` - and Stow creates symlinks so `~/.config/ghostty/config` points to my version-controlled file at `~/.dotfiles/.config/ghostty/config`. I can push my dotfiles to GitHub and clone them on any new machine.
 
 The beauty of Stow is that it handles conflicts gracefully and keeps everything organized. My dotfiles repo is my source of truth, and everything else is just symlinks pointing to it.
 
@@ -379,7 +379,7 @@ The dotfiles CLI has commands for everything:
 
 All commands support `--dry-run`, `--force`, and `--verbose` flags.
 
-The `doctor` command is my favorite—it checks if all the tools are installed, if Homebrew packages are up to date, if you're using zsh, and gives you a health report:
+The `doctor` command is my favorite - it checks if all the tools are installed, if Homebrew packages are up to date, if you're using zsh, and gives you a health report:
 
 ```bash
 $ ./dotfiles doctor
@@ -444,8 +444,8 @@ If you're curious about trying any of this check out [my dotfiles on GitHub](htt
 
 ## What's Next?
 
-This terminal setup is just the foundation. In [Part 2](/blog/dotfiles-part-2-my-neovim-setup), I'll dive into my Neovim configuration—the plugins, keybindings, and workflows that turned Vim from intimidating to indispensable. We'll explore LSP setup, Telescope fuzzy finding, and how I integrated everything with Tmux.
+This terminal setup is just the foundation. In [Part 2](/blog/dotfiles-part-2-my-neovim-setup), I'll dive into my Neovim configuration - the plugins, keybindings, and workflows that turned Vim from intimidating to indispensable. We'll explore LSP setup, Telescope fuzzy finding, and how I integrated everything with Tmux.
 
-Until then, try one tool at a time. Maybe start with `eza` or `zoxide`—small changes that make a big difference. Your terminal setup should grow with you, not overwhelm you.
+Until then, try one tool at a time. Maybe start with `eza` or `zoxide` - small changes that make a big difference. Your terminal setup should grow with you, not overwhelm you.
 
 Happy hacking!

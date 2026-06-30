@@ -192,7 +192,7 @@ For autocompletion, I recently switched to [blink.cmp](https://github.com/saghen
 - **Picker**: Fuzzy find files, grep, git branches, LSP symbols, diagnostics
 - **Dashboard**: Clean startup screen with recent files and projects
 - **Terminal**: Toggle terminal with one keybind
-- **Notifier**: Beautiful, non-intrusive notifications (with smart filtering—bye Copilot spam)
+- **Notifier**: Beautiful, non-intrusive notifications (with smart filtering - bye Copilot spam)
 - **Git integration**: LazyGit with custom Catppuccin theming, browse branches, logs, diffs
 - **Zen/Zoom**: Distraction-free editing modes
 - **Indent guides**: Scope-aware indentation visualization
@@ -264,7 +264,7 @@ Beyond the core stack, these following plugins add superpowers. Here are the one
 | **Neotest**     | Run and debug tests with inline results and watch mode                |
 | **Kulala**      | REST client for testing APIs (like Postman, but in Neovim)            |
 | **Diffview**    | Beautiful git diffs and merge conflict resolution                     |
-| **Persistence** | Session management—restore your workspace state on restart            |
+| **Persistence** | Session management - restore your workspace state on restart            |
 | **Trouble**     | Aggregate all diagnostics, references, and TODOs in one panel         |
 
 **Oil.nvim** deserves special mention. Instead of a traditional file tree, you edit directories like text files. Want to rename three files? Just edit the text. Want to move a directory? Cut and paste. It feels wrong at first, then you realize it's genius. I feel like it's the vim way of handling files.
@@ -370,7 +370,7 @@ lualine_x = {
 
 Instead of installing separate plugins for every small feature, [mini.nvim](https://github.com/echasnovski/mini.nvim) bundles them together. I use two modules:
 
-**mini.ai** extends Vim's text objects. Select inside quotes with `vi'`, around parentheses with `va)`, or inside a function with `vif`. It scans 500 lines to find matching pairs—no more "pattern not found" on deeply nested code.
+**mini.ai** extends Vim's text objects. Select inside quotes with `vi'`, around parentheses with `va)`, or inside a function with `vif`. It scans 500 lines to find matching pairs - no more "pattern not found" on deeply nested code.
 
 **mini.surround** handles wrapping text with brackets, quotes, or tags:
 
@@ -409,7 +409,7 @@ No more "No information available" spam from LSP hover. No more "search hit BOTT
 
 ### nvim-surround: Text Manipulation Done Right
 
-Similar to mini.surround, but [nvim-surround](https://github.com/kylechui/nvim-surround) is more configurable. I use both—mini.surround for quick operations, nvim-surround for its aliases:
+Similar to mini.surround, but [nvim-surround](https://github.com/kylechui/nvim-surround) is more configurable. I use both - mini.surround for quick operations, nvim-surround for its aliases:
 
 ```lua
 aliases = {
@@ -445,7 +445,7 @@ textobjects = {
 
 `vaf` selects an entire function. `]m` jumps to the next function. `<leader>a` swaps function parameters. These bindings work in any language Treesitter supports.
 
-I also enable incremental selection—hit `Ctrl + Space` to start selecting, keep pressing to expand to larger syntax nodes.
+I also enable incremental selection - hit `Ctrl + Space` to start selecting, keep pressing to expand to larger syntax nodes.
 
 ### Trouble.nvim: Your Quickfix on Steroids
 
@@ -463,11 +463,11 @@ Quickfix lists are powerful but awkward. [Trouble.nvim](https://github.com/folke
 <Code type="keys">Space+xx</Code> shows all diagnostics across your workspace.
 Jump between errors, filter by severity, see them in context.
 <Code type="keys">Space+cl</Code> shows LSP references in a right-side
-panel—definition, references, and implementations all in one view.
+panel - definition, references, and implementations all in one view.
 
 ### Which-Key: Discoverable Keybindings
 
-With 80+ keybindings, I'd forget half of them without [which-key.nvim](https://github.com/folke/which-key.nvim). Press `Space` and wait—a popup shows all available continuations:
+With 80+ keybindings, I'd forget half of them without [which-key.nvim](https://github.com/folke/which-key.nvim). Press `Space` and wait - a popup shows all available continuations:
 
 ```lua
 spec = {

@@ -34,7 +34,7 @@ export function Callout({ children, type = "note" }: CalloutProps) {
   return (
     <div
       className={cn(
-        "my-6 flex items-start gap-3 rounded-lg border-l-4 p-4",
+        "my-6 flex max-w-3xl items-start gap-3 rounded-lg border-l-4 p-4",
         style.light,
         style.dark
       )}
