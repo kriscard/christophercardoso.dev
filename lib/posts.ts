@@ -1,5 +1,8 @@
+import "server-only"
+
 import fs from "fs"
 import path from "path"
+import { cache } from "react"
 import matter from "gray-matter"
 
 export interface Post {
@@ -22,9 +25,10 @@ function isDraft(post: Post): boolean {
   return tags.some((tag) => tag.toLowerCase() === "draft")
 }
 
-export function getAllPosts(includeDrafts = false): Post[] {
+const readAllPosts = cache((): Post[] => {
   const files = fs.readdirSync(POSTS_PATH)
-  const posts = files
+
+  return files
     .filter((file) => file.endsWith(".mdx"))
     .map((file) => {
       const slug = file.replace(/\.mdx$/, "")
@@ -35,24 +39,29 @@ export function getAllPosts(includeDrafts = false): Post[] {
       return {
         slug,
         title: data.title,
-        date: typeof data.date === "string" ? data.date : data.date?.toISOString().split("T")[0] ?? "",
+        date:
+          typeof data.date === "string"
+            ? data.date
+            : data.date?.toISOString().split("T")[0] ?? "",
         tag: data.tag,
         summary: data.summary,
         content,
         ogImage: data.ogImage,
         _meta: {
-          path: slug
-        }
+          path: slug,
+        },
       } as Post
     })
-    .filter((post) => includeDrafts || !isDraft(post))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+})
 
-  return posts
-}
+export const getAllPosts = cache((includeDrafts = false): Post[] => {
+  const posts = readAllPosts()
+  return includeDrafts ? posts : posts.filter((post) => !isDraft(post))
+})
 
-export function getPostBySlug(slug: string, includeDrafts = false): Post | undefined {
-  const posts = getAllPosts(includeDrafts)
-  return posts.find((post) => post.slug === slug)
-}
-
+export const getPostBySlug = cache(
+  (slug: string, includeDrafts = false): Post | undefined => {
+    return getAllPosts(includeDrafts).find((post) => post.slug === slug)
+  }
+)

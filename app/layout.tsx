@@ -1,6 +1,7 @@
 import { Inter as FontMono } from "next/font/google"
 import localFont from "next/font/local"
 
+import { siteConfig } from "@/lib/config"
 import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
 import { Footer } from "@/components/footer"
@@ -19,15 +20,19 @@ const fontMono = FontMono({
 })
 
 export const metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: "Christopher Cardoso",
     template: "%s | Christopher Cardoso",
   },
   description: "A software developer who loves to build things",
+  alternates: {
+    canonical: siteConfig.url,
+  },
   authors: [
     {
       name: "Christopher Cardoso",
-      url: "https://christophercardoso.dev",
+      url: siteConfig.url,
     },
   ],
   creator: "Christopher Cardoso",
@@ -45,13 +50,13 @@ export const metadata = {
   openGraph: {
     title: "Christopher Cardoso",
     description: "A software developer who loves to build things",
-    url: "https://christophercardoso.dev",
+    url: siteConfig.url,
     type: "website",
     siteName: "Christopher Cardoso",
     locale: "en_US",
   },
   robots: {
-    index: false,
+    index: true,
     follow: true,
     googleBot: {
       index: true,

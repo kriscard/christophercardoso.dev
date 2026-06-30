@@ -1,8 +1,14 @@
 import Link from "next/link"
 import { Project } from "@/data/projects"
 
-import { Card } from "./card"
 import { ArrowIcon } from "./icons"
+import {
+  TeaserCard,
+  TeaserCardAction,
+  TeaserCardBody,
+  TeaserCardDescription,
+  TeaserCardTitle,
+} from "./teaser-card"
 
 interface ProjectListProps {
   projects: Project[]
@@ -10,15 +16,15 @@ interface ProjectListProps {
 
 function ProjectCard({ title, description, href }: Project) {
   return (
-    <Card className="h-full">
-      <div className="flex h-full flex-col gap-4 p-6">
-        <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
+    <TeaserCard>
+      <TeaserCardBody>
+        <TeaserCardTitle className="text-xl md:text-2xl">
           {title}
-        </h3>
-        <p className="flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+        </TeaserCardTitle>
+        <TeaserCardDescription className="flex-1">
           {description}
-        </p>
-        <div className="flex items-center gap-1">
+        </TeaserCardDescription>
+        <TeaserCardAction>
           <Link
             href={href}
             target="_blank"
@@ -29,9 +35,9 @@ function ProjectCard({ title, description, href }: Project) {
             Discover
           </Link>
           <ArrowIcon />
-        </div>
-      </div>
-    </Card>
+        </TeaserCardAction>
+      </TeaserCardBody>
+    </TeaserCard>
   )
 }
 

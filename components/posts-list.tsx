@@ -1,30 +1,44 @@
+import { ViewTransition } from "react"
 import Link from "next/link"
 
 import { getAllPosts, Post } from "@/lib/posts"
 
-import { Card } from "./card"
 import { ArrowIcon } from "./icons"
 import { TagIcon } from "./tag-icon"
+import {
+  TeaserCard,
+  TeaserCardAction,
+  TeaserCardBody,
+  TeaserCardDescription,
+  TeaserCardTitle,
+} from "./teaser-card"
 
 interface BlogCardProps {
   title: Post["title"]
   tag: Post["tag"]
   summary: Post["summary"]
+  slug: Post["_meta"]["path"]
   url: Post["_meta"]["path"]
 }
 
-function BlogCard({ tag, title, summary, url }: BlogCardProps) {
+function BlogCard({ tag, title, summary, slug, url }: BlogCardProps) {
   return (
-    <Card className="h-full">
-      <div className="flex h-full flex-col gap-4 p-6">
+    <TeaserCard>
+      <TeaserCardBody>
         <TagIcon tag={tag} size={32} className="text-purple-600 dark:text-purple-400" />
-        <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50 md:text-2xl">
-          {title}
-        </h3>
-        <p className="flex-1 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+        <ViewTransition
+          name={`post-title-${slug}`}
+          share="text-morph"
+          default="none"
+        >
+          <TeaserCardTitle className="text-xl md:text-2xl">
+            {title}
+          </TeaserCardTitle>
+        </ViewTransition>
+        <TeaserCardDescription className="flex-1">
           {summary}
-        </p>
-        <div className="flex items-center gap-1">
+        </TeaserCardDescription>
+        <TeaserCardAction>
           <Link
             href={url}
             className="font-mono text-sm text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300"
@@ -33,9 +47,9 @@ function BlogCard({ tag, title, summary, url }: BlogCardProps) {
             Read more
           </Link>
           <ArrowIcon />
-        </div>
-      </div>
-    </Card>
+        </TeaserCardAction>
+      </TeaserCardBody>
+    </TeaserCard>
   )
 }
 
@@ -54,7 +68,8 @@ export function PostsList() {
             tag={tag}
             title={title}
             summary={summary}
-            url={`blog/${_meta.path}`}
+            slug={_meta.path}
+            url={`/blog/${_meta.path}`}
           />
         ))}
       </div>

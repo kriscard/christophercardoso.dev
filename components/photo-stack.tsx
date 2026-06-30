@@ -1,8 +1,4 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image"
-import { motion, useReducedMotion } from "motion/react"
 
 import { cn } from "@/lib/utils"
 
@@ -17,17 +13,29 @@ interface PhotoStackProps {
 }
 
 const positions = [
-  { collapsed: { x: 0, y: 0, r: -6 }, expanded: { x: -360, y: 20, r: -6 } },
-  { collapsed: { x: 6, y: 4, r: 3 }, expanded: { x: -180, y: 6, r: -2 } },
-  { collapsed: { x: -8, y: 6, r: -2 }, expanded: { x: 0, y: -4, r: 0 } },
-  { collapsed: { x: 10, y: -4, r: 5 }, expanded: { x: 180, y: 8, r: 2 } },
-  { collapsed: { x: -6, y: 10, r: -5 }, expanded: { x: 360, y: 22, r: 6 } },
+  {
+    collapsed: "translate-x-[calc(-50%+0px)] translate-y-[calc(-50%+0px)] -rotate-6 z-[5]",
+    expanded: "group-hover/stack:translate-x-[calc(-50%-360px)] group-hover/stack:translate-y-[calc(-50%+20px)] group-hover/stack:-rotate-6 group-hover/stack:z-10",
+  },
+  {
+    collapsed: "translate-x-[calc(-50%+6px)] translate-y-[calc(-50%+4px)] rotate-3 z-[4]",
+    expanded: "group-hover/stack:translate-x-[calc(-50%-180px)] group-hover/stack:translate-y-[calc(-50%+6px)] group-hover/stack:-rotate-2 group-hover/stack:z-10",
+  },
+  {
+    collapsed: "translate-x-[calc(-50%-8px)] translate-y-[calc(-50%+6px)] -rotate-2 z-[3]",
+    expanded: "group-hover/stack:translate-x-[calc(-50%+0px)] group-hover/stack:translate-y-[calc(-50%-4px)] group-hover/stack:rotate-0 group-hover/stack:z-10",
+  },
+  {
+    collapsed: "translate-x-[calc(-50%+10px)] translate-y-[calc(-50%-4px)] rotate-[5deg] z-[2]",
+    expanded: "group-hover/stack:translate-x-[calc(-50%+180px)] group-hover/stack:translate-y-[calc(-50%+8px)] group-hover/stack:rotate-2 group-hover/stack:z-10",
+  },
+  {
+    collapsed: "translate-x-[calc(-50%-6px)] translate-y-[calc(-50%+10px)] -rotate-[5deg] z-[1]",
+    expanded: "group-hover/stack:translate-x-[calc(-50%+360px)] group-hover/stack:translate-y-[calc(-50%+22px)] group-hover/stack:rotate-6 group-hover/stack:z-10",
+  },
 ]
 
 export function PhotoStack({ photos, className }: PhotoStackProps) {
-  const [isExpanded, setIsExpanded] = useState(false)
-  const shouldReduceMotion = useReducedMotion()
-
   if (photos.length === 0) return null
 
   const displayPhotos = photos.slice(0, 5)
@@ -64,46 +72,26 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
         </p>
       </div>
 
-      {/* Desktop: Animated stack */}
-      <div
-        className="hidden lg:block"
-        onMouseEnter={() => setIsExpanded(true)}
-        onMouseLeave={() => setIsExpanded(false)}
-      >
+      {/* Desktop: CSS-only hover stack */}
+      <div className="group/stack hidden lg:block">
         <div className="relative flex min-h-[280px] items-center justify-center">
           <div className="relative h-56 w-full">
             {displayPhotos.map((photo, index) => {
-              const pos = positions[index] || positions[0]
-              const { x, y, r } = isExpanded ? pos.expanded : pos.collapsed
+              const position = positions[index] || positions[0]
 
               return (
-                <motion.div
+                <div
                   key={photo.src}
                   className={cn(
-                    "group absolute left-1/2 top-1/2 h-44 w-56",
+                    "group/card absolute left-1/2 top-1/2 h-44 w-56",
                     "overflow-hidden rounded-xl",
                     "border-4 border-white dark:border-gray-800",
-                    isExpanded
-                      ? "shadow-[0_8px_20px_-8px_rgba(0,0,0,0.15)]"
-                      : "shadow-[0_16px_32px_-12px_rgba(0,0,0,0.3)]"
+                    "shadow-[0_16px_32px_-12px_rgba(0,0,0,0.3)]",
+                    "transition-[transform,box-shadow] duration-500 ease-out",
+                    "group-hover/stack:shadow-[0_8px_20px_-8px_rgba(0,0,0,0.15)]",
+                    position.collapsed,
+                    position.expanded
                   )}
-                  initial={false}
-                  animate={{ x, y, rotate: r }}
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : {
-                          type: "spring",
-                          stiffness: 40,
-                          damping: 12,
-                          delay: isExpanded ? index * 0.35 : (4 - index) * 0.2,
-                        }
-                  }
-                  style={{
-                    translateX: "-50%",
-                    translateY: "-50%",
-                    zIndex: isExpanded ? 10 : 5 - index,
-                  }}
                 >
                   <div className="relative size-full">
                     <Image
@@ -116,22 +104,20 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
                     <div
                       className={cn(
                         "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent",
-                        "opacity-0 transition-opacity duration-300 ease-out",
-                        isExpanded && "group-hover:opacity-100"
+                        "opacity-0 transition-opacity duration-300 ease-out group-hover/card:opacity-100"
                       )}
                     />
                     <p
                       className={cn(
                         "absolute inset-x-3 bottom-3 text-sm font-medium text-white",
                         "translate-y-2 opacity-0 transition-all duration-300 ease-out",
-                        isExpanded &&
-                          "group-hover:translate-y-0 group-hover:opacity-100"
+                        "group-hover/card:translate-y-0 group-hover/card:opacity-100"
                       )}
                     >
                       {photo.alt}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               )
             })}
           </div>
@@ -140,7 +126,7 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
             className={cn(
               "absolute bottom-0 left-1/2 -translate-x-1/2 text-sm",
               "text-gray-500 transition-opacity duration-200 dark:text-gray-400",
-              isExpanded && "opacity-0"
+              "group-hover/stack:opacity-0"
             )}
           >
             Hover to expand

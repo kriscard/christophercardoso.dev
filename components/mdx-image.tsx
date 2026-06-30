@@ -7,6 +7,8 @@ interface MdxImageProps {
   alt: string
   caption?: string
   size?: "sm" | "md" | "lg" | "full"
+  width?: number
+  height?: number
   priority?: boolean
 }
 
@@ -22,9 +24,13 @@ export function MdxImage({
   alt,
   caption,
   size = "full",
+  width,
+  height,
   priority = false,
 }: MdxImageProps) {
   const config = sizeConfig[size]
+  const imageWidth = width ?? config.width
+  const imageHeight = height ?? Math.round((imageWidth * 9) / 16)
 
   return (
     <figure className={cn("my-8", config.class)}>
@@ -32,8 +38,8 @@ export function MdxImage({
         <Image
           src={src}
           alt={alt}
-          width={config.width}
-          height={config.width}
+          width={imageWidth}
+          height={imageHeight}
           sizes={`(max-width: 768px) 100vw, ${config.width}px`}
           className="!m-0 block h-auto w-full"
           style={{ height: "auto" }}

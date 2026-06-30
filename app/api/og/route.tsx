@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og"
 import { NextRequest } from "next/server"
 
+import { siteConfig } from "@/lib/config"
+
 export const runtime = "edge"
 
 const calSansBold = fetch(
@@ -14,7 +16,8 @@ const interRegular = fetch(
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
 
-  const postTitle = searchParams.get("title")
+  const postTitle = searchParams.get("title") ?? siteConfig.name
+  const backgroundImageUrl = new URL("/og-bg.png", siteConfig.url).toString()
 
   const [fontHeading, fontBody] = await Promise.all([calSansBold, interRegular])
 
@@ -23,7 +26,7 @@ export async function GET(request: NextRequest) {
       <div
         tw="flex h-full w-full"
         style={{
-          backgroundImage: "url(https://christophercardoso.dev/og-bg.png)",
+          backgroundImage: `url(${backgroundImageUrl})`,
         }}
       >
         <div
@@ -40,6 +43,9 @@ export async function GET(request: NextRequest) {
     {
       width: 1200,
       height: 630,
+      headers: {
+        "Cache-Control": "public, s-maxage=31536000, immutable",
+      },
       fonts: [
         {
           name: "Cal Sans",

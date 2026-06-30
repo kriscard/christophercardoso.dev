@@ -1,4 +1,12 @@
-import React from "react"
+import { siteConfig } from "@/lib/config"
+
+export const metadata = {
+  title: "Projects",
+  description: "Projects built by Christopher Cardoso.",
+  alternates: {
+    canonical: new URL("/projects", siteConfig.url).toString(),
+  },
+}
 
 export default function Projects() {
   return (

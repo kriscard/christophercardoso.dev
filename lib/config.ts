@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Christopher Cardoso",
-  url: "https://christophercardoso.dev",
+  url: "https://www.christophercardoso.dev",
   social: {
     twitter: "https://x.com/kris_card",
     github: "https://github.com/kriscard",

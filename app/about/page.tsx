@@ -1,9 +1,14 @@
 import Link from "next/link"
 
+import { siteConfig } from "@/lib/config"
+
 export const metadata = {
   title: "About",
   description:
     "Learn more about Christopher Cardoso - Full Stack Developer based in Toronto.",
+  alternates: {
+    canonical: new URL("/about", siteConfig.url).toString(),
+  },
 }
 
 export default function About() {

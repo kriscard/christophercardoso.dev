@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Keyboard } from "lucide-react"
 
+import { siteConfig } from "@/lib/config"
 import { Banner } from "@/components/banner"
 import { PhotoStack } from "@/components/photo-stack"
 
@@ -8,15 +9,88 @@ export const metadata = {
   title: "Uses",
   description:
     "The tools, software, and gear Christopher Cardoso uses for development.",
+  alternates: {
+    canonical: new URL("/uses", siteConfig.url).toString(),
+  },
 }
 
 const keyboardPhotos = [
-  { src: "/images/uses/keyboards/cloudnine.png", alt: "Cloud Nine" },
-  { src: "/images/uses/keyboards/daji.png", alt: "Daji" },
-  { src: "/images/uses/keyboards/lily.png", alt: "Lily" },
-  { src: "/images/uses/keyboards/mode-envoy.png", alt: "Mode Envoy" },
-  { src: "/images/uses/keyboards/neo-ergo.jpg", alt: "Neo Ergo" },
+  { src: "/images/uses/keyboards/cloudnine.webp", alt: "Cloud Nine" },
+  { src: "/images/uses/keyboards/daji.webp", alt: "Daji" },
+  { src: "/images/uses/keyboards/lily.webp", alt: "Lily" },
+  { src: "/images/uses/keyboards/mode-envoy.webp", alt: "Mode Envoy" },
+  { src: "/images/uses/keyboards/neo-ergo.webp", alt: "Neo Ergo" },
 ]
+
+const keyboardCollection = [
+  {
+    name: "Cloud Nine",
+    description: "MX Blacks, GMK Classic Beige",
+    href: "https://www.instagram.com/p/DFgZFi0vF3v",
+  },
+  {
+    name: "Daji",
+    description: "MX Browns 55g TX M springs, GMK Rubrehose",
+    href: "https://www.instagram.com/p/DCcxncwPhAH",
+  },
+  {
+    name: "Lily",
+    description: "MX Blacks TX L 55g springs, GMK Hineybeige",
+    href: "https://www.instagram.com/p/DIBx0o2spMt",
+  },
+  {
+    name: "Mode Envoy",
+    description: "Mode Obscura, GMK Striker",
+    href: "https://www.instagram.com/p/DAoDXOZRE0g",
+  },
+  {
+    name: "Neo Ergo",
+    description: "HMX Hyacinth V2, GMK Dualshot 2",
+    href: "https://www.instagram.com/p/DB_os-KxYQ5",
+  },
+  {
+    name: "Horangi60",
+    description: "MX Blacks XL springs 55g, GMK Black Snail",
+    href: "https://www.instagram.com/p/DTx66ecgE1J",
+  },
+  {
+    name: "Squid60",
+    description: "Tangerines, GMK Hammerhead",
+    href: "https://www.instagram.com/p/C_x2xOhxlZt",
+  },
+  {
+    name: "Neo80",
+    description: "Gateron Deepping, GMK Olivia",
+    href: "https://www.instagram.com/p/C-rNhqOOcd1",
+  },
+  {
+    name: "Mode65",
+    description: "MX Black TX L 55g springs, GMK Redacted",
+    href: "https://www.instagram.com/p/C_dxRrMvHNR",
+  },
+]
+
+interface CollectionCardProps {
+  name: string
+  description: string
+  href: string
+}
+
+function CollectionCard({ name, description, href }: CollectionCardProps) {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
+    >
+      <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
+        {name}
+      </span>
+      <p className="mt-1 text-gray-600 dark:text-gray-400">{description}</p>
+    </Link>
+  )
+}
 
 export default function Uses() {
   return (
@@ -162,123 +236,9 @@ export default function Uses() {
 
       <h3 className="mb-3 font-heading text-lg">My Collection</h3>
       <div className="mb-8 grid gap-3 text-sm md:grid-cols-2 lg:grid-cols-3">
-        <Link
-          href="https://www.instagram.com/p/DFgZFi0vF3v"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Cloud Nine
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            MX Blacks, GMK Classic Beige
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/DCcxncwPhAH"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Daji
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            MX Browns 55g TX M springs, GMK Rubrehose
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/DIBx0o2spMt"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Lily
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            MX Blacks TX L 55g springs, GMK Hineybeige
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/DAoDXOZRE0g"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Mode Envoy
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            Mode Obscura, GMK Striker
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/DB_os-KxYQ5"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Neo Ergo
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            HMX Hyacinth V2, GMK Dualshot 2
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/DTx66ecgE1J"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Horangi60
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            MX Blacks XL springs 55g, GMK Black Snail
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/C_x2xOhxlZt"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Squid60
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            Tangerines, GMK Hammerhead
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/C-rNhqOOcd1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Neo80
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            Gateron Deepping, GMK Olivia
-          </p>
-        </Link>
-        <Link
-          href="https://www.instagram.com/p/C_dxRrMvHNR"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group rounded-lg border border-gray-200 p-3 transition-colors duration-150 hover:border-purple-500 hover:bg-purple-500/5 dark:border-gray-700 dark:hover:border-purple-400"
-        >
-          <span className="font-medium text-gray-900 group-hover:text-purple-600 dark:text-gray-100 dark:group-hover:text-purple-400">
-            Mode65
-          </span>
-          <p className="mt-1 text-gray-600 dark:text-gray-400">
-            MX Black TX L 55g springs, GMK Redacted
-          </p>
-        </Link>
+        {keyboardCollection.map((keyboard) => (
+          <CollectionCard key={keyboard.href} {...keyboard} />
+        ))}
       </div>
     </>
   )
