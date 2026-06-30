@@ -1,11 +1,15 @@
-import type { Metadata } from "next"
 import { ViewTransition } from "react"
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { format, parseISO } from "date-fns"
 
 import { siteConfig } from "@/lib/config"
-import { getAllPosts, Post } from "@/lib/posts"
+import {
+  formatPostDate,
+  getAllPosts,
+  getPostTags,
+  type Post,
+} from "@/lib/posts"
 import { cn } from "@/lib/utils"
 import { ArrowIcon } from "@/components/icons"
 import { TagIcon } from "@/components/tag-icon"
@@ -39,16 +43,8 @@ type TagCount = {
 const VISIBLE_TOPIC_LIMIT = 6
 const TOPIC_OVERFLOW_THRESHOLD = 8
 
-function formatPostDate(date: string) {
-  return format(parseISO(date), "MMM d, yyyy")
-}
-
-function getPostTags(tag: Post["tag"]) {
-  return Array.isArray(tag) ? tag : [tag]
-}
-
 function getSearchParamValue(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value[0] : value ?? ""
+  return Array.isArray(value) ? value[0] : (value ?? "")
 }
 
 function normalizeFilter(value: string) {
@@ -199,7 +195,8 @@ function BlogFilters({
               <span className={countClass}>{postsCount}</span>
             </Link>
             {visibleTags.map(({ tag, count }) => {
-              const isActive = normalizeFilter(activeTag) === normalizeFilter(tag)
+              const isActive =
+                normalizeFilter(activeTag) === normalizeFilter(tag)
               const href = isActive
                 ? createBlogHref({ query })
                 : createBlogHref({ tag, query })
@@ -261,7 +258,9 @@ function BlogFilters({
         </div>
 
         <form action="/blog" className="lg:pt-7">
-          {activeTag ? <input type="hidden" name="tag" value={activeTag} /> : null}
+          {activeTag ? (
+            <input type="hidden" name="tag" value={activeTag} />
+          ) : null}
           <label htmlFor="blog-search" className="sr-only">
             Search articles
           </label>
@@ -411,15 +410,27 @@ function PostCard({ post, className }: { post: Post; className?: string }) {
   )
 }
 
-function EmptyState({ activeTag }: { activeTag: string }) {
+function EmptyState({
+  activeTag,
+  query,
+}: {
+  activeTag: string
+  query: string
+}) {
+  const filterLabel =
+    activeTag && query
+      ? "filters"
+      : activeTag
+        ? "topic filter"
+        : "search filter"
+
   return (
     <div className="rounded-lg border border-dashed border-gray-300/80 bg-white/45 p-8 text-center dark:border-gray-700 dark:bg-gray-800/25">
       <h2 className="font-heading text-2xl text-gray-900 dark:text-gray-50">
         No articles found
       </h2>
       <p className="mx-auto mt-3 max-w-[48ch] text-base leading-relaxed text-gray-600 dark:text-gray-300">
-        Try a broader search or clear the {activeTag ? "topic" : "search"} filter
-        to browse everything.
+        Try a broader search or clear the {filterLabel} to browse everything.
       </p>
       <Link
         href="/blog"
@@ -466,7 +477,9 @@ export default async function Blog(props: {
       />
 
       <div className="mb-5 text-sm text-gray-500 dark:text-gray-400">
-        <p>{getResultsLabel({ count: filteredPosts.length, activeTag, query })}</p>
+        <p>
+          {getResultsLabel({ count: filteredPosts.length, activeTag, query })}
+        </p>
       </div>
 
       {filteredPosts.length > 0 ? (
@@ -484,7 +497,7 @@ export default async function Blog(props: {
           </div>
         </div>
       ) : (
-        <EmptyState activeTag={activeTag} />
+        <EmptyState activeTag={activeTag} query={query} />
       )}
     </div>
   )

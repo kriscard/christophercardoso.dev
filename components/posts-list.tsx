@@ -1,7 +1,7 @@
 import { ViewTransition } from "react"
 import Link from "next/link"
 
-import { getAllPosts, Post } from "@/lib/posts"
+import { formatPostDate, getAllPosts, type Post } from "@/lib/posts"
 import { cn } from "@/lib/utils"
 
 import { ArrowIcon } from "./icons"
@@ -23,16 +23,6 @@ interface BlogCardProps {
   slug: Post["_meta"]["path"]
   url: Post["_meta"]["path"]
   isFeatured?: boolean
-}
-
-const dateFormatter = new Intl.DateTimeFormat("en", {
-  month: "short",
-  day: "numeric",
-  year: "numeric",
-})
-
-function formatPostDate(date: string) {
-  return dateFormatter.format(new Date(`${date}T00:00:00`))
 }
 
 function BlogCard({

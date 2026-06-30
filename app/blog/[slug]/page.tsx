@@ -2,10 +2,14 @@ import { ViewTransition } from "react"
 import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
-import { format, parseISO } from "date-fns"
 
 import { siteConfig } from "@/lib/config"
-import { getAllPosts, getPostBySlug, Post } from "@/lib/posts"
+import {
+  formatPostDate,
+  getAllPosts,
+  getPostBySlug,
+  getPostTags,
+} from "@/lib/posts"
 import { calculateReadingTime } from "@/lib/reading-time"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
@@ -60,10 +64,6 @@ export const generateMetadata = async (props: {
   }
 }
 
-function getPostTags(tag: Post["tag"]) {
-  return Array.isArray(tag) ? tag : [tag]
-}
-
 const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params
   const post = getPostBySlug(params.slug)
@@ -106,7 +106,7 @@ const PostLayout = async (props: { params: Promise<{ slug: string }> }) => {
         </p>
         <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
           <time dateTime={post.date}>
-            Published {format(parseISO(post.date), "MMM d, yyyy")}
+            Published {formatPostDate(post.date)}
           </time>
           <span>{readingTime} min read</span>
         </div>
