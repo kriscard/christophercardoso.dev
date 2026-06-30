@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Inter as FontMono } from "next/font/google"
 import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
@@ -9,8 +10,6 @@ import { Header } from "@/components/header"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import "@/styles/global.css"
-
-import { Metadata } from "next/types"
 
 const fontHeading = localFont({
   src: "../assets/fonts/CalSans-SemiBold.woff2",
