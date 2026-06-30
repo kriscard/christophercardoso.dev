@@ -55,7 +55,7 @@ const readAllPosts = cache((): Post[] => {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 
-export const getAllPosts = cache((includeDrafts = false): Post[] => {
+export const getAllPosts = cache((includeDrafts: boolean): Post[] => {
   const posts = readAllPosts()
   return includeDrafts ? posts : posts.filter((post) => !isDraft(post))
 })

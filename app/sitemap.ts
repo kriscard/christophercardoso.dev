@@ -1,7 +1,13 @@
 import { siteConfig } from "@/lib/config"
 import { getAllPosts } from "@/lib/posts"
 
-const staticRoutes = ["", "/about", "/blog", "/projects", "/uses"]
+const staticRoutes = ["/", "/about", "/blog", "/projects", "/uses"]
+
+function getSiteUrl(route: string) {
+  if (route === "/") return siteConfig.url
+
+  return new URL(route, siteConfig.url).toString()
+}
 
 export default async function sitemap() {
   const blogs = getAllPosts(false).map((post) => ({
@@ -10,7 +16,7 @@ export default async function sitemap() {
   }))
 
   const routes = staticRoutes.map((route) => ({
-    url: new URL(route, siteConfig.url).toString(),
+    url: getSiteUrl(route),
   }))
 
   return [...routes, ...blogs]
