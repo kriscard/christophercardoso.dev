@@ -3,6 +3,9 @@ import createMDX from "@next/mdx"
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    viewTransition: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -21,7 +24,7 @@ const nextConfig = {
             value: "christophercardoso.dev",
           },
         ],
-        destination: "https://christophercardoso.dev/:path*",
+        destination: "https://www.christophercardoso.dev/:path*",
         permanent: true,
         statusCode: 301,
       },

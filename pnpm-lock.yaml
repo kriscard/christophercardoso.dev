@@ -58,8 +58,8 @@ importers:
         specifier: 19.2.3
         version: 19.2.3(react@19.2.3)
       react-tweet:
-        specifier: ^3.3.0
-        version: 3.3.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        specifier: ^3.3.1
+        version: 3.3.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       rehype-highlight:
         specifier: ^7.0.2
         version: 7.0.2
@@ -2773,8 +2773,8 @@ packages:
       '@types/react':
         optional: true
 
-  react-tweet@3.3.0:
-    resolution: {integrity: sha512-gSIG2169ZK7UH6rBzuU+j1xnQbH3IlOTLEkuGrRiJJTMgETik+h+26yHyyVKrLkzwrOaYPk4K3OtEKycqKgNLw==}
+  react-tweet@3.3.1:
+    resolution: {integrity: sha512-0Gj1YgBTe1K85NBMoWBlUc17Rdc67gIJLlacrVgj+3jWIoXpFfxPdZ1U5OnWkkF9zxhphqs2pY1i//JBfP3Qog==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
       react-dom: ^18.0.0 || ^19.0.0
@@ -6310,7 +6310,7 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.7
 
-  react-tweet@3.3.0(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  react-tweet@3.3.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@swc/helpers': 0.5.18
       clsx: 2.1.1

@@ -14,7 +14,7 @@ const headerNavLinks = [
 
 export function Header() {
   return (
-    <nav className="mx-auto w-full max-w-4xl pt-5">
+    <nav className="view-transition-persistent-nav mx-auto w-full max-w-4xl pt-5">
       <div className="flex w-full items-center justify-between leading-5">
         <div>
           <Link href="/" aria-label="Christopher Cardoso">

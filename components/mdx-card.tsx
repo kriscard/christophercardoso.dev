@@ -2,23 +2,18 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  href?: string
-  disabled?: boolean
+interface MdxCardProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+interface MdxLinkCardProps extends Omit<MdxCardProps, "children"> {
+  href: string
+  children: React.ReactNode
 }
 
-export function MdxCard({
-  href,
-  className,
-  children,
-  disabled,
-  ...props
-}: CardProps) {
+function MdxCardFrame({ className, children, ...props }: MdxCardProps) {
   return (
     <div
       className={cn(
         "group relative rounded-lg border p-6 shadow-md transition-shadow hover:shadow-lg",
-        disabled && "cursor-not-allowed opacity-60",
         className
       )}
       {...props}
@@ -28,11 +23,45 @@ export function MdxCard({
           {children}
         </div>
       </div>
-      {href && (
-        <Link href={disabled ? "#" : href} className="absolute inset-0">
-          <span className="sr-only">View</span>
-        </Link>
-      )}
     </div>
+  )
+}
+
+export function MdxCard({ className, children, ...props }: MdxCardProps) {
+  return (
+    <MdxCardFrame className={className} {...props}>
+      {children}
+    </MdxCardFrame>
+  )
+}
+
+export function MdxLinkCard({
+  href,
+  className,
+  children,
+  ...props
+}: MdxLinkCardProps) {
+  return (
+    <Link href={href} className="block">
+      <MdxCardFrame className={className} {...props}>
+        {children}
+      </MdxCardFrame>
+    </Link>
+  )
+}
+
+export function MdxDisabledCard({
+  className,
+  children,
+  ...props
+}: MdxCardProps) {
+  return (
+    <MdxCardFrame
+      className={cn("cursor-not-allowed opacity-60 hover:shadow-md", className)}
+      aria-disabled="true"
+      {...props}
+    >
+      {children}
+    </MdxCardFrame>
   )
 }

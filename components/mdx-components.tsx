@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 import { Banner } from "@/components/banner"
 import { Callout } from "@/components/callout"
 import { Code } from "@/components/code"
-import { MdxCard } from "@/components/mdx-card"
+import { MdxCard, MdxDisabledCard, MdxLinkCard } from "@/components/mdx-card"
 import { MdxImage } from "@/components/mdx-image"
 import { PluginCard } from "@/components/plugin-card"
 import { SeriesNav } from "@/components/series-nav"
@@ -242,7 +242,9 @@ const components = {
   Callout,
   Code,
   MdxCard,
+  MdxDisabledCard,
   MdxImage,
+  MdxLinkCard,
   PluginCard,
   SeriesNav,
   StaticTweet,
