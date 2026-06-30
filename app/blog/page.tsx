@@ -51,7 +51,7 @@ function PostCard(post: Post) {
 }
 
 export default function Blog() {
-  const posts = getAllPosts()
+  const posts = getAllPosts(false)
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-12 md:py-20">

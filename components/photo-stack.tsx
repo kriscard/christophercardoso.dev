@@ -15,23 +15,23 @@ interface PhotoStackProps {
 const positions = [
   {
     collapsed: "translate-x-[calc(-50%+0px)] translate-y-[calc(-50%+0px)] -rotate-6 z-[5]",
-    expanded: "group-hover/stack:translate-x-[calc(-50%-360px)] group-hover/stack:translate-y-[calc(-50%+20px)] group-hover/stack:-rotate-6 group-hover/stack:z-10",
+    expanded: "group-hover/stack:translate-x-[calc(-50%-360px)] group-hover/stack:translate-y-[calc(-50%+20px)] group-hover/stack:-rotate-6 group-hover/stack:z-[5]",
   },
   {
     collapsed: "translate-x-[calc(-50%+6px)] translate-y-[calc(-50%+4px)] rotate-3 z-[4]",
-    expanded: "group-hover/stack:translate-x-[calc(-50%-180px)] group-hover/stack:translate-y-[calc(-50%+6px)] group-hover/stack:-rotate-2 group-hover/stack:z-10",
+    expanded: "group-hover/stack:translate-x-[calc(-50%-180px)] group-hover/stack:translate-y-[calc(-50%+6px)] group-hover/stack:-rotate-2 group-hover/stack:z-[4]",
   },
   {
     collapsed: "translate-x-[calc(-50%-8px)] translate-y-[calc(-50%+6px)] -rotate-2 z-[3]",
-    expanded: "group-hover/stack:translate-x-[calc(-50%+0px)] group-hover/stack:translate-y-[calc(-50%-4px)] group-hover/stack:rotate-0 group-hover/stack:z-10",
+    expanded: "group-hover/stack:translate-x-[calc(-50%+0px)] group-hover/stack:translate-y-[calc(-50%-4px)] group-hover/stack:rotate-0 group-hover/stack:z-[3]",
   },
   {
     collapsed: "translate-x-[calc(-50%+10px)] translate-y-[calc(-50%-4px)] rotate-[5deg] z-[2]",
-    expanded: "group-hover/stack:translate-x-[calc(-50%+180px)] group-hover/stack:translate-y-[calc(-50%+8px)] group-hover/stack:rotate-2 group-hover/stack:z-10",
+    expanded: "group-hover/stack:translate-x-[calc(-50%+180px)] group-hover/stack:translate-y-[calc(-50%+8px)] group-hover/stack:rotate-2 group-hover/stack:z-[2]",
   },
   {
     collapsed: "translate-x-[calc(-50%-6px)] translate-y-[calc(-50%+10px)] -rotate-[5deg] z-[1]",
-    expanded: "group-hover/stack:translate-x-[calc(-50%+360px)] group-hover/stack:translate-y-[calc(-50%+22px)] group-hover/stack:rotate-6 group-hover/stack:z-10",
+    expanded: "group-hover/stack:translate-x-[calc(-50%+360px)] group-hover/stack:translate-y-[calc(-50%+22px)] group-hover/stack:rotate-6 group-hover/stack:z-[1]",
   },
 ]
 
@@ -87,7 +87,7 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
                     "overflow-hidden rounded-xl",
                     "border-4 border-white dark:border-gray-800",
                     "shadow-[0_16px_32px_-12px_rgba(0,0,0,0.3)]",
-                    "transition-[transform,box-shadow] duration-500 ease-out",
+                    "transition-[transform,box-shadow] duration-500 ease-out motion-reduce:transition-none",
                     "group-hover/stack:shadow-[0_8px_20px_-8px_rgba(0,0,0,0.15)]",
                     position.collapsed,
                     position.expanded
@@ -104,13 +104,13 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
                     <div
                       className={cn(
                         "absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent",
-                        "opacity-0 transition-opacity duration-300 ease-out group-hover/card:opacity-100"
+                        "opacity-0 transition-opacity duration-300 ease-out group-hover/card:opacity-100 motion-reduce:transition-none"
                       )}
                     />
                     <p
                       className={cn(
                         "absolute inset-x-3 bottom-3 text-sm font-medium text-white",
-                        "translate-y-2 opacity-0 transition-all duration-300 ease-out",
+                        "translate-y-2 opacity-0 transition-all duration-300 ease-out motion-reduce:transition-none",
                         "group-hover/card:translate-y-0 group-hover/card:opacity-100"
                       )}
                     >
@@ -125,7 +125,7 @@ export function PhotoStack({ photos, className }: PhotoStackProps) {
           <p
             className={cn(
               "absolute bottom-0 left-1/2 -translate-x-1/2 text-sm",
-              "text-gray-500 transition-opacity duration-200 dark:text-gray-400",
+              "text-gray-500 transition-opacity duration-200 motion-reduce:transition-none dark:text-gray-400",
               "group-hover/stack:opacity-0"
             )}
           >

@@ -4,7 +4,7 @@ import { getAllPosts } from "@/lib/posts"
 const staticRoutes = ["", "/about", "/blog", "/projects", "/uses"]
 
 export default async function sitemap() {
-  const blogs = getAllPosts().map((post) => ({
+  const blogs = getAllPosts(false).map((post) => ({
     url: new URL(`/blog/${post._meta.path}`, siteConfig.url).toString(),
     lastModified: post.date,
   }))

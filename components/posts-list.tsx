@@ -54,7 +54,7 @@ function BlogCard({ tag, title, summary, slug, url }: BlogCardProps) {
 }
 
 export function PostsList() {
-  const recentPosts = getAllPosts().slice(0, 3)
+  const recentPosts = getAllPosts(false).slice(0, 3)
 
   return (
     <section>

@@ -26,6 +26,7 @@ const nextConfig = {
         ],
         destination: "https://www.christophercardoso.dev/:path*",
         permanent: true,
+        statusCode: 301,
       },
     ]
   },

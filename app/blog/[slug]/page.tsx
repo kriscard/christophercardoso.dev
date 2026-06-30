@@ -12,7 +12,7 @@ import MdxLayout from "@/components/mdx-layout"
 export const dynamicParams = false
 
 export const generateStaticParams = async () =>
-  getAllPosts().map((post) => ({ slug: post._meta.path }))
+  getAllPosts(false).map((post) => ({ slug: post._meta.path }))
 
 export const generateMetadata = async (props: {
   params: Promise<{ slug: string }>
