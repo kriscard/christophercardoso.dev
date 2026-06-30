@@ -25,6 +25,21 @@ function isDraft(post: Post): boolean {
   return tags.some((tag) => tag.toLowerCase() === "draft")
 }
 
+function parsePostDate(date: unknown, file: string) {
+  const parsedDate =
+    typeof date === "string"
+      ? new Date(date)
+      : date instanceof Date
+        ? date
+        : undefined
+
+  if (!parsedDate || Number.isNaN(parsedDate.getTime())) {
+    throw new Error(`Missing or invalid date frontmatter in ${file}`)
+  }
+
+  return parsedDate.toISOString().split("T")[0]
+}
+
 const readAllPosts = cache((): Post[] => {
   const files = fs.readdirSync(POSTS_PATH)
 
@@ -39,10 +54,7 @@ const readAllPosts = cache((): Post[] => {
       return {
         slug,
         title: data.title,
-        date:
-          typeof data.date === "string"
-            ? data.date
-            : data.date?.toISOString().split("T")[0] ?? "",
+        date: parsePostDate(data.date, file),
         tag: data.tag,
         summary: data.summary,
         content,
