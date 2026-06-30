@@ -12,7 +12,7 @@ export function VideoEmbed({
   className,
 }: VideoEmbedProps) {
   return (
-    <div className={cn("my-8 overflow-hidden rounded-xl", className)}>
+    <div className={cn("my-8 max-w-3xl overflow-hidden rounded-xl", className)}>
       <div className="relative aspect-video">
         <iframe
           src={src}

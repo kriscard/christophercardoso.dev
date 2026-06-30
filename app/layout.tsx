@@ -92,7 +92,7 @@ export default function RootLayout({
         fontMono.variable
       )}
     >
-      <body className="flex min-h-screen flex-col bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
+      <body className="flex min-h-dvh flex-col overflow-x-hidden bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -100,7 +100,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="mt-5 w-full max-w-4xl antialiased lg:mx-auto">
+          <main className="mx-auto mt-5 w-full max-w-4xl antialiased">
             {children}
             <Analytics />
           </main>

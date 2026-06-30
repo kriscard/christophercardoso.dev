@@ -3,6 +3,7 @@ import "server-only"
 import fs from "fs"
 import path from "path"
 import { cache } from "react"
+import { format, parseISO } from "date-fns"
 import matter from "gray-matter"
 
 export interface Post {
@@ -20,9 +21,16 @@ export interface Post {
 
 const POSTS_PATH = path.join(process.cwd(), "content")
 
+export function getPostTags(tag: Post["tag"]) {
+  return Array.isArray(tag) ? tag : [tag]
+}
+
+export function formatPostDate(date: string) {
+  return format(parseISO(date), "MMM d, yyyy")
+}
+
 function isDraft(post: Post): boolean {
-  const tags = Array.isArray(post.tag) ? post.tag : [post.tag]
-  return tags.some((tag) => tag.toLowerCase() === "draft")
+  return getPostTags(post.tag).some((tag) => tag.toLowerCase() === "draft")
 }
 
 function parsePostDate(date: unknown, file: string) {

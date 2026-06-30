@@ -5,7 +5,7 @@ tag: [AI, Draft]
 summary: Claude Code is useful out of the box. With custom hooks, MCP servers, and tmux integration, it becomes a true development partner.
 ---
 
-[Claude Code](https://docs.anthropic.com/en/docs/claude-code) is impressive out of the box. But after a few weeks of use, I found myself wanting more. Not more features—more integration. I wanted Claude to understand my preferences, send me notifications when it needed attention, and live alongside my editor in tmux.
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code) is impressive out of the box. But after a few weeks of use, I found myself wanting more. Not more features - more integration. I wanted Claude to understand my preferences, send me notifications when it needed attention, and live alongside my editor in tmux.
 
 The problem? I kept context-switching. Check Claude. Back to code. Check Claude again. "Is it done yet?" Every few minutes, breaking my flow.
 
@@ -26,7 +26,7 @@ In my tmux config, I have a single keybind that opens Claude in a split:
 bind -N "Open Claude Code" A split-window -h 'claude'
 ```
 
-Now `Ctrl-a + A` opens Claude right next to whatever I'm working on. Neovim on the left, Claude on the right. I can ask questions, have it write code, and paste results—all without leaving the terminal.
+Now `Ctrl-a + A` opens Claude right next to whatever I'm working on. Neovim on the left, Claude on the right. I can ask questions, have it write code, and paste results - all without leaving the terminal.
 
 This is the foundation. Everything else builds on having Claude always one keystroke away.
 
@@ -34,7 +34,7 @@ This is the foundation. Everything else builds on having Claude always one keyst
 
 Every project can have a `CLAUDE.md` file that Claude reads before responding. Think of it as onboarding documentation for your AI teammate.
 
-Mine starts with safety rules—things Claude should never do, regardless of what I ask:
+Mine starts with safety rules - things Claude should never do, regardless of what I ask:
 
 ```markdown
 # Safety Rules (HIGHEST PRIORITY)
@@ -90,7 +90,7 @@ MCP (Model Context Protocol) servers let Claude interact with external services.
 
 **playwright** lets Claude run browser automation. Useful for testing, scraping, or demonstrating how something works.
 
-The power isn't in any single server—it's in how they combine. Claude can search my notes, fetch current documentation, and write code that uses patterns I've documented before.
+The power isn't in any single server - it's in how they combine. Claude can search my notes, fetch current documentation, and write code that uses patterns I've documented before.
 
 ## Custom Hooks: Automation That Compounds
 
@@ -100,7 +100,7 @@ Hooks let you run scripts when Claude does certain things. Here's where the work
 
 Remember the context-switching problem I mentioned? This is what solved it.
 
-I'd leave Claude working on something while I grabbed coffee. Twenty minutes later, I'd return to find Claude waiting for my input—time wasted on both sides.
+I'd leave Claude working on something while I grabbed coffee. Twenty minutes later, I'd return to find Claude waiting for my input - time wasted on both sides.
 
 The solution: a Python script that sends push notifications via [ntfy.sh](https://ntfy.sh):
 
@@ -125,7 +125,7 @@ def send_notification(title, message, priority=3, tags=None):
     urllib.request.urlopen(req, timeout=5)
 ```
 
-The hook only fires when my terminal isn't focused—so I don't get notifications while I'm actively watching. When Claude finishes or needs input, my phone buzzes.
+The hook only fires when my terminal isn't focused - so I don't get notifications while I'm actively watching. When Claude finishes or needs input, my phone buzzes.
 
 ### Automatic TypeScript Linting
 
@@ -174,7 +174,7 @@ A simple "working" or "done" indicator in my status bar. Combined with the `Ctrl
 
 ## Custom Commands
 
-Claude Code supports slash commands—shortcuts for common tasks. I've built a few:
+Claude Code supports slash commands - shortcuts for common tasks. I've built a few:
 
 **`/commit`** analyzes staged changes and creates a conventional commit:
 
@@ -206,7 +206,7 @@ Claude Code supports slash commands—shortcuts for common tasks. I've built a f
 5. Generate a comprehensive overview
 ```
 
-These commands aren't magic—they're just prompts I found myself typing repeatedly. Turning them into commands saves time and ensures consistency.
+These commands aren't magic - they're just prompts I found myself typing repeatedly. Turning them into commands saves time and ensures consistency.
 
 ## The Settings That Matter
 
@@ -225,7 +225,7 @@ My `settings.json` ties everything together:
 }
 ```
 
-`alwaysThinkingEnabled` keeps Claude in extended thinking mode—it takes a bit longer but produces more thoughtful responses. Worth it for complex tasks.
+`alwaysThinkingEnabled` keeps Claude in extended thinking mode - it takes a bit longer but produces more thoughtful responses. Worth it for complex tasks.
 
 ## The Full Picture
 
