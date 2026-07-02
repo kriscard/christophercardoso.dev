@@ -1,9 +1,10 @@
+import type { Metadata } from "next"
 import { Inter as FontMono } from "next/font/google"
 import localFont from "next/font/local"
+import { Analytics } from "@vercel/analytics/next"
 
 import { siteConfig } from "@/lib/config"
 import { cn } from "@/lib/utils"
-import { Analytics } from "@/components/analytics"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -19,7 +20,7 @@ const fontMono = FontMono({
   variable: "--font-mono",
 })
 
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: "Christopher Cardoso",
