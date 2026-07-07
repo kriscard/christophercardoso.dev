@@ -10,6 +10,7 @@ import { ThemeSwitch } from "./theme-switch"
 const headerNavLinks: { href: Route; title: string }[] = [
   { href: "/about", title: "About" },
   { href: "/blog", title: "Blog" },
+  { href: "/projects", title: "Projects" },
   { href: "/uses", title: "Uses" },
 ]
 
