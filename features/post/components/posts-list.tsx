@@ -1,11 +1,15 @@
 import { ViewTransition } from "react"
+import type { Route } from "next"
 import Link from "next/link"
 
-import { formatPostDate, getAllPosts, type Post } from "@/lib/posts"
 import { cn } from "@/lib/utils"
-
-import { ArrowIcon } from "./icons"
-import { TagIcon } from "./tag-icon"
+import {
+  formatPostDate,
+  getAllPosts,
+  type Post,
+} from "@/features/post/post-queries"
+import { ArrowIcon } from "@/components/icons"
+import { TagIcon } from "@/components/tag-icon"
 import {
   TeaserCard,
   TeaserCardAction,
@@ -13,7 +17,7 @@ import {
   TeaserCardDescription,
   TeaserCardMeta,
   TeaserCardTitle,
-} from "./teaser-card"
+} from "@/components/teaser-card"
 
 interface BlogCardProps {
   title: Post["title"]
@@ -21,7 +25,7 @@ interface BlogCardProps {
   summary: Post["summary"]
   date: Post["date"]
   slug: Post["_meta"]["path"]
-  url: Post["_meta"]["path"]
+  url: Route
   isFeatured?: boolean
 }
 
@@ -96,7 +100,7 @@ export function PostsList() {
               summary={summary}
               date={date}
               slug={_meta.path}
-              url={`/blog/${_meta.path}`}
+              url={`/blog/${_meta.path}` as Route}
               isFeatured={index === 0}
             />
           )

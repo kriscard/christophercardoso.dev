@@ -41,7 +41,7 @@ const hardware = [
   },
 ]
 
-const software = [
+const software: LinkedCardProps[] = [
   {
     name: "Terminal",
     description: "Ghostty config tuned around Catppuccin and fast startup.",
@@ -64,7 +64,8 @@ const software = [
   },
   {
     name: "Git",
-    description: "LazyGit for reviewing commits, staging patches, and rebasing.",
+    description:
+      "LazyGit for reviewing commits, staging patches, and rebasing.",
     href: "https://github.com/kriscard/dotfiles/blob/main/home/.config/lazygit/config.yml",
   },
   {
@@ -74,7 +75,7 @@ const software = [
   },
 ]
 
-const keyboardCollection = [
+const keyboardCollection: Required<LinkedCardProps>[] = [
   {
     name: "Cloud Nine",
     description: "MX Blacks, GMK Classic Beige",
@@ -125,7 +126,7 @@ const keyboardCollection = [
 interface LinkedCardProps {
   name: string
   description: string
-  href?: string
+  href?: `https://${string}`
 }
 
 function SectionHeader({
@@ -184,10 +185,10 @@ function InfoCard({ name, description, href }: LinkedCardProps) {
   )
 }
 
-function KeyboardCard({ name, description, href }: LinkedCardProps) {
+function KeyboardCard({ name, description, href }: Required<LinkedCardProps>) {
   return (
     <Link
-      href={href ?? "#"}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark block rounded-lg border border-gray-300/70 bg-white/70 p-4 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-gray-700/60 dark:bg-gray-800/45 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70"

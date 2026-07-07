@@ -1,3 +1,4 @@
+import type { Route } from "next"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -5,7 +6,7 @@ import { cn } from "@/lib/utils"
 interface MdxCardProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 interface MdxLinkCardProps extends Omit<MdxCardProps, "children"> {
-  href: string
+  href: Route
   children: React.ReactNode
 }
 

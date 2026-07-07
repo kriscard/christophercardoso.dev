@@ -1,12 +1,12 @@
+import { ComponentType } from "react"
 import {
-  SiNextdotjs,
-  SiTailwindcss,
-  SiReact,
-  SiTypescript,
   SiGraphql,
+  SiNextdotjs,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
 } from "@icons-pack/react-simple-icons"
 import { Terminal } from "lucide-react"
-import { ComponentType } from "react"
 
 type IconComponent = ComponentType<{ size?: number; className?: string }>
 

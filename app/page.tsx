@@ -1,6 +1,4 @@
-import { projects } from "@/data/projects"
-
-import { PostsList } from "@/components/posts-list"
+import { PostsList } from "@/features/post/components/posts-list"
 import { PresentationBanner } from "@/components/presentation-banner"
 import { ProjectsList } from "@/components/projects-list"
 
@@ -10,7 +8,7 @@ export default function HomePage() {
       <PresentationBanner />
       <div className="space-y-14 pb-12 pt-2 md:space-y-16 md:pb-16">
         <PostsList />
-        <ProjectsList projects={projects} />
+        <ProjectsList />
       </div>
     </section>
   )
