@@ -1,3 +1,4 @@
+import type { Route } from "next"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -5,11 +6,16 @@ import { cn } from "@/lib/utils"
 interface SeriesNavProps {
   series: string
   current: number
-  parts: { title: string; href: string }[]
+  parts: { title: string; href: Route }[]
   className?: string
 }
 
-export function SeriesNav({ series, current, parts, className }: SeriesNavProps) {
+export function SeriesNav({
+  series,
+  current,
+  parts,
+  className,
+}: SeriesNavProps) {
   return (
     <nav
       className={cn(

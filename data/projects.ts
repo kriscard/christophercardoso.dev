@@ -1,7 +1,7 @@
 export interface Project {
   title: string
   description: string
-  href: string
+  href: `https://${string}`
 }
 
 export const projects: Project[] = [

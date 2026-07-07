@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Project } from "@/data/projects"
+import { projects, type Project } from "@/data/projects"
 
 import { ArrowIcon } from "./icons"
 import {
@@ -11,7 +11,7 @@ import {
 } from "./teaser-card"
 
 interface ProjectListProps {
-  projects: Project[]
+  hideHeading?: boolean
 }
 
 function ProjectCard({ title, description, href }: Project) {
@@ -39,12 +39,14 @@ function ProjectCard({ title, description, href }: Project) {
   )
 }
 
-export function ProjectsList({ projects }: ProjectListProps) {
+export function ProjectsList({ hideHeading }: ProjectListProps) {
   if (projects.length <= 0) return null
 
   return (
     <section id="projects">
-      <h2 className="mb-6 font-heading text-2xl md:text-3xl">Projects</h2>
+      {hideHeading ? null : (
+        <h2 className="mb-6 font-heading text-2xl md:text-3xl">Projects</h2>
+      )}
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {projects.map((project) => (
           <ProjectCard key={project.href} {...project} />

@@ -41,7 +41,7 @@ const hardware = [
   },
 ]
 
-const software = [
+const software: LinkedCardProps[] = [
   {
     name: "Terminal",
     description: "Ghostty config tuned around Catppuccin and fast startup.",
@@ -64,7 +64,8 @@ const software = [
   },
   {
     name: "Git",
-    description: "LazyGit for reviewing commits, staging patches, and rebasing.",
+    description:
+      "LazyGit for reviewing commits, staging patches, and rebasing.",
     href: "https://github.com/kriscard/dotfiles/blob/main/home/.config/lazygit/config.yml",
   },
   {
@@ -74,7 +75,7 @@ const software = [
   },
 ]
 
-const keyboardCollection = [
+const keyboardCollection: LinkedCardProps[] = [
   {
     name: "Cloud Nine",
     description: "MX Blacks, GMK Classic Beige",
@@ -125,7 +126,7 @@ const keyboardCollection = [
 interface LinkedCardProps {
   name: string
   description: string
-  href?: string
+  href?: `https://${string}`
 }
 
 function SectionHeader({

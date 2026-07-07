@@ -1,3 +1,4 @@
+import type { Route } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -6,7 +7,7 @@ import { name } from "@/lib/info"
 import logo from "../public/logo.png"
 import { ThemeSwitch } from "./theme-switch"
 
-const headerNavLinks = [
+const headerNavLinks: { href: Route; title: string }[] = [
   { href: "/about", title: "About" },
   { href: "/blog", title: "Blog" },
   { href: "/uses", title: "Uses" },

@@ -1,5 +1,5 @@
 import { siteConfig } from "@/lib/config"
-import { getAllPosts } from "@/lib/posts"
+import { getAllPosts } from "@/features/post/post-queries"
 
 const staticRoutes = ["/", "/about", "/blog", "/projects", "/uses"]
 
