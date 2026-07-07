@@ -179,7 +179,7 @@ const components = {
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="max-w-3xl overflow-x-auto rounded-lg border border-gray-200 bg-white dark:border-[#494d64] dark:bg-[#24273a]">
+    <div className="max-w-3xl overflow-x-auto rounded-lg border border-gray-200 bg-white dark:border-[#494d64] dark:bg-dark">
       <table className={cn("my-0 w-full text-sm", className)} {...props} />
     </div>
   ),

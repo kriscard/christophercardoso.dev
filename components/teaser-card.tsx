@@ -36,7 +36,7 @@ export function TeaserCardTitle({
   return (
     <Component
       className={cn(
-        "text-wrap font-heading leading-tight text-gray-900 dark:text-gray-50",
+        "text-balance font-heading leading-tight tracking-tight text-gray-900 dark:text-gray-50",
         className
       )}
     >

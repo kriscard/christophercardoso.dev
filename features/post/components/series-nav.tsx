@@ -36,7 +36,7 @@ export function SeriesNav({
                 className={cn(
                   "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-medium",
                   isCurrent
-                    ? "bg-purple-600 text-white dark:bg-[#8aadf4] dark:text-[#24273a]"
+                    ? "bg-purple-600 text-white dark:bg-[#8aadf4] dark:text-dark"
                     : "bg-gray-100 text-gray-600 dark:bg-[#494d64] dark:text-[#a5adcb]"
                 )}
               >

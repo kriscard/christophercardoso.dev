@@ -41,7 +41,7 @@ function BlogCard({
   return (
     <Link
       href={url}
-      className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2"
+      className="group/card block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
       aria-label={`Read ${title}`}
     >
       <TeaserCard

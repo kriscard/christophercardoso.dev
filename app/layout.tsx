@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import { Inter as FontMono } from "next/font/google"
+import { JetBrains_Mono as FontMono, Inter as FontSans } from "next/font/google"
 import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 
@@ -14,6 +14,10 @@ import "@/styles/global.css"
 const fontHeading = localFont({
   src: "../assets/fonts/CalSans-SemiBold.woff2",
   variable: "--font-heading",
+})
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
 })
 const fontMono = FontMono({
   subsets: ["latin"],
@@ -88,8 +92,9 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={cn(
-        "dark h-full scroll-smooth",
+        "h-full scroll-smooth",
         fontHeading.variable,
+        fontSans.variable,
         fontMono.variable
       )}
     >

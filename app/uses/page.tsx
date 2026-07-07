@@ -191,7 +191,7 @@ function KeyboardCard({ name, description, href }: Required<LinkedCardProps>) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark block rounded-lg border border-gray-300/70 bg-white/70 p-4 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-gray-700/60 dark:bg-gray-800/45 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70"
+      className="group/card block rounded-lg border border-gray-300/70 bg-white/70 p-4 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:border-gray-700/60 dark:bg-gray-800/45 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70 dark:focus-visible:ring-offset-dark"
       aria-label={`Open ${name} keyboard post`}
     >
       <h3 className="font-heading text-lg text-gray-900 dark:text-gray-50">

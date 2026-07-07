@@ -73,10 +73,10 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
     const tags = getPostTags(post.tag)
 
     return (
-      <article className="py-8 md:py-16">
+      <article className="py-10 md:py-16">
         <Link
           href="/blog"
-          className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:text-gray-400 dark:hover:text-purple-300 md:mb-10"
+          className="mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:mb-10"
         >
           Back to articles
         </Link>
@@ -97,7 +97,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
             share="text-morph"
             default="none"
           >
-            <h1 className="text-wrap font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-6xl">
+            <h1 className="text-balance font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-6xl">
               {post.title}
             </h1>
           </ViewTransition>

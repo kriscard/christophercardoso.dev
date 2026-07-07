@@ -268,7 +268,7 @@ function BlogFilters({
           {hasActiveFilters ? (
             <Link
               href="/blog"
-              className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark mt-3 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-500 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:text-gray-400 dark:hover:text-purple-300"
+              className="mt-3 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-500 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
             >
               Clear filters
             </Link>
@@ -288,7 +288,7 @@ function FeaturedPostCard({ post }: { post: Post }) {
       <Link
         href={`/blog/${post._meta.path}`}
         className={cn(
-          "group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark grid overflow-hidden rounded-lg border border-purple-400/70 bg-purple-50/40 shadow-lg shadow-purple-200/20 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-purple-500/60 dark:bg-purple-500/5 dark:shadow-purple-500/10 dark:hover:bg-purple-500/10",
+          "group/card grid overflow-hidden rounded-lg border border-purple-400/70 bg-purple-50/40 shadow-lg shadow-purple-200/20 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:border-purple-500/60 dark:bg-purple-500/5 dark:shadow-purple-500/10 dark:hover:bg-purple-500/10 dark:focus-visible:ring-offset-dark",
           image && "md:grid-cols-[1.05fr_0.95fr]"
         )}
         aria-label={`Read ${post.title}`}
@@ -307,7 +307,7 @@ function FeaturedPostCard({ post }: { post: Post }) {
             share="text-morph"
             default="none"
           >
-            <h2 className="max-w-xl text-wrap font-heading text-3xl leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-4xl">
+            <h2 className="max-w-xl text-balance font-heading text-3xl leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-4xl">
               {post.title}
             </h2>
           </ViewTransition>
@@ -353,7 +353,7 @@ function PostCard({ post, className }: { post: Post; className?: string }) {
     <article className={className}>
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark flex h-full flex-col rounded-lg border border-gray-300/70 bg-white/70 p-5 shadow-sm transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-gray-700/60 dark:bg-gray-800/45 dark:shadow-lg dark:shadow-black/20 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70 dark:hover:shadow-xl dark:hover:shadow-purple-500/10 sm:p-6 md:min-h-64"
+        className="group/card flex h-full flex-col rounded-lg border border-gray-300/70 bg-white/70 p-5 shadow-sm transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:border-gray-700/60 dark:bg-gray-800/45 dark:shadow-lg dark:shadow-black/20 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70 dark:hover:shadow-xl dark:hover:shadow-purple-500/10 dark:focus-visible:ring-offset-dark sm:p-6 md:min-h-64"
         aria-label={`Read ${post.title}`}
       >
         <div className="flex items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
@@ -369,7 +369,7 @@ function PostCard({ post, className }: { post: Post; className?: string }) {
           share="text-morph"
           default="none"
         >
-          <h2 className="mt-5 text-wrap font-heading text-2xl leading-tight text-gray-900 dark:text-gray-50">
+          <h2 className="mt-5 text-balance font-heading text-2xl leading-tight tracking-tight text-gray-900 dark:text-gray-50">
             {post.title}
           </h2>
         </ViewTransition>
@@ -419,7 +419,7 @@ function EmptyState({
       </p>
       <Link
         href="/blog"
-        className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark mt-5 inline-flex min-h-touch items-center rounded-lg border border-purple-500/50 px-4 py-2 text-sm text-purple-700 transition-colors hover:bg-purple-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:text-purple-300 dark:hover:bg-purple-500/10"
+        className="mt-5 inline-flex min-h-touch items-center rounded-lg border border-purple-500/50 px-4 py-2 text-sm text-purple-700 transition-colors hover:bg-purple-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:bg-purple-500/10 dark:focus-visible:ring-offset-dark"
       >
         View all articles
       </Link>
