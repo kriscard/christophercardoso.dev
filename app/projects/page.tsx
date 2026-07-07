@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/config"
+import { ProjectsList } from "@/components/projects-list"
 
 export const metadata = {
   title: "Projects",
@@ -10,9 +11,16 @@ export const metadata = {
 
 export default function Projects() {
   return (
-    <div>
-      <h1 className="w3 text-3xl font-bold underline md:text-4xl">Projects</h1>
-      <br />
+    <div className="py-10 md:py-16">
+      <header className="mb-8 max-w-3xl md:mb-10">
+        <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight md:text-6xl">
+          Projects
+        </h1>
+        <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+          Things I build outside of work, mostly in public.
+        </p>
+      </header>
+      <ProjectsList hideHeading />
     </div>
   )
 }
