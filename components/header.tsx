@@ -1,18 +1,11 @@
-import type { Route } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
 import { name } from "@/lib/info"
 
 import logo from "../public/logo.png"
+import { NavLinks } from "./nav-links"
 import { ThemeSwitch } from "./theme-switch"
-
-const headerNavLinks: { href: Route; title: string }[] = [
-  { href: "/about", title: "About" },
-  { href: "/blog", title: "Blog" },
-  { href: "/projects", title: "Projects" },
-  { href: "/uses", title: "Uses" },
-]
 
 export function Header() {
   return (
@@ -22,7 +15,7 @@ export function Header() {
           <Link
             href="/"
             aria-label="Christopher Cardoso"
-            className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2"
+            className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
           >
             <div className="flex items-center">
               <div className="mr-3">
@@ -40,15 +33,7 @@ export function Header() {
           </Link>
         </div>
         <div className="flex min-w-0 items-center gap-1 sm:gap-2 md:gap-0">
-          {headerNavLinks.map(({ title, href }) => (
-            <Link
-              key={title}
-              href={href}
-              className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark flex min-h-touch items-center rounded-lg px-2 text-lg transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:hover:text-purple-300 sm:px-3 md:px-4 lg:text-lg"
-            >
-              {title}
-            </Link>
-          ))}
+          <NavLinks />
           <div className="p-1 sm:p-4">
             <ThemeSwitch />
           </div>
