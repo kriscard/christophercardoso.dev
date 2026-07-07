@@ -22,24 +22,22 @@ export async function GET(request: NextRequest) {
   const [fontHeading, fontBody] = await Promise.all([calSansBold, interRegular])
 
   return new ImageResponse(
-    (
+    <div
+      tw="flex h-full w-full"
+      style={{
+        backgroundImage: `url(${backgroundImageUrl})`,
+      }}
+    >
       <div
-        tw="flex h-full w-full"
+        tw="flex text-[80px] font-bold text-white w-[80%] mt-50 ml-10"
         style={{
-          backgroundImage: `url(${backgroundImageUrl})`,
+          fontFamily: "Cal Sans",
+          fontWeight: "bold",
         }}
       >
-        <div
-          tw="flex text-[80px] font-bold text-white w-[80%] mt-50 ml-10"
-          style={{
-            fontFamily: "Cal Sans",
-            fontWeight: "bold",
-          }}
-        >
-          {postTitle}
-        </div>
+        {postTitle}
       </div>
-    ),
+    </div>,
     {
       width: 1200,
       height: 630,
