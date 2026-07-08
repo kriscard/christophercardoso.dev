@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(136, 57, 239, 0.25);
+}
+
+.dark ::selection {
+  background: rgba(198, 160, 246, 0.25);
+}
+
 /* Catppuccin Macchiato CSS variables for non-Tailwind contexts */
 :root {
   --ctp-mantle: #1e2030;

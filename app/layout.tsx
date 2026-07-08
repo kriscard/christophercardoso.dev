@@ -24,13 +24,62 @@ const fontMono = FontMono({
   variable: "--font-mono",
 })
 
+const siteDescription =
+  "Frontend engineering notes, dotfiles, projects, and developer writing from Christopher Cardoso."
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteConfig.url}/#person`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      sameAs: [
+        siteConfig.social.twitter,
+        siteConfig.social.github,
+        siteConfig.social.linkedin,
+      ],
+      jobTitle: "Software Developer",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Toronto",
+        addressCountry: "CA",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteConfig.url}/#website`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteDescription,
+      publisher: {
+        "@id": `${siteConfig.url}/#person`,
+      },
+      inLanguage: "en-US",
+    },
+    {
+      "@type": "Blog",
+      "@id": `${siteConfig.url}/blog#blog`,
+      name: "Christopher Cardoso Blog",
+      url: `${siteConfig.url}/blog`,
+      description:
+        "Articles about frontend engineering, terminal workflows, and developer tools.",
+      author: {
+        "@id": `${siteConfig.url}/#person`,
+      },
+      inLanguage: "en-US",
+    },
+  ],
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: "Christopher Cardoso",
     template: "%s | Christopher Cardoso",
   },
-  description: "A software developer who loves to build things",
+  description: siteDescription,
   alternates: {
     canonical: siteConfig.url,
   },
@@ -51,10 +100,12 @@ export const metadata: Metadata = {
     "frontend developer",
     "backend developer",
     "fullstack developer",
+    "developer blog",
+    "dotfiles",
   ],
   openGraph: {
     title: "Christopher Cardoso",
-    description: "A software developer who loves to build things",
+    description: siteDescription,
     url: siteConfig.url,
     type: "website",
     siteName: "Christopher Cardoso",
@@ -77,7 +128,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Christopher Cardoso",
     card: "summary_large_image",
-    description: "A software developer who loves to build things",
+    description: siteDescription,
     creator: "@kris_card",
   },
 }
@@ -98,15 +149,19 @@ export default function RootLayout({
         fontMono.variable
       )}
     >
-      <body className="flex min-h-dvh flex-col overflow-x-hidden bg-lightGray p-4 text-gray-900 dark:bg-dark dark:text-ctp-text">
+      <body className="relative flex min-h-dvh flex-col overflow-x-hidden bg-lightGray p-4 text-gray-900 antialiased dark:bg-dark dark:text-ctp-text">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
           <Header />
-          <main className="mx-auto mt-5 w-full max-w-4xl antialiased">
+          <main className="relative z-10 mx-auto mt-6 w-full max-w-6xl px-5 sm:px-8 md:px-10">
             {children}
             <Analytics />
           </main>

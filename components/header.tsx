@@ -9,8 +9,8 @@ import { ThemeSwitch } from "./theme-switch"
 
 export function Header() {
   return (
-    <nav className="view-transition-persistent-nav mx-auto w-full max-w-4xl pt-5">
-      <div className="flex w-full items-center justify-between gap-3 leading-5">
+    <nav className="view-transition-persistent-nav relative z-20 mx-auto w-full max-w-6xl pt-5">
+      <div className="flex w-full items-center justify-between gap-3 border-b border-gray-200/70 pb-5 leading-5 dark:border-ctp-surface0/80">
         <div className="shrink-0">
           <Link
             href="/"
@@ -24,9 +24,10 @@ export function Header() {
                   alt="Christopher Cardoso"
                   width={40}
                   height={40}
+                  className="size-logo"
                 />
               </div>
-              <div className="hidden font-heading text-2xl md:block">
+              <div className="hidden whitespace-nowrap font-heading text-2xl tracking-tight md:block">
                 {name}
               </div>
             </div>
@@ -34,7 +35,7 @@ export function Header() {
         </div>
         <div className="flex min-w-0 items-center gap-1 sm:gap-2 md:gap-0">
           <NavLinks />
-          <div className="p-1 sm:py-4 sm:pl-4 sm:pr-0">
+          <div className="p-1 sm:py-2 sm:pl-3 sm:pr-0">
             <ThemeSwitch />
           </div>
         </div>
