@@ -1,5 +1,4 @@
 const { fontFamily } = require("tailwindcss/defaultTheme")
-const colors = require("tailwindcss/colors")
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -18,8 +17,21 @@ module.exports = {
       },
       // Catppuccin Macchiato palette
       colors: {
-        // Slate's blue tint harmonizes with Catppuccin's lavender neutrals
-        gray: colors.slate,
+        // Neutral scale built from Catppuccin: 50-300 + 600-900 are Latte
+        // (light-mode duty), 400 + 800-950 are Macchiato (dark-mode duty)
+        gray: {
+          50: "#e6e9ef", // latte mantle
+          100: "#dce0e8", // latte crust
+          200: "#ccd0da", // latte surface0
+          300: "#bcc0cc", // latte surface1
+          400: "#a5adcb", // macchiato subtext0
+          500: "#7c7f93", // latte overlay1
+          600: "#6c6f85", // latte subtext0
+          700: "#5c5f77", // latte subtext1
+          800: "#494d64", // macchiato surface1
+          900: "#4c4f69", // latte text
+          950: "#363a4f", // macchiato surface0
+        },
         // Mauve ramp: 300 = Macchiato mauve (dark mode), 600 = Latte mauve (light mode)
         purple: {
           50: "#f6f1fe",
@@ -179,7 +191,7 @@ module.exports = {
             },
             code: {
               color: "#8839ef",
-              backgroundColor: "#eff1f5",
+              backgroundColor: "#e6e9ef",
               paddingLeft: "0.5rem",
               paddingRight: "0.5rem",
               paddingTop: "0.25rem",
@@ -195,7 +207,7 @@ module.exports = {
               content: "none",
             },
             pre: {
-              backgroundColor: "#eff1f5",
+              backgroundColor: "#e6e9ef",
               color: "#4c4f69",
               fontSize: "0.9375rem",
               lineHeight: "1.7",
