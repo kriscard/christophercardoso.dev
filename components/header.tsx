@@ -4,13 +4,12 @@ import Link from "next/link"
 import { name } from "@/lib/info"
 
 import logo from "../public/logo.png"
-import { MobileNav } from "./mobile-nav"
 import { NavLinks } from "./nav-links"
 import { ThemeSwitch } from "./theme-switch"
 
 export function Header() {
   return (
-    <nav className="view-transition-persistent-nav relative mx-auto w-full max-w-4xl pt-5">
+    <nav className="view-transition-persistent-nav mx-auto w-full max-w-4xl pt-5">
       <div className="flex w-full items-center justify-between gap-3 leading-5">
         <div className="shrink-0">
           <Link
@@ -35,10 +34,9 @@ export function Header() {
         </div>
         <div className="flex min-w-0 items-center gap-1 sm:gap-2 md:gap-0">
           <NavLinks />
-          <div className="p-1 sm:p-4">
+          <div className="p-1 sm:py-4 sm:pl-4 sm:pr-0">
             <ThemeSwitch />
           </div>
-          <MobileNav />
         </div>
       </div>
     </nav>
