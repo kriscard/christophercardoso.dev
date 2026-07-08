@@ -17,22 +17,19 @@ module.exports = {
       },
       // Catppuccin Macchiato palette
       colors: {
-        // Neutral scale built from Catppuccin: 50-300 + 600-900 are Latte
-        // (light-mode duty), 400 + 800-950 are Macchiato (dark-mode duty)
         gray: {
-          50: "#e6e9ef", // latte mantle
-          100: "#dce0e8", // latte crust
-          200: "#ccd0da", // latte surface0
-          300: "#bcc0cc", // latte surface1
-          400: "#a5adcb", // macchiato subtext0
-          500: "#7c7f93", // latte overlay1
-          600: "#6c6f85", // latte subtext0
-          700: "#5c5f77", // latte subtext1
-          800: "#494d64", // macchiato surface1
-          900: "#4c4f69", // latte text
-          950: "#363a4f", // macchiato surface0
+          50: "#e6e9ef",
+          100: "#dce0e8",
+          200: "#ccd0da",
+          300: "#bcc0cc",
+          400: "#a5adcb",
+          500: "#7c7f93",
+          600: "#6c6f85",
+          700: "#5c5f77",
+          800: "#4c4f69",
+          900: "#494d64",
+          950: "#363a4f",
         },
-        // Mauve ramp: 300 = Macchiato mauve (dark mode), 600 = Latte mauve (light mode)
         purple: {
           50: "#f6f1fe",
           100: "#ede2fd",
