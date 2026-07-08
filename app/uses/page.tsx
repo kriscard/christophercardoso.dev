@@ -1,8 +1,8 @@
 import Link from "next/link"
-import { Keyboard } from "lucide-react"
 
 import { siteConfig } from "@/lib/config"
 import { Banner } from "@/components/banner"
+import { ArrowIcon } from "@/components/icons"
 import { PhotoStack } from "@/components/photo-stack"
 
 export const metadata = {
@@ -41,7 +41,7 @@ const hardware = [
   },
 ]
 
-const software: LinkedCardProps[] = [
+const software: LinkedItem[] = [
   {
     name: "Terminal",
     description: "Ghostty config tuned around Catppuccin and fast startup.",
@@ -75,7 +75,7 @@ const software: LinkedCardProps[] = [
   },
 ]
 
-const keyboardCollection: Required<LinkedCardProps>[] = [
+const keyboardCollection: Required<LinkedItem>[] = [
   {
     name: "Cloud Nine",
     description: "MX Blacks, GMK Classic Beige",
@@ -123,7 +123,7 @@ const keyboardCollection: Required<LinkedCardProps>[] = [
   },
 ]
 
-interface LinkedCardProps {
+interface LinkedItem {
   name: string
   description: string
   href?: `https://${string}`
@@ -137,12 +137,12 @@ function SectionHeader({
   children?: React.ReactNode
 }) {
   return (
-    <div className="mb-6 max-w-2xl">
-      <h2 className="font-heading text-3xl leading-tight tracking-tight text-gray-900 dark:text-gray-50">
+    <div className="mb-4 max-w-2xl">
+      <h2 className="font-heading text-2xl tracking-tight text-gray-900 dark:text-gray-50 md:text-3xl">
         {title}
       </h2>
       {children ? (
-        <p className="mt-3 text-base leading-relaxed text-gray-700 dark:text-gray-300">
+        <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
           {children}
         </p>
       ) : null}
@@ -150,23 +150,29 @@ function SectionHeader({
   )
 }
 
-function InfoCard({ name, description, href }: LinkedCardProps) {
-  const className =
-    "group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark flex h-full flex-col rounded-lg border border-gray-300/70 bg-white/70 p-5 shadow-sm transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-gray-700/60 dark:bg-gray-800/45 dark:shadow-lg dark:shadow-black/20 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70 dark:hover:shadow-xl dark:hover:shadow-purple-500/10"
-
-  const content = (
+function ItemRow({ name, description, href }: LinkedItem) {
+  const body = (
     <>
-      <h3 className="font-heading text-xl leading-tight text-gray-900 dark:text-gray-50">
-        {name}
+      <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-gray-50 dark:group-hover:text-purple-300">
+        <span className="inline-flex items-center gap-2">
+          {name}
+          {href ? (
+            <ArrowIcon className="size-4 text-gray-500 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
+          ) : null}
+        </span>
       </h3>
-      <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+      <p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:mt-0">
         {description}
       </p>
     </>
   )
 
   if (!href) {
-    return <div className={className}>{content}</div>
+    return (
+      <div className="py-5 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8">
+        {body}
+      </div>
+    )
   }
 
   return (
@@ -174,33 +180,21 @@ function InfoCard({ name, description, href }: LinkedCardProps) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={className}
       aria-label={`Open ${name}`}
+      className="group block rounded-lg py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
     >
-      {content}
-      <span className="mt-auto pt-5 font-mono text-sm text-purple-600 dark:text-purple-400">
-        Open
-      </span>
+      {body}
     </Link>
   )
 }
 
-function KeyboardCard({ name, description, href }: Required<LinkedCardProps>) {
+function ItemList({ items }: { items: LinkedItem[] }) {
   return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group/card block rounded-lg border border-gray-300/70 bg-white/70 p-4 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:border-gray-700/60 dark:bg-gray-800/45 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70 dark:focus-visible:ring-offset-dark"
-      aria-label={`Open ${name} keyboard post`}
-    >
-      <h3 className="font-heading text-lg text-gray-900 dark:text-gray-50">
-        {name}
-      </h3>
-      <p className="mt-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
-        {description}
-      </p>
-    </Link>
+    <div className="divide-y divide-gray-200 dark:divide-gray-800">
+      {items.map((item) => (
+        <ItemRow key={item.name} {...item} />
+      ))}
+    </div>
   )
 }
 
@@ -237,11 +231,7 @@ export default function Uses() {
         <SectionHeader title="Hardware">
           The core machine and desk gear I rely on for daily development.
         </SectionHeader>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          {hardware.map((item) => (
-            <InfoCard key={item.name} {...item} />
-          ))}
-        </div>
+        <ItemList items={hardware} />
       </section>
 
       <section>
@@ -249,34 +239,27 @@ export default function Uses() {
           My working environment is terminal-first, version controlled, and easy
           to rebuild from dotfiles.
         </SectionHeader>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {software.map((item) => (
-            <InfoCard key={item.name} {...item} />
-          ))}
-        </div>
+        <ItemList items={software} />
       </section>
 
       <section>
-        <div className="mb-8 flex items-start gap-3">
-          <Keyboard className="mt-1 size-7 shrink-0 text-purple-500" />
-          <SectionHeader title="Keyboards">
-            A few boards from the collection. More builds live on{" "}
-            <Link
-              href="https://www.instagram.com/kriscardtypes/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
-            >
-              Instagram
-            </Link>
-            .
-          </SectionHeader>
+        <SectionHeader title="Keyboards">
+          A few boards from the collection. More builds live on{" "}
+          <Link
+            href="https://www.instagram.com/kriscardtypes/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
+          >
+            Instagram
+          </Link>
+          .
+        </SectionHeader>
+        <div className="mt-8">
+          <PhotoStack photos={keyboardPhotos} />
         </div>
-        <PhotoStack photos={keyboardPhotos} />
-        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {keyboardCollection.map((keyboard) => (
-            <KeyboardCard key={keyboard.href} {...keyboard} />
-          ))}
+        <div className="mt-8">
+          <ItemList items={keyboardCollection} />
         </div>
       </section>
     </div>
