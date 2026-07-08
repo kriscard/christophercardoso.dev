@@ -12,7 +12,7 @@ export function PostsList() {
       <h2 className="font-heading text-2xl tracking-tight md:text-3xl">
         My Recent Posts
       </h2>
-      <div className="mt-2 divide-y divide-gray-200 dark:divide-gray-800">
+      <div className="mt-2">
         {recentPosts.map((post) => (
           <PostListItem key={post._meta.path} post={post} titleAs="h3" />
         ))}

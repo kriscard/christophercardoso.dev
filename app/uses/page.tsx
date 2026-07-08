@@ -181,7 +181,7 @@ function ItemRow({ name, description, href }: LinkedItem) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${name}`}
-      className="group -mx-4 block cursor-pointer rounded-lg p-4 transition-colors hover:bg-purple-600/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
+      className="group block cursor-pointer rounded-lg p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
     >
       {body}
     </Link>
@@ -190,7 +190,7 @@ function ItemRow({ name, description, href }: LinkedItem) {
 
 function ItemList({ items }: { items: LinkedItem[] }) {
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-800">
+    <div className="">
       {items.map((item) => (
         <ItemRow key={item.name} {...item} />
       ))}

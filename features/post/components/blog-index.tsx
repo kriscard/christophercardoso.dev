@@ -194,7 +194,7 @@ export function PostListItem({
     <article>
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group -mx-4 block cursor-pointer rounded-lg px-4 py-5 transition-colors hover:bg-purple-600/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark"
+        className="group block cursor-pointer rounded-lg py-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
         aria-label={`Read ${post.title}`}
       >
         <time
@@ -225,7 +225,7 @@ function LatestPost({ post }: { post: Post }) {
     <article className="mb-4">
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group -mx-4 block cursor-pointer rounded-lg px-4 pb-8 pt-2 transition-colors hover:bg-purple-600/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark"
+        className="group block cursor-pointer rounded-lg pb-8 pt-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
         aria-label={`Read ${post.title}`}
       >
         <p className="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-300">
@@ -321,7 +321,7 @@ export function BlogIndex({
           {!hasActiveFilters && latestPost ? (
             <LatestPost post={latestPost} />
           ) : null}
-          <div className="divide-y divide-gray-200 dark:divide-gray-800">
+          <div className="">
             {listPosts.map((post) => (
               <PostListItem key={post._meta.path} post={post} />
             ))}

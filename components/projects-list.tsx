@@ -17,14 +17,14 @@ export function ProjectsList({ hideHeading }: ProjectListProps) {
           Projects
         </h2>
       )}
-      <div className="mt-2 divide-y divide-gray-200 dark:divide-gray-800">
+      <div className="mt-2">
         {projects.map((project) => (
           <Link
             key={project.href}
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="group -mx-4 block cursor-pointer rounded-lg px-4 py-5 transition-colors hover:bg-purple-600/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark"
+            className="group block cursor-pointer rounded-lg py-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
             aria-label={`Open ${project.title} project`}
           >
             <h3 className="inline-flex items-center gap-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
