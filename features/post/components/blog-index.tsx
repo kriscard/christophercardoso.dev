@@ -33,12 +33,10 @@ function getTags(posts: Post[]) {
   )
 }
 
-// Single-post tags are noise as filters; show tags matching 2+ posts,
-// falling back to the top 5 while the blog is small
+// Show the five most-used tags; keep the active tag visible even if a
+// deep link points at a rarer one
 function getVisibleTags(tags: [string, number][], activeTag: string) {
-  const frequent = tags.filter(([, count]) => count >= 2).map(([tag]) => tag)
-  const visible =
-    frequent.length >= 3 ? frequent : tags.slice(0, 5).map(([tag]) => tag)
+  const visible = tags.slice(0, 5).map(([tag]) => tag)
 
   if (
     activeTag &&
