@@ -46,7 +46,6 @@ This is a Next.js 16 personal website/blog with the following key features:
 - Posts tagged `draft` are excluded from listings and static params
 - Queries live in `features/post/post-queries.ts` with `import "server-only"` and React `cache()`
 - Syntax highlighting uses Catppuccin Macchiato theme via rehype-pretty-code
-- Tag icons are mapped in `components/tag-icon.tsx`
 
 ## Code style
 
