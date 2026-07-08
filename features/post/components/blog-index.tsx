@@ -166,9 +166,6 @@ function BlogFilters({
       </nav>
 
       <form action="/blog" className="lg:w-64 lg:shrink-0">
-        {activeTag ? (
-          <input type="hidden" name="tag" value={activeTag} />
-        ) : null}
         <label htmlFor="blog-search" className="sr-only">
           Search articles
         </label>
