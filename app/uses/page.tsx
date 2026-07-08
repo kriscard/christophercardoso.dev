@@ -1,16 +1,31 @@
+import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
 import { Banner } from "@/components/banner"
 import { ArrowIcon } from "@/components/icons"
+import { PageHeader } from "@/components/page-header"
 
-export const metadata = {
+const description =
+  "The development tools, software, desk gear, and keyboards Christopher Cardoso uses."
+
+export const metadata: Metadata = {
   title: "Uses",
-  description:
-    "The tools, software, and gear Christopher Cardoso uses for development.",
+  description,
   alternates: {
     canonical: new URL("/uses", siteConfig.url).toString(),
+  },
+  openGraph: {
+    title: "Uses by Christopher Cardoso",
+    description,
+    url: new URL("/uses", siteConfig.url).toString(),
+    type: "website",
+  },
+  twitter: {
+    title: "Uses by Christopher Cardoso",
+    description,
+    card: "summary_large_image",
   },
 }
 
@@ -210,92 +225,88 @@ export default function Uses() {
   const otherKeyboards = keyboards.filter((keyboard) => !keyboard.photo)
 
   return (
-    <div className="space-y-10 py-8 md:space-y-12 md:py-12">
-      <header>
-        <div className="mb-8 max-w-3xl">
-          <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-gray-900 dark:text-ctp-text md:text-6xl">
-            What I use
-          </h1>
-          <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            A practical look at the desk, terminal, editor, and keyboard setup I
-            use to build software every day. Inspired by{" "}
-            <Link
-              href="https://uses.tech"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
-            >
-              uses.tech
-            </Link>
-            .
-          </p>
-        </div>
+    <div className="py-8 md:py-12">
+      <PageHeader title="What I use" className="mb-10 md:mb-12">
+        A practical look at the desk, terminal, editor, and keyboard setup I use
+        to build software every day. Inspired by{" "}
+        <Link
+          href="https://uses.tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
+        >
+          uses.tech
+        </Link>
+        .
+      </PageHeader>
+
+      <div className="space-y-10 md:space-y-12">
         <Banner
           src="/images/uses/desk-setup.jpg"
           alt="Christopher Cardoso desk setup with monitors, laptop, and keyboard"
           aspectRatio="16:9"
         />
-      </header>
 
-      <section>
-        <SectionHeader title="Hardware">
-          The core machine and desk gear I rely on for daily development.
-        </SectionHeader>
-        <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
-          {hardware.map((item) => (
-            <div key={item.name}>
-              <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 dark:text-ctp-text">
-                {item.name}
-              </h3>
-              <p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-400">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <SectionHeader title="Software">
-          My working environment is terminal-first, version controlled, and easy
-          to rebuild from dotfiles.
-        </SectionHeader>
-        <div>
-          {software.map((item) => (
-            <SoftwareRow key={item.name} {...item} />
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <SectionHeader title="Keyboards">
-          Boards from the collection, each linking to its build on{" "}
-          <Link
-            href="https://www.instagram.com/kriscardtypes/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
-          >
-            Instagram
-          </Link>
-          .
-        </SectionHeader>
-        <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
-          {photoKeyboards.map((keyboard) => (
-            <KeyboardCard key={keyboard.name} {...keyboard} />
-          ))}
-        </div>
-        <div className="mt-10">
-          <h3 className="text-sm text-gray-500 dark:text-gray-400">
-            Also in the collection
-          </h3>
-          <div className="mt-1">
-            {otherKeyboards.map((keyboard) => (
-              <SoftwareRow key={keyboard.name} {...keyboard} />
+        <section>
+          <SectionHeader title="Hardware">
+            The core machine and desk gear I rely on for daily development.
+          </SectionHeader>
+          <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
+            {hardware.map((item) => (
+              <div key={item.name}>
+                <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 dark:text-ctp-text">
+                  {item.name}
+                </h3>
+                <p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                  {item.description}
+                </p>
+              </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+
+        <section>
+          <SectionHeader title="Software">
+            My working environment is terminal-first, version controlled, and
+            easy to rebuild from dotfiles.
+          </SectionHeader>
+          <div>
+            {software.map((item) => (
+              <SoftwareRow key={item.name} {...item} />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <SectionHeader title="Keyboards">
+            Boards from the collection, each linking to its build on{" "}
+            <Link
+              href="https://www.instagram.com/kriscardtypes/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
+            >
+              Instagram
+            </Link>
+            .
+          </SectionHeader>
+          <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+            {photoKeyboards.map((keyboard) => (
+              <KeyboardCard key={keyboard.name} {...keyboard} />
+            ))}
+          </div>
+          <div className="mt-10">
+            <h3 className="text-sm text-gray-500 dark:text-gray-400">
+              Also in the collection
+            </h3>
+            <div className="mt-1">
+              {otherKeyboards.map((keyboard) => (
+                <SoftwareRow key={keyboard.name} {...keyboard} />
+              ))}
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   )
 }

@@ -1,25 +1,43 @@
+import type { Metadata } from "next"
+
 import { siteConfig } from "@/lib/config"
+import { PageHeader } from "@/components/page-header"
 import { ProjectsList } from "@/components/projects-list"
 
-export const metadata = {
+const description =
+  "Projects by Christopher Cardoso, including developer tools and this Next.js portfolio system."
+
+export const metadata: Metadata = {
   title: "Projects",
-  description: "Projects built by Christopher Cardoso.",
+  description,
   alternates: {
     canonical: new URL("/projects", siteConfig.url).toString(),
+  },
+  openGraph: {
+    title: "Projects by Christopher Cardoso",
+    description,
+    url: new URL("/projects", siteConfig.url).toString(),
+    type: "website",
+  },
+  twitter: {
+    title: "Projects by Christopher Cardoso",
+    description,
+    card: "summary_large_image",
   },
 }
 
 export default function Projects() {
   return (
     <div className="py-8 md:py-12">
-      <header className="mb-8 max-w-3xl md:mb-10">
-        <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight md:text-6xl">
-          Projects
-        </h1>
-        <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          Things I build outside of work, mostly in public.
-        </p>
-      </header>
+      <PageHeader
+        title="Projects"
+        className="mb-10 md:mb-12"
+        titleClassName="max-w-[11ch] text-balance"
+      >
+        Side projects, learning projects, open-source work, SaaS ideas, and
+        experiments. Some are practical, some are just for fun, all are things I
+        wanted to build.
+      </PageHeader>
       <ProjectsList hideHeading />
     </div>
   )

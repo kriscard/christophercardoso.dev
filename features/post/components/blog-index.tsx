@@ -123,10 +123,10 @@ function TagLink({
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-touch shrink-0 items-center rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-0",
+        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark md:min-h-9",
         isActive
-          ? "text-purple-600 dark:text-purple-300"
-          : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
+          ? "bg-purple-500/10 text-purple-600 dark:bg-purple-400/10 dark:text-purple-300"
+          : "text-gray-500 hover:bg-purple-500/10 hover:text-purple-600 dark:text-gray-400 dark:hover:bg-purple-400/10 dark:hover:text-purple-300"
       )}
     >
       {children}
@@ -146,10 +146,10 @@ function BlogFilters({
   const hasActiveFilters = Boolean(activeTag || query)
 
   return (
-    <div className="mb-8 flex flex-col gap-5 md:mb-10 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
+    <div className="mb-8 flex flex-col gap-5 rounded-2xl border border-gray-200/70 bg-white/35 p-4 shadow-sm shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
       <nav
         aria-label="Filter articles by topic"
-        className="-mx-1 flex items-baseline gap-x-5 overflow-x-auto overscroll-x-contain p-1 [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+        className="-mx-1 flex items-center gap-x-2 overflow-x-auto overscroll-x-contain p-1 [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
       >
         <span className="shrink-0 text-sm text-gray-500 dark:text-gray-400">
           Filter:
@@ -171,12 +171,12 @@ function BlogFilters({
 
       <form
         action="/blog"
-        className="w-full max-w-xs lg:w-64 lg:max-w-none lg:shrink-0"
+        className="w-full max-w-sm lg:w-72 lg:max-w-none lg:shrink-0"
       >
         <label htmlFor="blog-search" className="sr-only">
           Search articles
         </label>
-        <div className="flex items-center gap-3 border-b border-gray-300 transition-colors focus-within:border-purple-500/70 dark:border-gray-700 dark:focus-within:border-purple-400/70">
+        <div className="flex items-center gap-3 rounded-xl border border-gray-200/80 bg-lightGray/70 px-3 transition-colors focus-within:border-purple-500/70 dark:border-ctp-surface0 dark:bg-dark/50 dark:focus-within:border-purple-400/70">
           <input
             id="blog-search"
             type="search"
@@ -187,7 +187,7 @@ function BlogFilters({
           />
           <button
             type="submit"
-            className="min-h-touch cursor-pointer rounded-lg text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:text-purple-300 dark:hover:text-purple-200 md:min-h-9"
+            className="min-h-touch cursor-pointer rounded-lg px-2 text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:text-purple-300 dark:hover:text-purple-200 md:min-h-9"
           >
             Search
           </button>
@@ -208,15 +208,22 @@ function BlogFilters({
 export function PostListItem({
   post,
   titleAs: TitleComponent = "h2",
+  dense = false,
 }: {
   post: Post
   titleAs?: "h2" | "h3"
+  dense?: boolean
 }) {
   return (
     <article>
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group block cursor-pointer rounded-lg py-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+        className={cn(
+          "group block cursor-pointer rounded-xl transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark",
+          dense
+            ? "py-5"
+            : "border border-transparent px-4 py-5 hover:border-purple-500/25 hover:bg-white/45 dark:hover:border-purple-300/25 dark:hover:bg-ctp-mantle/30"
+        )}
         aria-label={`Read ${post.title}`}
       >
         <time
@@ -244,10 +251,10 @@ export function PostListItem({
 
 function LatestPost({ post }: { post: Post }) {
   return (
-    <article className="mb-4">
+    <article className="mb-5">
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group block cursor-pointer rounded-lg pb-8 pt-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+        className="group block cursor-pointer rounded-3xl border border-gray-200/70 bg-white/45 p-5 shadow-sm shadow-purple-950/5 transition duration-200 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/35 dark:shadow-black/10 dark:hover:border-purple-300/30 dark:hover:bg-ctp-mantle/60 dark:focus-visible:ring-offset-dark sm:p-7"
         aria-label={`Read ${post.title}`}
       >
         <p className="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-300">
@@ -289,7 +296,7 @@ function EmptyState({
         : `match "${query}"`
 
   return (
-    <div className="py-6">
+    <div className="rounded-2xl border border-gray-200/70 bg-white/35 p-6 shadow-sm shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10">
       <p className="max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
         No articles {context}. Try a broader search or a different topic.
       </p>
@@ -344,7 +351,7 @@ export function BlogIndex({
           {!hasActiveFilters && latestPost ? (
             <LatestPost post={latestPost} />
           ) : null}
-          <div>
+          <div className="space-y-1">
             {listPosts.map((post) => (
               <PostListItem key={post._meta.path} post={post} />
             ))}

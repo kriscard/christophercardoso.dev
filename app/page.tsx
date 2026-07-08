@@ -4,12 +4,14 @@ import { ProjectsList } from "@/components/projects-list"
 
 export default function HomePage() {
   return (
-    <section>
+    <div className="pb-12 pt-2 md:pb-16">
       <PresentationBanner />
-      <div className="space-y-10 pb-10 pt-2 md:space-y-12 md:pb-12">
+      <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start lg:gap-8 xl:gap-10">
         <PostsList />
-        <ProjectsList />
+        <div className="lg:sticky lg:top-8">
+          <ProjectsList />
+        </div>
       </div>
-    </section>
+    </div>
   )
 }

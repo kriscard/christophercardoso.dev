@@ -73,7 +73,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
     const tags = getPostTags(post.tag)
 
     return (
-      <article className="py-8 md:py-12">
+      <article className="mx-auto max-w-4xl py-8 md:py-12">
         <Link
           href="/blog"
           className="mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:mb-10"
