@@ -28,9 +28,26 @@ function getTags(posts: Post[]) {
     })
   })
 
-  return Array.from(counts.entries())
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .map(([tag]) => tag)
+  return Array.from(counts.entries()).sort(
+    (a, b) => b[1] - a[1] || a[0].localeCompare(b[0])
+  )
+}
+
+// Single-post tags are noise as filters; show tags matching 2+ posts,
+// falling back to the top 5 while the blog is small
+function getVisibleTags(tags: [string, number][], activeTag: string) {
+  const frequent = tags.filter(([, count]) => count >= 2).map(([tag]) => tag)
+  const visible =
+    frequent.length >= 3 ? frequent : tags.slice(0, 5).map(([tag]) => tag)
+
+  if (
+    activeTag &&
+    !visible.some((tag) => normalizeFilter(tag) === normalizeFilter(activeTag))
+  ) {
+    visible.push(activeTag)
+  }
+
+  return visible
 }
 
 function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
@@ -130,8 +147,11 @@ function BlogFilters({
     <div className="mb-8 flex flex-col gap-5 md:mb-10 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
       <nav
         aria-label="Filter articles by topic"
-        className="flex flex-wrap gap-x-5 gap-y-1"
+        className="flex flex-wrap items-baseline gap-x-5 gap-y-1"
       >
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          Filter:
+        </span>
         <TagLink href={"/blog" as Route} isActive={!activeTag}>
           All
         </TagLink>
@@ -298,9 +318,10 @@ export function BlogIndex({
   const tags = getTags(posts)
   const activeTag =
     tags.find(
-      (candidate) =>
+      ([candidate]) =>
         normalizeFilter(candidate) === normalizeFilter(requestedTag)
-    ) ?? requestedTag
+    )?.[0] ?? requestedTag
+  const visibleTags = getVisibleTags(tags, activeTag)
   const filteredPosts = getFilteredPosts(posts, activeTag, query)
   const hasActiveFilters = Boolean(activeTag || query)
   const [latestPost, ...remainingPosts] = filteredPosts
@@ -308,7 +329,7 @@ export function BlogIndex({
 
   return (
     <>
-      <BlogFilters activeTag={activeTag} query={query} tags={tags} />
+      <BlogFilters activeTag={activeTag} query={query} tags={visibleTags} />
 
       {hasActiveFilters ? (
         <p className="mb-2 font-mono text-xs text-gray-500 dark:text-gray-400">
@@ -321,7 +342,7 @@ export function BlogIndex({
           {!hasActiveFilters && latestPost ? (
             <LatestPost post={latestPost} />
           ) : null}
-          <div className="">
+          <div>
             {listPosts.map((post) => (
               <PostListItem key={post._meta.path} post={post} />
             ))}

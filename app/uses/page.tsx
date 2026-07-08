@@ -190,7 +190,7 @@ function ItemRow({ name, description, href }: LinkedItem) {
 
 function ItemList({ items }: { items: LinkedItem[] }) {
   return (
-    <div className="">
+    <div>
       {items.map((item) => (
         <ItemRow key={item.name} {...item} />
       ))}
