@@ -1,7 +1,7 @@
 import Image from "next/image"
 import Link from "next/link"
 
-import { name } from "@/lib/info"
+import { siteConfig } from "@/lib/config"
 
 import logo from "../public/logo.png"
 import { NavLinks } from "./nav-links"
@@ -28,7 +28,7 @@ export function Header() {
                 />
               </div>
               <div className="hidden whitespace-nowrap font-heading text-2xl tracking-tight md:block">
-                {name}
+                {siteConfig.name}
               </div>
             </div>
           </Link>

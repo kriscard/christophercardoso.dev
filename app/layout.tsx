@@ -4,7 +4,6 @@ import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 
 import { siteConfig } from "@/lib/config"
-import { blogDescription, siteDescription } from "@/lib/seo"
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
@@ -50,7 +49,7 @@ const structuredData = {
       "@id": `${siteConfig.url}/#website`,
       name: siteConfig.name,
       url: siteConfig.url,
-      description: siteDescription,
+      description: siteConfig.description,
       publisher: {
         "@id": `${siteConfig.url}/#person`,
       },
@@ -61,7 +60,7 @@ const structuredData = {
       "@id": `${siteConfig.url}/blog#blog`,
       name: "Christopher Cardoso Blog",
       url: `${siteConfig.url}/blog`,
-      description: blogDescription,
+      description: siteConfig.blogDescription,
       author: {
         "@id": `${siteConfig.url}/#person`,
       },
@@ -95,7 +94,7 @@ export const metadata: Metadata = {
     default: "Christopher Cardoso",
     template: "%s | Christopher Cardoso",
   },
-  description: siteDescription,
+  description: siteConfig.description,
   alternates: {
     canonical: siteConfig.url,
   },
@@ -121,7 +120,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Christopher Cardoso",
-    description: siteDescription,
+    description: siteConfig.description,
     url: siteConfig.url,
     type: "website",
     siteName: "Christopher Cardoso",
@@ -144,7 +143,7 @@ export const metadata: Metadata = {
   twitter: {
     title: "Christopher Cardoso",
     card: "summary_large_image",
-    description: siteDescription,
+    description: siteConfig.description,
     creator: "@kris_card",
   },
 }

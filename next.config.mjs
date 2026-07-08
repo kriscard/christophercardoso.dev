@@ -1,5 +1,3 @@
-import createMDX from "@next/mdx"
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -14,7 +12,7 @@ const nextConfig = {
       { protocol: "https", hostname: "abs.twimg.com" },
     ],
   },
-  pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  pageExtensions: ["js", "jsx", "ts", "tsx"],
   async redirects() {
     return [
       {
@@ -33,12 +31,4 @@ const nextConfig = {
   },
 }
 
-const withMDX = createMDX({
-  extension: /\.(md|mdx)$/,
-  options: {
-    remarkPlugins: ["remark-gfm", "remark-frontmatter"],
-    rehypePlugins: [["rehype-pretty-code"]],
-  },
-})
-
-export default withMDX(nextConfig)
+export default nextConfig

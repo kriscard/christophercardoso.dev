@@ -52,7 +52,7 @@ function getVisibleTags(tags: [string, number][], activeTag: string) {
   return visible
 }
 
-function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
+export function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
   const searchParams = new URLSearchParams()
 
   if (tag) searchParams.set("tag", tag)
@@ -205,6 +205,14 @@ function BlogFilters({
   )
 }
 
+function DraftBadge() {
+  return (
+    <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
+      draft
+    </span>
+  )
+}
+
 export function PostListItem({
   post,
   titleAs: TitleComponent = "h2",
@@ -239,6 +247,7 @@ export function PostListItem({
         >
           <TitleComponent className="mt-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
             {post.title}
+            {post.draft && <DraftBadge />}
           </TitleComponent>
         </ViewTransition>
         <p className="mt-2 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
@@ -267,6 +276,7 @@ function LatestPost({ post }: { post: Post }) {
         >
           <h2 className="mt-3 max-w-2xl text-balance font-heading text-3xl leading-tight tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-4xl">
             {post.title}
+            {post.draft && <DraftBadge />}
           </h2>
         </ViewTransition>
         <p className="mt-4 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
@@ -318,7 +328,7 @@ export function BlogIndex({
   tag?: string | string[]
   q?: string | string[]
 }) {
-  const posts = getAllPosts(false)
+  const posts = getAllPosts()
   const query = getSearchParamValue(q).trim()
   const requestedTag = getSearchParamValue(tag).trim()
   const tags = getTags(posts)

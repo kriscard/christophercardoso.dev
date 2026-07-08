@@ -13,10 +13,17 @@ const interRegular = fetch(
   new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer())
 
+const MAX_TITLE_LENGTH = 100
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url)
 
-  const postTitle = searchParams.get("title") ?? siteConfig.name
+  const rawTitle = searchParams.get("title") ?? ""
+  const cleanedTitle = rawTitle.replace(/[\p{Cc}\p{Cf}]/gu, "").trim()
+  const postTitle =
+    cleanedTitle.length > 0 && cleanedTitle.length <= MAX_TITLE_LENGTH
+      ? cleanedTitle
+      : siteConfig.name
   const backgroundImageUrl = new URL("/og-bg.png", siteConfig.url).toString()
 
   const [fontHeading, fontBody] = await Promise.all([calSansBold, interRegular])

@@ -14,6 +14,9 @@ export interface Post {
   summary: string
   content: string
   ogImage?: string
+  series?: string
+  seriesPart?: number
+  draft?: boolean
   _meta: {
     path: string
   }
@@ -30,7 +33,7 @@ export function formatPostDate(date: string) {
 }
 
 function isDraft(post: Post): boolean {
-  return getPostTags(post.tag).some((tag) => tag.toLowerCase() === "draft")
+  return post.draft === true
 }
 
 function parsePostDate(date: unknown, file: string) {
@@ -48,6 +51,63 @@ function parsePostDate(date: unknown, file: string) {
   return parsedDate.toISOString().split("T")[0]
 }
 
+function requireStringField(
+  value: unknown,
+  field: string,
+  file: string
+): string {
+  if (typeof value !== "string" || value.trim() === "") {
+    throw new Error(`Missing or invalid ${field} frontmatter in ${file}`)
+  }
+
+  return value
+}
+
+function parsePostTag(tag: unknown, file: string): string | string[] {
+  if (typeof tag === "string" && tag.trim() !== "") return tag
+
+  if (
+    Array.isArray(tag) &&
+    tag.length > 0 &&
+    tag.every((item) => typeof item === "string" && item.trim() !== "")
+  ) {
+    return tag
+  }
+
+  throw new Error(`Missing or invalid tag frontmatter in ${file}`)
+}
+
+function parseSeries(
+  data: Record<string, unknown>,
+  file: string
+): { series?: string; seriesPart?: number } {
+  const { series, seriesPart } = data
+
+  if (series === undefined && seriesPart === undefined) return {}
+
+  if (
+    typeof series !== "string" ||
+    series.trim() === "" ||
+    typeof seriesPart !== "number" ||
+    !Number.isInteger(seriesPart) ||
+    seriesPart < 1
+  ) {
+    throw new Error(`Invalid series/seriesPart frontmatter in ${file}`)
+  }
+
+  return { series, seriesPart }
+}
+
+function parseDraft(draft: unknown, file: string): boolean {
+  if (draft === undefined) return false
+
+  if (typeof draft !== "boolean") {
+    throw new Error(`Invalid draft frontmatter in ${file}`)
+  }
+
+  return draft
+}
+
 const readAllPosts = cache((): Post[] => {
   const files = fs.readdirSync(POSTS_PATH)
 
@@ -61,27 +121,42 @@ const readAllPosts = cache((): Post[] => {
 
       return {
         slug,
-        title: data.title,
+        title: requireStringField(data.title, "title", file),
         date: parsePostDate(data.date, file),
-        tag: data.tag,
-        summary: data.summary,
+        tag: parsePostTag(data.tag, file),
+        summary: requireStringField(data.summary, "summary", file),
         content,
-        ogImage: data.ogImage,
+        ogImage: typeof data.ogImage === "string" ? data.ogImage : undefined,
+        ...parseSeries(data, file),
+        draft: parseDraft(data.draft, file),
         _meta: {
           path: slug,
         },
-      } as Post
+      }
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 })
 
-export const getAllPosts = cache((includeDrafts: boolean): Post[] => {
-  const posts = readAllPosts()
-  return includeDrafts ? posts : posts.filter((post) => !isDraft(post))
+const includeDraftsByDefault = process.env.NODE_ENV === "development"
+
+export const getAllPosts = cache(
+  (includeDrafts: boolean = includeDraftsByDefault): Post[] => {
+    const posts = readAllPosts()
+    return includeDrafts ? posts : posts.filter((post) => !isDraft(post))
+  }
+)
+
+export const getSeriesPosts = cache((series: string): Post[] => {
+  return getAllPosts(false)
+    .filter((post) => post.series === series)
+    .sort((a, b) => (a.seriesPart ?? 0) - (b.seriesPart ?? 0))
 })
 
 export const getPostBySlug = cache(
-  (slug: string, includeDrafts = false): Post | undefined => {
+  (
+    slug: string,
+    includeDrafts = includeDraftsByDefault
+  ): Post | undefined => {
     return getAllPosts(includeDrafts).find((post) => post.slug === slug)
   }
 )
