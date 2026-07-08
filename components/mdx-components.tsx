@@ -179,8 +179,14 @@ const components = {
   ),
   hr: ({ ...props }) => <hr className="my-4 md:my-8" {...props} />,
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="max-w-3xl overflow-x-auto rounded-lg border border-gray-200 bg-white dark:border-[#494d64] dark:bg-dark">
-      <table className={cn("my-0 w-full text-sm", className)} {...props} />
+    <div className="my-6 overflow-x-auto md:my-8">
+      <table
+        className={cn(
+          "my-0 w-auto border-collapse text-left text-sm md:text-base",
+          className
+        )}
+        {...props}
+      />
     </div>
   ),
   thead: ({
@@ -188,26 +194,23 @@ const components = {
     ...props
   }: React.HTMLAttributes<HTMLTableSectionElement>) => (
     <thead
-      className={cn("bg-gray-50 dark:bg-[#363a4f]", className)}
+      className={cn("border-b border-gray-300 dark:border-gray-700", className)}
       {...props}
     />
   ),
-  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
-    <tr
-      className={cn(
-        "m-0 border-b border-gray-200 p-0 transition-colors last:border-0",
-        "dark:border-[#494d64]",
-        "hover:bg-gray-50 dark:hover:bg-[#363a4f]/50",
-        className
-      )}
+  tbody: ({
+    className,
+    ...props
+  }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <tbody
+      className={cn("divide-y divide-gray-200 dark:divide-gray-800", className)}
       {...props}
     />
   ),
   th: ({ className, ...props }) => (
     <th
       className={cn(
-        "px-4 py-3 text-left font-semibold text-gray-900",
-        "dark:text-[#cad3f5]",
+        "pb-3 pr-8 text-left font-mono text-xs font-medium uppercase tracking-wider text-gray-500 last:pr-0 dark:text-gray-400",
         "[&[align=center]]:text-center [&[align=right]]:text-right",
         className
       )}
@@ -217,8 +220,7 @@ const components = {
   td: ({ className, ...props }) => (
     <td
       className={cn(
-        "px-4 py-3 text-left text-gray-700",
-        "dark:text-[#a5adcb]",
+        "py-3 pr-8 align-top text-gray-700 last:pr-0 dark:text-gray-300",
         "[&[align=center]]:text-center [&[align=right]]:text-right",
         className
       )}
