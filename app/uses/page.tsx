@@ -1,9 +1,9 @@
+import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
 import { Banner } from "@/components/banner"
 import { ArrowIcon } from "@/components/icons"
-import { PhotoStack } from "@/components/photo-stack"
 
 export const metadata = {
   title: "Uses",
@@ -13,14 +13,6 @@ export const metadata = {
     canonical: new URL("/uses", siteConfig.url).toString(),
   },
 }
-
-const keyboardPhotos = [
-  { src: "/images/uses/keyboards/cloudnine.webp", alt: "Cloud Nine" },
-  { src: "/images/uses/keyboards/daji.webp", alt: "Daji" },
-  { src: "/images/uses/keyboards/lily.webp", alt: "Lily" },
-  { src: "/images/uses/keyboards/mode-envoy.webp", alt: "Mode Envoy" },
-  { src: "/images/uses/keyboards/neo-ergo.webp", alt: "Neo Ergo" },
-]
 
 const hardware = [
   {
@@ -41,7 +33,7 @@ const hardware = [
   },
 ]
 
-const software: LinkedItem[] = [
+const software: SoftwareItem[] = [
   {
     name: "Terminal",
     description: "Ghostty config tuned around Catppuccin and fast startup.",
@@ -75,31 +67,42 @@ const software: LinkedItem[] = [
   },
 ]
 
-const keyboardCollection: Required<LinkedItem>[] = [
+const keyboards: KeyboardItem[] = [
   {
     name: "Cloud Nine",
     description: "MX Blacks, GMK Classic Beige",
     href: "https://www.instagram.com/p/DFgZFi0vF3v",
+    photo: "/images/uses/keyboards/cloudnine.webp",
   },
   {
     name: "Daji",
     description: "MX Browns 55g TX M springs, GMK Rubrehose",
     href: "https://www.instagram.com/p/DCcxncwPhAH",
+    photo: "/images/uses/keyboards/daji.webp",
   },
   {
     name: "Lily",
     description: "MX Blacks TX L 55g springs, GMK Hineybeige",
     href: "https://www.instagram.com/p/DIBx0o2spMt",
+    photo: "/images/uses/keyboards/lily.webp",
   },
   {
     name: "Mode Envoy",
     description: "Mode Obscura, GMK Striker",
     href: "https://www.instagram.com/p/DAoDXOZRE0g",
+    photo: "/images/uses/keyboards/mode-envoy.webp",
   },
   {
     name: "Neo Ergo",
     description: "HMX Hyacinth V2, GMK Dualshot 2",
     href: "https://www.instagram.com/p/DB_os-KxYQ5",
+    photo: "/images/uses/keyboards/neo-ergo.webp",
+  },
+  {
+    name: "Neo80",
+    description: "Gateron Deepping, GMK Olivia",
+    href: "https://www.instagram.com/p/C-rNhqOOcd1",
+    photo: "/images/uses/keyboards/neo80.png",
   },
   {
     name: "Horangi60",
@@ -112,21 +115,20 @@ const keyboardCollection: Required<LinkedItem>[] = [
     href: "https://www.instagram.com/p/C_x2xOhxlZt",
   },
   {
-    name: "Neo80",
-    description: "Gateron Deepping, GMK Olivia",
-    href: "https://www.instagram.com/p/C-rNhqOOcd1",
-  },
-  {
     name: "Mode65",
     description: "MX Black TX L 55g springs, GMK Redacted",
     href: "https://www.instagram.com/p/C_dxRrMvHNR",
   },
 ]
 
-interface LinkedItem {
+interface SoftwareItem {
   name: string
   description: string
-  href?: `https://${string}`
+  href: `https://${string}`
+}
+
+interface KeyboardItem extends SoftwareItem {
+  photo?: string
 }
 
 function SectionHeader({
@@ -137,7 +139,7 @@ function SectionHeader({
   children?: React.ReactNode
 }) {
   return (
-    <div className="mb-4 max-w-2xl">
+    <div className="mb-6 max-w-2xl">
       <h2 className="font-heading text-2xl tracking-tight text-gray-900 dark:text-ctp-text md:text-3xl">
         {title}
       </h2>
@@ -150,55 +152,63 @@ function SectionHeader({
   )
 }
 
-function ItemRow({ name, description, href }: LinkedItem) {
-  const body = (
-    <>
-      <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300">
-        <span className="inline-flex items-center gap-2">
-          {name}
-          {href ? (
-            <ArrowIcon className="size-4 text-gray-500 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
-          ) : null}
-        </span>
-      </h3>
-      <p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:mt-0">
-        {description}
-      </p>
-    </>
-  )
-
-  if (!href) {
-    return (
-      <div className="py-4 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8">
-        {body}
-      </div>
-    )
-  }
-
+function SoftwareRow({ name, description, href }: SoftwareItem) {
   return (
     <Link
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${name}`}
-      className="group block cursor-pointer rounded-lg p-4 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
+      className="group block cursor-pointer rounded-lg py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
     >
-      {body}
+      <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300">
+        <span className="inline-flex items-center gap-2">
+          {name}
+          <ArrowIcon className="size-4 text-gray-500 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
+        </span>
+      </h3>
+      <p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-400 sm:mt-0">
+        {description}
+      </p>
     </Link>
   )
 }
 
-function ItemList({ items }: { items: LinkedItem[] }) {
+function KeyboardCard({ name, description, href, photo }: KeyboardItem) {
   return (
-    <div>
-      {items.map((item) => (
-        <ItemRow key={item.name} {...item} />
-      ))}
-    </div>
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Open ${name} build on Instagram`}
+      className="group block cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+    >
+      <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+        <Image
+          src={photo!}
+          alt={`${name} keyboard`}
+          fill
+          sizes="(min-width: 768px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover"
+        />
+      </div>
+      <h3 className="mt-3 font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300">
+        <span className="inline-flex items-center gap-2">
+          {name}
+          <ArrowIcon className="size-4 text-gray-500 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
+        </span>
+      </h3>
+      <p className="mt-1 font-mono text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+        {description}
+      </p>
+    </Link>
   )
 }
 
 export default function Uses() {
+  const photoKeyboards = keyboards.filter((keyboard) => keyboard.photo)
+  const otherKeyboards = keyboards.filter((keyboard) => !keyboard.photo)
+
   return (
     <div className="space-y-10 py-8 md:space-y-12 md:py-12">
       <header>
@@ -231,7 +241,18 @@ export default function Uses() {
         <SectionHeader title="Hardware">
           The core machine and desk gear I rely on for daily development.
         </SectionHeader>
-        <ItemList items={hardware} />
+        <div className="grid gap-x-10 gap-y-6 sm:grid-cols-2">
+          {hardware.map((item) => (
+            <div key={item.name}>
+              <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 dark:text-ctp-text">
+                {item.name}
+              </h3>
+              <p className="mt-1 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section>
@@ -239,12 +260,16 @@ export default function Uses() {
           My working environment is terminal-first, version controlled, and easy
           to rebuild from dotfiles.
         </SectionHeader>
-        <ItemList items={software} />
+        <div>
+          {software.map((item) => (
+            <SoftwareRow key={item.name} {...item} />
+          ))}
+        </div>
       </section>
 
       <section>
         <SectionHeader title="Keyboards">
-          A few boards from the collection. More builds live on{" "}
+          Boards from the collection, each linking to its build on{" "}
           <Link
             href="https://www.instagram.com/kriscardtypes/"
             target="_blank"
@@ -255,11 +280,20 @@ export default function Uses() {
           </Link>
           .
         </SectionHeader>
-        <div className="mt-8">
-          <PhotoStack photos={keyboardPhotos} />
+        <div className="grid gap-x-6 gap-y-8 sm:grid-cols-2 md:grid-cols-3">
+          {photoKeyboards.map((keyboard) => (
+            <KeyboardCard key={keyboard.name} {...keyboard} />
+          ))}
         </div>
-        <div className="mt-8">
-          <ItemList items={keyboardCollection} />
+        <div className="mt-10">
+          <h3 className="text-sm text-gray-500 dark:text-gray-400">
+            Also in the collection
+          </h3>
+          <div className="mt-1">
+            {otherKeyboards.map((keyboard) => (
+              <SoftwareRow key={keyboard.name} {...keyboard} />
+            ))}
+          </div>
         </div>
       </section>
     </div>
