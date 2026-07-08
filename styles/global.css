@@ -28,8 +28,8 @@ pre[data-language] {
   border-radius: 0.75rem !important;
   border: 1px solid var(--ctp-surface0) !important;
   overflow-x: auto;
-  /* Keep trackpad horizontal scroll inside the block, not browser back-nav */
-  overscroll-behavior-x: contain;
+  overflow-y: hidden;
+  overscroll-behavior-x: none;
   scrollbar-width: thin;
   scrollbar-color: var(--ctp-surface1) transparent;
 }
