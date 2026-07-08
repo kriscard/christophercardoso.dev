@@ -92,7 +92,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
             share="text-morph"
             default="none"
           >
-            <h1 className="mt-4 text-balance font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-5xl">
+            <h1 className="mt-4 text-balance font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-ctp-text md:text-5xl">
               {post.title}
             </h1>
           </ViewTransition>

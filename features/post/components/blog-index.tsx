@@ -107,7 +107,7 @@ function TagLink({
         "inline-flex min-h-touch items-center rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-0",
         isActive
           ? "text-purple-600 dark:text-purple-300"
-          : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+          : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-ctp-text"
       )}
     >
       {children}
@@ -161,7 +161,7 @@ function BlogFilters({
             name="q"
             defaultValue={query}
             placeholder="Search articles"
-            className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-gray-100 dark:[color-scheme:dark] dark:placeholder:text-gray-500 md:min-h-9"
+            className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-ctp-text dark:[color-scheme:dark] dark:placeholder:text-gray-500 md:min-h-9"
           />
           <button
             type="submit"
@@ -208,7 +208,7 @@ export function PostListItem({
           share="text-morph"
           default="none"
         >
-          <TitleComponent className="mt-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-gray-50 dark:group-hover:text-purple-300 md:text-2xl">
+          <TitleComponent className="mt-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
             {post.title}
           </TitleComponent>
         </ViewTransition>
@@ -236,7 +236,7 @@ function LatestPost({ post }: { post: Post }) {
           share="text-morph"
           default="none"
         >
-          <h2 className="mt-3 max-w-2xl text-balance font-heading text-3xl leading-tight tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-gray-50 dark:group-hover:text-purple-300 md:text-4xl">
+          <h2 className="mt-3 max-w-2xl text-balance font-heading text-3xl leading-tight tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-4xl">
             {post.title}
           </h2>
         </ViewTransition>
@@ -268,7 +268,7 @@ function EmptyState({
 
   return (
     <div className="py-16 text-center sm:py-24">
-      <h2 className="font-heading text-2xl text-gray-900 dark:text-gray-50">
+      <h2 className="font-heading text-2xl text-gray-900 dark:text-ctp-text">
         No articles found
       </h2>
       <p className="mx-auto mt-3 max-w-[48ch] text-base leading-relaxed text-gray-600 dark:text-gray-400">

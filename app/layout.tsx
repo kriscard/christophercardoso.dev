@@ -98,7 +98,7 @@ export default function RootLayout({
         fontMono.variable
       )}
     >
-      <body className="flex min-h-dvh flex-col overflow-x-hidden bg-lightGray p-4 text-black dark:bg-dark dark:text-white">
+      <body className="flex min-h-dvh flex-col overflow-x-hidden bg-lightGray p-4 text-gray-900 dark:bg-dark dark:text-ctp-text">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

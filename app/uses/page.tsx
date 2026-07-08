@@ -138,7 +138,7 @@ function SectionHeader({
 }) {
   return (
     <div className="mb-4 max-w-2xl">
-      <h2 className="font-heading text-2xl tracking-tight text-gray-900 dark:text-gray-50 md:text-3xl">
+      <h2 className="font-heading text-2xl tracking-tight text-gray-900 dark:text-ctp-text md:text-3xl">
         {title}
       </h2>
       {children ? (
@@ -153,7 +153,7 @@ function SectionHeader({
 function ItemRow({ name, description, href }: LinkedItem) {
   const body = (
     <>
-      <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-gray-50 dark:group-hover:text-purple-300">
+      <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300">
         <span className="inline-flex items-center gap-2">
           {name}
           {href ? (
@@ -203,7 +203,7 @@ export default function Uses() {
     <div className="space-y-10 py-8 md:space-y-12 md:py-12">
       <header>
         <div className="mb-8 max-w-3xl">
-          <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-6xl">
+          <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-gray-900 dark:text-ctp-text md:text-6xl">
             What I use
           </h1>
           <p className="mt-5 max-w-[58ch] text-lg leading-relaxed text-gray-700 dark:text-gray-300">
