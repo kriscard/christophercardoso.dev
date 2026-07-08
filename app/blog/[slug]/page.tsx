@@ -99,11 +99,16 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
           <p className="mt-4 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
             {post.summary}
           </p>
-          <p className="mt-5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-purple-600 dark:text-purple-300">
+          <div className="mt-5 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <span key={tag}>{tag}</span>
+              <span
+                key={tag}
+                className="rounded-full border border-purple-500/40 px-3 py-1 text-sm text-purple-700 dark:border-purple-300/40 dark:text-purple-300"
+              >
+                {tag}
+              </span>
             ))}
-          </p>
+          </div>
         </header>
 
         <MdxLayout>
