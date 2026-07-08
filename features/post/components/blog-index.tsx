@@ -274,24 +274,21 @@ function EmptyState({
   activeTag: string
   query: string
 }) {
-  const filterLabel =
+  const context =
     activeTag && query
-      ? "filters"
+      ? `tagged ${activeTag} match "${query}"`
       : activeTag
-        ? "topic filter"
-        : "search filter"
+        ? `tagged ${activeTag}`
+        : `match "${query}"`
 
   return (
-    <div className="py-16 text-center sm:py-24">
-      <h2 className="font-heading text-2xl text-gray-900 dark:text-ctp-text">
-        No articles found
-      </h2>
-      <p className="mx-auto mt-3 max-w-[48ch] text-base leading-relaxed text-gray-600 dark:text-gray-400">
-        Try a broader search or clear the {filterLabel} to browse everything.
+    <div className="py-6">
+      <p className="max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
+        No articles {context}. Try a broader search or a different topic.
       </p>
       <Link
         href="/blog"
-        className="mt-6 inline-flex min-h-touch items-center gap-1 rounded-lg font-mono text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:text-purple-200 dark:focus-visible:ring-offset-dark"
+        className="mt-4 inline-flex min-h-touch items-center gap-1 rounded-lg font-mono text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:text-purple-200 dark:focus-visible:ring-offset-dark"
       >
         View all articles
         <ArrowIcon className="size-4" />
@@ -326,14 +323,17 @@ export function BlogIndex({
     <>
       <BlogFilters activeTag={activeTag} query={query} tags={visibleTags} />
 
-      {hasActiveFilters ? (
-        <p className="mb-2 font-mono text-xs text-gray-500 dark:text-gray-400">
-          {getResultsLabel({ count: filteredPosts.length, activeTag, query })}
-        </p>
-      ) : null}
-
       {filteredPosts.length > 0 ? (
         <>
+          {hasActiveFilters ? (
+            <p className="mb-2 font-mono text-xs text-gray-500 dark:text-gray-400">
+              {getResultsLabel({
+                count: filteredPosts.length,
+                activeTag,
+                query,
+              })}
+            </p>
+          ) : null}
           {!hasActiveFilters && latestPost ? (
             <LatestPost post={latestPost} />
           ) : null}
