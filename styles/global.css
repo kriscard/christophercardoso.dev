@@ -7,6 +7,7 @@
   --ctp-mantle: #1e2030;
   --ctp-surface0: #363a4f;
   --ctp-surface1: #494d64;
+  --ctp-surface2: #5b6078;
   --ctp-flamingo: #f0c6c6;
 }
 
@@ -27,6 +28,32 @@ pre[data-language] {
   border-radius: 0.75rem !important;
   border: 1px solid var(--ctp-surface0) !important;
   overflow-x: auto;
+  /* Keep trackpad horizontal scroll inside the block, not browser back-nav */
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ctp-surface1) transparent;
+}
+
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar,
+pre[data-language]::-webkit-scrollbar {
+  height: 8px;
+}
+
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-track,
+pre[data-language]::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 0 0.75rem;
+}
+
+[data-rehype-pretty-code-figure] pre::-webkit-scrollbar-thumb,
+pre[data-language]::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface1);
+  border-radius: 9999px;
+}
+
+[data-rehype-pretty-code-figure] pre:hover::-webkit-scrollbar-thumb,
+pre[data-language]:hover::-webkit-scrollbar-thumb {
+  background: var(--ctp-surface2);
 }
 
 /* Mobile code block optimization */
