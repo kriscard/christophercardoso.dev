@@ -81,35 +81,29 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
           Back to articles
         </Link>
 
-        <header className="mb-8 max-w-3xl space-y-4 md:mb-12 md:space-y-5">
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-purple-500/30 px-3 py-1 text-xs text-purple-700 dark:text-purple-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <header className="mb-10 max-w-3xl md:mb-14">
+          <p className="font-mono text-xs text-gray-500 dark:text-gray-400">
+            <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+            {" · "}
+            {readingTime} min read
+          </p>
           <ViewTransition
             name={`post-title-${slug}`}
             share="text-morph"
             default="none"
           >
-            <h1 className="text-balance font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-6xl">
+            <h1 className="mt-4 text-balance font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-5xl">
               {post.title}
             </h1>
           </ViewTransition>
-          <p className="text-base leading-7 text-gray-700 dark:text-gray-300 md:text-lg md:leading-relaxed">
+          <p className="mt-4 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
             {post.summary}
           </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-            <time dateTime={post.date}>
-              Published {formatPostDate(post.date)}
-            </time>
-            <span>{readingTime} min read</span>
-          </div>
+          <p className="mt-5 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-purple-600 dark:text-purple-300">
+            {tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </p>
         </header>
 
         <MdxLayout>
