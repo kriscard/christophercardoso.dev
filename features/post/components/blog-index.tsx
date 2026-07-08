@@ -122,7 +122,7 @@ function TagLink({
         "inline-flex min-h-touch items-center rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-0",
         isActive
           ? "text-purple-600 dark:text-purple-300"
-          : "text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-ctp-text"
+          : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
       )}
     >
       {children}
