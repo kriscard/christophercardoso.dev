@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
+import { PageHeader } from "@/components/page-header"
 
 const description =
   "About Christopher Cardoso, a Toronto software developer writing about frontend engineering, tools, and projects."
@@ -28,15 +29,14 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <article className="py-8 md:py-12">
-      <header className="mb-10 border-b border-gray-200/80 pb-10 pt-4 dark:border-ctp-surface0/80 md:pb-12 md:pt-8">
-        <h1 className="max-w-[11ch] text-balance font-heading text-5xl font-bold leading-[0.98] tracking-[-0.045em] text-gray-950 dark:text-ctp-text md:text-7xl">
-          About me
-        </h1>
-        <p className="mt-6 w-full text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          I build software, tune my tools, and write down the parts that feel
-          useful to other developers.
-        </p>
-      </header>
+      <PageHeader
+        title="About me"
+        className="mb-10"
+        titleClassName="max-w-[11ch] text-balance"
+      >
+        I build software, tune my tools, and write down the parts that feel
+        useful to other developers.
+      </PageHeader>
 
       <div className="prose prose-lg mt-10 max-w-3xl dark:prose-invert prose-a:text-purple-600 dark:prose-a:text-purple-300">
         <p>

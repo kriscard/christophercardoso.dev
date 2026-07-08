@@ -4,6 +4,7 @@ import localFont from "next/font/local"
 import { Analytics } from "@vercel/analytics/next"
 
 import { siteConfig } from "@/lib/config"
+import { blogDescription, siteDescription } from "@/lib/seo"
 import { cn } from "@/lib/utils"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
@@ -23,9 +24,6 @@ const fontMono = FontMono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
-
-const siteDescription =
-  "Frontend engineering notes, dotfiles, projects, and developer writing from Christopher Cardoso."
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -63,14 +61,32 @@ const structuredData = {
       "@id": `${siteConfig.url}/blog#blog`,
       name: "Christopher Cardoso Blog",
       url: `${siteConfig.url}/blog`,
-      description:
-        "Articles about frontend engineering, terminal workflows, and developer tools.",
+      description: blogDescription,
       author: {
         "@id": `${siteConfig.url}/#person`,
       },
       inLanguage: "en-US",
     },
   ],
+}
+
+function serializeStructuredData(data: typeof structuredData) {
+  return JSON.stringify(data).replace(/[<>&\u2028\u2029]/g, (character) => {
+    switch (character) {
+      case "<":
+        return "\\u003c"
+      case ">":
+        return "\\u003e"
+      case "&":
+        return "\\u0026"
+      case "\u2028":
+        return "\\u2028"
+      case "\u2029":
+        return "\\u2029"
+      default:
+        return character
+    }
+  })
 }
 
 export const metadata: Metadata = {
@@ -158,7 +174,9 @@ export default function RootLayout({
         >
           <script
             type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            dangerouslySetInnerHTML={{
+              __html: serializeStructuredData(structuredData),
+            }}
           />
           <Header />
           <main className="relative z-10 mx-auto mt-6 w-full max-w-6xl px-5 sm:px-8 md:px-10">

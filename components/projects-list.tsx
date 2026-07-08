@@ -5,7 +5,6 @@ import { ArrowIcon } from "./icons"
 
 interface ProjectListProps {
   hideHeading?: boolean
-  compact?: boolean
 }
 
 function ProjectCard({ project }: { project: Project }) {

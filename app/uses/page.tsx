@@ -5,6 +5,7 @@ import Link from "next/link"
 import { siteConfig } from "@/lib/config"
 import { Banner } from "@/components/banner"
 import { ArrowIcon } from "@/components/icons"
+import { PageHeader } from "@/components/page-header"
 
 const description =
   "The development tools, software, desk gear, and keyboards Christopher Cardoso uses."
@@ -225,24 +226,19 @@ export default function Uses() {
 
   return (
     <div className="py-8 md:py-12">
-      <header className="mb-10 border-b border-gray-200/80 pb-10 pt-4 dark:border-ctp-surface0/80 md:mb-12 md:pb-12 md:pt-8">
-        <h1 className="font-heading text-5xl font-bold leading-[0.98] tracking-[-0.045em] text-gray-950 dark:text-ctp-text md:text-7xl">
-          What I use
-        </h1>
-        <p className="mt-6 w-full text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-          A practical look at the desk, terminal, editor, and keyboard setup I
-          use to build software every day. Inspired by{" "}
-          <Link
-            href="https://uses.tech"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
-          >
-            uses.tech
-          </Link>
-          .
-        </p>
-      </header>
+      <PageHeader title="What I use" className="mb-10 md:mb-12">
+        A practical look at the desk, terminal, editor, and keyboard setup I use
+        to build software every day. Inspired by{" "}
+        <Link
+          href="https://uses.tech"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-purple-600 transition-colors hover:text-purple-400 dark:text-purple-400 dark:hover:text-purple-300"
+        >
+          uses.tech
+        </Link>
+        .
+      </PageHeader>
 
       <div className="space-y-10 md:space-y-12">
         <Banner

@@ -9,7 +9,7 @@ export default function HomePage() {
       <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start lg:gap-8 xl:gap-10">
         <PostsList />
         <div className="lg:sticky lg:top-8">
-          <ProjectsList compact />
+          <ProjectsList />
         </div>
       </div>
     </div>
