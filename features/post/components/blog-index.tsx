@@ -1,6 +1,5 @@
 import { ViewTransition } from "react"
 import type { Route } from "next"
-import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
@@ -11,22 +10,6 @@ import {
   type Post,
 } from "@/features/post/post-queries"
 import { ArrowIcon } from "@/components/icons"
-import { TagIcon } from "@/components/tag-icon"
-
-const postImages: Record<string, { src: string; alt: string }> = {
-  "dotfiles-part-2-my-neovim-setup": {
-    src: "/images/blog/neovim-dashboard.png",
-    alt: "Neovim dashboard using the Catppuccin Macchiato theme",
-  },
-}
-
-type TagCount = {
-  tag: string
-  count: number
-}
-
-const VISIBLE_TOPIC_LIMIT = 6
-const TOPIC_OVERFLOW_THRESHOLD = 8
 
 function getSearchParamValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : (value ?? "")
@@ -36,7 +19,7 @@ function normalizeFilter(value: string) {
   return value.trim().toLowerCase()
 }
 
-function getTagCounts(posts: Post[]) {
+function getTags(posts: Post[]) {
   const counts = new Map<string, number>()
 
   posts.forEach((post) => {
@@ -45,38 +28,28 @@ function getTagCounts(posts: Post[]) {
     })
   })
 
-  return Array.from(counts.entries())
-    .map(([tag, count]) => ({ tag, count }))
-    .sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag))
+  return Array.from(counts.entries()).sort(
+    (a, b) => b[1] - a[1] || a[0].localeCompare(b[0])
+  )
 }
 
-function getVisibleTagCounts(tagCounts: TagCount[], activeTag: string) {
-  if (tagCounts.length <= TOPIC_OVERFLOW_THRESHOLD) {
-    return { visibleTags: tagCounts, hiddenTags: [] }
-  }
-
-  const activeTagCount = tagCounts.find(
-    ({ tag }) => normalizeFilter(tag) === normalizeFilter(activeTag)
-  )
-  const visibleTags = tagCounts.slice(0, VISIBLE_TOPIC_LIMIT)
-  const shouldIncludeActiveTag =
-    activeTagCount &&
-    !visibleTags.some(
-      ({ tag }) => normalizeFilter(tag) === normalizeFilter(activeTagCount.tag)
-    )
-
-  if (shouldIncludeActiveTag) {
-    visibleTags.push(activeTagCount)
-  }
-
-  const hiddenTags = tagCounts.filter(
-    ({ tag }) =>
-      !visibleTags.some(
-        (visibleTag) => normalizeFilter(visibleTag.tag) === normalizeFilter(tag)
-      )
+// Show the five most-used tags; keep the active tag visible even if a
+// deep link points at a rarer one
+function getVisibleTags(tags: [string, number][], activeTag: string) {
+  const visible = tags.slice(0, 5).map(([tag]) => tag)
+  const isKnownTag = tags.some(
+    ([tag]) => normalizeFilter(tag) === normalizeFilter(activeTag)
   )
 
-  return { visibleTags, hiddenTags }
+  if (
+    activeTag &&
+    isKnownTag &&
+    !visible.some((tag) => normalizeFilter(tag) === normalizeFilter(activeTag))
+  ) {
+    visible.push(activeTag)
+  }
+
+  return visible
 }
 
 function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
@@ -136,260 +109,166 @@ function getResultsLabel({
   return `${count} ${articleLabel}`
 }
 
-function BlogFilters({
-  activeTag,
-  query,
-  postsCount,
-  tagCounts,
+function TagLink({
+  href,
+  isActive,
+  children,
 }: {
-  activeTag: string
-  query: string
-  postsCount: number
-  tagCounts: TagCount[]
+  href: Route
+  isActive: boolean
+  children: React.ReactNode
 }) {
-  const hasActiveFilters = Boolean(activeTag || query)
-  const { visibleTags, hiddenTags } = getVisibleTagCounts(tagCounts, activeTag)
-  const topicLinkClass =
-    "inline-flex min-h-touch items-center rounded-full border px-3 py-1.5 text-sm transition-[background-color,border-color,color,transform] duration-200 active:translate-y-px md:min-h-9 md:px-2.5 md:py-1 md:text-xs"
-  const inactiveTopicClass =
-    "border-gray-300/70 text-gray-600 hover:border-purple-500/40 hover:text-purple-700 dark:border-gray-700 dark:text-gray-400 dark:hover:border-purple-400/40 dark:hover:text-purple-300"
-  const activeTopicClass =
-    "border-purple-500/50 bg-purple-500/10 text-purple-700 dark:border-purple-400/45 dark:bg-purple-400/10 dark:text-purple-200"
-  const countClass = "ml-1.5 font-mono text-[11px] opacity-55"
-
   return (
-    <section
-      className="mb-8 border-y border-gray-300/70 py-5 dark:border-gray-800/80"
-      aria-label="Filter articles"
+    <Link
+      href={href}
+      aria-current={isActive ? "page" : undefined}
+      className={cn(
+        "inline-flex min-h-touch shrink-0 items-center rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-0",
+        isActive
+          ? "text-purple-600 dark:text-purple-300"
+          : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
+      )}
     >
-      <div className="grid gap-5 lg:grid-cols-[1fr_18rem] lg:items-start">
-        <div className="space-y-3">
-          <p className="text-xs text-gray-500 dark:text-gray-400">
-            Filter by topic
-          </p>
-          <div className="flex flex-wrap gap-2" aria-label="Article topics">
-            <Link
-              href={createBlogHref({ query })}
-              className={cn(
-                topicLinkClass,
-                !activeTag ? activeTopicClass : inactiveTopicClass
-              )}
-              aria-current={!activeTag ? "page" : undefined}
-            >
-              <span>All</span>
-              <span className={countClass}>{postsCount}</span>
-            </Link>
-            {visibleTags.map(({ tag, count }) => {
-              const isActive =
-                normalizeFilter(activeTag) === normalizeFilter(tag)
-              const href = isActive
-                ? createBlogHref({ query })
-                : createBlogHref({ tag, query })
-
-              return (
-                <Link
-                  key={tag}
-                  href={href}
-                  className={cn(
-                    topicLinkClass,
-                    isActive ? activeTopicClass : inactiveTopicClass
-                  )}
-                  aria-current={isActive ? "page" : undefined}
-                >
-                  <span>{tag}</span>
-                  <span className={countClass}>{count}</span>
-                </Link>
-              )
-            })}
-            {hiddenTags.length > 0 ? (
-              <details className="group basis-full md:basis-auto">
-                <summary
-                  className={cn(
-                    topicLinkClass,
-                    inactiveTopicClass,
-                    "w-fit cursor-pointer list-none [&::-webkit-details-marker]:hidden"
-                  )}
-                >
-                  <span>More topics</span>
-                  <span className={countClass}>{hiddenTags.length}</span>
-                </summary>
-                <div className="mt-2 flex flex-wrap gap-2 rounded-lg border border-gray-300/70 p-2 dark:border-gray-800">
-                  {hiddenTags.map(({ tag, count }) => {
-                    const isActive =
-                      normalizeFilter(activeTag) === normalizeFilter(tag)
-                    const href = isActive
-                      ? createBlogHref({ query })
-                      : createBlogHref({ tag, query })
-
-                    return (
-                      <Link
-                        key={tag}
-                        href={href}
-                        className={cn(
-                          topicLinkClass,
-                          isActive ? activeTopicClass : inactiveTopicClass
-                        )}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        <span>{tag}</span>
-                        <span className={countClass}>{count}</span>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </details>
-            ) : null}
-          </div>
-        </div>
-
-        <form action="/blog" className="lg:pt-7">
-          {activeTag ? (
-            <input type="hidden" name="tag" value={activeTag} />
-          ) : null}
-          <label htmlFor="blog-search" className="sr-only">
-            Search articles
-          </label>
-          <div className="flex items-center gap-3 border-b border-gray-300/80 transition-colors focus-within:border-purple-500/70 dark:border-gray-700 dark:focus-within:border-purple-400/70">
-            <input
-              id="blog-search"
-              type="search"
-              name="q"
-              defaultValue={query}
-              placeholder="Search articles"
-              className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-gray-100 dark:[color-scheme:dark] dark:placeholder:text-gray-500"
-            />
-            <button
-              type="submit"
-              className="min-h-touch rounded-lg text-sm text-purple-700 transition-[color,transform] duration-200 hover:text-purple-900 active:translate-y-px dark:text-purple-300 dark:hover:text-purple-200"
-            >
-              Search
-            </button>
-          </div>
-          {hasActiveFilters ? (
-            <Link
-              href="/blog"
-              className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark mt-3 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-500 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:text-gray-400 dark:hover:text-purple-300"
-            >
-              Clear filters
-            </Link>
-          ) : null}
-        </form>
-      </div>
-    </section>
+      {children}
+    </Link>
   )
 }
 
-function FeaturedPostCard({ post }: { post: Post }) {
-  const image = postImages[post._meta.path]
-  const tags = getPostTags(post.tag).slice(0, 3)
+function BlogFilters({
+  activeTag,
+  query,
+  tags,
+}: {
+  activeTag: string
+  query: string
+  tags: string[]
+}) {
+  const hasActiveFilters = Boolean(activeTag || query)
 
+  return (
+    <div className="mb-8 flex flex-col gap-5 md:mb-10 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
+      <nav
+        aria-label="Filter articles by topic"
+        className="-mx-1 flex items-baseline gap-x-5 overflow-x-auto overscroll-x-contain p-1 [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+      >
+        <span className="shrink-0 text-sm text-gray-500 dark:text-gray-400">
+          Filter:
+        </span>
+        <TagLink href={"/blog" as Route} isActive={!activeTag}>
+          All
+        </TagLink>
+        {tags.map((tag) => {
+          const isActive = normalizeFilter(activeTag) === normalizeFilter(tag)
+          const href = isActive ? ("/blog" as Route) : createBlogHref({ tag })
+
+          return (
+            <TagLink key={tag} href={href} isActive={isActive}>
+              {tag}
+            </TagLink>
+          )
+        })}
+      </nav>
+
+      <form
+        action="/blog"
+        className="w-full max-w-xs lg:w-64 lg:max-w-none lg:shrink-0"
+      >
+        <label htmlFor="blog-search" className="sr-only">
+          Search articles
+        </label>
+        <div className="flex items-center gap-3 border-b border-gray-300 transition-colors focus-within:border-purple-500/70 dark:border-gray-700 dark:focus-within:border-purple-400/70">
+          <input
+            id="blog-search"
+            type="search"
+            name="q"
+            defaultValue={query}
+            placeholder="Search articles"
+            className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-ctp-text dark:[color-scheme:dark] dark:placeholder:text-gray-500 md:min-h-9"
+          />
+          <button
+            type="submit"
+            className="min-h-touch cursor-pointer rounded-lg text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:text-purple-300 dark:hover:text-purple-200 md:min-h-9"
+          >
+            Search
+          </button>
+        </div>
+        {hasActiveFilters ? (
+          <Link
+            href="/blog"
+            className="mt-2 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-500 transition-colors hover:text-purple-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:min-h-0"
+          >
+            Clear filters
+          </Link>
+        ) : null}
+      </form>
+    </div>
+  )
+}
+
+export function PostListItem({
+  post,
+  titleAs: TitleComponent = "h2",
+}: {
+  post: Post
+  titleAs?: "h2" | "h3"
+}) {
   return (
     <article>
       <Link
         href={`/blog/${post._meta.path}`}
-        className={cn(
-          "group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark grid overflow-hidden rounded-lg border border-purple-400/70 bg-purple-50/40 shadow-lg shadow-purple-200/20 transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-white/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-purple-500/60 dark:bg-purple-500/5 dark:shadow-purple-500/10 dark:hover:bg-purple-500/10",
-          image && "md:grid-cols-[1.05fr_0.95fr]"
-        )}
+        className="group block cursor-pointer rounded-lg py-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
         aria-label={`Read ${post.title}`}
       >
-        <div className="flex flex-col gap-5 p-6 sm:p-8 md:min-h-80">
-          <div className="flex items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
-            <TagIcon
-              tag={post.tag}
-              size={32}
-              className="text-purple-600 dark:text-purple-400"
-            />
-            <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-          </div>
-          <ViewTransition
-            name={`post-title-${post._meta.path}`}
-            share="text-morph"
-            default="none"
-          >
-            <h2 className="max-w-xl text-wrap font-heading text-3xl leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-4xl">
-              {post.title}
-            </h2>
-          </ViewTransition>
-          <p className="max-w-[58ch] text-base leading-relaxed text-gray-700 dark:text-gray-300">
-            {post.summary}
-          </p>
-          <div className="mt-auto flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-purple-500/30 px-3 py-1 text-xs text-purple-700 dark:text-purple-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-          <div className="flex items-center gap-1 font-mono text-sm text-purple-600 dark:text-purple-400">
-            <span>Read latest</span>
-            <ArrowIcon className="size-5 text-gray-500 transition-transform duration-200 group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-purple-600 dark:group-hover/card:text-purple-300" />
-          </div>
-        </div>
-        {image ? (
-          <div className="relative min-h-64 border-t border-purple-500/20 md:border-l md:border-t-0">
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              priority
-              sizes="(max-width: 768px) 100vw, 430px"
-              className="object-cover"
-            />
-          </div>
-        ) : null}
-      </Link>
-    </article>
-  )
-}
-
-function PostCard({ post, className }: { post: Post; className?: string }) {
-  const tags = getPostTags(post.tag).slice(0, 2)
-
-  return (
-    <article className={className}>
-      <Link
-        href={`/blog/${post._meta.path}`}
-        className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark flex h-full flex-col rounded-lg border border-gray-300/70 bg-white/70 p-5 shadow-sm transition-[border-color,background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-purple-400/70 hover:bg-white/90 hover:shadow-md hover:shadow-purple-200/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:border-gray-700/60 dark:bg-gray-800/45 dark:shadow-lg dark:shadow-black/20 dark:hover:border-purple-500/60 dark:hover:bg-gray-800/70 dark:hover:shadow-xl dark:hover:shadow-purple-500/10 sm:p-6 md:min-h-64"
-        aria-label={`Read ${post.title}`}
-      >
-        <div className="flex items-center justify-between gap-4 text-sm text-gray-500 dark:text-gray-400">
-          <TagIcon
-            tag={post.tag}
-            size={28}
-            className="text-purple-600 dark:text-purple-400"
-          />
-          <time dateTime={post.date}>{formatPostDate(post.date)}</time>
-        </div>
+        <time
+          dateTime={post.date}
+          className="font-mono text-xs text-gray-500 dark:text-gray-400"
+        >
+          {formatPostDate(post.date)}
+        </time>
         <ViewTransition
           name={`post-title-${post._meta.path}`}
           share="text-morph"
           default="none"
         >
-          <h2 className="mt-5 text-wrap font-heading text-2xl leading-tight text-gray-900 dark:text-gray-50">
+          <TitleComponent className="mt-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
+            {post.title}
+          </TitleComponent>
+        </ViewTransition>
+        <p className="mt-2 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          {post.summary}
+        </p>
+      </Link>
+    </article>
+  )
+}
+
+function LatestPost({ post }: { post: Post }) {
+  return (
+    <article className="mb-4">
+      <Link
+        href={`/blog/${post._meta.path}`}
+        className="group block cursor-pointer rounded-lg pb-8 pt-2 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+        aria-label={`Read ${post.title}`}
+      >
+        <p className="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-300">
+          Latest
+        </p>
+        <ViewTransition
+          name={`post-title-${post._meta.path}`}
+          share="text-morph"
+          default="none"
+        >
+          <h2 className="mt-3 max-w-2xl text-balance font-heading text-3xl leading-tight tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-4xl">
             {post.title}
           </h2>
         </ViewTransition>
-        <p className="mt-4 text-base leading-relaxed text-gray-600 dark:text-gray-300">
+        <p className="mt-4 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
           {post.summary}
         </p>
-        <div className="mt-5 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-gray-300/70 px-3 py-1 text-xs text-gray-600 dark:border-gray-700 dark:text-gray-400"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <div className="mt-auto flex items-center gap-1 pt-6 font-mono text-sm text-purple-600 dark:text-purple-400">
-          <span>Read more</span>
-          <ArrowIcon className="size-5 text-gray-500 transition-transform duration-200 group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-purple-600 dark:group-hover/card:text-purple-300" />
-        </div>
+        <span className="mt-5 inline-flex items-center gap-1 font-mono text-sm text-purple-600 dark:text-purple-300">
+          Read the article
+          <ArrowIcon className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </span>
       </Link>
     </article>
   )
@@ -402,26 +281,24 @@ function EmptyState({
   activeTag: string
   query: string
 }) {
-  const filterLabel =
+  const context =
     activeTag && query
-      ? "filters"
+      ? `tagged ${activeTag} match "${query}"`
       : activeTag
-        ? "topic filter"
-        : "search filter"
+        ? `tagged ${activeTag}`
+        : `match "${query}"`
 
   return (
-    <div className="rounded-lg border border-dashed border-gray-300/80 bg-white/45 p-8 text-center dark:border-gray-700 dark:bg-gray-800/25">
-      <h2 className="font-heading text-2xl text-gray-900 dark:text-gray-50">
-        No articles found
-      </h2>
-      <p className="mx-auto mt-3 max-w-[48ch] text-base leading-relaxed text-gray-600 dark:text-gray-300">
-        Try a broader search or clear the {filterLabel} to browse everything.
+    <div className="py-6">
+      <p className="max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
+        No articles {context}. Try a broader search or a different topic.
       </p>
       <Link
         href="/blog"
-        className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark mt-5 inline-flex min-h-touch items-center rounded-lg border border-purple-500/50 px-4 py-2 text-sm text-purple-700 transition-colors hover:bg-purple-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:text-purple-300 dark:hover:bg-purple-500/10"
+        className="mt-4 inline-flex min-h-touch items-center gap-1 rounded-lg font-mono text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:text-purple-200 dark:focus-visible:ring-offset-dark"
       >
         View all articles
+        <ArrowIcon className="size-4" />
       </Link>
     </div>
   )
@@ -437,43 +314,42 @@ export function BlogIndex({
   const posts = getAllPosts(false)
   const query = getSearchParamValue(q).trim()
   const requestedTag = getSearchParamValue(tag).trim()
-  const tagCounts = getTagCounts(posts)
+  const tags = getTags(posts)
   const activeTag =
-    tagCounts.find(
-      ({ tag }) => normalizeFilter(tag) === normalizeFilter(requestedTag)
-    )?.tag ?? requestedTag
+    tags.find(
+      ([candidate]) =>
+        normalizeFilter(candidate) === normalizeFilter(requestedTag)
+    )?.[0] ?? requestedTag
+  const visibleTags = getVisibleTags(tags, activeTag)
   const filteredPosts = getFilteredPosts(posts, activeTag, query)
-  const [featuredPost, ...remainingPosts] = filteredPosts
+  const hasActiveFilters = Boolean(activeTag || query)
+  const [latestPost, ...remainingPosts] = filteredPosts
+  const listPosts = hasActiveFilters ? filteredPosts : remainingPosts
 
   return (
     <>
-      <BlogFilters
-        activeTag={activeTag}
-        query={query}
-        postsCount={posts.length}
-        tagCounts={tagCounts}
-      />
-
-      <div className="mb-5 text-sm text-gray-500 dark:text-gray-400">
-        <p>
-          {getResultsLabel({ count: filteredPosts.length, activeTag, query })}
-        </p>
-      </div>
+      <BlogFilters activeTag={activeTag} query={query} tags={visibleTags} />
 
       {filteredPosts.length > 0 ? (
-        <div className="space-y-5 md:space-y-6">
-          {featuredPost ? <FeaturedPostCard post={featuredPost} /> : null}
-          <div
-            className={cn(
-              "grid grid-cols-1 gap-5 md:grid-cols-2",
-              remainingPosts.length === 1 && "md:grid-cols-1"
-            )}
-          >
-            {remainingPosts.map((post) => (
-              <PostCard key={post._meta.path} post={post} />
+        <>
+          {hasActiveFilters ? (
+            <p className="mb-2 font-mono text-xs text-gray-500 dark:text-gray-400">
+              {getResultsLabel({
+                count: filteredPosts.length,
+                activeTag,
+                query,
+              })}
+            </p>
+          ) : null}
+          {!hasActiveFilters && latestPost ? (
+            <LatestPost post={latestPost} />
+          ) : null}
+          <div>
+            {listPosts.map((post) => (
+              <PostListItem key={post._meta.path} post={post} />
             ))}
           </div>
-        </div>
+        </>
       ) : (
         <EmptyState activeTag={activeTag} query={query} />
       )}

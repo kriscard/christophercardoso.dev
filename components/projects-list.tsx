@@ -1,42 +1,10 @@
 import Link from "next/link"
-import { projects, type Project } from "@/data/projects"
+import { projects } from "@/data/projects"
 
 import { ArrowIcon } from "./icons"
-import {
-  TeaserCard,
-  TeaserCardAction,
-  TeaserCardBody,
-  TeaserCardDescription,
-  TeaserCardTitle,
-} from "./teaser-card"
 
 interface ProjectListProps {
   hideHeading?: boolean
-}
-
-function ProjectCard({ title, description, href }: Project) {
-  return (
-    <Link
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2"
-      aria-label={`Open ${title} project`}
-    >
-      <TeaserCard className="md:min-h-52">
-        <TeaserCardBody>
-          <TeaserCardTitle className="text-xl md:text-2xl">
-            {title}
-          </TeaserCardTitle>
-          <TeaserCardDescription>{description}</TeaserCardDescription>
-          <TeaserCardAction className="font-mono text-sm text-purple-600 dark:text-purple-400">
-            <span>Discover</span>
-            <ArrowIcon className="size-5 text-gray-500 transition-transform duration-200 group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-purple-600 dark:group-hover/card:text-purple-300" />
-          </TeaserCardAction>
-        </TeaserCardBody>
-      </TeaserCard>
-    </Link>
-  )
 }
 
 export function ProjectsList({ hideHeading }: ProjectListProps) {
@@ -45,11 +13,28 @@ export function ProjectsList({ hideHeading }: ProjectListProps) {
   return (
     <section id="projects">
       {hideHeading ? null : (
-        <h2 className="mb-6 font-heading text-2xl md:text-3xl">Projects</h2>
+        <h2 className="font-heading text-2xl tracking-tight md:text-3xl">
+          Projects
+        </h2>
       )}
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="mt-2">
         {projects.map((project) => (
-          <ProjectCard key={project.href} {...project} />
+          <Link
+            key={project.href}
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block cursor-pointer rounded-lg py-5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+            aria-label={`Open ${project.title} project`}
+          >
+            <h3 className="inline-flex items-center gap-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
+              {project.title}
+              <ArrowIcon className="size-4 text-gray-500 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-purple-600 dark:group-hover:text-purple-300" />
+            </h3>
+            <p className="mt-2 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
+              {project.description}
+            </p>
+          </Link>
         ))}
       </div>
     </section>

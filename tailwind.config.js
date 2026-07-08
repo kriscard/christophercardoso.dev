@@ -5,76 +5,103 @@ module.exports = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
+    "./features/**/*.{ts,tsx}",
     "./content/**/*.mdx",
   ],
   theme: {
     extend: {
       fontFamily: {
+        sans: ["var(--font-sans)", ...fontFamily.sans],
+        mono: ["var(--font-mono)", ...fontFamily.mono],
         heading: ["var(--font-heading)", ...fontFamily.sans],
       },
       // Catppuccin Macchiato palette
       colors: {
+        gray: {
+          50: "#e6e9ef",
+          100: "#dce0e8",
+          200: "#ccd0da",
+          300: "#bcc0cc",
+          400: "#a5adcb",
+          500: "#7c7f93",
+          600: "#6c6f85",
+          700: "#5c5f77",
+          800: "#4c4f69",
+          900: "#494d64",
+          950: "#363a4f",
+        },
+        purple: {
+          50: "#f6f1fe",
+          100: "#ede2fd",
+          200: "#ddc9fb",
+          300: "#c6a0f6",
+          400: "#ad7bf3",
+          500: "#9757f1",
+          600: "#8839ef",
+          700: "#7422d6",
+          800: "#5f1cb0",
+          900: "#4e1a8d",
+          950: "#330f61",
+        },
+        dark: "#24273a", // Catppuccin Macchiato Base
+        lightGray: "#eff1f5", // Catppuccin Latte Base
         ctp: {
           // Base colors
-          base: '#24273a',
-          mantle: '#1e2030',
-          crust: '#181926',
+          base: "#24273a",
+          mantle: "#1e2030",
+          crust: "#181926",
           // Surface colors
-          surface0: '#363a4f',
-          surface1: '#494d64',
-          surface2: '#5b6078',
+          surface0: "#363a4f",
+          surface1: "#494d64",
+          surface2: "#5b6078",
           // Text colors
-          text: '#cad3f5',
-          subtext0: '#a5adcb',
-          subtext1: '#b8c0e0',
+          text: "#cad3f5",
+          subtext0: "#a5adcb",
+          subtext1: "#b8c0e0",
           // Overlay
-          overlay0: '#6e738d',
-          overlay1: '#8087a2',
-          overlay2: '#939ab7',
+          overlay0: "#6e738d",
+          overlay1: "#8087a2",
+          overlay2: "#939ab7",
           // Accent colors
-          mauve: '#c6a0f6',
-          pink: '#f5bde6',
-          blue: '#8aadf4',
-          sapphire: '#7dc4e4',
-          lavender: '#b7bdf8',
-          flamingo: '#f0c6c6',
-          rosewater: '#f4dbd6',
+          mauve: "#c6a0f6",
+          pink: "#f5bde6",
+          blue: "#8aadf4",
+          sapphire: "#7dc4e4",
+          lavender: "#b7bdf8",
+          flamingo: "#f0c6c6",
+          rosewater: "#f4dbd6",
           // Latte equivalents (light mode)
           latte: {
-            mauve: '#8839ef',
-            lavender: '#7287fd',
-            base: '#eff1f5',
-            text: '#4c4f69',
-            surface0: '#ccd0da',
-          }
-        }
-      },
-      backgroundColor: {
-        dark: "#24273a",  // Catppuccin Macchiato Base
-        lightGray: "#EEEEEE",
+            mauve: "#8839ef",
+            lavender: "#7287fd",
+            base: "#eff1f5",
+            text: "#4c4f69",
+            surface0: "#ccd0da",
+          },
+        },
       },
       // Touch targets & component sizing
       spacing: {
-        'touch': '2.75rem',       // 44px - WCAG minimum
-        'touch-lg': '3rem',       // 48px - comfortable
+        touch: "2.75rem", // 44px - WCAG minimum
+        "touch-lg": "3rem", // 48px - comfortable
       },
       size: {
-        'icon-sm': '1rem',        // 16px
-        'icon': '1.25rem',        // 20px
-        'icon-lg': '1.5rem',      // 24px
-        'touch': '2.75rem',       // 44px
-        'logo': '2.5rem',         // 40px
+        "icon-sm": "1rem", // 16px
+        icon: "1.25rem", // 20px
+        "icon-lg": "1.5rem", // 24px
+        touch: "2.75rem", // 44px
+        logo: "2.5rem", // 40px
       },
       minHeight: {
-        'touch': '2.75rem',       // 44px
+        touch: "2.75rem", // 44px
       },
       minWidth: {
-        'touch': '2.75rem',       // 44px
+        touch: "2.75rem", // 44px
       },
       typography: {
         DEFAULT: {
           css: {
-            fontSize: "1.0625rem",  // 17px
+            fontSize: "1.0625rem", // 17px
             lineHeight: "1.75",
             a: {
               color: "#8839ef",
@@ -161,7 +188,7 @@ module.exports = {
             },
             code: {
               color: "#8839ef",
-              backgroundColor: "#eff1f5",
+              backgroundColor: "#e6e9ef",
               paddingLeft: "0.5rem",
               paddingRight: "0.5rem",
               paddingTop: "0.25rem",
@@ -177,7 +204,7 @@ module.exports = {
               content: "none",
             },
             pre: {
-              backgroundColor: "#eff1f5",
+              backgroundColor: "#e6e9ef",
               color: "#4c4f69",
               fontSize: "0.9375rem",
               lineHeight: "1.7",

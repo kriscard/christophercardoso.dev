@@ -73,42 +73,41 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
     const tags = getPostTags(post.tag)
 
     return (
-      <article className="py-8 md:py-16">
+      <article className="py-8 md:py-12">
         <Link
           href="/blog"
-          className="focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 dark:text-gray-400 dark:hover:text-purple-300 md:mb-10"
+          className="mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:mb-10"
         >
           Back to articles
         </Link>
 
-        <header className="mb-8 max-w-3xl space-y-4 md:mb-12 md:space-y-5">
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-purple-500/30 px-3 py-1 text-xs text-purple-700 dark:text-purple-300"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+        <header className="mb-8 max-w-3xl md:mb-10">
+          <p className="font-mono text-xs text-gray-500 dark:text-gray-400">
+            <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+            {" · "}
+            {readingTime} min read
+          </p>
           <ViewTransition
             name={`post-title-${slug}`}
             share="text-morph"
             default="none"
           >
-            <h1 className="text-wrap font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-6xl">
+            <h1 className="mt-4 text-balance font-heading text-[2rem] font-bold leading-tight tracking-tight text-gray-900 dark:text-ctp-text md:text-5xl">
               {post.title}
             </h1>
           </ViewTransition>
-          <p className="text-base leading-7 text-gray-700 dark:text-gray-300 md:text-lg md:leading-relaxed">
+          <p className="mt-4 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
             {post.summary}
           </p>
-          <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-            <time dateTime={post.date}>
-              Published {formatPostDate(post.date)}
-            </time>
-            <span>{readingTime} min read</span>
+          <div className="mt-5 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="rounded-full border border-purple-500/40 px-3 py-1 text-sm text-purple-700 dark:border-purple-300/40 dark:text-purple-300"
+              >
+                {tag}
+              </span>
+            ))}
           </div>
         </header>
 

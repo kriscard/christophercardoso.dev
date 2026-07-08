@@ -22,7 +22,7 @@ export function PluginCard({
         "group block overflow-hidden rounded-lg",
         "bg-gray-100 dark:bg-[#1e2030]",
         "transition-colors duration-150",
-        "hover:bg-gray-200/80 dark:hover:bg-[#24273a]",
+        "hover:bg-gray-200/80 dark:hover:bg-dark",
         className
       )}
     >

@@ -1,111 +1,29 @@
-import { ViewTransition } from "react"
-import type { Route } from "next"
 import Link from "next/link"
 
-import { cn } from "@/lib/utils"
-import {
-  formatPostDate,
-  getAllPosts,
-  type Post,
-} from "@/features/post/post-queries"
+import { PostListItem } from "@/features/post/components/blog-index"
+import { getAllPosts } from "@/features/post/post-queries"
 import { ArrowIcon } from "@/components/icons"
-import { TagIcon } from "@/components/tag-icon"
-import {
-  TeaserCard,
-  TeaserCardAction,
-  TeaserCardBody,
-  TeaserCardDescription,
-  TeaserCardMeta,
-  TeaserCardTitle,
-} from "@/components/teaser-card"
-
-interface BlogCardProps {
-  title: Post["title"]
-  tag: Post["tag"]
-  summary: Post["summary"]
-  date: Post["date"]
-  slug: Post["_meta"]["path"]
-  url: Route
-  isFeatured?: boolean
-}
-
-function BlogCard({
-  tag,
-  title,
-  summary,
-  date,
-  slug,
-  url,
-  isFeatured,
-}: BlogCardProps) {
-  return (
-    <Link
-      href={url}
-      className="group/card focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark block h-full rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2"
-      aria-label={`Read ${title}`}
-    >
-      <TeaserCard
-        className={cn(
-          "md:min-h-72",
-          isFeatured &&
-            "border-purple-400/70 bg-purple-50/40 dark:border-purple-500/60 dark:bg-purple-500/5"
-        )}
-      >
-        <TeaserCardBody>
-          <div className="flex items-center justify-between gap-4">
-            <TagIcon
-              tag={tag}
-              size={32}
-              className="text-purple-600 dark:text-purple-400"
-            />
-            <TeaserCardMeta as="time" dateTime={date}>
-              {formatPostDate(date)}
-            </TeaserCardMeta>
-          </div>
-          <ViewTransition
-            name={`post-title-${slug}`}
-            share="text-morph"
-            default="none"
-          >
-            <TeaserCardTitle className="text-xl md:text-2xl">
-              {title}
-            </TeaserCardTitle>
-          </ViewTransition>
-          <TeaserCardDescription>{summary}</TeaserCardDescription>
-          <TeaserCardAction className="font-mono text-sm text-purple-600 dark:text-purple-400">
-            <span>Read more</span>
-            <ArrowIcon className="size-5 text-gray-500 transition-transform duration-200 group-hover/card:-translate-y-0.5 group-hover/card:translate-x-0.5 group-hover/card:text-purple-600 dark:group-hover/card:text-purple-300" />
-          </TeaserCardAction>
-        </TeaserCardBody>
-      </TeaserCard>
-    </Link>
-  )
-}
 
 export function PostsList() {
   const recentPosts = getAllPosts(false).slice(0, 3)
 
   return (
     <section>
-      <h2 className="mb-6 font-heading text-2xl md:text-3xl">
+      <h2 className="font-heading text-2xl tracking-tight md:text-3xl">
         My Recent Posts
       </h2>
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-[1.08fr_1fr_1fr]">
-        {recentPosts.map(
-          ({ title, tag, summary, date, _meta }: Post, index) => (
-            <BlogCard
-              key={_meta.path}
-              tag={tag}
-              title={title}
-              summary={summary}
-              date={date}
-              slug={_meta.path}
-              url={`/blog/${_meta.path}` as Route}
-              isFeatured={index === 0}
-            />
-          )
-        )}
+      <div className="mt-2">
+        {recentPosts.map((post) => (
+          <PostListItem key={post._meta.path} post={post} titleAs="h3" />
+        ))}
       </div>
+      <Link
+        href="/blog"
+        className="mt-2 inline-flex min-h-touch items-center gap-1 rounded-lg font-mono text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:text-purple-200 dark:focus-visible:ring-offset-dark"
+      >
+        All articles
+        <ArrowIcon className="size-4" />
+      </Link>
     </section>
   )
 }
