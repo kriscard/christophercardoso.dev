@@ -7,7 +7,7 @@ import { SocialLinks } from "./social-links"
 
 export function PresentationBanner() {
   return (
-    <div className="flex flex-col items-start gap-10 py-12 sm:py-14 md:flex-row md:items-center md:gap-12 md:py-20">
+    <div className="flex flex-col items-start gap-10 py-8 sm:py-10 md:flex-row md:items-center md:gap-12 md:py-14">
       <div className="flex min-w-0 flex-1 flex-col gap-6 md:gap-8">
         <h1 className="max-w-[11ch] text-balance font-heading text-4xl font-bold leading-[1.05] tracking-tight sm:max-w-none sm:text-5xl md:text-6xl">
           {hi}

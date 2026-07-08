@@ -73,7 +73,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
     const tags = getPostTags(post.tag)
 
     return (
-      <article className="py-10 md:py-16">
+      <article className="py-8 md:py-12">
         <Link
           href="/blog"
           className="mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:mb-10"
@@ -81,7 +81,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
           Back to articles
         </Link>
 
-        <header className="mb-10 max-w-3xl md:mb-14">
+        <header className="mb-8 max-w-3xl md:mb-10">
           <p className="font-mono text-xs text-gray-500 dark:text-gray-400">
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             {" · "}

@@ -13,7 +13,7 @@ export const metadata = {
 
 export default function About() {
   return (
-    <article className="w-full py-10 md:py-16">
+    <article className="w-full py-8 md:py-12">
       <h1 className="mb-12 font-heading text-4xl font-bold md:text-5xl">
         About me
       </h1>

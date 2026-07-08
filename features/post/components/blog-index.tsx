@@ -127,7 +127,7 @@ function BlogFilters({
   const hasActiveFilters = Boolean(activeTag || query)
 
   return (
-    <div className="mb-12 flex flex-col gap-5 md:mb-14 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
+    <div className="mb-8 flex flex-col gap-5 md:mb-10 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
       <nav
         aria-label="Filter articles by topic"
         className="flex flex-wrap gap-x-5 gap-y-1"
@@ -191,7 +191,7 @@ export function PostListItem({
     <article>
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group block rounded-lg py-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:py-8"
+        className="group -mx-4 block cursor-pointer rounded-lg px-4 py-5 transition-colors hover:bg-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark"
         aria-label={`Read ${post.title}`}
       >
         <time
@@ -222,7 +222,7 @@ function LatestPost({ post }: { post: Post }) {
     <article className="mb-4">
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group block rounded-lg pb-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:pb-12"
+        className="group -mx-4 block cursor-pointer rounded-lg px-4 pb-8 pt-2 transition-colors hover:bg-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark"
         aria-label={`Read ${post.title}`}
       >
         <p className="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-300">

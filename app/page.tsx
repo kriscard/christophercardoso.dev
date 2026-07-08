@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <section>
       <PresentationBanner />
-      <div className="space-y-14 pb-12 pt-2 md:space-y-16 md:pb-16">
+      <div className="space-y-10 pb-10 pt-2 md:space-y-12 md:pb-12">
         <PostsList />
         <ProjectsList />
       </div>

@@ -169,7 +169,7 @@ function ItemRow({ name, description, href }: LinkedItem) {
 
   if (!href) {
     return (
-      <div className="py-5 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8">
+      <div className="py-4 sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8">
         {body}
       </div>
     )
@@ -181,7 +181,7 @@ function ItemRow({ name, description, href }: LinkedItem) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Open ${name}`}
-      className="group block rounded-lg py-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
+      className="group -mx-4 block cursor-pointer rounded-lg p-4 transition-colors hover:bg-white/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:bg-white/[0.04] dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
     >
       {body}
     </Link>
@@ -200,7 +200,7 @@ function ItemList({ items }: { items: LinkedItem[] }) {
 
 export default function Uses() {
   return (
-    <div className="space-y-14 py-10 md:space-y-16 md:py-16">
+    <div className="space-y-10 py-8 md:space-y-12 md:py-12">
       <header>
         <div className="mb-8 max-w-3xl">
           <h1 className="font-heading text-4xl font-bold leading-tight tracking-tight text-gray-900 dark:text-gray-50 md:text-6xl">
