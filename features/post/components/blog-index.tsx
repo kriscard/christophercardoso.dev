@@ -132,14 +132,12 @@ function BlogFilters({
         aria-label="Filter articles by topic"
         className="flex flex-wrap gap-x-5 gap-y-1"
       >
-        <TagLink href={createBlogHref({ query })} isActive={!activeTag}>
+        <TagLink href={"/blog" as Route} isActive={!activeTag}>
           All
         </TagLink>
         {tags.map((tag) => {
           const isActive = normalizeFilter(activeTag) === normalizeFilter(tag)
-          const href = isActive
-            ? createBlogHref({ query })
-            : createBlogHref({ tag, query })
+          const href = isActive ? ("/blog" as Route) : createBlogHref({ tag })
 
           return (
             <TagLink key={tag} href={href} isActive={isActive}>
@@ -156,17 +154,22 @@ function BlogFilters({
         <label htmlFor="blog-search" className="sr-only">
           Search articles
         </label>
-        <input
-          id="blog-search"
-          type="search"
-          name="q"
-          defaultValue={query}
-          placeholder="Search articles"
-          className="min-h-touch w-full appearance-none border-b border-gray-300 bg-transparent text-sm text-gray-900 outline-none transition-colors placeholder:text-gray-500 focus:border-purple-500/70 dark:border-gray-700 dark:text-gray-100 dark:[color-scheme:dark] dark:placeholder:text-gray-500 dark:focus:border-purple-400/70 md:min-h-9"
-        />
-        <button type="submit" className="sr-only">
-          Search
-        </button>
+        <div className="flex items-center gap-3 border-b border-gray-300 transition-colors focus-within:border-purple-500/70 dark:border-gray-700 dark:focus-within:border-purple-400/70">
+          <input
+            id="blog-search"
+            type="search"
+            name="q"
+            defaultValue={query}
+            placeholder="Search articles"
+            className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-gray-100 dark:[color-scheme:dark] dark:placeholder:text-gray-500 md:min-h-9"
+          />
+          <button
+            type="submit"
+            className="min-h-touch cursor-pointer rounded-lg text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:text-purple-300 dark:hover:text-purple-200 md:min-h-9"
+          >
+            Search
+          </button>
+        </div>
         {hasActiveFilters ? (
           <Link
             href="/blog"
