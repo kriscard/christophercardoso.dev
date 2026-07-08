@@ -37,9 +37,13 @@ function getTags(posts: Post[]) {
 // deep link points at a rarer one
 function getVisibleTags(tags: [string, number][], activeTag: string) {
   const visible = tags.slice(0, 5).map(([tag]) => tag)
+  const isKnownTag = tags.some(
+    ([tag]) => normalizeFilter(tag) === normalizeFilter(activeTag)
+  )
 
   if (
     activeTag &&
+    isKnownTag &&
     !visible.some((tag) => normalizeFilter(tag) === normalizeFilter(activeTag))
   ) {
     visible.push(activeTag)
@@ -119,7 +123,7 @@ function TagLink({
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-touch items-center rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-0",
+        "inline-flex min-h-touch shrink-0 items-center rounded-lg text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-0",
         isActive
           ? "text-purple-600 dark:text-purple-300"
           : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
@@ -145,9 +149,9 @@ function BlogFilters({
     <div className="mb-8 flex flex-col gap-5 md:mb-10 lg:flex-row lg:items-baseline lg:justify-between lg:gap-10">
       <nav
         aria-label="Filter articles by topic"
-        className="flex flex-wrap items-baseline gap-x-5 gap-y-1"
+        className="-mx-1 flex items-baseline gap-x-5 overflow-x-auto overscroll-x-contain p-1 [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
       >
-        <span className="text-sm text-gray-500 dark:text-gray-400">
+        <span className="shrink-0 text-sm text-gray-500 dark:text-gray-400">
           Filter:
         </span>
         <TagLink href={"/blog" as Route} isActive={!activeTag}>
@@ -165,7 +169,10 @@ function BlogFilters({
         })}
       </nav>
 
-      <form action="/blog" className="lg:w-64 lg:shrink-0">
+      <form
+        action="/blog"
+        className="w-full max-w-xs lg:w-64 lg:max-w-none lg:shrink-0"
+      >
         <label htmlFor="blog-search" className="sr-only">
           Search articles
         </label>
