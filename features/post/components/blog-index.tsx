@@ -123,10 +123,10 @@ function TagLink({
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark md:min-h-9",
+        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-9",
         isActive
-          ? "bg-purple-500/10 text-purple-600 dark:bg-purple-400/10 dark:text-purple-300"
-          : "text-gray-500 hover:bg-purple-500/10 hover:text-purple-600 dark:text-gray-400 dark:hover:bg-purple-400/10 dark:hover:text-purple-300"
+          ? "font-medium text-purple-600 dark:text-purple-300"
+          : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
       )}
     >
       {children}
