@@ -27,10 +27,6 @@ function ProjectCard({ project }: { project: Project }) {
       <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-gray-600 dark:text-gray-400">
         {project.description}
       </p>
-
-      <p className="mt-4 font-mono text-xs leading-relaxed text-gray-500 dark:text-gray-400">
-        {project.details.join(" / ")}
-      </p>
     </Link>
   )
 }
