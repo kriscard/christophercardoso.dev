@@ -205,7 +205,7 @@ function BlogFilters({
   )
 }
 
-function DraftBadge() {
+export function DraftBadge() {
   return (
     <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
       draft

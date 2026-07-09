@@ -17,9 +17,11 @@ export async function GET(request: NextRequest) {
   const rawTitle = searchParams.get("title") ?? ""
   const cleanedTitle = rawTitle.replace(/[\p{Cc}\p{Cf}]/gu, "").trim()
   const postTitle =
-    cleanedTitle.length > 0 && cleanedTitle.length <= MAX_TITLE_LENGTH
-      ? cleanedTitle
-      : siteConfig.name
+    cleanedTitle.length === 0
+      ? siteConfig.name
+      : cleanedTitle.length > MAX_TITLE_LENGTH
+        ? `${cleanedTitle.slice(0, MAX_TITLE_LENGTH - 1)}…`
+        : cleanedTitle
   const backgroundImageUrl = new URL("/og-bg.png", siteConfig.url).toString()
 
   const fontHeading = await calSansBold

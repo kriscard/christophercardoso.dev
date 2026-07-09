@@ -12,7 +12,10 @@ import {
   getPostTags,
   getSeriesPosts,
 } from "@/features/post/post-queries"
-import { createBlogHref } from "@/features/post/components/blog-index"
+import {
+  createBlogHref,
+  DraftBadge,
+} from "@/features/post/components/blog-index"
 import { SeriesNav } from "@/features/post/components/series-nav"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
@@ -75,7 +78,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
     const readingTime = calculateReadingTime(post.content)
     const tags = getPostTags(post.tag)
     const seriesPosts = post.series ? getSeriesPosts(post.series) : []
-    const isPublishedSeriesPart = seriesPosts.some(
+    const currentSeriesIndex = seriesPosts.findIndex(
       (seriesPost) => seriesPost.slug === post.slug
     )
 
@@ -93,11 +96,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             {" · "}
             {readingTime} min read
-            {post.draft && (
-              <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
-                draft
-              </span>
-            )}
+            {post.draft && <DraftBadge />}
           </p>
           <ViewTransition
             name={`post-title-${slug}`}
@@ -124,10 +123,10 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
           </div>
         </header>
 
-        {post.series && isPublishedSeriesPart && seriesPosts.length > 1 && (
+        {post.series && currentSeriesIndex !== -1 && seriesPosts.length > 1 && (
           <SeriesNav
             series={post.series}
-            current={post.seriesPart ?? 1}
+            current={currentSeriesIndex + 1}
             parts={seriesPosts.map((seriesPost) => ({
               title: seriesPost.title,
               href: `/blog/${seriesPost.slug}` as Route,
