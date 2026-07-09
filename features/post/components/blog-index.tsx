@@ -227,10 +227,8 @@ export function PostListItem({
       <Link
         href={`/blog/${post._meta.path}`}
         className={cn(
-          "group block cursor-pointer rounded-xl transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark",
-          dense
-            ? "py-5"
-            : "border border-transparent px-4 py-5 hover:border-purple-500/25 hover:bg-white/45 dark:hover:border-purple-300/25 dark:hover:bg-ctp-mantle/30"
+          "group block cursor-pointer rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark",
+          dense ? "py-5" : "px-4 py-5"
         )}
         aria-label={`Read ${post.title}`}
       >
