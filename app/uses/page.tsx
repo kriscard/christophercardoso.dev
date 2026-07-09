@@ -245,6 +245,7 @@ export default function Uses() {
           src="/images/uses/desk-setup.jpg"
           alt="Christopher Cardoso desk setup with monitors, laptop, and keyboard"
           aspectRatio="16:9"
+          priority
         />
 
         <section>

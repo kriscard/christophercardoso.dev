@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { PostListItem } from "@/features/post/components/blog-index"
+import { RecentPostListItem } from "@/features/post/components/blog-index"
 import { getAllPosts } from "@/features/post/post-queries"
 import { ArrowIcon } from "@/components/icons"
 
@@ -29,7 +29,7 @@ export function PostsList() {
       </div>
       <div className="divide-y divide-gray-200/80 dark:divide-ctp-surface0/80">
         {recentPosts.map((post) => (
-          <PostListItem key={post._meta.path} post={post} titleAs="h3" dense />
+          <RecentPostListItem key={post._meta.path} post={post} />
         ))}
       </div>
     </section>

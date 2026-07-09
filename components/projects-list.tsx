@@ -1,11 +1,7 @@
 import Link from "next/link"
 import { projects, type Project } from "@/data/projects"
 
-import { ArrowIcon } from "./icons"
-
-interface ProjectListProps {
-  hideHeading?: boolean
-}
+import { ArrowIcon } from "@/components/icons"
 
 function ProjectCard({ project }: { project: Project }) {
   return (
@@ -31,34 +27,36 @@ function ProjectCard({ project }: { project: Project }) {
       <p className="mt-4 max-w-[62ch] text-base leading-relaxed text-gray-600 dark:text-gray-400">
         {project.description}
       </p>
-
-      <p className="mt-4 font-mono text-xs leading-relaxed text-gray-500 dark:text-gray-400">
-        {project.details.join(" / ")}
-      </p>
     </Link>
   )
 }
 
-export function ProjectsList({ hideHeading }: ProjectListProps) {
+export function ProjectsList() {
+  if (projects.length <= 0) return null
+
+  return (
+    <div className="divide-y divide-gray-200/80 border-b border-gray-200/80 dark:divide-ctp-surface0/80 dark:border-ctp-surface0/80">
+      {projects.map((project) => (
+        <ProjectCard key={project.href} project={project} />
+      ))}
+    </div>
+  )
+}
+
+export function ProjectsSection() {
   if (projects.length <= 0) return null
 
   return (
     <section id="projects">
-      {hideHeading ? null : (
-        <div className="mb-6 max-w-2xl">
-          <h2 className="font-heading text-3xl tracking-tight text-gray-950 dark:text-ctp-text md:text-4xl">
-            Projects
-          </h2>
-          <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
-            A tighter look at the tools and spaces I am shaping outside of work.
-          </p>
-        </div>
-      )}
-      <div className="divide-y divide-gray-200/80 border-b border-gray-200/80 dark:divide-ctp-surface0/80 dark:border-ctp-surface0/80">
-        {projects.map((project) => (
-          <ProjectCard key={project.href} project={project} />
-        ))}
+      <div className="mb-6 max-w-2xl">
+        <h2 className="font-heading text-3xl tracking-tight text-gray-950 dark:text-ctp-text md:text-4xl">
+          Projects
+        </h2>
+        <p className="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+          A tighter look at the tools and spaces I am shaping outside of work.
+        </p>
       </div>
+      <ProjectsList />
     </section>
   )
 }

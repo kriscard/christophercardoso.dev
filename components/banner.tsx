@@ -6,6 +6,7 @@ interface BannerProps {
   src: string
   alt: string
   aspectRatio?: "auto" | "16:9" | "21:9" | "4:3"
+  priority?: boolean
 }
 
 const aspectRatioClass = {
@@ -14,7 +15,12 @@ const aspectRatioClass = {
   "4:3": "aspect-4/3",
 }
 
-export function Banner({ src, alt, aspectRatio = "auto" }: BannerProps) {
+export function Banner({
+  src,
+  alt,
+  aspectRatio = "auto",
+  priority = false,
+}: BannerProps) {
   const isAuto = aspectRatio === "auto"
 
   return (
@@ -34,7 +40,7 @@ export function Banner({ src, alt, aspectRatio = "auto" }: BannerProps) {
             sizes="(max-width: 768px) 100vw, 800px"
             className="m-0! block h-auto w-full rounded-xl"
             style={{ height: "auto" }}
-            priority
+            priority={priority}
           />
         ) : (
           <div
@@ -49,7 +55,7 @@ export function Banner({ src, alt, aspectRatio = "auto" }: BannerProps) {
               fill
               sizes="(max-width: 768px) 100vw, 800px"
               className="object-cover"
-              priority
+              priority={priority}
             />
           </div>
         )}
