@@ -52,7 +52,13 @@ function getVisibleTags(tags: [string, number][], activeTag: string) {
   return visible
 }
 
-export function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
+export function createBlogHref({
+  tag,
+  query,
+}: {
+  tag?: string
+  query?: string
+}) {
   const searchParams = new URLSearchParams()
 
   if (tag) searchParams.set("tag", tag)
@@ -123,7 +129,7 @@ function TagLink({
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-9",
+        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-9",
         isActive
           ? "font-medium text-purple-600 dark:text-purple-300"
           : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
@@ -146,10 +152,10 @@ function BlogFilters({
   const hasActiveFilters = Boolean(activeTag || query)
 
   return (
-    <div className="mb-8 flex flex-col gap-5 rounded-2xl border border-gray-200/70 bg-white/35 p-4 shadow-sm shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+    <div className="mb-8 flex flex-col gap-5 rounded-2xl border border-gray-200/70 bg-white/35 p-4 shadow-xs shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
       <nav
         aria-label="Filter articles by topic"
-        className="-mx-1 flex items-center gap-x-2 overflow-x-auto overscroll-x-contain p-1 [scrollbar-width:none] lg:overflow-visible [&::-webkit-scrollbar]:hidden"
+        className="-mx-1 flex items-center gap-x-2 overflow-x-auto overscroll-x-contain p-1 scrollbar-none lg:overflow-visible [&::-webkit-scrollbar]:hidden"
       >
         <span className="shrink-0 text-sm text-gray-500 dark:text-gray-400">
           Filter:
@@ -183,11 +189,11 @@ function BlogFilters({
             name="q"
             defaultValue={query}
             placeholder="Search articles"
-            className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-none placeholder:text-gray-500 dark:text-ctp-text dark:[color-scheme:dark] dark:placeholder:text-gray-500 md:min-h-9"
+            className="min-h-touch min-w-0 flex-1 appearance-none bg-transparent text-sm text-gray-900 outline-hidden placeholder:text-gray-500 dark:text-ctp-text dark:scheme-dark dark:placeholder:text-gray-500 md:min-h-9"
           />
           <button
             type="submit"
-            className="min-h-touch cursor-pointer rounded-lg px-2 text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:text-purple-300 dark:hover:text-purple-200 md:min-h-9"
+            className="min-h-touch cursor-pointer rounded-lg px-2 text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:text-purple-300 dark:hover:text-purple-200 md:min-h-9"
           >
             Search
           </button>
@@ -195,7 +201,7 @@ function BlogFilters({
         {hasActiveFilters ? (
           <Link
             href="/blog"
-            className="mt-2 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-500 transition-colors hover:text-purple-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:min-h-0"
+            className="mt-2 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-500 transition-colors hover:text-purple-600 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:min-h-0"
           >
             Clear filters
           </Link>
@@ -207,7 +213,7 @@ function BlogFilters({
 
 export function DraftBadge() {
   return (
-    <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
+    <span className="ml-2 rounded-sm bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
       draft
     </span>
   )
@@ -227,7 +233,7 @@ export function PostListItem({
       <Link
         href={`/blog/${post._meta.path}`}
         className={cn(
-          "group block cursor-pointer rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark",
+          "group block cursor-pointer rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark",
           dense ? "py-5" : "px-4 py-5"
         )}
         aria-label={`Read ${post.title}`}
@@ -261,7 +267,7 @@ function LatestPost({ post }: { post: Post }) {
     <article className="mb-5">
       <Link
         href={`/blog/${post._meta.path}`}
-        className="group block cursor-pointer rounded-3xl border border-gray-200/70 bg-white/45 p-5 shadow-sm shadow-purple-950/5 transition duration-200 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/35 dark:shadow-black/10 dark:hover:border-purple-300/30 dark:hover:bg-ctp-mantle/60 dark:focus-visible:ring-offset-dark sm:p-7"
+        className="group block cursor-pointer rounded-3xl border border-gray-200/70 bg-white/45 p-5 shadow-xs shadow-purple-950/5 transition duration-200 hover:-translate-y-1 hover:border-purple-500/30 hover:bg-white/70 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/35 dark:shadow-black/10 dark:hover:border-purple-300/30 dark:hover:bg-ctp-mantle/60 dark:focus-visible:ring-offset-dark sm:p-7"
         aria-label={`Read ${post.title}`}
       >
         <p className="font-mono text-xs uppercase tracking-widest text-purple-600 dark:text-purple-300">
@@ -304,13 +310,13 @@ function EmptyState({
         : `match "${query}"`
 
   return (
-    <div className="rounded-2xl border border-gray-200/70 bg-white/35 p-6 shadow-sm shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10">
+    <div className="rounded-2xl border border-gray-200/70 bg-white/35 p-6 shadow-xs shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10">
       <p className="max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
         No articles {context}. Try a broader search or a different topic.
       </p>
       <Link
         href="/blog"
-        className="mt-4 inline-flex min-h-touch items-center gap-1 rounded-lg font-mono text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:text-purple-200 dark:focus-visible:ring-offset-dark"
+        className="mt-4 inline-flex min-h-touch items-center gap-1 rounded-lg font-mono text-sm text-purple-600 transition-colors hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-purple-300 dark:hover:text-purple-200 dark:focus-visible:ring-offset-dark"
       >
         View all articles
         <ArrowIcon className="size-4" />

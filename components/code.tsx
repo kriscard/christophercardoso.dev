@@ -14,7 +14,7 @@ export function Code({ children, type, className }: CodeProps) {
     return (
       <kbd
         className={cn(
-          "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-xs",
+          "inline-flex items-center gap-1 rounded-sm border px-1.5 py-0.5 font-mono text-xs",
           "border-gray-300 bg-gray-100 text-gray-700",
           "dark:border-ctp-surface1 dark:bg-ctp-surface0 dark:text-ctp-text",
           className
@@ -29,7 +29,7 @@ export function Code({ children, type, className }: CodeProps) {
     return (
       <code
         className={cn(
-          "my-0 rounded bg-ctp-surface0/50 px-2 py-0.5 font-mono text-sm text-ctp-blue",
+          "my-0 rounded-sm bg-ctp-surface0/50 px-2 py-0.5 font-mono text-sm text-ctp-blue",
           className
         )}
       >
@@ -42,7 +42,7 @@ export function Code({ children, type, className }: CodeProps) {
     return (
       <code
         className={cn(
-          "my-0 rounded bg-ctp-surface0/50 px-2 py-0.5 font-mono text-sm text-ctp-pink",
+          "my-0 rounded-sm bg-ctp-surface0/50 px-2 py-0.5 font-mono text-sm text-ctp-pink",
           className
         )}
       >
@@ -54,7 +54,7 @@ export function Code({ children, type, className }: CodeProps) {
   return (
     <code
       className={cn(
-        "my-0 rounded bg-ctp-surface0/50 px-1.5 py-0.5 font-mono text-sm text-ctp-text",
+        "my-0 rounded-sm bg-ctp-surface0/50 px-1.5 py-0.5 font-mono text-sm text-ctp-text",
         className
       )}
     >

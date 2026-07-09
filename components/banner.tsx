@@ -10,8 +10,8 @@ interface BannerProps {
 
 const aspectRatioClass = {
   "16:9": "aspect-video",
-  "21:9": "aspect-[21/9]",
-  "4:3": "aspect-[4/3]",
+  "21:9": "aspect-21/9",
+  "4:3": "aspect-4/3",
 }
 
 export function Banner({ src, alt, aspectRatio = "auto" }: BannerProps) {
@@ -32,7 +32,7 @@ export function Banner({ src, alt, aspectRatio = "auto" }: BannerProps) {
             width={1200}
             height={800}
             sizes="(max-width: 768px) 100vw, 800px"
-            className="!m-0 block h-auto w-full rounded-xl"
+            className="m-0! block h-auto w-full rounded-xl"
             style={{ height: "auto" }}
             priority
           />

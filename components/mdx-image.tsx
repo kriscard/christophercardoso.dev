@@ -41,7 +41,7 @@ export function MdxImage({
           width={imageWidth}
           height={imageHeight}
           sizes={`(max-width: 768px) 100vw, ${imageWidth}px`}
-          className="!m-0 block h-auto w-full"
+          className="m-0! block h-auto w-full"
           priority={priority}
         />
       </div>

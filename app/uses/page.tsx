@@ -174,7 +174,7 @@ function SoftwareRow({ name, description, href }: SoftwareItem) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${name}: ${description.replace(/\.$/, "")}. Opens in a new tab`}
-      className="group block cursor-pointer rounded-lg py-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
+      className="group block cursor-pointer rounded-lg py-4 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark sm:grid sm:grid-cols-[12rem_1fr] sm:gap-8"
     >
       <h3 className="font-heading text-lg leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300">
         <span className="inline-flex items-center gap-2">
@@ -196,9 +196,9 @@ function KeyboardCard({ name, description, href, photo }: KeyboardItem) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`${name}: ${description.replace(/\.$/, "")}. Opens on Instagram in a new tab`}
-      className="group block cursor-pointer rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+      className="group block cursor-pointer rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+      <div className="relative aspect-4/3 overflow-hidden rounded-xl">
         <Image
           src={photo!}
           alt={`${name} keyboard`}

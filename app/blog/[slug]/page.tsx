@@ -6,17 +6,17 @@ import { notFound } from "next/navigation"
 import { siteConfig } from "@/lib/config"
 import { calculateReadingTime } from "@/lib/reading-time"
 import {
+  createBlogHref,
+  DraftBadge,
+} from "@/features/post/components/blog-index"
+import { SeriesNav } from "@/features/post/components/series-nav"
+import {
   formatPostDate,
   getAllPosts,
   getPostBySlug,
   getPostTags,
   getSeriesPosts,
 } from "@/features/post/post-queries"
-import {
-  createBlogHref,
-  DraftBadge,
-} from "@/features/post/components/blog-index"
-import { SeriesNav } from "@/features/post/components/series-nav"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
 
@@ -88,7 +88,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
       <article className="mx-auto max-w-4xl py-8 md:py-12">
         <Link
           href="/blog"
-          className="mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:mb-10"
+          className="mb-8 inline-flex min-h-touch items-center rounded-lg text-sm text-gray-600 transition-colors hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark md:mb-10"
         >
           Back to articles
         </Link>
@@ -117,7 +117,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
               <Link
                 key={tag}
                 href={createBlogHref({ tag })}
-                className="rounded-full border border-purple-500/40 px-3 py-1 text-sm text-purple-700 transition-colors hover:border-purple-500 hover:bg-purple-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:border-purple-300/40 dark:text-purple-300 dark:hover:border-purple-300 dark:hover:bg-purple-300/10"
+                className="rounded-full border border-purple-500/40 px-3 py-1 text-sm text-purple-700 transition-colors hover:border-purple-500 hover:bg-purple-500/10 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:border-purple-300/40 dark:text-purple-300 dark:hover:border-purple-300 dark:hover:bg-purple-300/10"
               >
                 {tag}
               </Link>

@@ -155,10 +155,7 @@ export const getSeriesPosts = cache(
 )
 
 export const getPostBySlug = cache(
-  (
-    slug: string,
-    includeDrafts = includeDraftsByDefault
-  ): Post | undefined => {
+  (slug: string, includeDrafts = includeDraftsByDefault): Post | undefined => {
     return getAllPosts(includeDrafts).find((post) => post.slug === slug)
   }
 )

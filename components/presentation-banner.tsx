@@ -35,8 +35,8 @@ export function PresentationBanner() {
                   href={link.href}
                   className={
                     index === 0
-                      ? "inline-flex min-h-touch items-center justify-center rounded-lg bg-purple-600 px-5 font-mono text-sm font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:bg-purple-300 dark:text-ctp-crust dark:hover:bg-purple-200 dark:focus-visible:ring-offset-dark"
-                      : "inline-flex min-h-touch items-center justify-center rounded-lg border border-gray-300/80 px-5 font-mono text-sm font-medium text-gray-800 transition duration-200 hover:-translate-y-0.5 hover:border-purple-500/50 hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:border-ctp-surface1 dark:text-ctp-text dark:hover:border-purple-300/50 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
+                      ? "inline-flex min-h-touch items-center justify-center rounded-lg bg-purple-600 px-5 font-mono text-sm font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:bg-purple-300 dark:text-ctp-crust dark:hover:bg-purple-200 dark:focus-visible:ring-offset-dark"
+                      : "inline-flex min-h-touch items-center justify-center rounded-lg border border-gray-300/80 px-5 font-mono text-sm font-medium text-gray-800 transition duration-200 hover:-translate-y-0.5 hover:border-purple-500/50 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:border-ctp-surface1 dark:text-ctp-text dark:hover:border-purple-300/50 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
                   }
                 >
                   {link.label}
@@ -60,9 +60,9 @@ export function PresentationBanner() {
           <p className="mt-5 border-l border-purple-500/40 pl-4 font-mono text-xs uppercase tracking-[0.18em] text-purple-600 dark:text-purple-300">
             Based in Toronto
           </p>
-          <p className="mt-2 max-w-[17rem] pl-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            Writing about tools, setups, and frontend details that make software
-            feel better to use.
+          <p className="mt-2 max-w-68 pl-4 text-sm leading-relaxed text-gray-600 dark:text-gray-400">
+            I write about tech, tools I like, side projects, and what I’m
+            learning along the way.
           </p>
         </div>
       </div>

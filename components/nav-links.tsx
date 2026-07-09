@@ -27,7 +27,7 @@ export function NavLinks() {
             href={href}
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "flex min-h-touch items-center whitespace-nowrap rounded-lg px-2 text-sm transition-colors duration-200 hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark sm:px-3 sm:text-base md:px-4 md:text-lg",
+              "flex min-h-touch items-center whitespace-nowrap rounded-lg px-2 text-sm transition-colors duration-200 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark sm:px-3 sm:text-base md:px-4 md:text-lg",
               isActive && "text-purple-700 dark:text-purple-300"
             )}
           >

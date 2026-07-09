@@ -15,7 +15,7 @@ export function Header() {
           <Link
             href="/"
             aria-label="Christopher Cardoso"
-            className="rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
+            className="rounded-lg focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
           >
             <div className="flex items-center">
               <div className="mr-3">

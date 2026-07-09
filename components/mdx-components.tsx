@@ -138,10 +138,7 @@ const components = {
   },
   p: ({ className, ...props }) => (
     <p
-      className={cn(
-        "leading-7 [&:not(:first-child)]:mt-5 md:[&:not(:first-child)]:mt-6",
-        className
-      )}
+      className={cn("leading-7 not-first:mt-5 md:not-first:mt-6", className)}
       {...props}
     />
   ),
@@ -211,7 +208,7 @@ const components = {
     <th
       className={cn(
         "pb-3 pr-8 text-left font-mono text-xs font-medium uppercase tracking-wider text-gray-500 last:pr-0 dark:text-gray-400",
-        "[&[align=center]]:text-center [&[align=right]]:text-right",
+        "[[align=center]]:text-center [[align=right]]:text-right",
         className
       )}
       {...props}
@@ -221,7 +218,7 @@ const components = {
     <td
       className={cn(
         "py-3 pr-8 align-top text-gray-700 last:pr-0 dark:text-gray-300",
-        "[&[align=center]]:text-center [&[align=right]]:text-right",
+        "[[align=center]]:text-center [[align=right]]:text-right",
         className
       )}
       {...props}
@@ -243,7 +240,7 @@ const components = {
   code: ({ className, ...props }) => (
     <code
       className={cn(
-        "relative rounded border-none px-[0.3rem] py-[0.2rem] font-mono text-[0.8125rem] md:text-sm",
+        "relative rounded-sm border-none px-[0.3rem] py-[0.2rem] font-mono text-[0.8125rem] md:text-sm",
         className
       )}
       {...props}

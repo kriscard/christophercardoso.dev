@@ -20,7 +20,7 @@ function MdxCardFrame({ className, children, ...props }: MdxCardProps) {
       {...props}
     >
       <div className="flex flex-col justify-between space-y-4">
-        <div className="[&>p]:text-muted-foreground space-y-2 [&>h3]:!mt-0 [&>h4]:!mt-0">
+        <div className="[&>p]:text-muted-foreground space-y-2 [&>h3]:mt-0! [&>h4]:mt-0!">
           {children}
         </div>
       </div>

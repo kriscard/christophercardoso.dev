@@ -7,7 +7,7 @@ interface SocialLinksProps {
 }
 
 const socialLinkClass =
-  "flex min-h-touch min-w-touch items-center justify-center rounded-lg text-gray-800 transition-colors duration-200 hover:bg-purple-500/10 hover:text-purple-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-ctp-text dark:hover:bg-purple-400/10 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
+  "flex min-h-touch min-w-touch items-center justify-center rounded-lg text-gray-800 transition-colors duration-200 hover:bg-purple-500/10 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-ctp-text dark:hover:bg-purple-400/10 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
 
 export function SocialLinks({ className }: SocialLinksProps) {
   return (
