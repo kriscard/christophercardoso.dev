@@ -17,7 +17,7 @@ Check out the live website: [christophercardoso.dev](https://www.christophercard
 
 ## Running Locally
 
-This application requires Node.js v20.9+.
+This application requires Node.js v24+.
 
 ```bash
 git clone https://github.com/kriscard/christophercardoso.dev.git
