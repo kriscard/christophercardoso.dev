@@ -9,10 +9,6 @@ const calSansBold = fetch(
   new URL("../../../assets/fonts/CalSans-SemiBold.ttf", import.meta.url)
 ).then((res) => res.arrayBuffer())
 
-const interRegular = fetch(
-  new URL("../../../assets/fonts/Inter-Regular.ttf", import.meta.url)
-).then((res) => res.arrayBuffer())
-
 const MAX_TITLE_LENGTH = 100
 
 export async function GET(request: NextRequest) {
@@ -26,7 +22,7 @@ export async function GET(request: NextRequest) {
       : siteConfig.name
   const backgroundImageUrl = new URL("/og-bg.png", siteConfig.url).toString()
 
-  const [fontHeading, fontBody] = await Promise.all([calSansBold, interRegular])
+  const fontHeading = await calSansBold
 
   return new ImageResponse(
     <div
@@ -57,12 +53,6 @@ export async function GET(request: NextRequest) {
           data: fontHeading,
           style: "normal",
           weight: 700,
-        },
-        {
-          name: "Inter",
-          data: fontBody,
-          style: "normal",
-          weight: 400,
         },
       ],
     }
