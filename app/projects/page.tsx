@@ -38,7 +38,9 @@ export default function Projects() {
         experiments. Some are practical, some are just for fun, all are things I
         wanted to build.
       </PageHeader>
-      <ProjectsList hideHeading />
+      <section id="projects">
+        <ProjectsList />
+      </section>
     </div>
   )
 }

@@ -219,14 +219,14 @@ export function DraftBadge() {
   )
 }
 
-export function PostListItem({
+function PostRow({
   post,
-  titleAs: TitleComponent = "h2",
-  dense = false,
+  title: TitleComponent,
+  linkClassName,
 }: {
   post: Post
-  titleAs?: "h2" | "h3"
-  dense?: boolean
+  title: "h2" | "h3"
+  linkClassName: string
 }) {
   return (
     <article>
@@ -234,7 +234,7 @@ export function PostListItem({
         href={`/blog/${post._meta.path}`}
         className={cn(
           "group block cursor-pointer rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark",
-          dense ? "py-5" : "px-4 py-5"
+          linkClassName
         )}
         aria-label={`Read ${post.title}`}
       >
@@ -260,6 +260,14 @@ export function PostListItem({
       </Link>
     </article>
   )
+}
+
+export function BlogPostListItem({ post }: { post: Post }) {
+  return <PostRow post={post} title="h2" linkClassName="px-4 py-5" />
+}
+
+export function RecentPostListItem({ post }: { post: Post }) {
+  return <PostRow post={post} title="h3" linkClassName="py-5" />
 }
 
 function LatestPost({ post }: { post: Post }) {
@@ -367,7 +375,7 @@ export function BlogIndex({
           ) : null}
           <div className="space-y-1">
             {listPosts.map((post) => (
-              <PostListItem key={post._meta.path} post={post} />
+              <BlogPostListItem key={post._meta.path} post={post} />
             ))}
           </div>
         </>

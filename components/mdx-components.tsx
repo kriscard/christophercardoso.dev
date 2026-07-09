@@ -8,13 +8,11 @@ import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm"
 
 import { cn } from "@/lib/utils"
-import { SeriesNav } from "@/features/post/components/series-nav"
 import { Banner } from "@/components/banner"
 import { Callout } from "@/components/callout"
 import { Code } from "@/components/code"
 import { MdxCard, MdxDisabledCard, MdxLinkCard } from "@/components/mdx-card"
 import { MdxImage } from "@/components/mdx-image"
-import { PluginCard } from "@/components/plugin-card"
 import { VideoEmbed } from "@/components/video-embed"
 
 const mdxOptions: MDXRemoteProps["options"] = {
@@ -254,8 +252,6 @@ const components = {
   MdxDisabledCard,
   MdxImage,
   MdxLinkCard,
-  PluginCard,
-  SeriesNav,
   StaticTweet,
   VideoEmbed,
 } satisfies MDXComponents
