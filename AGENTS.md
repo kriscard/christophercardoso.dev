@@ -42,8 +42,8 @@ This is a Next.js 16 personal website/blog with the following key features:
 
 ## Content system
 
-- Blog posts are MDX files in `content/`; frontmatter requires `title`, `date`, `tag`, `summary` (optional `ogImage`)
-- Posts tagged `draft` are excluded from listings and static params
+- Blog posts are MDX files in `content/`; frontmatter requires `title`, `date`, `tag`, `summary` (optional `ogImage`, and optional `series` + `seriesPart` as a both-or-neither pair for automatic series navigation)
+- Posts with `draft: true` frontmatter are excluded from listings, static params, and the sitemap in production; they render (with a draft badge) in `pnpm dev`
 - Queries live in `features/post/post-queries.ts` with `import "server-only"` and React `cache()`
 - Syntax highlighting uses Catppuccin Macchiato theme via rehype-pretty-code
 

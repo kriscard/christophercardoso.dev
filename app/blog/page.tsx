@@ -1,9 +1,10 @@
 import type { Metadata } from "next"
 
 import { siteConfig } from "@/lib/config"
-import { blogDescription as description } from "@/lib/seo"
 import { BlogIndex } from "@/features/post/components/blog-index"
 import { PageHeader } from "@/components/page-header"
+
+const description = siteConfig.blogDescription
 
 export const metadata: Metadata = {
   title: "Blog",

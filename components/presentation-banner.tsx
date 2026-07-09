@@ -2,7 +2,7 @@ import type { Route } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
-import { description, hi, name } from "@/lib/info"
+import { siteConfig } from "@/lib/config"
 
 import avatar from "../app/avatar.jpg"
 import { ArrowIcon } from "./icons"
@@ -20,10 +20,10 @@ export function PresentationBanner() {
         <div className="flex min-w-0 flex-col gap-6 md:gap-8">
           <div className="max-w-3xl">
             <h1 className="max-w-[11ch] text-balance font-heading text-5xl font-bold leading-[0.98] tracking-[-0.045em] text-gray-950 dark:text-ctp-text sm:max-w-[13ch] sm:text-6xl lg:text-7xl">
-              {hi}
+              {siteConfig.hi}
             </h1>
             <p className="mt-6 max-w-[58ch] text-pretty text-base leading-relaxed text-gray-700 dark:text-gray-300 sm:text-lg">
-              {description}
+              {siteConfig.bio}
             </p>
           </div>
 
@@ -50,7 +50,7 @@ export function PresentationBanner() {
 
         <div className="hidden lg:block">
           <Image
-            alt={name}
+            alt={siteConfig.name}
             className="aspect-square rounded-2xl object-cover"
             src={avatar}
             placeholder="blur"

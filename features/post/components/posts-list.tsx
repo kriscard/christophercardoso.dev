@@ -5,7 +5,7 @@ import { getAllPosts } from "@/features/post/post-queries"
 import { ArrowIcon } from "@/components/icons"
 
 export function PostsList() {
-  const recentPosts = getAllPosts(false).slice(0, 3)
+  const recentPosts = getAllPosts().slice(0, 3)
 
   return (
     <section>

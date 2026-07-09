@@ -52,7 +52,7 @@ function getVisibleTags(tags: [string, number][], activeTag: string) {
   return visible
 }
 
-function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
+export function createBlogHref({ tag, query }: { tag?: string; query?: string }) {
   const searchParams = new URLSearchParams()
 
   if (tag) searchParams.set("tag", tag)
@@ -123,10 +123,10 @@ function TagLink({
       href={href}
       aria-current={isActive ? "page" : undefined}
       className={cn(
-        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark md:min-h-9",
+        "inline-flex min-h-touch shrink-0 items-center rounded-lg px-3 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark md:min-h-9",
         isActive
-          ? "bg-purple-500/10 text-purple-600 dark:bg-purple-400/10 dark:text-purple-300"
-          : "text-gray-500 hover:bg-purple-500/10 hover:text-purple-600 dark:text-gray-400 dark:hover:bg-purple-400/10 dark:hover:text-purple-300"
+          ? "font-medium text-purple-600 dark:text-purple-300"
+          : "text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-300"
       )}
     >
       {children}
@@ -205,6 +205,14 @@ function BlogFilters({
   )
 }
 
+export function DraftBadge() {
+  return (
+    <span className="ml-2 rounded bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
+      draft
+    </span>
+  )
+}
+
 export function PostListItem({
   post,
   titleAs: TitleComponent = "h2",
@@ -219,10 +227,8 @@ export function PostListItem({
       <Link
         href={`/blog/${post._meta.path}`}
         className={cn(
-          "group block cursor-pointer rounded-xl transition duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark",
-          dense
-            ? "py-5"
-            : "border border-transparent px-4 py-5 hover:border-purple-500/25 hover:bg-white/45 dark:hover:border-purple-300/25 dark:hover:bg-ctp-mantle/30"
+          "group block cursor-pointer rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark",
+          dense ? "py-5" : "px-4 py-5"
         )}
         aria-label={`Read ${post.title}`}
       >
@@ -239,6 +245,7 @@ export function PostListItem({
         >
           <TitleComponent className="mt-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
             {post.title}
+            {post.draft && <DraftBadge />}
           </TitleComponent>
         </ViewTransition>
         <p className="mt-2 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
@@ -267,6 +274,7 @@ function LatestPost({ post }: { post: Post }) {
         >
           <h2 className="mt-3 max-w-2xl text-balance font-heading text-3xl leading-tight tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-4xl">
             {post.title}
+            {post.draft && <DraftBadge />}
           </h2>
         </ViewTransition>
         <p className="mt-4 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
@@ -318,7 +326,7 @@ export function BlogIndex({
   tag?: string | string[]
   q?: string | string[]
 }) {
-  const posts = getAllPosts(false)
+  const posts = getAllPosts()
   const query = getSearchParamValue(q).trim()
   const requestedTag = getSearchParamValue(tag).trim()
   const tags = getTags(posts)

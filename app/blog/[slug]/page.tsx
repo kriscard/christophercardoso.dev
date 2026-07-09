@@ -1,5 +1,5 @@
 import { ViewTransition } from "react"
-import type { Metadata } from "next"
+import type { Metadata, Route } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -10,14 +10,20 @@ import {
   getAllPosts,
   getPostBySlug,
   getPostTags,
+  getSeriesPosts,
 } from "@/features/post/post-queries"
+import {
+  createBlogHref,
+  DraftBadge,
+} from "@/features/post/components/blog-index"
+import { SeriesNav } from "@/features/post/components/series-nav"
 import { MDXContent } from "@/components/mdx-components"
 import MdxLayout from "@/components/mdx-layout"
 
 export const dynamicParams = false
 
 export const generateStaticParams = async () =>
-  getAllPosts(false).map((post) => ({ slug: post._meta.path }))
+  getAllPosts().map((post) => ({ slug: post._meta.path }))
 
 export const generateMetadata = async (
   props: PageProps<"/blog/[slug]">
@@ -71,6 +77,12 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
 
     const readingTime = calculateReadingTime(post.content)
     const tags = getPostTags(post.tag)
+    const seriesPosts = post.series
+      ? getSeriesPosts(post.series, post.draft)
+      : []
+    const currentSeriesIndex = seriesPosts.findIndex(
+      (seriesPost) => seriesPost.slug === post.slug
+    )
 
     return (
       <article className="mx-auto max-w-4xl py-8 md:py-12">
@@ -86,6 +98,7 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
             <time dateTime={post.date}>{formatPostDate(post.date)}</time>
             {" · "}
             {readingTime} min read
+            {post.draft && <DraftBadge />}
           </p>
           <ViewTransition
             name={`post-title-${slug}`}
@@ -101,15 +114,27 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <span
+              <Link
                 key={tag}
-                className="rounded-full border border-purple-500/40 px-3 py-1 text-sm text-purple-700 dark:border-purple-300/40 dark:text-purple-300"
+                href={createBlogHref({ tag })}
+                className="rounded-full border border-purple-500/40 px-3 py-1 text-sm text-purple-700 transition-colors hover:border-purple-500 hover:bg-purple-500/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:border-purple-300/40 dark:text-purple-300 dark:hover:border-purple-300 dark:hover:bg-purple-300/10"
               >
                 {tag}
-              </span>
+              </Link>
             ))}
           </div>
         </header>
+
+        {post.series && currentSeriesIndex !== -1 && seriesPosts.length > 1 && (
+          <SeriesNav
+            series={post.series}
+            current={currentSeriesIndex + 1}
+            parts={seriesPosts.map((seriesPost) => ({
+              title: seriesPost.title,
+              href: `/blog/${seriesPost.slug}` as Route,
+            }))}
+          />
+        )}
 
         <MdxLayout>
           <MDXContent source={post.content} />
