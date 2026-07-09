@@ -77,7 +77,9 @@ export default function PostPage({ params }: PageProps<"/blog/[slug]">) {
 
     const readingTime = calculateReadingTime(post.content)
     const tags = getPostTags(post.tag)
-    const seriesPosts = post.series ? getSeriesPosts(post.series) : []
+    const seriesPosts = post.series
+      ? getSeriesPosts(post.series, post.draft)
+      : []
     const currentSeriesIndex = seriesPosts.findIndex(
       (seriesPost) => seriesPost.slug === post.slug
     )

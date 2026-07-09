@@ -146,11 +146,13 @@ export const getAllPosts = cache(
   }
 )
 
-export const getSeriesPosts = cache((series: string): Post[] => {
-  return getAllPosts(false)
-    .filter((post) => post.series === series)
-    .sort((a, b) => (a.seriesPart ?? 0) - (b.seriesPart ?? 0))
-})
+export const getSeriesPosts = cache(
+  (series: string, includeDrafts = false): Post[] => {
+    return getAllPosts(includeDrafts)
+      .filter((post) => post.series === series)
+      .sort((a, b) => (a.seriesPart ?? 0) - (b.seriesPart ?? 0))
+  }
+)
 
 export const getPostBySlug = cache(
   (
