@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/config"
+import { cn } from "@/lib/utils"
 
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "./icons"
 
@@ -11,12 +12,12 @@ const socialLinkClass =
 
 export function SocialLinks({ className }: SocialLinksProps) {
   return (
-    <div className={className}>
+    <div className={cn("flex items-center gap-4", className)}>
       <a
         rel="noopener noreferrer"
         target="_blank"
         href={siteConfig.social.twitter}
-        aria-label="Follow on Twitter"
+        aria-label="Follow on Twitter. Opens in a new tab"
         className={socialLinkClass}
       >
         <TwitterIcon aria-hidden="true" className="size-icon-lg" />
@@ -25,7 +26,7 @@ export function SocialLinks({ className }: SocialLinksProps) {
         rel="noopener noreferrer"
         target="_blank"
         href={siteConfig.social.github}
-        aria-label="View GitHub profile"
+        aria-label="View GitHub profile. Opens in a new tab"
         className={socialLinkClass}
       >
         <GithubIcon aria-hidden="true" className="size-icon-lg" />
@@ -34,7 +35,7 @@ export function SocialLinks({ className }: SocialLinksProps) {
         rel="noopener noreferrer"
         target="_blank"
         href={siteConfig.social.linkedin}
-        aria-label="Connect on LinkedIn"
+        aria-label="Connect on LinkedIn. Opens in a new tab"
         className={socialLinkClass}
       >
         <LinkedinIcon aria-hidden="true" className="size-icon-lg" />

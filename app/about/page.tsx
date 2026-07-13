@@ -4,8 +4,7 @@ import Link from "next/link"
 import { siteConfig } from "@/lib/config"
 import { PageHeader } from "@/components/page-header"
 
-const description =
-  "About Christopher Cardoso, a Toronto software developer writing about frontend engineering, tools, and projects."
+const description = `About ${siteConfig.name}, a Toronto software developer writing about frontend engineering, tools, and projects.`
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,13 +13,13 @@ export const metadata: Metadata = {
     canonical: new URL("/about", siteConfig.url).toString(),
   },
   openGraph: {
-    title: "About Christopher Cardoso",
+    title: `About ${siteConfig.name}`,
     description,
     url: new URL("/about", siteConfig.url).toString(),
     type: "profile",
   },
   twitter: {
-    title: "About Christopher Cardoso",
+    title: `About ${siteConfig.name}`,
     description,
     card: "summary_large_image",
   },

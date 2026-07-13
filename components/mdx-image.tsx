@@ -9,7 +9,7 @@ interface MdxImageProps {
   size?: "sm" | "md" | "lg" | "full"
   width?: number
   height?: number
-  priority?: boolean
+  preload?: boolean
 }
 
 const sizeConfig = {
@@ -26,7 +26,7 @@ export function MdxImage({
   size = "full",
   width,
   height,
-  priority = false,
+  preload = false,
 }: MdxImageProps) {
   const config = sizeConfig[size]
   const imageWidth = width ?? config.width
@@ -42,14 +42,14 @@ export function MdxImage({
           height={imageHeight}
           sizes={`(max-width: 768px) 100vw, ${imageWidth}px`}
           className="m-0! block h-auto w-full"
-          priority={priority}
+          preload={preload}
         />
       </div>
       {caption && (
         <figcaption
           className={cn(
             "mt-3 text-center text-sm",
-            "text-gray-500 dark:text-[#a5adcb]"
+            "text-gray-500 dark:text-ctp-subtext0"
           )}
         >
           {caption}

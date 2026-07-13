@@ -1,7 +1,11 @@
+import { Suspense } from "react"
 import type { Metadata } from "next"
 
 import { siteConfig } from "@/lib/config"
-import { BlogIndex } from "@/features/post/components/blog-index"
+import {
+  BlogIndex,
+  BlogIndexSkeleton,
+} from "@/features/post/components/blog-index"
 import { PageHeader } from "@/components/page-header"
 
 const description = siteConfig.blogDescription
@@ -13,13 +17,13 @@ export const metadata: Metadata = {
     canonical: new URL("/blog", siteConfig.url).toString(),
   },
   openGraph: {
-    title: "Blog by Christopher Cardoso",
+    title: `Blog by ${siteConfig.name}`,
     description,
     url: new URL("/blog", siteConfig.url).toString(),
     type: "website",
   },
   twitter: {
-    title: "Blog by Christopher Cardoso",
+    title: `Blog by ${siteConfig.name}`,
     description,
     card: "summary_large_image",
   },
@@ -33,9 +37,11 @@ export default function BlogPage({ searchParams }: PageProps<"/blog">) {
         to build software.
       </PageHeader>
 
-      {searchParams.then((sp) => (
-        <BlogIndex tag={sp.tag} q={sp.q} />
-      ))}
+      <Suspense fallback={<BlogIndexSkeleton />}>
+        {searchParams.then((sp) => (
+          <BlogIndex tag={sp.tag} q={sp.q} />
+        ))}
+      </Suspense>
     </div>
   )
 }

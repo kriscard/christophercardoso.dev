@@ -1,11 +1,10 @@
 import type { Metadata } from "next"
 
 import { siteConfig } from "@/lib/config"
+import { ProjectsList } from "@/features/project/components/projects-list"
 import { PageHeader } from "@/components/page-header"
-import { ProjectsList } from "@/components/projects-list"
 
-const description =
-  "Projects by Christopher Cardoso, including developer tools and this Next.js portfolio system."
+const description = `Projects by ${siteConfig.name}, including developer tools and this Next.js portfolio system.`
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -14,13 +13,13 @@ export const metadata: Metadata = {
     canonical: new URL("/projects", siteConfig.url).toString(),
   },
   openGraph: {
-    title: "Projects by Christopher Cardoso",
+    title: `Projects by ${siteConfig.name}`,
     description,
     url: new URL("/projects", siteConfig.url).toString(),
     type: "website",
   },
   twitter: {
-    title: "Projects by Christopher Cardoso",
+    title: `Projects by ${siteConfig.name}`,
     description,
     card: "summary_large_image",
   },

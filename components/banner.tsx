@@ -6,7 +6,7 @@ interface BannerProps {
   src: string
   alt: string
   aspectRatio?: "auto" | "16:9" | "21:9" | "4:3"
-  priority?: boolean
+  preload?: boolean
 }
 
 const aspectRatioClass = {
@@ -19,7 +19,7 @@ export function Banner({
   src,
   alt,
   aspectRatio = "auto",
-  priority = false,
+  preload = false,
 }: BannerProps) {
   const isAuto = aspectRatio === "auto"
 
@@ -40,7 +40,7 @@ export function Banner({
             sizes="(max-width: 768px) 100vw, 800px"
             className="m-0! block h-auto w-full rounded-xl"
             style={{ height: "auto" }}
-            priority={priority}
+            preload={preload}
           />
         ) : (
           <div
@@ -55,7 +55,7 @@ export function Banner({
               fill
               sizes="(max-width: 768px) 100vw, 800px"
               className="object-cover"
-              priority={priority}
+              preload={preload}
             />
           </div>
         )}

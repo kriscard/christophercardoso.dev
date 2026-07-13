@@ -3,15 +3,27 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { siteConfig } from "@/lib/config"
+import { cn } from "@/lib/utils"
 
-import avatar from "../app/avatar.jpg"
+import avatar from "../assets/images/avatar.jpg"
 import { ArrowIcon } from "./icons"
 import { SocialLinks } from "./social-links"
 
-const heroLinks: { href: Route; label: string }[] = [
-  { href: "/blog", label: "Read articles" },
-  { href: "/projects", label: "View projects" },
+const heroLinks: {
+  href: Route
+  label: string
+  variant: "primary" | "secondary"
+}[] = [
+  { href: "/blog", label: "Read articles", variant: "primary" },
+  { href: "/projects", label: "View projects", variant: "secondary" },
 ]
+
+const heroLinkClassName = {
+  primary:
+    "bg-purple-600 text-white hover:bg-purple-700 dark:bg-purple-300 dark:text-ctp-crust dark:hover:bg-purple-200",
+  secondary:
+    "border border-gray-300/80 text-gray-800 hover:border-purple-500/50 hover:text-purple-700 dark:border-ctp-surface1 dark:text-ctp-text dark:hover:border-purple-300/50 dark:hover:text-purple-300",
+}
 
 export function PresentationBanner() {
   return (
@@ -29,22 +41,23 @@ export function PresentationBanner() {
 
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <div className="flex flex-wrap gap-3">
-              {heroLinks.map((link, index) => (
+              {heroLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={
-                    index === 0
-                      ? "inline-flex min-h-touch items-center justify-center rounded-lg bg-purple-600 px-5 font-mono text-sm font-medium text-white transition duration-200 hover:-translate-y-0.5 hover:bg-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:bg-purple-300 dark:text-ctp-crust dark:hover:bg-purple-200 dark:focus-visible:ring-offset-dark"
-                      : "inline-flex min-h-touch items-center justify-center rounded-lg border border-gray-300/80 px-5 font-mono text-sm font-medium text-gray-800 transition duration-200 hover:-translate-y-0.5 hover:border-purple-500/50 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:border-ctp-surface1 dark:text-ctp-text dark:hover:border-purple-300/50 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
-                  }
+                  className={cn(
+                    "inline-flex min-h-touch items-center justify-center rounded-lg px-5 font-mono text-sm font-medium transition duration-200 hover:-translate-y-0.5 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray active:translate-y-0 dark:focus-visible:ring-offset-dark",
+                    heroLinkClassName[link.variant]
+                  )}
                 >
                   {link.label}
-                  {index === 0 ? <ArrowIcon className="ml-2 size-4" /> : null}
+                  {link.variant === "primary" ? (
+                    <ArrowIcon className="ml-2 size-4" />
+                  ) : null}
                 </Link>
               ))}
             </div>
-            <SocialLinks className="flex w-fit items-center gap-2 sm:ml-1" />
+            <SocialLinks className="w-fit sm:ml-1" />
           </div>
         </div>
 
@@ -55,7 +68,6 @@ export function PresentationBanner() {
             src={avatar}
             placeholder="blur"
             width={288}
-            priority
           />
           <p className="mt-5 border-l border-purple-500/40 pl-4 font-mono text-xs uppercase tracking-[0.18em] text-purple-600 dark:text-purple-300">
             Based in Toronto

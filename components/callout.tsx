@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 
 interface CalloutProps {
-  children?: React.ReactNode
+  children: React.ReactNode
   type?: "tip" | "warning" | "danger" | "note"
 }
 
@@ -9,22 +9,22 @@ const calloutStyles = {
   tip: {
     icon: "💡",
     light: "border-emerald-500 bg-emerald-50 text-emerald-900",
-    dark: "dark:border-[#a6da95] dark:bg-[#a6da95]/10 dark:text-[#a6da95]",
+    dark: "dark:border-ctp-green dark:bg-ctp-green/10 dark:text-ctp-green",
   },
   warning: {
     icon: "⚠️",
     light: "border-yellow-500 bg-yellow-50 text-yellow-900",
-    dark: "dark:border-[#eed49f] dark:bg-[#eed49f]/10 dark:text-[#eed49f]",
+    dark: "dark:border-ctp-yellow dark:bg-ctp-yellow/10 dark:text-ctp-yellow",
   },
   danger: {
     icon: "🚨",
     light: "border-red-500 bg-red-50 text-red-900",
-    dark: "dark:border-[#ed8796] dark:bg-[#ed8796]/10 dark:text-[#ed8796]",
+    dark: "dark:border-ctp-red dark:bg-ctp-red/10 dark:text-ctp-red",
   },
   note: {
     icon: "📝",
     light: "border-blue-500 bg-blue-50 text-blue-900",
-    dark: "dark:border-[#8aadf4] dark:bg-[#8aadf4]/10 dark:text-[#8aadf4]",
+    dark: "dark:border-ctp-blue dark:bg-ctp-blue/10 dark:text-ctp-blue",
   },
 }
 
@@ -39,7 +39,9 @@ export function Callout({ children, type = "note" }: CalloutProps) {
         style.dark
       )}
     >
-      <span className="text-xl">{style.icon}</span>
+      <span aria-hidden="true" className="text-xl">
+        {style.icon}
+      </span>
       <div className="flex-1 [&>p]:m-0">{children}</div>
     </div>
   )
