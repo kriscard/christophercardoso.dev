@@ -18,13 +18,14 @@ export function SeriesNav({
 }: SeriesNavProps) {
   return (
     <nav
+      aria-label={`${series} series`}
       className={cn(
         "my-8 rounded-lg border border-gray-200 p-4",
-        "dark:border-[#494d64] dark:bg-[#363a4f]/30",
+        "dark:border-ctp-surface1 dark:bg-ctp-surface0/30",
         className
       )}
     >
-      <p className="mb-3 text-sm font-medium text-gray-500 dark:text-[#a5adcb]">
+      <p className="mb-3 text-sm font-medium text-gray-500 dark:text-ctp-subtext0">
         {series} ({current} of {parts.length})
       </p>
       <ol className="space-y-2">
@@ -36,20 +37,20 @@ export function SeriesNav({
                 className={cn(
                   "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-medium",
                   isCurrent
-                    ? "bg-purple-600 text-white dark:bg-[#8aadf4] dark:text-dark"
-                    : "bg-gray-100 text-gray-600 dark:bg-[#494d64] dark:text-[#a5adcb]"
+                    ? "bg-purple-600 text-white dark:bg-ctp-blue dark:text-ctp-base"
+                    : "bg-gray-100 text-gray-600 dark:bg-ctp-surface1 dark:text-ctp-subtext0"
                 )}
               >
                 {i + 1}
               </span>
               {isCurrent ? (
-                <span className="font-medium text-gray-900 dark:text-[#cad3f5]">
+                <span className="font-medium text-gray-900 dark:text-ctp-text">
                   {part.title}
                 </span>
               ) : (
                 <Link
                   href={part.href}
-                  className="text-gray-600 hover:text-purple-600 dark:text-[#a5adcb] dark:hover:text-[#8aadf4]"
+                  className="text-gray-600 hover:text-purple-600 dark:text-ctp-subtext0 dark:hover:text-ctp-blue"
                 >
                   {part.title}
                 </Link>

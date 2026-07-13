@@ -20,6 +20,7 @@ export function VideoEmbed({
           className="absolute inset-0 size-full"
           loading="lazy"
           referrerPolicy="strict-origin-when-cross-origin"
+          sandbox="allow-scripts allow-same-origin allow-presentation allow-popups"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
         />

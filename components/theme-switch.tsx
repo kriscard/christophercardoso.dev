@@ -9,21 +9,25 @@ import { MoonIcon, SunIcon } from "./icons"
 export function ThemeSwitch() {
   const { resolvedTheme, setTheme } = useTheme()
   const mounted = useMounted()
+  const isDark = mounted && resolvedTheme === "dark"
+  const label = mounted
+    ? `Switch to ${isDark ? "light" : "dark"} theme`
+    : "Toggle color theme"
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === "light" ? "dark" : "light")
+    setTheme(isDark ? "light" : "dark")
   }
 
   return (
     <button
+      type="button"
       onClick={toggleTheme}
       className="relative inline-flex size-touch min-h-touch min-w-touch cursor-pointer items-center justify-center rounded-lg border-none bg-transparent text-gray-600 transition-colors hover:bg-purple-500/10 hover:text-purple-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:text-gray-400 dark:hover:bg-purple-400/10 dark:hover:text-purple-300 dark:focus-visible:ring-offset-dark"
       disabled={!mounted}
-      aria-label="Toggle theme"
+      aria-label={label}
     >
-      <span className="sr-only">Toggle theme</span>
       {mounted ? (
-        resolvedTheme === "dark" ? (
+        isDark ? (
           <SunIcon />
         ) : (
           <MoonIcon />

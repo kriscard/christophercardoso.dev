@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { projects, type Project } from "@/data/projects"
 
+import { projects, type Project } from "@/features/project/project-data"
 import { ArrowIcon } from "@/components/icons"
 
 function ProjectCard({ project }: { project: Project }) {
@@ -10,7 +10,7 @@ function ProjectCard({ project }: { project: Project }) {
       target="_blank"
       rel="noopener noreferrer"
       className="group block cursor-pointer py-6 transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark"
-      aria-label={`Open ${project.title} project`}
+      aria-label={`Open ${project.title} project in a new tab`}
     >
       <div className="flex items-start justify-between gap-6">
         <div>

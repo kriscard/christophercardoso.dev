@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { RecentPostListItem } from "@/features/post/components/blog-index"
+import { RecentPostListItem } from "@/features/post/components/post-list-item"
 import { getAllPosts } from "@/features/post/post-queries"
 import { ArrowIcon } from "@/components/icons"
 

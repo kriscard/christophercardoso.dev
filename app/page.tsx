@@ -1,6 +1,6 @@
 import { PostsList } from "@/features/post/components/posts-list"
+import { ProjectsSection } from "@/features/project/components/projects-list"
 import { PresentationBanner } from "@/components/presentation-banner"
-import { ProjectsSection } from "@/components/projects-list"
 
 export default function HomePage() {
   return (

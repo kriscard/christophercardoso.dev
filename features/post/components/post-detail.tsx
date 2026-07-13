@@ -4,11 +4,9 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 
 import { calculateReadingTime } from "@/lib/reading-time"
-import {
-  createBlogHref,
-  DraftBadge,
-} from "@/features/post/components/blog-index"
+import { DraftBadge } from "@/features/post/components/post-list-item"
 import { SeriesNav } from "@/features/post/components/series-nav"
+import { createBlogHref } from "@/features/post/post-filtering"
 import {
   formatPostDate,
   getPostBySlug,

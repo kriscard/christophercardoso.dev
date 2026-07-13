@@ -4,20 +4,21 @@ import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import {
-  formatPostDate,
+  BlogPostListItem,
+  DraftBadge,
+} from "@/features/post/components/post-list-item"
+import {
+  createBlogHref,
+  filterPosts,
+  getSearchParamValue,
+  normalizePostFilter,
+} from "@/features/post/post-filtering"
+import {
   getAllPosts,
   getPostTags,
   type Post,
 } from "@/features/post/post-queries"
 import { ArrowIcon } from "@/components/icons"
-
-function getSearchParamValue(value: string | string[] | undefined) {
-  return Array.isArray(value) ? value[0] : (value ?? "")
-}
-
-function normalizeFilter(value: string) {
-  return value.trim().toLowerCase()
-}
 
 function getTags(posts: Post[]) {
   const counts = new Map<string, number>()
@@ -38,55 +39,20 @@ function getTags(posts: Post[]) {
 function getVisibleTags(tags: [string, number][], activeTag: string) {
   const visible = tags.slice(0, 5).map(([tag]) => tag)
   const isKnownTag = tags.some(
-    ([tag]) => normalizeFilter(tag) === normalizeFilter(activeTag)
+    ([tag]) => normalizePostFilter(tag) === normalizePostFilter(activeTag)
   )
 
   if (
     activeTag &&
     isKnownTag &&
-    !visible.some((tag) => normalizeFilter(tag) === normalizeFilter(activeTag))
+    !visible.some(
+      (tag) => normalizePostFilter(tag) === normalizePostFilter(activeTag)
+    )
   ) {
     visible.push(activeTag)
   }
 
   return visible
-}
-
-export function createBlogHref({
-  tag,
-  query,
-}: {
-  tag?: string
-  query?: string
-}) {
-  const searchParams = new URLSearchParams()
-
-  if (tag) searchParams.set("tag", tag)
-  if (query) searchParams.set("q", query)
-
-  const queryString = searchParams.toString()
-  return (queryString ? `/blog?${queryString}` : "/blog") as Route
-}
-
-function getFilteredPosts(posts: Post[], activeTag: string, query: string) {
-  const normalizedTag = normalizeFilter(activeTag)
-  const normalizedQuery = normalizeFilter(query)
-
-  return posts.filter((post) => {
-    const tags = getPostTags(post.tag)
-    const matchesTag = normalizedTag
-      ? tags.some((tag) => normalizeFilter(tag) === normalizedTag)
-      : true
-
-    if (!matchesTag) return false
-    if (!normalizedQuery) return true
-
-    const searchableText = [post.title, post.summary, ...tags]
-      .join(" ")
-      .toLowerCase()
-
-    return searchableText.includes(normalizedQuery)
-  })
 }
 
 function getResultsLabel({
@@ -160,12 +126,18 @@ function BlogFilters({
         <span className="shrink-0 text-sm text-gray-500 dark:text-gray-400">
           Filter:
         </span>
-        <TagLink href={"/blog" as Route} isActive={!activeTag}>
+        <TagLink
+          href={query ? createBlogHref({ query }) : ("/blog" as Route)}
+          isActive={!activeTag}
+        >
           All
         </TagLink>
         {tags.map((tag) => {
-          const isActive = normalizeFilter(activeTag) === normalizeFilter(tag)
-          const href = isActive ? ("/blog" as Route) : createBlogHref({ tag })
+          const isActive =
+            normalizePostFilter(activeTag) === normalizePostFilter(tag)
+          const href = isActive
+            ? createBlogHref({ query })
+            : createBlogHref({ tag, query })
 
           return (
             <TagLink key={tag} href={href} isActive={isActive}>
@@ -182,6 +154,9 @@ function BlogFilters({
         <label htmlFor="blog-search" className="sr-only">
           Search articles
         </label>
+        {activeTag ? (
+          <input type="hidden" name="tag" value={activeTag} />
+        ) : null}
         <div className="flex items-center gap-3 rounded-xl border border-gray-200/80 bg-lightGray/70 px-3 transition-colors focus-within:border-purple-500/70 dark:border-ctp-surface0 dark:bg-dark/50 dark:focus-within:border-purple-400/70">
           <input
             id="blog-search"
@@ -209,65 +184,6 @@ function BlogFilters({
       </form>
     </div>
   )
-}
-
-export function DraftBadge() {
-  return (
-    <span className="ml-2 rounded-sm bg-amber-500/15 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-amber-600 dark:text-amber-400">
-      draft
-    </span>
-  )
-}
-
-function PostRow({
-  post,
-  title: TitleComponent,
-  linkClassName,
-}: {
-  post: Post
-  title: "h2" | "h3"
-  linkClassName: string
-}) {
-  return (
-    <article>
-      <Link
-        href={`/blog/${post._meta.path}`}
-        className={cn(
-          "group block cursor-pointer rounded-xl focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 focus-visible:ring-offset-2 focus-visible:ring-offset-lightGray dark:focus-visible:ring-offset-dark",
-          linkClassName
-        )}
-        aria-label={`Read ${post.title}`}
-      >
-        <time
-          dateTime={post.date}
-          className="font-mono text-xs text-gray-500 dark:text-gray-400"
-        >
-          {formatPostDate(post.date)}
-        </time>
-        <ViewTransition
-          name={`post-title-${post._meta.path}`}
-          share="text-morph"
-          default="none"
-        >
-          <TitleComponent className="mt-2 text-balance font-heading text-xl leading-snug tracking-tight text-gray-900 transition-colors group-hover:text-purple-600 dark:text-ctp-text dark:group-hover:text-purple-300 md:text-2xl">
-            {post.title}
-            {post.draft && <DraftBadge />}
-          </TitleComponent>
-        </ViewTransition>
-        <p className="mt-2 max-w-prose text-base leading-relaxed text-gray-600 dark:text-gray-400">
-          {post.summary}
-        </p>
-      </Link>
-    </article>
-  )
-}
-
-export function BlogPostListItem({ post }: { post: Post }) {
-  return <PostRow post={post} title="h2" linkClassName="px-4 py-5" />
-}
-
-export function RecentPostListItem({ post }: { post: Post }) {
-  return <PostRow post={post} title="h3" linkClassName="py-5" />
 }
 
 function LatestPost({ post }: { post: Post }) {
@@ -333,6 +249,43 @@ function EmptyState({
   )
 }
 
+export function BlogIndexSkeleton() {
+  return (
+    <div aria-hidden="true">
+      <div className="mb-8 flex flex-col gap-5 rounded-2xl border border-gray-200/70 bg-white/35 p-4 shadow-xs shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/25 dark:shadow-black/10 md:mb-10 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
+        <div className="flex min-h-touch items-center gap-x-2 overflow-hidden p-1 md:min-h-9">
+          <div className="h-4 w-12 rounded bg-gray-200/80 dark:bg-ctp-surface0/80" />
+          {Array.from({ length: 4 }).map((_, index) => (
+            <div
+              key={index}
+              className="h-8 w-20 rounded-lg bg-gray-200/80 dark:bg-ctp-surface0/80"
+            />
+          ))}
+        </div>
+        <div className="h-11 w-full max-w-sm rounded-xl bg-gray-200/80 dark:bg-ctp-surface0/80 lg:w-72" />
+      </div>
+
+      <div className="mb-5 rounded-3xl border border-gray-200/70 bg-white/45 p-5 shadow-xs shadow-purple-950/5 dark:border-ctp-surface0/80 dark:bg-ctp-mantle/35 dark:shadow-black/10 sm:p-7">
+        <div className="h-3 w-16 rounded bg-purple-200/80 dark:bg-purple-300/20" />
+        <div className="mt-3 h-10 w-full max-w-2xl rounded bg-gray-200/80 dark:bg-ctp-surface0/80 md:h-12" />
+        <div className="mt-4 h-5 w-full max-w-xl rounded bg-gray-200/80 dark:bg-ctp-surface0/80" />
+        <div className="mt-2 h-5 w-4/5 max-w-lg rounded bg-gray-200/80 dark:bg-ctp-surface0/80" />
+        <div className="mt-5 h-4 w-32 rounded bg-purple-200/80 dark:bg-purple-300/20" />
+      </div>
+
+      <div className="space-y-1">
+        {Array.from({ length: 3 }).map((_, index) => (
+          <div key={index} className="px-4 py-5">
+            <div className="h-3 w-24 rounded bg-gray-200/80 dark:bg-ctp-surface0/80" />
+            <div className="mt-2 h-7 w-full max-w-xl rounded bg-gray-200/80 dark:bg-ctp-surface0/80" />
+            <div className="mt-3 h-5 w-full max-w-2xl rounded bg-gray-200/80 dark:bg-ctp-surface0/80" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function BlogIndex({
   tag,
   q,
@@ -347,10 +300,10 @@ export function BlogIndex({
   const activeTag =
     tags.find(
       ([candidate]) =>
-        normalizeFilter(candidate) === normalizeFilter(requestedTag)
+        normalizePostFilter(candidate) === normalizePostFilter(requestedTag)
     )?.[0] ?? requestedTag
   const visibleTags = getVisibleTags(tags, activeTag)
-  const filteredPosts = getFilteredPosts(posts, activeTag, query)
+  const filteredPosts = filterPosts(posts, activeTag, query)
   const hasActiveFilters = Boolean(activeTag || query)
   const [latestPost, ...remainingPosts] = filteredPosts
   const listPosts = hasActiveFilters ? filteredPosts : remainingPosts

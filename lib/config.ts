@@ -9,9 +9,8 @@ export const siteConfig = {
     "Articles by Christopher Cardoso about frontend engineering, terminal workflows, dotfiles, and developer tools.",
   social: {
     twitter: "https://x.com/kris_card",
+    twitterHandle: "@kris_card",
     github: "https://github.com/kriscard",
     linkedin: "https://www.linkedin.com/in/christophercardoso/",
   },
 } as const
-
-export type SiteConfig = typeof siteConfig

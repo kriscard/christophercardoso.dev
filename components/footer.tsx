@@ -6,7 +6,7 @@ export function Footer() {
   return (
     <footer className="view-transition-persistent-footer mt-auto">
       <div className="mt-auto flex flex-col items-center p-10">
-        <SocialLinks className="mb-3 flex space-x-4" />
+        <SocialLinks className="mb-3" />
         <div className="mb-8 flex flex-row items-center gap-2 text-sm text-gray-400">
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>

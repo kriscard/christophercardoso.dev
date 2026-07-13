@@ -58,7 +58,7 @@ const structuredData = {
     {
       "@type": "Blog",
       "@id": `${siteConfig.url}/blog#blog`,
-      name: "Christopher Cardoso Blog",
+      name: `${siteConfig.name} Blog`,
       url: `${siteConfig.url}/blog`,
       description: siteConfig.blogDescription,
       author: {
@@ -91,8 +91,8 @@ function serializeStructuredData(data: typeof structuredData) {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Christopher Cardoso",
-    template: "%s | Christopher Cardoso",
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   alternates: {
@@ -100,13 +100,13 @@ export const metadata: Metadata = {
   },
   authors: [
     {
-      name: "Christopher Cardoso",
+      name: siteConfig.name,
       url: siteConfig.url,
     },
   ],
-  creator: "Christopher Cardoso",
+  creator: siteConfig.name,
   keywords: [
-    "Christopher Cardoso",
+    siteConfig.name,
     "Christopher",
     "Cardoso",
     "full stack developer",
@@ -119,11 +119,11 @@ export const metadata: Metadata = {
     "dotfiles",
   ],
   openGraph: {
-    title: "Christopher Cardoso",
+    title: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
     type: "website",
-    siteName: "Christopher Cardoso",
+    siteName: siteConfig.name,
     locale: "en_US",
   },
   robots: {
@@ -141,18 +141,14 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
   },
   twitter: {
-    title: "Christopher Cardoso",
+    title: siteConfig.name,
     card: "summary_large_image",
     description: siteConfig.description,
-    creator: "@kris_card",
+    creator: siteConfig.social.twitterHandle,
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
@@ -177,8 +173,18 @@ export default function RootLayout({
               __html: serializeStructuredData(structuredData),
             }}
           />
+          <a
+            href="#main-content"
+            className="fixed left-4 top-4 z-50 -translate-y-24 rounded-lg bg-lightGray px-4 py-3 text-sm font-medium text-gray-900 shadow-lg transition-transform focus-visible:translate-y-0 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-purple-500/70 dark:bg-ctp-mantle dark:text-ctp-text"
+          >
+            Skip to main content
+          </a>
           <Header />
-          <main className="relative z-10 mx-auto mt-6 w-full max-w-6xl px-5 sm:px-8 md:px-10">
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className="relative z-10 mx-auto mt-6 w-full max-w-6xl px-5 sm:px-8 md:px-10 focus:outline-none"
+          >
             {children}
             <Analytics />
           </main>

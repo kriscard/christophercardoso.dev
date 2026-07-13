@@ -3,7 +3,6 @@ import Image from "next/image"
 import Link from "next/link"
 import type { MDXComponents } from "mdx/types"
 import { MDXRemote, MDXRemoteProps } from "next-mdx-remote-client/rsc"
-import { Tweet } from "react-tweet"
 import rehypePrettyCode from "rehype-pretty-code"
 import remarkGfm from "remark-gfm"
 
@@ -29,18 +28,18 @@ const mdxOptions: MDXRemoteProps["options"] = {
   },
 }
 
-const StaticTweet = ({ id }: { id: string }) => (
-  <div className="flex justify-center">
-    <Tweet id={id} />
-  </div>
-)
+const StaticTweet = async ({ id }: { id: string }) => {
+  const { StaticTweetContent } = await import("@/components/static-tweet")
+
+  return <StaticTweetContent id={id} />
+}
 
 const components = {
   h1: ({ className, ...props }) => (
     <h1
       className={cn(
         "mt-2 scroll-m-20 text-3xl font-bold tracking-tight md:text-4xl",
-        "text-gray-900 dark:text-[#cad3f5]",
+        "text-gray-900 dark:text-ctp-text",
         className
       )}
       {...props}
@@ -50,7 +49,7 @@ const components = {
     <h2
       className={cn(
         "mt-10 scroll-m-20 text-2xl font-semibold leading-tight tracking-tight first:mt-0 md:mt-12 md:text-3xl",
-        "text-gray-900 dark:text-[#cad3f5]",
+        "text-gray-900 dark:text-ctp-text",
         className
       )}
       {...props}
@@ -60,7 +59,7 @@ const components = {
     <h3
       className={cn(
         "mt-8 scroll-m-20 text-xl font-semibold leading-tight tracking-tight md:mt-10 md:text-2xl",
-        "text-gray-900 dark:text-[#cad3f5]",
+        "text-gray-900 dark:text-ctp-text",
         className
       )}
       {...props}
@@ -70,7 +69,7 @@ const components = {
     <h4
       className={cn(
         "mt-7 scroll-m-20 text-lg font-semibold leading-tight tracking-tight md:mt-8 md:text-xl",
-        "text-gray-900 dark:text-[#cad3f5]",
+        "text-gray-900 dark:text-ctp-text",
         className
       )}
       {...props}
@@ -80,7 +79,7 @@ const components = {
     <h5
       className={cn(
         "mt-6 scroll-m-20 text-lg font-medium tracking-tight",
-        "text-gray-800 dark:text-[#cad3f5]",
+        "text-gray-800 dark:text-ctp-text",
         className
       )}
       {...props}
@@ -90,7 +89,7 @@ const components = {
     <h6
       className={cn(
         "mt-6 scroll-m-20 text-base font-medium tracking-tight",
-        "text-gray-800 dark:text-[#a5adcb]",
+        "text-gray-800 dark:text-ctp-subtext0",
         className
       )}
       {...props}
@@ -118,18 +117,22 @@ const components = {
       >
         {children}
         {isExternal && (
-          <svg
-            className="mb-0.5 inline size-3 shrink-0 text-gray-400 dark:text-[#6e738d]"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M7 17L17 7" />
-            <path d="M7 7h10v10" />
-          </svg>
+          <>
+            <span className="sr-only"> (opens in a new tab)</span>
+            <svg
+              aria-hidden="true"
+              className="mb-0.5 inline size-3 shrink-0 text-gray-400 dark:text-ctp-overlay0"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M7 17L17 7" />
+              <path d="M7 7h10v10" />
+            </svg>
+          </>
         )}
       </a>
     )
@@ -229,7 +232,7 @@ const components = {
     <pre
       className={cn(
         "my-0 overflow-x-auto rounded-xl p-3 text-[0.8125rem] md:p-4 md:text-sm",
-        "border border-[#363a4f] bg-[#1e2030] text-[#cad3f5]",
+        "border border-ctp-surface0 bg-ctp-mantle text-ctp-text",
         className
       )}
       {...props}
