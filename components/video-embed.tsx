@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils"
 
+import { isYouTubeEmbedUrl } from "./video-embed-url"
+
 interface VideoEmbedProps {
   src: string
   title?: string
@@ -11,6 +13,19 @@ export function VideoEmbed({
   title = "Embedded video",
   className,
 }: VideoEmbedProps) {
+  if (!isYouTubeEmbedUrl(src)) {
+    return (
+      <p
+        className={cn(
+          "my-8 text-sm text-gray-500 dark:text-gray-400",
+          className
+        )}
+      >
+        Video unavailable.
+      </p>
+    )
+  }
+
   return (
     <div className={cn("my-8 max-w-3xl overflow-hidden rounded-xl", className)}>
       <div className="relative aspect-video">

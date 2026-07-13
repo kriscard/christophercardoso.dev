@@ -2,12 +2,10 @@ import type { Route } from "next"
 
 import type { Post } from "@/features/post/post-queries"
 
+import { getPostTags } from "./post-frontmatter"
+
 export function getSearchParamValue(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : (value ?? "")
-}
-
-function getPostTags(tag: Post["tag"]) {
-  return Array.isArray(tag) ? tag : [tag]
 }
 
 export function normalizePostFilter(value: string) {

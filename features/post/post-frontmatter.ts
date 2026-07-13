@@ -9,6 +9,10 @@ export interface PostFrontmatter {
   draft: boolean
 }
 
+export function getPostTags(tag: PostFrontmatter["tag"]) {
+  return Array.isArray(tag) ? tag : [tag]
+}
+
 function parsePostDate(date: unknown, file: string) {
   const parsedDate =
     typeof date === "string"

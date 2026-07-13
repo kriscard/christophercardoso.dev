@@ -11,6 +11,8 @@ import {
   type PostFrontmatter,
 } from "@/features/post/post-frontmatter"
 
+export { getPostTags } from "@/features/post/post-frontmatter"
+
 export interface Post extends PostFrontmatter {
   slug: string
   content: string
@@ -20,10 +22,6 @@ export interface Post extends PostFrontmatter {
 }
 
 const POSTS_PATH = path.join(process.cwd(), "content")
-
-export function getPostTags(tag: Post["tag"]) {
-  return Array.isArray(tag) ? tag : [tag]
-}
 
 export function formatPostDate(date: string) {
   return format(parseISO(date), "MMM d, yyyy")
