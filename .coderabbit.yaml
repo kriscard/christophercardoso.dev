@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: en-US
+
+reviews:
+  # Balanced feedback: bugs and logic without an assertive stream of nitpicks.
+  profile: chill
+
+  # Advisory reviewer, not a merge gate.
+  request_changes_workflow: false
+
+  high_level_summary: true
+  review_status: true
+  collapse_walkthrough: true
+  poem: false
+  abort_on_close: true
+
+  auto_review:
+    # Keep this on during evaluation so enough reviews occur to judge the tool.
+    enabled: true
+    drafts: false
+    auto_incremental_review: true
+    ignore_title_keywords:
+      - "WIP"
+      - "DO NOT MERGE"
+
+  # Keep deterministic checks explicit. Ruff is omitted because this repo has no Python.
+  tools:
+    eslint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    actionlint:
+      enabled: true
+
+  # Avoid generated follow-up changes while evaluating review quality.
+  finishing_touches:
+    docstrings:
+      enabled: false
+    unit_tests:
+      enabled: false
+
+chat:
+  auto_reply: true
